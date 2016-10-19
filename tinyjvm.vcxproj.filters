@@ -13,14 +13,41 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\classpath">
+      <UniqueIdentifier>{3c30e5a3-768e-4ee8-b9a6-b1d0539c998e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="classpath\entry.c">
+      <Filter>源文件\classpath</Filter>
+    </ClCompile>
+    <ClCompile Include="classpath\entry_dir.c">
+      <Filter>源文件\classpath</Filter>
+    </ClCompile>
+    <ClCompile Include="classpath\entry_composite.c">
+      <Filter>源文件\classpath</Filter>
+    </ClCompile>
+    <ClCompile Include="classpath\entry_wildcard.c">
+      <Filter>源文件\classpath</Filter>
+    </ClCompile>
+    <ClCompile Include="classpath\entry_zip.c">
+      <Filter>源文件\classpath</Filter>
+    </ClCompile>
+    <ClCompile Include="classpath\classpath.c">
+      <Filter>源文件\classpath</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="classpath\entry.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="classpath\classpath.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

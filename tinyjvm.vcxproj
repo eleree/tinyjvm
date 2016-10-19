@@ -64,9 +64,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="classpath\classpath.c" />
+    <ClCompile Include="classpath\entry.c" />
+    <ClCompile Include="classpath\entry_composite.c" />
+    <ClCompile Include="classpath\entry_dir.c" />
+    <ClCompile Include="classpath\entry_wildcard.c" />
+    <ClCompile Include="classpath\entry_zip.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="classpath\classpath.h" />
+    <ClInclude Include="classpath\entry.h" />
     <ClInclude Include="getopt.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
