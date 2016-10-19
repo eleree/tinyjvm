@@ -1,2 +1,2 @@
 # tinyjvm
-a copy jvm as jvm.og
+a copy jvm as jvm.go
