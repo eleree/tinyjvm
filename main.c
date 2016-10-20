@@ -19,10 +19,16 @@ void printUsage(void)
 
 void startJVM(const char * jrepath, const char * classpath, const char * className)
 {
+	int32_t classSize = 0;
+	char * classContent = NULL;
 	char * fullClassName = (char *)calloc(128, 1);
 	parseClasspath(jrepath, classpath);
 	stringReplace(className, fullClassName, 128);
-	readClass(fullClassName);
+	stringCat(fullClassName, ".class", 128);
+	classSize = readClass(fullClassName, &classContent);
+	if (classSize > 0){
+		printf("class size:%d,class data:[]", classSize);
+	}
 }
 
 int main(int argc, char ** argv)

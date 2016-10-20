@@ -7,6 +7,6 @@
 #include <string.h>
 
 int32_t parseClasspath(const char * jrepath, const char * classpath);
-int32_t readClass(const char * className);
+int32_t readClass(const char * className, char ** classContent);
 
 #endif
