@@ -3,21 +3,26 @@
 #include <stdint.h>
 
 #include "getopt.h"
+#include "classpath\classpath.h"
+#include "strings\strings.h"
 
 #define MAX_JVM_ARGS	8
 char classpath[128] = { 0 };
-char class[128] = { 0 };
+char className[128] = { 0 };
 char jvmArgs[MAX_JVM_ARGS][64] = { 0 };
-char jrePath[128] = { 0 };
+char jrepath[128] = { 0 };
 
 void printUsage(void)
 {
 	printf("Usage: tinyjvm [--option] class [args...]\n");
 }
 
-void startJVM(const char * jrePath, const char * classpath)
+void startJVM(const char * jrepath, const char * classpath, const char * className)
 {
-
+	char * fullClassName = (char *)calloc(128, 1);
+	parseClasspath(jrepath, classpath);
+	stringReplace(className, fullClassName, 128);
+	readClass(fullClassName);
 }
 
 int main(int argc, char ** argv)
@@ -45,8 +50,8 @@ int main(int argc, char ** argv)
 				printf("classpath:%s\n", classpath);
 				break;
 			case 'X':
-				strcpy(jrePath, optarg);
-				printf("jre path:%s\n", jrePath);
+				strcpy(jrepath, optarg);
+				printf("jre path:%s\n", jrepath);
 				break;
 			default:
 				break;
@@ -54,6 +59,11 @@ int main(int argc, char ** argv)
 	}
 	argc -= optind;
 	argv += optind;
+	if (argc == 0)
+	{
+		printf("Please specify a class\n");
+		exit(0);
+	}
 	for (int i = 0; i < argc; i++)
 	{
 		if (i >= MAX_JVM_ARGS)
@@ -61,12 +71,17 @@ int main(int argc, char ** argv)
 			printf("Too many args, use the first %d args\n", MAX_JVM_ARGS);
 			break;
 		}
+		if (i == 0)
+		{
+			strncpy(className, argv[i], 64);
+			continue;
+		}
 		
 		strncpy((char *)&jvmArgs[i], argv[i],64);
-		printf("class:%s,%d,%s\n", class, i, argv[i]);
+		printf("Args:%d,%s\n", i, argv[i]);
 	}
 
-	startJVM(jrePath, classpath);
+	startJVM(jrepath, classpath, className);
 
 	return 0;
 }
