@@ -19,6 +19,9 @@
     <Filter Include="源文件\strings">
       <UniqueIdentifier>{43dc46f1-d35c-4b1d-b5f0-4d6724ed9227}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\miniz">
+      <UniqueIdentifier>{ba36d249-d800-4615-ac38-25c1073ab6d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -45,6 +48,9 @@
     <ClCompile Include="strings\strings.c">
       <Filter>源文件\strings</Filter>
     </ClCompile>
+    <ClCompile Include="miniz\miniz.c">
+      <Filter>源文件\miniz</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -58,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="strings\strings.h">
       <Filter>源文件\strings</Filter>
+    </ClInclude>
+    <ClInclude Include="miniz\miniz.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

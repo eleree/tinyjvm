@@ -71,12 +71,14 @@
     <ClCompile Include="classpath\entry_wildcard.c" />
     <ClCompile Include="classpath\entry_zip.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="miniz\miniz.c" />
     <ClCompile Include="strings\strings.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="classpath\classpath.h" />
     <ClInclude Include="classpath\entry.h" />
     <ClInclude Include="getopt.h" />
+    <ClInclude Include="miniz\miniz.h" />
     <ClInclude Include="strings\strings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

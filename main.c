@@ -6,6 +6,8 @@
 #include "classpath\classpath.h"
 #include "strings\strings.h"
 
+#include "miniz\miniz.h"
+
 #define MAX_JVM_ARGS	8
 char classpath[128] = { 0 };
 char className[128] = { 0 };
@@ -31,8 +33,25 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 	}
 }
 
+void testMiniz(void)
+{
+	ZipFile * zipFile;
+	printf("Test Miniz Apis\n");
+	zipFile =  openZip("./Desktop.zip");
+	if (zipFile == NULL)
+	{
+
+	}
+
+	if (zipFile != NULL)
+		free(zipFile);
+	exit(0);
+}
+
 int main(int argc, char ** argv)
 {
+	testMiniz();
+
 	int16_t ch;
 	static const char *shortOptions = "hc:";
 	static struct option longOptions[] = {
