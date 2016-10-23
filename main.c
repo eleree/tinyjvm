@@ -37,7 +37,7 @@ void testMiniz(void)
 {
 	ZipFile * zipFile;
 	printf("Test Miniz Apis\n");
-	zipFile =  openZip("./Desktop.zip");
+	zipFile =  openZip("E:/2016/tinyjvm/Debug/test.zip");
 	if (zipFile == NULL)
 	{
 
@@ -47,11 +47,12 @@ void testMiniz(void)
 		free(zipFile);
 	exit(0);
 }
+int testSSHZlib(int argc, char **argv);
 
 int main(int argc, char ** argv)
 {
 	testMiniz();
-
+	//testSSHZlib(argc, argv);
 	int16_t ch;
 	static const char *shortOptions = "hc:";
 	static struct option longOptions[] = {

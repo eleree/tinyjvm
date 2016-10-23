@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
 
 #pragma pack(1) 
 
@@ -54,7 +55,6 @@ typedef struct _CentralDirectoryFileHeader
 	uint32_t externalFileAttributes; // unsupported
 	uint32_t relativeOffsetOflocalHeader;
 }CentralDirectoryFileHeader;
-#pragma pack()
 
 typedef struct _ZipFile
 {
@@ -63,6 +63,27 @@ typedef struct _ZipFile
 	LocalFileHeader localFileHeader;
 	EndCentralDirectoryRecord endCentralDirectory;
 }ZipFile;
+
+#pragma pack()
+
+typedef struct _ZipStream
+{
+	uint8_t * stream;
+	uint8_t remainBits;
+	uint8_t remainBitsNum;
+	uint32_t outBytes;
+	int32_t totalBytes;
+	int32_t status;
+}ZipStream;
+
+#define MINIZ_DEFLATE_HEADER_MASK		0x07
+#define MINIZ_DEFLATE_HLIT_MASK			0x1F
+#define MINIZ_DEFLATE_HDIST_MASK		0x1F
+#define MINIZ_DEFLATE_HCLEN_MASK		0x0F
+
+ZipStream * openStream(ZipFile * zipFIle);
+uint8_t streamReadBits(ZipStream * zipStream, uint8_t bits);
+int32_t closeStream(ZipStream * zipStream);
 
 ZipFile* openZip(const char * zipName);
 int32_t listZipFile(ZipFile* zipFile);
