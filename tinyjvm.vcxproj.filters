@@ -51,9 +51,6 @@
     <ClCompile Include="miniz\miniz.c">
       <Filter>源文件\miniz</Filter>
     </ClCompile>
-    <ClCompile Include="miniz\sshzlib.c">
-      <Filter>源文件\miniz</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

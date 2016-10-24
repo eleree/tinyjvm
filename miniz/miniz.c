@@ -106,7 +106,97 @@ void reverseCCL(uint8_t * ccl)
 		ccl[i] = tempCCL[i];
 	}
 }
+void buildHuffmanTree(uint8_t * ccl, uint8_t cclLen)
+{
+	printf("Build Huffman Tree\n");
+	typedef struct Tree{
+		uint8_t Code;
+		uint8_t Len;
+	}Tree;
+#define MAX_BITS 19
 
+	Tree tree[MAX_BITS] = { 0 };
+	for (int i = 0; i < MAX_BITS; i++)
+	{
+		tree[i].Len = ccl[i];
+	}
+
+	uint8_t code = 0;
+	uint8_t bl_count[MAX_BITS] = {  0, 0, 2, 3, 0, 4, 0, 0,
+									0, 0, 0, 0, 0, 0, 0, 0,\
+									0, 0, 0	};
+	
+	uint8_t next_code[MAX_BITS] = { 0 };
+	for (int bits = 1; bits <= 6; bits++) {
+		code = (code + bl_count[bits - 1]) << 1;
+		next_code[bits] = code;
+	}
+	printf("next_code:\n");
+	for (int i = 0; i < 6; i++)
+	{
+		printf("%d\n", next_code[i]);
+	}
+
+
+	uint8_t max_code = 19;
+
+	for (int n = 0; n <= max_code; n++) {
+		int len = tree[n].Len;
+		if (len != 0) {
+			tree[n].Code = next_code[len];
+			next_code[len]++;
+		}
+	}
+	printf("Code:\n");
+	for (int i = 0; i < max_code; i++)
+	{
+		printf("i:%d-0x%02x\n",i, tree[i].Code);
+	}
+	printf("Done\n");
+
+}
+/*
+void buildHuffmanTreeTest(void)
+{
+	typedef struct Tree{
+		uint8_t Code;
+		uint8_t Len;
+	}Tree;
+	Tree tree[8] = { { 'A', 3 }, { 'B', 3 }, { 'C', 3 }, { 'D', 3 }	\
+		, { 'E', 3 }, { 'F', 2 }, { 'G', 4 }, { 'H', 4 } };
+#define MAX_BITS 5
+
+	uint8_t code = 0;
+	uint8_t bl_count[] = { 0, 0, 1, 5, 2 };
+	uint8_t next_code[11] = { 0 };
+	for (int bits = 1; bits <= MAX_BITS; bits++) {
+		code = (code + bl_count[bits - 1]) << 1;
+		next_code[bits] = code;
+	}
+	for (int i = 0; i < MAX_BITS; i++)
+	{
+		printf("%d\n", next_code[i]);
+	}
+
+
+	uint8_t max_code = 8;
+
+	for (int n = 0; n <= max_code; n++) {
+		int len = tree[n].Len;
+		if (len != 0) {
+			tree[n].Code = next_code[len];
+			next_code[len]++;
+		}
+	}
+	printf("Code:\n");
+	for (int i = 0; i < max_code; i++)
+	{
+		printf("0x%02x\n", tree[i].Code);
+	}
+	printf("Done\n");
+
+}
+*/
 int32_t readZipLocalHeader(ZipFile * zipFile, LocalFileHeader * localHeader)
 {
 	char * deflateData = NULL;
@@ -161,39 +251,8 @@ int32_t readZipLocalHeader(ZipFile * zipFile, LocalFileHeader * localHeader)
 		printf("Reversed CCL%d:0x%02x\n", i, CCL[i]);
 	}
 
-#define MAX_BITS 5
-	typedef struct Tree{
-		uint8_t Code;
-		uint8_t Len;
-	}Tree;
-	uint8_t code = 0;
-	uint8_t bl_count[] = { 0,0,1,5,2 };
-	uint8_t next_code[11] = {0};
-	for (int bits = 1; bits <= MAX_BITS; bits++) {
-		code = (code + bl_count[bits - 1]) << 1;
-		next_code[bits] = code;
-	}
-	for (int i = 0; i < MAX_BITS; i++)
-	{
-		printf("%d\n",next_code[i]);
-	}
-	
-	Tree tree[20] = { { 'A', 3 }, { 'B', 3 }, { 'C', 3 }, { 'D', 3 }	\
-	, { 'E', 3 }, { 'F', 2 }, { 'G', 4 }, { 'H', 4 } };
-	uint8_t max_code = 8;
-	
-	for (int n = 0; n <= max_code; n++) {
-		int len = tree[n].Len;
-		if (len != 0) {
-			tree[n].Code = next_code[len];
-			next_code[len]++;
-		}
-	}
-	printf("Code:\n");
-	for (int i = 0; i < max_code; i++)
-	{
-		printf("0x%02x\n", tree[i].Code);
-	}
+	buildHuffmanTree(CCL,19);
+
 	return 0;
 }
 
