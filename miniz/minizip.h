@@ -1,5 +1,5 @@
-#ifndef __TINY_JVM_MINIZ_H__
-#define __TINY_JVM_MINIZ_H__
+#ifndef __TINY_JVM_MINIZIP_H__
+#define __TINY_JVM_MINIZIP_H__
 
 #include <stdio.h>
 #include <stdint.h>
@@ -20,7 +20,7 @@ typedef  struct _EndCentralDirectoryRecord{
 }EndCentralDirectoryRecord;
 
 
-typedef struct _LocalFileHeader
+typedef struct _LocalFileHeader_
 {
 	uint32_t signature; // \x50\x4b\x03\x04
 	uint16_t versionNeededToExtract; // unsupported

@@ -6,7 +6,7 @@
 #include "classpath\classpath.h"
 #include "strings\strings.h"
 
-#include "miniz\miniz.h"
+#include "miniz\minizip.h"
 
 #define MAX_JVM_ARGS	8
 char classpath[128] = { 0 };
@@ -49,8 +49,10 @@ void testMiniz(void)
 }
 int testSSHZlib(int argc, char **argv);
 
+extern void testMinizWrapper(void);
 int main(int argc, char ** argv)
-{
+{	
+	testMinizWrapper();
 	testMiniz();
 	//testSSHZlib(argc, argv);
 	int16_t ch;

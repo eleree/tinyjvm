@@ -48,7 +48,10 @@
     <ClCompile Include="strings\strings.c">
       <Filter>源文件\strings</Filter>
     </ClCompile>
-    <ClCompile Include="miniz\miniz.c">
+    <ClCompile Include="miniz\minizip.c">
+      <Filter>源文件\miniz</Filter>
+    </ClCompile>
+    <ClCompile Include="miniz\miniz_wrapper.c">
       <Filter>源文件\miniz</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,7 +68,10 @@
     <ClInclude Include="strings\strings.h">
       <Filter>源文件\strings</Filter>
     </ClInclude>
-    <ClInclude Include="miniz\miniz.h">
+    <ClInclude Include="miniz\minizip.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="miniz\miniz_wrapper.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
