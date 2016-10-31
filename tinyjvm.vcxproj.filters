@@ -51,9 +51,6 @@
     <ClCompile Include="miniz\minizip.c">
       <Filter>源文件\miniz</Filter>
     </ClCompile>
-    <ClCompile Include="miniz\miniz_wrapper.c">
-      <Filter>源文件\miniz</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -65,13 +62,13 @@
     <ClInclude Include="classpath\classpath.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="strings\strings.h">
-      <Filter>源文件\strings</Filter>
-    </ClInclude>
     <ClInclude Include="miniz\minizip.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="miniz\miniz_wrapper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="strings\strings.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

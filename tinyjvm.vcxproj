@@ -72,7 +72,6 @@
     <ClCompile Include="classpath\entry_zip.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="miniz\minizip.c" />
-    <ClCompile Include="miniz\miniz_wrapper.c" />
     <ClCompile Include="strings\strings.c" />
   </ItemGroup>
   <ItemGroup>

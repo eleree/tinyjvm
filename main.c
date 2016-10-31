@@ -31,6 +31,8 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 	if (classSize > 0){
 		printf("class size:%d,class data:[]", classSize);
 	}
+	if (classContent != NULL)
+		free(classContent);
 }
 
 void testMiniz(void)
@@ -49,11 +51,11 @@ void testMiniz(void)
 }
 int testSSHZlib(int argc, char **argv);
 
-extern void testMinizWrapper(void);
+//extern void testMinizWrapper(void);
 int main(int argc, char ** argv)
 {	
-	testMinizWrapper();
-	testMiniz();
+	//testMinizWrapper();
+	//testMiniz();
 	//testSSHZlib(argc, argv);
 	int16_t ch;
 	static const char *shortOptions = "hc:";
