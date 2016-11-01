@@ -28,8 +28,13 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 	stringReplace(className, fullClassName, 128);
 	stringCat(fullClassName, ".class", 128);
 	classSize = readClass(fullClassName, &classContent);
-	if (classSize > 0){
-		printf("class size:%d,class data:[]", classSize);
+	if (classSize > 0 && classContent != NULL){
+		printf("class size:%d,class data:[", classSize);
+		for(int32_t i = 0; i < classSize; i++)
+		{
+			printf("0x%02x ", classContent[i]);
+		}
+		printf("]\n");
 	}
 	if (classContent != NULL)
 		free(classContent);

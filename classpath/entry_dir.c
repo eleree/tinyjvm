@@ -4,32 +4,25 @@
 #pragma comment(lib, "User32.lib")
 #pragma warning(disable:4996)
 
-int64_t readDirEntryClass(const char * path, const char * className, char ** classContent)
+int32_t readDirEntryClass(const char * path, const char * className, char ** classContent)
 {
 	HANDLE hFile;
-	HANDLE hSearch;
-	WIN32_FIND_DATA FileData;
-	LARGE_INTEGER filesize;
 	char fullClassName[128] = { 0 };
+	char * classBuffer = NULL;
+	DWORD dwActualRead = 0;
+	DWORD dwFileSize = 0;
+
 	strcat(fullClassName, path);
 	strcat(fullClassName, "/");
 	strcat(fullClassName, className);
+	*classContent = NULL;
 
-	hSearch = FindFirstFile(fullClassName, &FileData);
-	if (hSearch == INVALID_HANDLE_VALUE)
-	{
-		printf("No file found.\n");
-		return -1;
-	}
-	filesize.HighPart = FileData.nFileSizeHigh;
-	filesize.LowPart = FileData.nFileSizeLow;
-	printf("File size:%d\n", filesize.QuadPart);
 	hFile = CreateFile(fullClassName,               // file to open
 		GENERIC_READ,          // open for reading
 		FILE_SHARE_READ,       // share for reading
 		NULL,                  // default security
 		OPEN_EXISTING,         // existing file only
-		FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OVERLAPPED, // normal file
+		FILE_ATTRIBUTE_NORMAL, // normal file
 		NULL);                 // no attr. template
 
 	if (hFile == INVALID_HANDLE_VALUE)
@@ -37,5 +30,23 @@ int64_t readDirEntryClass(const char * path, const char * className, char ** cla
 		printf("Directly open class file failed\n");
 		return -1;
 	}
-	return 0;
+	
+	dwFileSize = GetFileSize(hFile, NULL);
+	classBuffer = (char *)calloc((size_t)dwFileSize, 1);
+	if (classBuffer == NULL)
+		return -2;
+	printf("File size:%d\n", dwFileSize);
+
+	if (ReadFile(hFile, classBuffer, dwFileSize, &dwActualRead, NULL) == FALSE)
+	{
+		printf("Failed to read file with 0x%02x\n", GetLastError());
+		free(classBuffer);
+		CloseHandle(hFile);
+		return -3;
+	}
+
+	*classContent = classBuffer;
+
+	CloseHandle(hFile);
+	return (int32_t) dwFileSize;
 }

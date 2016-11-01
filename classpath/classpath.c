@@ -26,12 +26,12 @@ int32_t bootClasspathReadClass(const char * className, char ** classContent)
 	HANDLE hFile = INVALID_HANDLE_VALUE;
 	HANDLE hFind = INVALID_HANDLE_VALUE;
 	char fullJrePath[128] = { 0 };
-	// Find class file directly
 
+	// Find class file in directory
 	if ((classSize = readDirEntryClass(_jrepath, className, classContent)) > 0)
 		return classSize;
 		
-	// Find all jar files
+	// Find class in jar
 	strcat(fullJrePath, _jrepath);
 	strcat(fullJrePath, "\\*");
 	hFind = FindFirstFile(fullJrePath, &ffd);
@@ -69,6 +69,45 @@ int32_t extClasspathReadClass(const char * className, char ** classContent)
 
 int32_t userClasspathReadClass(const char * className, char ** classContent)
 {
+	int32_t classSize = 0;
+	WIN32_FIND_DATA ffd;
+	HANDLE hFile = INVALID_HANDLE_VALUE;
+	HANDLE hFind = INVALID_HANDLE_VALUE;
+	char fullClassPath[128] = { 0 };
+
+	// Find class file in directory
+	if ((classSize = readDirEntryClass(_classpath, className, classContent)) > 0)
+		return classSize;
+
+	// Find class in jar
+	strcat(fullClassPath, _classpath);
+	strcat(fullClassPath, "\\*");
+	hFind = FindFirstFile(fullClassPath, &ffd);
+	if (INVALID_HANDLE_VALUE == hFind)
+	{
+		printf("Fail to find first file\n");
+		return -1;
+	}
+
+	do
+	{
+		char zipFile[128] = { 0 };
+		if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+			continue;
+
+		if (stringHasSuffix(ffd.cFileName, ".jar") == 0)
+		{
+			strcat(zipFile, _jrepath);
+			strcat(zipFile, "\\");
+			strcat(zipFile, ffd.cFileName);
+			printf("Reading zip file %s\n", zipFile);
+			if ((classSize = readZipEntryClass(zipFile, className, classContent)) > 0)
+				return  classSize;
+		}
+
+
+	} while (FindNextFile(hFind, &ffd) != 0);
+
 	return 0;
 }
 
