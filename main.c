@@ -4,6 +4,7 @@
 
 #include "getopt.h"
 #include "classpath\classpath.h"
+#include "classfile\classfile.h"
 #include "strings\strings.h"
 
 #include "miniz\minizip.h"
@@ -24,6 +25,8 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 	int32_t classSize = 0;
 	char * classContent = NULL;
 	char * fullClassName = (char *)calloc(128, 1);
+	ClassFile * classFile = NULL;
+
 	parseClasspath(jrepath, classpath);
 	stringReplace(className, fullClassName, 128);
 	stringCat(fullClassName, ".class", 128);
@@ -37,6 +40,8 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 		printf("]\n");
 	}
 
+	classFile = parseClassData(classContent, classSize);
+	printClassInfo(classFile);
 
 	if (classContent != NULL)
 		free(classContent);

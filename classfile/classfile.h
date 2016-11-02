@@ -5,13 +5,13 @@
 
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #pragma pack(1) 
 typedef struct ClassFileHeader{
 	uint32_t magicNumber;
 	uint16_t minorVersion;
 	uint16_t majorVersion;
-	uint16_t constanPoolCount;
 }ClassFileHeader;
 #pragma pack()
 
@@ -23,8 +23,10 @@ typedef struct ConstantPoolItem
 
 typedef struct ClassFile{
 	uint8_t * data;
+	uint64_t size;
 	ClassFileHeader header;	
-	ConstantPoolItem * item;
+	uint16_t constanPoolCount;
+	ConstantPoolItem constantPoolItem;
 }ClassFile;
 
 enum ConstantType
@@ -380,7 +382,7 @@ typedef struct MethodInfo{
 	AttributeInfo * attributes;
 }MethodInfo;
 
-ClassFile * parseClassData(uint8_t classData, uint64_t classSize);
+ClassFile * parseClassData(uint8_t * classData, uint64_t classSize);
 void deleteClassFile(ClassFile * classFile);
 int32_t printClassInfo(ClassFile * classFile);
 
