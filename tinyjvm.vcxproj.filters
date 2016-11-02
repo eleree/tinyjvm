@@ -22,6 +22,9 @@
     <Filter Include="源文件\miniz">
       <UniqueIdentifier>{ba36d249-d800-4615-ac38-25c1073ab6d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\classfile">
+      <UniqueIdentifier>{f9e1de48-9e6f-4929-86bb-90da6ef02f5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -51,6 +54,9 @@
     <ClCompile Include="miniz\minizip.c">
       <Filter>源文件\miniz</Filter>
     </ClCompile>
+    <ClCompile Include="classfile\classfile.c">
+      <Filter>源文件\classfile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -69,6 +75,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="strings\strings.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="classfile\classfile.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

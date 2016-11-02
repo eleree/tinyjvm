@@ -36,6 +36,8 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 		}
 		printf("]\n");
 	}
+
+
 	if (classContent != NULL)
 		free(classContent);
 }
