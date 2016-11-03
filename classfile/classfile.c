@@ -86,14 +86,70 @@ void readAndCheckVersion(ClassFile * classFile)
 	exit(0);
 }
 
-void * constantClassInfo(void)
-{
-	return NULL;
-}
-
+// Malloc Constant Pool Item Functions
 void * constantIntegerInfo(void)
 {
 	return calloc(1, sizeof(ConstantIntegerInfo));
+}
+
+void * constantFloatInfo(void)
+{
+	return calloc(1, sizeof(ConstantFloatInfo));
+}
+
+void * constantLongInfo(void)
+{
+	return calloc(1, sizeof(ConstantLongInfo));
+}
+
+void * constantDoubleInfo(void)
+{
+	return calloc(1, sizeof(ConstantDoubleInfo));
+}
+
+void * constantUtf8Info(void)
+{
+	return calloc(1, sizeof(ConstantUtf8Info));
+}
+
+void * constantStringInfo(void)
+{
+	return calloc(1, sizeof(ConstantStringInfo));
+}
+
+void * constantClassInfo(void)
+{
+	return calloc(1, sizeof(ConstantClassInfo));
+}
+
+void * constantFieldrefInfo(void)
+{
+	return calloc(1, sizeof(ConstantFieldrefInfo));
+}
+
+void * constantInterfaceMethodrefInfo(void)
+{
+	return calloc(1, sizeof(ConstantInterfaceMethodrefInfo));
+}
+
+void * constantNameAndTypeInfo(void)
+{
+	return calloc(1, sizeof(ConstantNameAndTypeInfo));
+}
+
+void * constantMethodTypeInfo(void)
+{
+	return calloc(1, sizeof(ConstantMethodTypeInfo));
+}
+
+void * constantMethodHandleInfo(void)
+{
+	return calloc(1, sizeof(ConstantMethodHandleInfo));
+}
+
+void * constantInvokeDynamicInfo(void)
+{
+	return calloc(1, sizeof(ConstantInvokeDynamicInfo));
 }
 
 int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
@@ -139,10 +195,13 @@ void * newConstantInfo(uint8_t tag)
 	case CONSTATNT_METHODREF:
 	case CONSTATNT_INTERFACE_METHODREF:
 	case CONSTATNT_STRING:
+		return NULL;
 	case CONSTATNT_INTEGER:
 		return constantIntegerInfo();		
 	case CONSTATNT_FLOAT:
+		return constantFloatInfo();
 	case CONSTATNT_LONG:
+		return constantLongInfo();
 	case CONSTATNT_DOUBLE:
 	case CONSTATNT_NAME_AND_TYPE:
 	case CONSTATNT_UTF8:
@@ -159,8 +218,10 @@ void readConstantPool(ClassFile * classFile)
 	classFile->constanPoolCount = readClassUint16(classFile);
 	for (uint32_t i = 0; i < classFile->constanPoolCount; i++)
 	{
+		void * itemInfo = NULL;
 		uint8_t tag = readClassUint8(classFile);
-
+		itemInfo = newConstantInfo(tag);
+		readConstantInfo(classFile, tag, itemInfo);
 	}
 	
 }
@@ -174,6 +235,7 @@ ClassFile * parseClassData(uint8_t * classData, uint64_t classSize)
 	classFile->size = classSize;
 	readAndCheckMagic(classFile);
 	readAndCheckVersion(classFile);
+	readConstantPool(classFile);
 	return classFile;
 }
 
