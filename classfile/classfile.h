@@ -18,6 +18,7 @@ typedef struct ClassFileHeader{
 typedef struct ConstantPoolItem
 {
 	struct ConstantPoolItem * next;
+	uint8_t tag;
 	void * itemInfo;
 }ConstantPoolItem;
 
@@ -59,13 +60,13 @@ typedef struct ConstantClassInfo{
 // 4.4.2. The CONSTANT_Fieldref_info, CONSTANT_Methodref_info, and CONSTANT_InterfaceMethodref_info Structures
 typedef struct ConstantFieldrefInfo{
 	uint8_t tag;
-	uint16_t class_index;
+	uint16_t classIndex;
 	uint16_t name_and_type_index;
 }ConstantFieldrefInfo;
 
 typedef struct ConstantMethodrefInfo{
 	uint8_t tag;
-	uint16_t class_index;
+	uint16_t classIndex;
 	uint16_t name_and_type_index;
 }ConstantMethodrefInfo;
 

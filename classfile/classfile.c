@@ -161,6 +161,8 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 	switch (tag)
 	{
 	case CONSTATNT_CLASS:
+		((ConstantClassInfo*)itemInfo)->tag = tag;
+		((ConstantClassInfo*)itemInfo)->nameIndex = readClassUint16(classFile);
 	case CONSTATNT_FIELDREF:
 	case CONSTATNT_METHODREF:
 	case CONSTATNT_INTERFACE_METHODREF:
@@ -168,9 +170,6 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 	case CONSTATNT_INTEGER:
 		((ConstantIntegerInfo*)itemInfo)->tag = tag;
 		((ConstantIntegerInfo*)itemInfo)->bytes = readClassUint32(classFile);
-		rootItem->next = (ConstantPoolItem*)calloc(1, sizeof(ConstantPoolItem));
-		rootItem->next->next = NULL;
-		rootItem->next->itemInfo = itemInfo;
 		break;
 	case CONSTATNT_FLOAT:
 	case CONSTATNT_LONG:
@@ -182,6 +181,12 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 	case CONSTATNT_INVOKE_DYNAMIC:
 		break;
 	}
+
+	rootItem->next = (ConstantPoolItem*)calloc(1, sizeof(ConstantPoolItem));
+	rootItem->next->tag = tag;
+	rootItem->next->next = NULL;
+	rootItem->next->itemInfo = itemInfo;
+
 	return 0;
 }
 
@@ -192,10 +197,13 @@ void * newConstantInfo(uint8_t tag)
 	case CONSTATNT_CLASS:
 		return constantClassInfo();
 	case CONSTATNT_FIELDREF:
+		return constantFieldrefInfo();
 	case CONSTATNT_METHODREF:
+		return constantMethodrefInfo();
 	case CONSTATNT_INTERFACE_METHODREF:
+		return constantInterfaceMethodrefInfo();
 	case CONSTATNT_STRING:
-		return NULL;
+		return constantStringInfo();
 	case CONSTATNT_INTEGER:
 		return constantIntegerInfo();		
 	case CONSTATNT_FLOAT:
@@ -203,11 +211,18 @@ void * newConstantInfo(uint8_t tag)
 	case CONSTATNT_LONG:
 		return constantLongInfo();
 	case CONSTATNT_DOUBLE:
+		return constantDoubleInfo();
 	case CONSTATNT_NAME_AND_TYPE:
+		return constantNameAndTypeInfo();
 	case CONSTATNT_UTF8:
+		return constantUtf8Info();
 	case CONSTATNT_METHOD_HANDLE:
+		return constantMethodHandleInfo();
 	case CONSTATNT_METHOD_TYPE:
+		return constantMethodTypeInfo();
 	case CONSTATNT_INVOKE_DYNAMIC:
+		return constantInvokeDynamicInfo();
+	default:
 			break;
 	}
 	return NULL;
