@@ -127,6 +127,11 @@ void * constantFieldrefInfo(void)
 	return calloc(1, sizeof(ConstantFieldrefInfo));
 }
 
+void * constantMethodrefInfo(void)
+{
+	return calloc(1, sizeof(ConstantMethodrefInfo));
+}
+
 void * constantInterfaceMethodrefInfo(void)
 {
 	return calloc(1, sizeof(ConstantInterfaceMethodrefInfo));
@@ -154,19 +159,27 @@ void * constantInvokeDynamicInfo(void)
 
 int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 {
-	ConstantPoolItem * rootItem = &classFile->constantPoolItem;
-	while (rootItem->next != NULL)
-		rootItem = rootItem->next;
-
 	switch (tag)
 	{
 	case CONSTATNT_CLASS:
 		((ConstantClassInfo*)itemInfo)->tag = tag;
 		((ConstantClassInfo*)itemInfo)->nameIndex = readClassUint16(classFile);
+		break;
 	case CONSTATNT_FIELDREF:
+		((ConstantFieldrefInfo*)itemInfo)->tag = tag;
+		((ConstantFieldrefInfo*)itemInfo)->classIndex = readClassUint16(classFile);
+		((ConstantFieldrefInfo*)itemInfo)->name_and_type_index = readClassUint16(classFile);
+		break;
 	case CONSTATNT_METHODREF:
+		((ConstantMethodrefInfo*)itemInfo)->tag = tag;
+		((ConstantMethodrefInfo*)itemInfo)->classIndex = readClassUint16(classFile);
+		((ConstantMethodrefInfo*)itemInfo)->name_and_type_index = readClassUint16(classFile);
+		break;
 	case CONSTATNT_INTERFACE_METHODREF:
 	case CONSTATNT_STRING:
+		((ConstantStringInfo*)itemInfo)->tag = tag;
+		((ConstantStringInfo*)itemInfo)->string_index = readClassUint16(classFile);
+		break;
 	case CONSTATNT_INTEGER:
 		((ConstantIntegerInfo*)itemInfo)->tag = tag;
 		((ConstantIntegerInfo*)itemInfo)->bytes = readClassUint32(classFile);
@@ -175,17 +188,24 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 	case CONSTATNT_LONG:
 	case CONSTATNT_DOUBLE:
 	case CONSTATNT_NAME_AND_TYPE:
+		((ConstantNameAndTypeInfo*)itemInfo)->tag = tag;
+		((ConstantNameAndTypeInfo*)itemInfo)->name_index = readClassUint16(classFile);
+		((ConstantNameAndTypeInfo*)itemInfo)->descriptor_index = readClassUint16(classFile);
+		break;
 	case CONSTATNT_UTF8:
+		((ConstantUtf8Info*)itemInfo)->tag = tag;
+		((ConstantUtf8Info*)itemInfo)->length = readClassUint16(classFile);
+		((ConstantUtf8Info*)itemInfo)->bytes = calloc(1, sizeof(((ConstantUtf8Info*)itemInfo)->length+1));
+		for (uint16_t i = 0; i < ((ConstantUtf8Info*)itemInfo)->length; i++)
+		{
+			((ConstantUtf8Info*)itemInfo)->bytes[i] = readClassUint8(classFile);
+		}
+		break;
 	case CONSTATNT_METHOD_HANDLE:
 	case CONSTATNT_METHOD_TYPE:
 	case CONSTATNT_INVOKE_DYNAMIC:
 		break;
 	}
-
-	rootItem->next = (ConstantPoolItem*)calloc(1, sizeof(ConstantPoolItem));
-	rootItem->next->tag = tag;
-	rootItem->next->next = NULL;
-	rootItem->next->itemInfo = itemInfo;
 
 	return 0;
 }
@@ -231,12 +251,18 @@ void * newConstantInfo(uint8_t tag)
 void readConstantPool(ClassFile * classFile)
 {
 	classFile->constanPoolCount = readClassUint16(classFile);
-	for (uint32_t i = 0; i < classFile->constanPoolCount; i++)
+	classFile->constantPoolItem = calloc(classFile->constanPoolCount, sizeof(ConstantPoolItem));
+
+	for (uint32_t i = 1; i < classFile->constanPoolCount; i++)
 	{
 		void * itemInfo = NULL;
 		uint8_t tag = readClassUint8(classFile);
 		itemInfo = newConstantInfo(tag);
 		readConstantInfo(classFile, tag, itemInfo);
+		classFile->constantPoolItem[i].itemInfo = itemInfo;
+
+		if (tag == CONSTATNT_LONG || tag == CONSTATNT_DOUBLE)
+			i++;
 	}
 	
 }
@@ -251,6 +277,7 @@ ClassFile * parseClassData(uint8_t * classData, uint64_t classSize)
 	readAndCheckMagic(classFile);
 	readAndCheckVersion(classFile);
 	readConstantPool(classFile);
+	printClassInfo(classFile);
 	return classFile;
 }
 
@@ -259,6 +286,67 @@ int32_t printClassInfo(ClassFile * classFile)
 	printf("Class Magic Number: 0x%x\n", classFile->header.magicNumber);
 	printf("Minor Version: 0x%x\n", classFile->header.minorVersion);
 	printf("Major Version: 0x%x\n", classFile->header.majorVersion);
+	for (uint16_t i = 1; i < classFile->constanPoolCount; i++)
+	{
+		uint16_t refIndex = 0;
+		ConstantUtf8Info * refUtf8 = NULL;
+		uint8_t tag = ((ConstantClassInfo *)((classFile->constantPoolItem + i)->itemInfo))->tag;
+		void * itemInfo = (classFile->constantPoolItem + i)->itemInfo;
+		printf("####%d ", i);
+		switch (tag)
+		{
+			case CONSTATNT_CLASS:
+				refIndex = ((ConstantClassInfo*)itemInfo)->nameIndex;
+				refUtf8 = (ConstantUtf8Info*)(classFile->constantPoolItem + refIndex);
+				printf("Class:\n");
+				printf("  name_index:%d -> %s \n", refIndex, refUtf8->bytes);
+				break;
+			case CONSTATNT_FIELDREF:
+				printf("Field Ref:\n");
+				printf("  class_index:%d\n",((ConstantFieldrefInfo*)itemInfo)->classIndex);
+				printf("  name_and_type:index:%d\n",((ConstantFieldrefInfo*)itemInfo)->name_and_type_index);
+				break;
+			case CONSTATNT_METHODREF:
+				printf("Method Ref:\n");
+				printf("  class_index:%d\n", ((ConstantMethodrefInfo*)itemInfo)->classIndex);
+				printf("  name_and_type_index:%d\n", ((ConstantMethodrefInfo*)itemInfo)->name_and_type_index);
+				break;
+			case CONSTATNT_INTERFACE_METHODREF:
+				break;
+			case CONSTATNT_STRING:
+				refIndex = ((ConstantStringInfo*)itemInfo)->string_index;
+				refUtf8 = (ConstantUtf8Info*)(classFile->constantPoolItem + refIndex);
+				printf("String:\n");
+				printf(" string_index:%d -> %s \n",refIndex, refUtf8);
+				break;
+			case CONSTATNT_INTEGER:
+				printf("Integer: \n");
+				printf("  bytes:%d\n", ((ConstantIntegerInfo*)itemInfo)->bytes);
+				break;
+			case CONSTATNT_FLOAT:
+			case CONSTATNT_LONG:
+				i++;
+				break;
+			case CONSTATNT_DOUBLE:
+				i++;
+				break;				
+			case CONSTATNT_NAME_AND_TYPE:
+				printf("NameAndType: \n");
+				printf("  name_index:%d\n", ((ConstantNameAndTypeInfo*)itemInfo)->name_index);
+				printf("  descriptor_index:%d\n", ((ConstantNameAndTypeInfo*)itemInfo)->descriptor_index);
+				break;
+			case CONSTATNT_UTF8:
+				printf("UTF8: \n  ");
+				for (uint16_t i = 0; i < ((ConstantUtf8Info*)itemInfo)->length; i++)
+					printf("%c", ((ConstantUtf8Info*)itemInfo)->bytes[i]);
+				printf("\n");
+				break;
+			case CONSTATNT_METHOD_HANDLE:
+			case CONSTATNT_METHOD_TYPE:
+			case CONSTATNT_INVOKE_DYNAMIC:
+				break;
+	}		
+	}
 	return 0;
 }
 

@@ -17,8 +17,6 @@ typedef struct ClassFileHeader{
 
 typedef struct ConstantPoolItem
 {
-	struct ConstantPoolItem * next;
-	uint8_t tag;
 	void * itemInfo;
 }ConstantPoolItem;
 
@@ -27,7 +25,7 @@ typedef struct ClassFile{
 	uint64_t size;
 	ClassFileHeader header;	
 	uint16_t constanPoolCount;
-	ConstantPoolItem constantPoolItem;
+	ConstantPoolItem * constantPoolItem;
 }ClassFile;
 
 enum ConstantType
