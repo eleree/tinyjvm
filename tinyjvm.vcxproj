@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="classfile\attribute_info.c" />
     <ClCompile Include="classfile\classfile.c" />
     <ClCompile Include="classpath\classpath.c" />
     <ClCompile Include="classpath\entry.c" />
@@ -76,6 +77,7 @@
     <ClCompile Include="strings\strings.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="classfile\attribute_info.h" />
     <ClInclude Include="classfile\classfile.h" />
     <ClInclude Include="classpath\classpath.h" />
     <ClInclude Include="classpath\entry.h" />

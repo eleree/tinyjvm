@@ -57,6 +57,9 @@
     <ClCompile Include="classfile\classfile.c">
       <Filter>源文件\classfile</Filter>
     </ClCompile>
+    <ClCompile Include="classfile\attribute_info.c">
+      <Filter>源文件\classfile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -78,6 +81,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="classfile\classfile.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="classfile\attribute_info.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -26,6 +26,17 @@ uint16_t readClassUint16(ClassFile * classFile)
 	return data;
 }
 
+uint16_t * readClassUint16s(ClassFile * classFile)
+{
+	uint16_t needLen = readClassUint16(classFile);
+	uint16_t * data = calloc(needLen, sizeof(uint16_t));
+	for (int i = 0; i < 2; i++)
+	{
+		data[i] = *(classFile->data++);
+	}
+	return data;
+}
+
 uint32_t readClassUint32(ClassFile * classFile)
 {
 	uint32_t data = 0x00;
@@ -84,6 +95,16 @@ void readAndCheckVersion(ClassFile * classFile)
 	}
 	printf("java.lang.UnsupportedClassVersionError!\n");
 	exit(0);
+}
+
+void readClassInterfaces(ClassFile * classFile)
+{
+	classFile->interfaceCount = readClassUint16(classFile);
+	classFile->interfaces = calloc(classFile->interfaceCount, sizeof(uint16_t));
+	for (int i = 0; i < classFile->interfaceCount; i++)
+	{
+		classFile->interfaces[i] = readClassUint16(classFile);
+	}	
 }
 
 // Malloc Constant Pool Item Functions
@@ -267,6 +288,7 @@ void readConstantPool(ClassFile * classFile)
 	
 }
 
+
 ClassFile * parseClassData(uint8_t * classData, uint64_t classSize)
 {
 	
@@ -277,8 +299,24 @@ ClassFile * parseClassData(uint8_t * classData, uint64_t classSize)
 	readAndCheckMagic(classFile);
 	readAndCheckVersion(classFile);
 	readConstantPool(classFile);
+	classFile->accessFlags = readClassUint16(classFile);
+	classFile->thisClass = readClassUint16(classFile);
+	classFile->superClass = readClassUint16(classFile);
+	readClassInterfaces(classFile);
 	printClassInfo(classFile);
 	return classFile;
+}
+
+const char * getClassUtf8(ClassFile * classFile, uint16_t utf8Index)
+{
+	ConstantUtf8Info * itemInfo = (ConstantUtf8Info *)(classFile->constantPoolItem + utf8Index);
+
+	if (classFile == NULL)
+		return NULL;
+
+	if (itemInfo->tag != CONSTATNT_UTF8)
+		return NULL;
+	return ((ConstantUtf8Info*)(classFile->constantPoolItem + utf8Index))->bytes;
 }
 
 int32_t printClassInfo(ClassFile * classFile)
@@ -345,9 +383,14 @@ int32_t printClassInfo(ClassFile * classFile)
 			case CONSTATNT_METHOD_TYPE:
 			case CONSTATNT_INVOKE_DYNAMIC:
 				break;
-	}		
+		}		
 	}
+	printf("Access Flag:0x%02x\n",classFile->accessFlags);
+	printf("This class:%d -> %s\n", classFile->thisClass, getClassUtf8(classFile, classFile->thisClass));
+	printf("Super class:%d -> %s\n", classFile->superClass, getClassUtf8(classFile, classFile->superClass));
+	printf("Interface Count:%d\n", classFile->interfaceCount);
 	return 0;
+
 }
 
 void deleteClassFile(ClassFile * classFile)

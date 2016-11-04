@@ -15,18 +15,6 @@ typedef struct ClassFileHeader{
 }ClassFileHeader;
 #pragma pack()
 
-typedef struct ConstantPoolItem
-{
-	void * itemInfo;
-}ConstantPoolItem;
-
-typedef struct ClassFile{
-	uint8_t * data;
-	uint64_t size;
-	ClassFileHeader header;	
-	uint16_t constanPoolCount;
-	ConstantPoolItem * constantPoolItem;
-}ClassFile;
 
 enum ConstantType
 {
@@ -144,7 +132,7 @@ typedef struct ConstantInvokeDynamicInfo{
 typedef struct AttributeInfo{
 	uint16_t attributeNameIndex;
 	uint32_t attributeLength;
-	uint8_t * info;
+	void * info;
 	//uint8_t info[attribute_length];
 }AttributeInfo;
 
@@ -154,6 +142,13 @@ typedef struct ConstantValueAttribute{
 	uint32_t attribute_length;
 	uint16_t constantvalue_index;
 }ConstantValueAttribute;
+
+typedef struct ExceptionTableEntry{
+	uint16_t start_pc;
+	uint16_t end_pc;
+	uint16_t handler_pc;
+	uint16_t catch_type;
+}ExceptionTableEntry;
 
 // 4.7.3.The Code Attribute
 typedef struct CodeAttribute{
@@ -165,6 +160,7 @@ typedef struct CodeAttribute{
 	//uint8_t code[code_length];
 	uint8_t *code;
 	uint16_t exception_table_length;
+	ExceptionTableEntry * exception_table;
 	/*
 	{   uint16_t start_pc;
 	uint16_t end_pc;
@@ -380,6 +376,36 @@ typedef struct MethodInfo{
 	//AttributeInfo attributes[attributes_count];
 	AttributeInfo * attributes;
 }MethodInfo;
+
+typedef struct ConstantPoolItem
+{
+	void * itemInfo;
+}ConstantPoolItem;
+
+typedef struct ClassFile{
+	uint8_t * data;
+	uint64_t size;
+	ClassFileHeader header;
+	uint16_t constanPoolCount;
+	ConstantPoolItem * constantPoolItem;
+	uint16_t accessFlags;
+	uint16_t thisClass;
+	uint16_t superClass;
+	uint16_t interfaceCount;
+	uint16_t * interfaces;
+	uint16_t fieldsCount;
+	FieldInfo * fields;
+	uint16_t methodsCount;
+	MethodInfo * methods;
+}ClassFile;
+
+int32_t readClassBytes(ClassFile * classFile);
+uint8_t readClassUint8(ClassFile * classFile);
+uint16_t readClassUint16(ClassFile * classFile);
+uint32_t readClassUint32(ClassFile * classFile);
+uint64_t readClassUint64(ClassFile * classFile);
+
+const char * getClassUtf8(ClassFile * classFile, uint16_t utf8Index);
 
 ClassFile * parseClassData(uint8_t * classData, uint64_t classSize);
 void deleteClassFile(ClassFile * classFile);
