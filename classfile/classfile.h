@@ -240,11 +240,19 @@ typedef struct SourceDebugExtensionAttribute{
 	uint8_t * debug_extension;
 }SourceDebugExtensionAttribute;
 
+
+typedef struct LineNumberTableEntry
+{
+	uint16_t startPc;
+	uint16_t lineNumber;
+}LineNumberTableEntry;
+
 //4.7.12. The LineNumberTable Attribute
 typedef struct LineNumberTableAttribute{
 	uint16_t attribute_name_index;
 	uint32_t attribute_length;
 	uint16_t line_number_table_length;
+	LineNumberTableEntry * line_number_table;
 	/*
 	{   uint16_t start_pc;
 	uint16_t line_number;
@@ -252,11 +260,20 @@ typedef struct LineNumberTableAttribute{
 	*/
 }LineNumberTableAttribute;
 
+typedef struct LocalVariableTableEntry {
+	uint16_t startPc;
+	uint16_t length;
+	uint16_t nameIndex;
+	uint16_t descriptorIndex;
+	uint16_t index;
+}LocalVariableTableEntry;
+
 // 4.7.13.The LocalVariableTable Attribute
 typedef struct LocalVariableTableAttribute{
 	uint16_t attribute_name_index;
 	uint32_t attribute_length;
 	uint16_t local_variable_table_length;
+	LocalVariableTableEntry * local_variable_table;
 	/*
 	{   uint16_t start_pc;
 	uint16_t length;
@@ -397,6 +414,8 @@ typedef struct ClassFile{
 	FieldInfo * fields;
 	uint16_t methodsCount;
 	MethodInfo * methods;
+	uint16_t attributes_count;
+	AttributeInfo * attributes;
 }ClassFile;
 
 int32_t readClassBytes(ClassFile * classFile);
@@ -410,5 +429,6 @@ const char * getClassUtf8(ClassFile * classFile, uint16_t utf8Index);
 ClassFile * parseClassData(uint8_t * classData, uint64_t classSize);
 void deleteClassFile(ClassFile * classFile);
 int32_t printClassInfo(ClassFile * classFile);
+void readAttributeInfo(ClassFile * classFile, AttributeInfo * attribute, uint16_t count);
 
 #endif

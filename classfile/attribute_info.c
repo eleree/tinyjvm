@@ -1,9 +1,77 @@
 #include "attribute_info.h"
 
 
-void readCodeAttributeInfo(ClassFile * classFile)
+CodeAttribute * readCodeAttributeInfo(ClassFile * classFile)
 {
 	CodeAttribute * codeAttr = calloc(1, sizeof(CodeAttribute));
+	codeAttr->max_stack = readClassUint16(classFile);
+	codeAttr->max_locals = readClassUint16(classFile);
+	codeAttr->code_length = readClassUint32(classFile);
+	codeAttr->code = calloc(codeAttr->code_length, sizeof(uint8_t));
+	for (uint32_t i = 0; i < codeAttr->code_length; i++)
+		codeAttr->code[i] = readClassUint8(classFile);
+	codeAttr->exception_table_length = readClassUint16(classFile);
+	codeAttr->exception_table = calloc(codeAttr->exception_table_length, sizeof(ExceptionTableEntry));
+	for (uint16_t i = 0; i < codeAttr->exception_table_length; i++)
+	{
+		codeAttr->exception_table[i].start_pc = readClassUint16(classFile);
+		codeAttr->exception_table[i].end_pc = readClassUint16(classFile);
+		codeAttr->exception_table[i].handler_pc = readClassUint16(classFile);
+		codeAttr->exception_table[i].catch_type = readClassUint16(classFile);
+	}
+	codeAttr->attributes_count = readClassUint16(classFile);
+	if (codeAttr->attributes_count != 0)
+	{
+		codeAttr->attributes = calloc(codeAttr->attributes_count, sizeof(AttributeInfo));
+		for (uint16_t i = 0; i < codeAttr->attributes_count; i++)
+		{
+			readAttributeInfo(classFile, codeAttr->attributes, 1);
+		}
+	}else{
+		codeAttr->attributes = NULL;
+	}
+		
+	return codeAttr;
+}
+
+SourceFileAttribute * readSourceFileAttributeInfo(ClassFile * classFile)
+{
+	SourceFileAttribute * sourceFileAttr = calloc(1, sizeof(SourceFileAttribute));
+	sourceFileAttr->sourcefile_index = readClassUint16(classFile);
+	return sourceFileAttr;
+}
+
+
+LineNumberTableAttribute * readLineNumberTableAttributeInfo(ClassFile * classFile)
+{
+	LineNumberTableAttribute * lineNumberTableAttr = calloc(1, sizeof(LineNumberTableAttribute));
+
+	lineNumberTableAttr->line_number_table_length = readClassUint16(classFile);
+	lineNumberTableAttr->line_number_table = calloc(lineNumberTableAttr->line_number_table_length, sizeof(LineNumberTableEntry));
+	for (uint16_t i = 0; i < lineNumberTableAttr->line_number_table_length; i++)
+	{
+		lineNumberTableAttr->line_number_table[i].startPc = readClassUint16(classFile);
+		lineNumberTableAttr->line_number_table[i].lineNumber = readClassUint16(classFile);
+	}
+	return lineNumberTableAttr;
+}
+
+
+LocalVariableTableAttribute * readLocalVariableTableAttributeInfo(ClassFile * classFile)
+{
+	LocalVariableTableAttribute * localVariableTableAttributeAttr = calloc(1, sizeof(LocalVariableTableAttribute));
+
+	localVariableTableAttributeAttr->local_variable_table_length = readClassUint16(classFile);
+	localVariableTableAttributeAttr->local_variable_table = calloc(localVariableTableAttributeAttr->local_variable_table_length, sizeof(LocalVariableTableEntry));
+	for (uint16_t i = 0; i < localVariableTableAttributeAttr->local_variable_table_length; i++)
+	{
+		localVariableTableAttributeAttr->local_variable_table[i].startPc = readClassUint16(classFile);
+		localVariableTableAttributeAttr->local_variable_table[i].length = readClassUint16(classFile);
+		localVariableTableAttributeAttr->local_variable_table[i].nameIndex = readClassUint16(classFile);
+		localVariableTableAttributeAttr->local_variable_table[i].descriptorIndex = readClassUint16(classFile);
+		localVariableTableAttributeAttr->local_variable_table[i].index = readClassUint16(classFile);
+	}
+	return localVariableTableAttributeAttr;
 }
 
 void * newAttributeInfo(const char * attrName, uint32_t attrLen, ClassFile * classFile)
@@ -11,7 +79,7 @@ void * newAttributeInfo(const char * attrName, uint32_t attrLen, ClassFile * cla
 	if (attrName == NULL)
 		return NULL;
 	if (strcmp("Code", attrName) == 0){
-		readCodeAttributeInfo(classFile);
+		return readCodeAttributeInfo(classFile);
 	}else if (strcmp("ConstantValue", attrName) == 0){
 	}
 	else if (strcmp("Deprecated", attrName) == 0){
@@ -19,10 +87,13 @@ void * newAttributeInfo(const char * attrName, uint32_t attrLen, ClassFile * cla
 	else if (strcmp("Exceptions", attrName) == 0){
 	}
 	else if (strcmp("LineNumberTable", attrName) == 0){
+		return readLineNumberTableAttributeInfo(classFile);
 	}
 	else if (strcmp("LocalVariableTable", attrName) == 0){
+		return readLocalVariableTableAttributeInfo(classFile);
 	}
 	else if (strcmp("Source", attrName) == 0){
+		return readSourceFileAttributeInfo(classFile);
 	}
 	else if (strcmp("Synthetic", attrName) == 0){
 	}else{
@@ -38,7 +109,7 @@ void readAttributeInfo(ClassFile * classFile, AttributeInfo * attribute, uint16_
 	{
 		uint16_t attrNameIndex = readClassUint16(classFile);
 		const char * attrName = getClassUtf8(classFile, attrNameIndex);
-		uint16_t attrLen = readClassUint16(classFile);
+		uint32_t attrLen = readClassUint32(classFile);
 
 		attribute[i].info = newAttributeInfo(attrName, attrLen, classFile);
 		attribute[i].attributeLength = attrLen;
@@ -46,7 +117,7 @@ void readAttributeInfo(ClassFile * classFile, AttributeInfo * attribute, uint16_
 	}
 }
 
-void readFields(ClassFile * classFile)
+void readClassFields(ClassFile * classFile)
 {
 	classFile->fieldsCount = readClassUint16(classFile);
 	if (classFile->fieldsCount == 0)
@@ -54,11 +125,14 @@ void readFields(ClassFile * classFile)
 	classFile->fields = calloc(classFile->fieldsCount, sizeof(FieldInfo));
 	for (uint16_t i = 0; i < classFile->fieldsCount; i++)
 	{
-
+		(classFile->fields + i)->access_flags = readClassUint16(classFile);
+		(classFile->fields + i)->name_index = readClassUint16(classFile);
+		(classFile->fields + i)->attributes_count = readClassUint16(classFile);
+		readAttributeInfo(classFile, (classFile->fields + i)->attributes, (classFile->fields + i)->attributes_count);
 	}
 }
 
-void readMethods(ClassFile * classFile)
+void readClassMethods(ClassFile * classFile)
 {
 	classFile->methodsCount = readClassUint16(classFile);
 	if (classFile->methodsCount == 0)
@@ -68,7 +142,23 @@ void readMethods(ClassFile * classFile)
 	{
 		(classFile->methods + i)->access_flags = readClassUint16(classFile);
 		(classFile->methods + i)->name_index = readClassUint16(classFile);
+		(classFile->methods + i)->descriptor_index = readClassUint16(classFile);
 		(classFile->methods + i)->attributes_count = readClassUint16(classFile);
+		(classFile->methods + i)->attributes = calloc((classFile->methods + i)->attributes_count, sizeof(AttributeInfo));
 		readAttributeInfo(classFile, (classFile->methods + i)->attributes, (classFile->methods + i)->attributes_count);
 	}
+}
+
+void readClassAttributes(ClassFile * classFile)
+{
+	classFile->attributes_count = readClassUint16(classFile);
+	if (classFile->attributes_count != 0)
+	{
+		classFile->attributes = calloc(classFile->attributes_count, sizeof(AttributeInfo));
+		for (uint16_t i = 0; i < classFile->attributes_count; i++)
+			readAttributeInfo(classFile, classFile->attributes, 1);
+	}else{
+		classFile->attributes = NULL; 
+	}
+	
 }

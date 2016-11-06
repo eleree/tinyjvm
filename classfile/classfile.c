@@ -1,5 +1,5 @@
 #include "classfile.h"
-
+#include "attribute_info.h"
 
 int32_t readClassBytes(ClassFile * classFile)
 {
@@ -217,6 +217,7 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 		((ConstantUtf8Info*)itemInfo)->tag = tag;
 		((ConstantUtf8Info*)itemInfo)->length = readClassUint16(classFile);
 		((ConstantUtf8Info*)itemInfo)->bytes = calloc(1, sizeof(((ConstantUtf8Info*)itemInfo)->length+1));
+		((ConstantUtf8Info*)itemInfo)->bytes[((ConstantUtf8Info*)itemInfo)->length] = '\0';
 		for (uint16_t i = 0; i < ((ConstantUtf8Info*)itemInfo)->length; i++)
 		{
 			((ConstantUtf8Info*)itemInfo)->bytes[i] = readClassUint8(classFile);
@@ -302,21 +303,24 @@ ClassFile * parseClassData(uint8_t * classData, uint64_t classSize)
 	classFile->accessFlags = readClassUint16(classFile);
 	classFile->thisClass = readClassUint16(classFile);
 	classFile->superClass = readClassUint16(classFile);
-	readClassInterfaces(classFile);
 	printClassInfo(classFile);
+	readClassInterfaces(classFile);
+	readClassFields(classFile);
+	readClassMethods(classFile);
+	readClassAttributes(classFile);
 	return classFile;
 }
 
 const char * getClassUtf8(ClassFile * classFile, uint16_t utf8Index)
 {
-	ConstantUtf8Info * itemInfo = (ConstantUtf8Info *)(classFile->constantPoolItem + utf8Index);
+	ConstantUtf8Info * itemInfo = (ConstantUtf8Info *)(classFile->constantPoolItem + utf8Index)->itemInfo;
 
 	if (classFile == NULL)
 		return NULL;
 
 	if (itemInfo->tag != CONSTATNT_UTF8)
 		return NULL;
-	return ((ConstantUtf8Info*)(classFile->constantPoolItem + utf8Index))->bytes;
+	return itemInfo->bytes;
 }
 
 int32_t printClassInfo(ClassFile * classFile)
