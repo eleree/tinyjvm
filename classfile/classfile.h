@@ -363,11 +363,25 @@ typedef struct AnnotationDefaultAttribute{
 }AnnotationDefaultAttribute;
 
 
+typedef struct UnparsedAttribute{
+	uint16_t attribute_name_index;
+	uint32_t attribute_length;
+	uint8_t * bytes;
+}UnparsedAttribute;
+
+typedef struct BootstrapMethodEntry
+{
+	uint16_t bootstrap_method_ref;
+	uint16_t num_bootstrap_arguments;
+	uint16_t * bootstrap_arguments;
+}BootstrapMethodEntry;
+
 // 4.7.21.The BootstrapMethods attribute
 typedef struct BootstrapMethodsAttribute{
 	uint16_t attribute_name_index;
 	uint32_t attribute_length;
 	uint16_t num_bootstrap_methods;
+	BootstrapMethodEntry * bootstrap_methods;
 	//{   uint16_t bootstrap_method_ref;
 	//uint16_t num_bootstrap_arguments;
 	//uint16_t bootstrap_arguments[num_bootstrap_arguments];
