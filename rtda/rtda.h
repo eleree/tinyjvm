@@ -67,6 +67,7 @@ typedef union DoubleLong
 Stack * newStack(uint32_t maxSize);
 void pushFrame(Stack * stack, Frame * frame);
 Frame * popFrame(Stack * stack);
+Frame * topFrame(Stack * stack);
 void freeStack(Stack * stack);
 
 #endif

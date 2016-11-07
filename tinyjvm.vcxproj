@@ -95,6 +95,7 @@
     <ClInclude Include="rtda\object.h" />
     <ClInclude Include="rtda\operand_stack.h" />
     <ClInclude Include="rtda\rtda.h" />
+    <ClInclude Include="rtda\thread.h" />
     <ClInclude Include="strings\strings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

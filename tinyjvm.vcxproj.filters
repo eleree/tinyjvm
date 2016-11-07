@@ -122,5 +122,8 @@
     <ClInclude Include="rtda\operand_stack.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="rtda\thread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@
 #include "rtda\frame.h"
 #include "rtda\local_vars.h"
 #include "rtda\operand_stack.h"
+#include "rtda\thread.h"
 
 #define MAX_JVM_ARGS	8
 char classpath[128] = { 0 };

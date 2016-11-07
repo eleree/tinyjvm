@@ -39,6 +39,12 @@ Frame * popFrame(Stack * stack)
 	return frame;
 }
 
+
+Frame * topFrame(Stack * stack)
+{
+	return stack->_top;
+}
+
 void freeStack(Stack * stack)
 {
 	if (stack != NULL)
