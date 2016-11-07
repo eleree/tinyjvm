@@ -7,7 +7,7 @@ OperandStack * newOperandStack(uint32_t maxStack);
 void freeOperandStack(OperandStack* operandStack);
 
 void pushOperandInt(OperandStack* operandStack, int32_t val);
-int32_t popOperandInt(OperandStack* operandStack, int32_t val);
+int32_t popOperandInt(OperandStack* operandStack);
 
 void pushOperandFloat(OperandStack* operandStack, float val);
 float popOperandFloat(OperandStack* operandStack);

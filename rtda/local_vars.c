@@ -46,17 +46,17 @@ float getLocalVarsFloat(LocalVars * localVars, int32_t index)
 
 void setLocalVarsLong(LocalVars * localVars, int32_t index, int64_t val)
 {
-	localVars->slots[index].num = val & 0xFFFFFFFF;
+	localVars->slots[index].num =  val & 0xFFFFFFFF;
 	localVars->slots[index+1].num = (uint32_t)(val>>32);
 }
 
 int64_t getLocalVarsLong(LocalVars * localVars, int64_t index)
 {
-	uint64_t transData = 0;
-	transData |= localVars->slots[index + 1].num;
-	transData <<= 32;
-	transData |= localVars->slots[index].num;
-	return transData;
+	LongInt transData;
+
+	transData.high = localVars->slots[index + 1].num;	
+	transData.low = localVars->slots[index].num;
+	return transData.longData;
 }
 
 void setLocalVarsDouble(LocalVars * localVars, int32_t index, double val)

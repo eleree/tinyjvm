@@ -70,14 +70,14 @@ void testLocalVars(LocalVars * localVars)
 {
 	setLocalVarsInt(localVars, 0, 100);
 	setLocalVarsInt(localVars, 1, -100);
-	setLocalVarsLong(localVars, 2, 2997924580);
+	setLocalVarsLong(localVars, 2, 2997924580i64);
 	setLocalVarsLong(localVars, 4, -2997924580i64);
 	setLocalVarsFloat(localVars, 6, 3.1415926f);
 	setLocalVarsDouble(localVars, 7, 2.71828182845);
 	setLocalVarsRef(localVars, 9, NULL);
 	printf("%d\n", getLocalVarsInt(localVars, 0));
 	printf("%d\n", getLocalVarsInt(localVars, 1));
-	printf("%f\n", getLocalVarsLong(localVars, 2));
+	printf("%lld\n", getLocalVarsLong(localVars, 2));
 	printf("%lld\n", getLocalVarsLong(localVars, 4));
 	printf("%f\n", getLocalVarsFloat(localVars, 6));
 	printf("%f\n", getLocalVarsDouble(localVars, 7));
@@ -88,16 +88,27 @@ void testOperandStack(OperandStack * operandStack)
 	pushOperandInt(operandStack, 100);
 	pushOperandInt(operandStack, -100);
 	pushOperandLong(operandStack, 2997924580);
-	pushOperandLong(operandStack, 2997924580i64);
+	pushOperandLong(operandStack, -2997924580i64);
 	pushOperandFloat(operandStack, 3.1415926f);
 	pushOperandDouble(operandStack, 2.71828182845);
 	pushOperandRef(operandStack, NULL);
+
+	popOperandRef(operandStack); 
+	printf("%f\n", popOperandDouble(operandStack));
+	printf("%f\n", popOperandFloat(operandStack));
+	printf("%lld\n", popOperandLong(operandStack));
+	printf("%lld\n", popOperandLong(operandStack));
+	printf("%d\n", popOperandInt(operandStack));
+	printf("%d\n", popOperandInt(operandStack));
+
 }
 
 void testStack(void)
 {
 	Frame * f = newFrame(100, 100);
+	printf("Test Local Vars:\n");
 	testLocalVars(f->localVars);
+	printf("Test Operand Stack:\n");
 	testOperandStack(f->operandStack);
 }
 

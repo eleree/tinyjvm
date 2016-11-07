@@ -49,6 +49,15 @@ typedef union FloatInt
 	float floatData;
 }FloatInt;
 
+typedef union LongInt
+{
+	struct bitsData{
+		uint32_t low;
+		uint32_t high;
+	};
+	int64_t  longData;
+}LongInt;
+
 typedef union DoubleLong
 {
 	uint64_t bitsData;

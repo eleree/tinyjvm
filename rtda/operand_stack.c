@@ -30,7 +30,7 @@ void pushOperandInt(OperandStack* operandStack,int32_t val)
 	operandStack->size++;
 }
 
-int32_t popOperandInt(OperandStack* operandStack, int32_t val)
+int32_t popOperandInt(OperandStack* operandStack)
 {
 	operandStack->size--;
 	return operandStack->slots[operandStack->size].num;
@@ -61,12 +61,13 @@ void pushOperandLong(OperandStack* operandStack, int64_t val)
 
 int64_t popOperandLong(OperandStack* operandStack)
 {
-	uint64_t transData = 0;
+	LongInt transData;
+
 	operandStack->size -= 2;
-	transData |= operandStack->slots[operandStack->size+1].num;
-	transData <<= 32;
-	transData |= operandStack->slots[operandStack->size].num;
-	return transData;
+	transData.high = operandStack->slots[operandStack->size + 1].num;
+	transData.low = operandStack->slots[operandStack->size].num;
+
+	return transData.longData;
 }
 
 
