@@ -27,6 +27,8 @@ typedef struct  Frame  {
 	struct Frame * lower; // stack is implemented as linked list
 	LocalVars * localVars;
 	OperandStack * operandStack;
+	struct Thread * thread;
+	int32_t nextPC;
 	// todo
 }Frame;
 

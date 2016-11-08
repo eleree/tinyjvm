@@ -13,6 +13,8 @@
 #include "rtda\operand_stack.h"
 #include "rtda\thread.h"
 
+#include "interpreter.h"
+
 #define MAX_JVM_ARGS	8
 char classpath[128] = { 0 };
 char className[128] = { 0 };
@@ -106,7 +108,7 @@ void testOperandStack(OperandStack * operandStack)
 
 void testStack(void)
 {
-	Frame * f = newFrame(100, 100);
+	Frame * f = newFrame(NULL,100, 100);
 	printf("Test Local Vars:\n");
 	testLocalVars(f->localVars);
 	printf("Test Operand Stack:\n");

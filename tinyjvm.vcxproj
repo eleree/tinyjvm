@@ -72,6 +72,8 @@
     <ClCompile Include="classpath\entry_dir.c" />
     <ClCompile Include="classpath\entry_wildcard.c" />
     <ClCompile Include="classpath\entry_zip.c" />
+    <ClCompile Include="instructions\base\bytecode_reader.c" />
+    <ClCompile Include="interpreter.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="miniz\minizip.c" />
     <ClCompile Include="rtda\frame.c" />
@@ -88,6 +90,8 @@
     <ClInclude Include="classpath\classpath.h" />
     <ClInclude Include="classpath\entry.h" />
     <ClInclude Include="getopt.h" />
+    <ClInclude Include="instructions\base\bytecode_reader.h" />
+    <ClInclude Include="interpreter.h" />
     <ClInclude Include="miniz\miniz_wrapper.h" />
     <ClInclude Include="miniz\minizip.h" />
     <ClInclude Include="rtda\frame.h" />

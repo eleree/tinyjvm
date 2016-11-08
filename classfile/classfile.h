@@ -445,4 +445,7 @@ void deleteClassFile(ClassFile * classFile);
 int32_t printClassInfo(ClassFile * classFile);
 void readAttributeInfo(ClassFile * classFile, AttributeInfo * attribute, uint16_t count);
 
+MethodInfo * getMainMethod(ClassFile * classFile);
+CodeAttribute * getMethodCodeAttribute(ClassFile * classFile, MethodInfo * methodInfo);
+
 #endif

@@ -323,6 +323,36 @@ const char * getClassUtf8(ClassFile * classFile, uint16_t utf8Index)
 	return itemInfo->bytes;
 }
 
+MethodInfo * getMainMethod(ClassFile * classFile)
+{
+	MethodInfo * methodInfo;
+	if (classFile == NULL || classFile->methodsCount == 0)
+		return NULL;
+	for (int i = 0; i < classFile->methodsCount; i++)
+	{
+		methodInfo = (classFile->methods) +i;
+		const char * methodName = getClassUtf8(classFile, methodInfo->name_index);
+		const char * methodDesc = getClassUtf8(classFile, methodInfo->descriptor_index);
+		if (strcmp(methodName, "main") == 0 && strcmp(methodDesc, "([Ljava/lang/String;)V") == 0)
+			return methodInfo;
+	}
+	return NULL;
+}
+
+CodeAttribute * getMethodCodeAttribute(ClassFile * classFile, MethodInfo * methodInfo)
+{
+	if (classFile == NULL || methodInfo == NULL)
+		return NULL;
+	for (int i = 0; i < methodInfo->attributes_count; i++)
+	{
+		AttributeInfo * attrInfo = (methodInfo->attributes) + i;
+		const char * attrName = getClassUtf8(classFile, attrInfo->attributeNameIndex);
+		if (strcmp(attrName, "Code") == 0)
+			return attrInfo->info;
+	}
+	return NULL;
+}
+
 int32_t printClassInfo(ClassFile * classFile)
 {
 	printf("Class Magic Number: 0x%x\n", classFile->header.magicNumber);

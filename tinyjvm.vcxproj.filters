@@ -28,6 +28,12 @@
     <Filter Include="源文件\rtda">
       <UniqueIdentifier>{ffa4ad8e-46b0-4af3-9342-3d8ac0ecb467}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\instructions">
+      <UniqueIdentifier>{774c3055-a949-4ea5-b009-21fd0f53900e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\instructions\base">
+      <UniqueIdentifier>{be455bdd-81e7-4271-828e-8d9e08fc6183}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -81,6 +87,12 @@
     <ClCompile Include="rtda\local_vars.c">
       <Filter>源文件\rtda</Filter>
     </ClCompile>
+    <ClCompile Include="interpreter.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\base\bytecode_reader.c">
+      <Filter>源文件\instructions\base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -123,6 +135,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="rtda\thread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="interpreter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="instructions\base\bytecode_reader.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
