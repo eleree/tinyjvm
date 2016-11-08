@@ -73,6 +73,7 @@
     <ClCompile Include="classpath\entry_wildcard.c" />
     <ClCompile Include="classpath\entry_zip.c" />
     <ClCompile Include="instructions\base\bytecode_reader.c" />
+    <ClCompile Include="instructions\factory.c" />
     <ClCompile Include="interpreter.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="miniz\minizip.c" />

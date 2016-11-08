@@ -48,7 +48,7 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 
 	classFile = parseClassData(classContent, classSize);
 	printClassInfo(classFile);
-
+	interpret(classFile, getMainMethod(classFile));
 	if (classContent != NULL)
 		free(classContent);
 }

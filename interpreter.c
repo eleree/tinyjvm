@@ -6,16 +6,17 @@
 void loop(ClassFile * classFIle, Thread * thread, uint8_t * bytecode,uint32_t bytecodeLen)
 {
 	Frame * frame = popThreadFrame(thread);
+	int32_t pc = 0;
+	uint8_t opcode = 0;
 	BytecodeReader bytecodeReader;
 	for (;;)
 	{
-		int32_t pc = getFrameNextPC(frame);
+		pc = getFrameNextPC(frame);
 		setThreadPC(thread, pc);
 		resetBytecodeReader(&bytecodeReader, bytecode, bytecodeLen, pc);
-		uint8_t opcode = readBytecodeUint8(&bytecodeReader);
-
+		opcode = readBytecodeUint8(&bytecodeReader);
+		setFrameNextPC(frame, getBytecodeReaderPC(&bytecodeReader));
 	}
-	
 }
 
 void interpret(ClassFile * classFile, MethodInfo * methodInfo)

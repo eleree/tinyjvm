@@ -93,6 +93,9 @@
     <ClCompile Include="instructions\base\bytecode_reader.c">
       <Filter>源文件\instructions\base</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\factory.c">
+      <Filter>源文件\instructions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

@@ -11,6 +11,7 @@ typedef struct BytecodeReader
 }BytecodeReader;
 
 void resetBytecodeReader(BytecodeReader * bytecodeReader, uint8_t * bytecode, uint32_t bytecodeLen, int32_t pc);
+int32_t getBytecodeReaderPC(BytecodeReader * bytecodeReader);
 int8_t readBytecodeInt8(BytecodeReader * bytecodeReader);
 uint8_t readBytecodeUint8(BytecodeReader * bytecodeReader);
 uint16_t readBytecodeUint16(BytecodeReader * bytecodeReader);

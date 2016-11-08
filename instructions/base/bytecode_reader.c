@@ -7,10 +7,16 @@ void resetBytecodeReader(BytecodeReader * bytecodeReader,uint8_t * bytecode, uin
 	bytecodeReader->pc = pc;
 }
 
+int32_t getBytecodeReaderPC(BytecodeReader * bytecodeReader)
+{
+	return bytecodeReader->pc;
+}
+
 int8_t readBytecodeInt8(BytecodeReader * bytecodeReader)
 {
 	int8_t data = bytecodeReader->code[bytecodeReader->pc];
-	bytecodeReader->code++;
+	bytecodeReader->code;
+	bytecodeReader->pc++;
 	return data;
 }
 

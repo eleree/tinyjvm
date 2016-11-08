@@ -4,7 +4,7 @@ Thread * newThread(void)
 {
 	Thread  * thread = NULL;
 	thread = calloc(1, sizeof(Thread));
-	thread->stack = calloc(1024, sizeof(Stack));
+	thread->stack = newStack(1024);
 	return thread;
 }
 

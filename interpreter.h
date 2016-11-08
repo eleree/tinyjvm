@@ -3,4 +3,6 @@
 
 #include "classfile\classfile.h"
 
+void interpret(ClassFile * classFile, MethodInfo * methodInfo);
+
 #endif
