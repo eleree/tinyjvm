@@ -34,6 +34,12 @@
     <Filter Include="源文件\instructions\base">
       <UniqueIdentifier>{be455bdd-81e7-4271-828e-8d9e08fc6183}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\instructions\constants">
+      <UniqueIdentifier>{dc60d48d-1f85-4522-985d-bd65ec4c6399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\instructions\comparisons">
+      <UniqueIdentifier>{e0dc200d-1534-4747-a436-3276ae1d51f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -96,6 +102,12 @@
     <ClCompile Include="instructions\factory.c">
       <Filter>源文件\instructions</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\constants\nop.c">
+      <Filter>源文件\instructions\constants</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\comparisons\dcmp.c">
+      <Filter>源文件\instructions\comparisons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -144,6 +156,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="instructions\base\bytecode_reader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="instructions\factory.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="instructions\instructions.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

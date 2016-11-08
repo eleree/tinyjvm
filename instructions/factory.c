@@ -1,42 +1,38 @@
-#include <stdint.h>
-#include "base\bytecode_reader.h"
+#include "factory.h"
+#include "instructions.h"
 
-typedef int32_t (*FetchOperands)(BytecodeReader * bytecodeReader);
-typedef int32_t (*Execute)(Frame * frame);
+static Insturction instruction;
 
-typedef struct Insturction
+int32_t noOperandsInstructionFetchOperands(BytecodeReader * bytecoderReader, InsturctionData * instData)
 {
-	uint8_t opcode;
-	int32_t offset;
-	int32_t index;
-}Insturction;
-
-int32_t noOperandsInstructionFetchOperands(BytecodeReader * bytecoderReader)
-{
-
+	return 0;
 }
 
-int32_t branchInstructionFetchOperands(BytecodeReader * bytecoderReader)
+int32_t branchInstructionFetchOperands(BytecodeReader * bytecoderReader, InsturctionData * instData)
 {
-
+	instData->offset = readBytecodeInt16(bytecoderReader);
+	return 0;
 }
 
-int32_t index8InstructionFetchOperands(BytecodeReader * bytecoderReader)
+int32_t index8InstructionFetchOperands(BytecodeReader * bytecoderReader, InsturctionData * instData)
 {
-
+	instData->index = readBytecodeUint8(bytecoderReader);
+	return 0;
 }
 
-int32_t index16InstructionFetchOperands(BytecodeReader * bytecoderReader)
+int32_t index16InstructionFetchOperands(BytecodeReader * bytecoderReader, InsturctionData * instData)
 {
-
+	instData->index = readBytecodeUint16(bytecoderReader);
+	return 0;
 }
 
 
-void newInsturction(uint8_t opcode)
+Insturction * newInsturction(uint8_t opcode)
 {
 	switch (opcode)
 	{
 	case 0x00:
+		return nop(&instruction);
 		break;
 	case 0x01:
 		break;
@@ -50,5 +46,8 @@ void newInsturction(uint8_t opcode)
 		break;
 	case 0x06:
 		break;
+	case 0x97:
+		return dcmpl(&instruction);
 	}
+	return NULL;
 }
