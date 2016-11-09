@@ -153,6 +153,21 @@
     <ClCompile Include="instructions\stack\dup.c">
       <Filter>源文件\instructions\stack</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\comparisons\fcmp.c">
+      <Filter>源文件\instructions\comparisons</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\comparisons\if_acmp.c">
+      <Filter>源文件\instructions\comparisons</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\comparisons\if_icmp.c">
+      <Filter>源文件\instructions\comparisons</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\comparisons\ifcond.c">
+      <Filter>源文件\instructions\comparisons</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\comparisons\lcmp.c">
+      <Filter>源文件\instructions\comparisons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
