@@ -8,7 +8,8 @@ OperandStack * newOperandStack(uint32_t maxStack)
 		return NULL;	
 
 	operandStack =  calloc(1, sizeof(OperandStack));
-	operandStack->size = maxStack;
+	operandStack->maxSize = maxStack;
+	operandStack->size = 0;
 	operandStack->slots = calloc(maxStack, sizeof(Slot));
 	return operandStack;
 }
@@ -17,7 +18,7 @@ void freeOperandStack(OperandStack* operandStack)
 {
 	if (operandStack != NULL)
 	{
-		if (operandStack->size > 0)
+		if (operandStack->maxSize > 0)
 			free(operandStack->slots);
 		free(operandStack);
 	}	

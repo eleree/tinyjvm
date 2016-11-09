@@ -18,6 +18,7 @@ typedef struct LocalVars
 }LocalVars;
 
 typedef struct OperandStack{
+	uint32_t maxSize;
 	uint32_t size;
 	Slot * slots;
 }OperandStack;

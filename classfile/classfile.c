@@ -130,7 +130,9 @@ void * constantDoubleInfo(void)
 
 void * constantUtf8Info(void)
 {
-	return calloc(1, sizeof(ConstantUtf8Info));
+	ConstantUtf8Info * info = calloc(1, sizeof(ConstantUtf8Info));
+	
+	return info;
 }
 
 void * constantStringInfo(void)

@@ -15,7 +15,7 @@
 
 #include "interpreter.h"
 
-#define MAX_JVM_ARGS	8
+#define MAX_JVM_ARGS	16
 char classpath[128] = { 0 };
 char className[128] = { 0 };
 char jvmArgs[MAX_JVM_ARGS][64] = { 0 };
@@ -88,6 +88,8 @@ void testLocalVars(LocalVars * localVars)
 
 void testOperandStack(OperandStack * operandStack)
 {
+
+
 	pushOperandInt(operandStack, 100);
 	pushOperandInt(operandStack, -100);
 	pushOperandLong(operandStack, 2997924580);
@@ -95,7 +97,6 @@ void testOperandStack(OperandStack * operandStack)
 	pushOperandFloat(operandStack, 3.1415926f);
 	pushOperandDouble(operandStack, 2.71828182845);
 	pushOperandRef(operandStack, NULL);
-
 	popOperandRef(operandStack); 
 	printf("%f\n", popOperandDouble(operandStack));
 	printf("%f\n", popOperandFloat(operandStack));
@@ -104,20 +105,27 @@ void testOperandStack(OperandStack * operandStack)
 	printf("%d\n", popOperandInt(operandStack));
 	printf("%d\n", popOperandInt(operandStack));
 
+
+
 }
 
 void testStack(void)
 {
 	Frame * f = newFrame(NULL,100, 100);
+	freeFrame(f);
+	OperandStack * ostack = newOperandStack(100);
+	freeOperandStack(ostack);
+	f = newFrame(NULL, 100, 100);
 	printf("Test Local Vars:\n");
 	testLocalVars(f->localVars);
 	printf("Test Operand Stack:\n");
 	testOperandStack(f->operandStack);
+	freeFrame(f);
 }
 
 //extern void testMinizWrapper(void);
 int main(int argc, char ** argv)
-{	
+{
 	testStack();
 	//testMinizWrapper();
 	//testMiniz();
@@ -175,6 +183,8 @@ int main(int argc, char ** argv)
 		strncpy((char *)&jvmArgs[i], argv[i],64);
 		printf("Args:%d,%s\n", i, argv[i]);
 	}
+
+	//testStack();
 
 	startJVM(jrepath, classpath, className);
 
