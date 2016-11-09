@@ -130,9 +130,7 @@ void * constantDoubleInfo(void)
 
 void * constantUtf8Info(void)
 {
-	ConstantUtf8Info * info = calloc(1, sizeof(ConstantUtf8Info));
-	
-	return info;
+	return calloc(1, sizeof(ConstantUtf8Info));
 }
 
 void * constantStringInfo(void)
@@ -218,7 +216,7 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 	case CONSTATNT_UTF8:
 		((ConstantUtf8Info*)itemInfo)->tag = tag;
 		((ConstantUtf8Info*)itemInfo)->length = readClassUint16(classFile);
-		((ConstantUtf8Info*)itemInfo)->bytes = calloc(1, sizeof(((ConstantUtf8Info*)itemInfo)->length+1));
+		((ConstantUtf8Info*)itemInfo)->bytes = calloc(((ConstantUtf8Info*)itemInfo)->length + 1, sizeof(uint8_t));
 		((ConstantUtf8Info*)itemInfo)->bytes[((ConstantUtf8Info*)itemInfo)->length] = '\0';
 		for (uint16_t i = 0; i < ((ConstantUtf8Info*)itemInfo)->length; i++)
 		{
