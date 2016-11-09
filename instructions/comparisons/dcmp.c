@@ -1,7 +1,7 @@
 #include "../factory.h"
 #include "../../rtda/operand_stack.h"
 
-static int32_t dcmp(Frame *frame, InsturctionData * instData, bool gFlag)
+static int32_t dcmp(Frame *frame, InstructionData * instData, bool gFlag)
 {
 	OperandStack * operandStack = frame->operandStack;
 	double v2 = popOperandDouble(operandStack);
@@ -37,14 +37,14 @@ static int32_t execute_dcmpg(Frame * frame, struct InsturctionData * instData)
 	return 0;
 }
 
-Insturction * dcmpl(Insturction * inst)
+Instruction * DCMPL(Instruction * inst)
 {
 	inst->fetchOperands = noOperandsInstructionFetchOperands;
 	inst->execute = execute_dcmpl;
 	return inst;
 }
 
-Insturction * dcmpg(Insturction * inst)
+Instruction * DCMPG(Instruction * inst)
 {
 	inst->fetchOperands = noOperandsInstructionFetchOperands;
 	inst->execute = execute_dcmpg;

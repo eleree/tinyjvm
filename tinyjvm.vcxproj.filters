@@ -40,6 +40,27 @@
     <Filter Include="源文件\instructions\comparisons">
       <UniqueIdentifier>{e0dc200d-1534-4747-a436-3276ae1d51f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\instructions\control">
+      <UniqueIdentifier>{70f9acbf-ddbf-4239-9696-dd0fcf28d4a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\instructions\conversions">
+      <UniqueIdentifier>{78049f26-c7e2-4d54-bb12-648c7ac3c810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\instructions\extended">
+      <UniqueIdentifier>{24924c2c-dfef-4bf8-9f33-bda7cee50436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\instructions\loads">
+      <UniqueIdentifier>{ae481956-2a3d-47ba-a811-baf9ce3ddf70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\instructions\math">
+      <UniqueIdentifier>{48b3f1f3-8c4b-44fb-a99b-698cb1ae07a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\instructions\stack">
+      <UniqueIdentifier>{0d82f153-5574-4911-8d5c-3422864e06ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\instructions\stores">
+      <UniqueIdentifier>{2407a3d6-ecb6-4ab4-baab-f5a0391dd569}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -107,6 +128,30 @@
     </ClCompile>
     <ClCompile Include="instructions\comparisons\dcmp.c">
       <Filter>源文件\instructions\comparisons</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\control\goto.c">
+      <Filter>源文件\instructions\control</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\conversions\d2x.c">
+      <Filter>源文件\instructions\conversions</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\conversions\f2x.c">
+      <Filter>源文件\instructions\conversions</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\extended\goto_w.c">
+      <Filter>源文件\instructions\extended</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\loads\aload.c">
+      <Filter>源文件\instructions\loads</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\math\add.c">
+      <Filter>源文件\instructions\math</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\stores\astore.c">
+      <Filter>源文件\instructions\stores</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\stack\dup.c">
+      <Filter>源文件\instructions\stack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

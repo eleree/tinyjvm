@@ -16,16 +16,19 @@ typedef struct InsturctionData
 	uint8_t opcode;
 	int32_t offset;
 	int32_t index;
-}InsturctionData;
+}InstructionData;
 
 typedef struct Insturction{
 	FetchOperandsFunc fetchOperands;
 	ExecuteFunc execute;
-}Insturction;
+}Instruction;
 
-int32_t noOperandsInstructionFetchOperands(BytecodeReader * bytecoderReader, InsturctionData * instData);
-int32_t branchInstructionFetchOperands(BytecodeReader * bytecoderReader, InsturctionData * instData);
-int32_t index8InstructionFetchOperands(BytecodeReader * bytecoderReader, InsturctionData * instData);
-int32_t index16InstructionFetchOperands(BytecodeReader * bytecoderReader, InsturctionData * instData);
+Instruction * newInsturction(uint8_t opcode);
+void branch(Frame * frame, int32_t offset);
+
+int32_t noOperandsInstructionFetchOperands(BytecodeReader * bytecoderReader, InstructionData * instData);
+int32_t branchInstructionFetchOperands(BytecodeReader * bytecoderReader, InstructionData * instData);
+int32_t index8InstructionFetchOperands(BytecodeReader * bytecoderReader, InstructionData * instData);
+int32_t index16InstructionFetchOperands(BytecodeReader * bytecoderReader, InstructionData * instData);
 
 #endif

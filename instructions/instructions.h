@@ -3,8 +3,9 @@
 
 #include "factory.h"
 
-Insturction * nop(Insturction * inst);
-Insturction * dcmpl(Insturction * inst);
-Insturction * dcmpg(Insturction * inst);
+Instruction * NOP(Instruction * inst);
+Instruction * DCMPL(Instruction * inst);
+Instruction * DCMPG(Instruction * inst);
+Instruction * GOTO(Instruction * inst);
 
 #endif

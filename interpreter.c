@@ -1,7 +1,9 @@
 #include "interpreter.h"
 #include "rtda\thread.h"
 #include "rtda\frame.h"
+#include "instructions\factory.h"
 #include "instructions\base\bytecode_reader.h"
+
 
 void loop(ClassFile * classFIle, Thread * thread, uint8_t * bytecode,uint32_t bytecodeLen)
 {
@@ -15,7 +17,15 @@ void loop(ClassFile * classFIle, Thread * thread, uint8_t * bytecode,uint32_t by
 		setThreadPC(thread, pc);
 		resetBytecodeReader(&bytecodeReader, bytecode, bytecodeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
-		setFrameNextPC(frame, getBytecodeReaderPC(&bytecodeReader));
+		Instruction * inst = newInsturction(opcode);
+		InstructionData instData = { 0 };
+		if (inst != NULL)
+		{
+			inst->fetchOperands(&bytecodeReader, &instData);
+			setFrameNextPC(frame, getBytecodeReaderPC(&bytecodeReader));
+			inst->execute(frame, &instData);
+		}
+		
 	}
 }
 

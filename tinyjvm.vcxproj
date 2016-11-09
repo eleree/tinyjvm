@@ -75,7 +75,15 @@
     <ClCompile Include="instructions\base\bytecode_reader.c" />
     <ClCompile Include="instructions\comparisons\dcmp.c" />
     <ClCompile Include="instructions\constants\nop.c" />
+    <ClCompile Include="instructions\control\goto.c" />
+    <ClCompile Include="instructions\conversions\d2x.c" />
+    <ClCompile Include="instructions\conversions\f2x.c" />
+    <ClCompile Include="instructions\extended\goto_w.c" />
     <ClCompile Include="instructions\factory.c" />
+    <ClCompile Include="instructions\loads\aload.c" />
+    <ClCompile Include="instructions\math\add.c" />
+    <ClCompile Include="instructions\stack\dup.c" />
+    <ClCompile Include="instructions\stores\astore.c" />
     <ClCompile Include="interpreter.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="miniz\minizip.c" />
