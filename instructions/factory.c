@@ -41,41 +41,57 @@ Instruction * newInsturction(uint8_t opcode)
 	{
 		case 0x00:
 			return NOP(&instruction);
-#if 0
 		case 0x01:
-			return aconst_null(&instruction);
+			return ACONST_NULL(&instruction);
 		case 0x02:
-			return iconst_m1
+			//return iconst_m1
+			return ICONST_M1(&instruction);
 		case 0x03:
-			return iconst_0
+			//return iconst_0
+			return ICONST_0(&instruction);
 		case 0x04:
-			return iconst_1
+			//return iconst_1
+			return ICONST_1(&instruction);
 		case 0x05:
-			return iconst_2
+			//return iconst_2
+			return ICONST_2(&instruction);
 		case 0x06:
-			return iconst_3
+			//return iconst_3
+			return ICONST_3(&instruction);
 		case 0x07:
-			return iconst_4
+			//return iconst_4
+			return ICONST_4(&instruction);
 		case 0x08:
-			return iconst_5
+			//return iconst_5
+			return ICONST_5(&instruction);
 		case 0x09:
-			return lconst_0
+			//return lconst_0
+			return LCONST_0(&instruction);
 		case 0x0a:
-			return lconst_1
+			//return lconst_1
+			return LCONST_1(&instruction);
 		case 0x0b:
-			return fconst_0
+			//return fconst_0
+			return FCONST_0(&instruction);
 		case 0x0c:
-			return fconst_1
+			//return fconst_1
+			return FCONST_1(&instruction);
 		case 0x0d:
-			return fconst_2
+			//return fconst_2
+			return FCONST_2(&instruction);
 		case 0x0e:
-			return dconst_0
+			//return dconst_0
+			return DCONST_0(&instruction);
 		case 0x0f:
-			return dconst_1
+			//return dconst_1
+			return DCONST_1(&instruction);
 		case 0x10:
-			return &BIPUSH{}
+			//return &BIPUSH{}
+			return BIPUSH(&instruction);
 		case 0x11:
-			return &SIPUSH{}
+			//return &SIPUSH{}
+			return SIPUSH(&instruction);
+#if 0
 			// case 0x12:
 			// 	return &LDC{}
 			// case 0x13:
@@ -448,6 +464,10 @@ Instruction * newInsturction(uint8_t opcode)
 			// case 0xfe: impdep1
 			// case 0xff: impdep2
 #endif 
+		default:
+			printf("Unsupport Instruction:%02x\n", opcode);
+			exit(1);
+			break;
 	}
 	return NULL;
 }

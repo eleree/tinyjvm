@@ -168,6 +168,12 @@
     <ClCompile Include="instructions\comparisons\lcmp.c">
       <Filter>源文件\instructions\comparisons</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\constants\const.c">
+      <Filter>源文件\instructions\constants</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\constants\ipush.c">
+      <Filter>源文件\instructions\constants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

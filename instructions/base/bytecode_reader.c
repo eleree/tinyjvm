@@ -15,7 +15,6 @@ int32_t getBytecodeReaderPC(BytecodeReader * bytecodeReader)
 int8_t readBytecodeInt8(BytecodeReader * bytecodeReader)
 {
 	int8_t data = bytecodeReader->code[bytecodeReader->pc];
-	bytecodeReader->code;
 	bytecodeReader->pc++;
 	return data;
 }
@@ -23,7 +22,7 @@ int8_t readBytecodeInt8(BytecodeReader * bytecodeReader)
 uint8_t readBytecodeUint8(BytecodeReader * bytecodeReader)
 {
 	uint8_t data = bytecodeReader->code[bytecodeReader->pc];
-	bytecodeReader->code++;
+	bytecodeReader->pc++;
 	return data;
 }
 

@@ -14,6 +14,7 @@ typedef int32_t(*ExecuteFunc)(Frame * frame, struct InsturctionData * instData);
 typedef struct InsturctionData
 {
 	uint8_t opcode;
+	int32_t value;
 	int32_t offset;
 	int32_t index;
 }InstructionData;

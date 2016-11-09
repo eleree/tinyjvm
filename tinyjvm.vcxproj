@@ -81,6 +81,8 @@
     <ClCompile Include="instructions\comparisons\if_acmp.c" />
     <ClCompile Include="instructions\comparisons\if_icmp.c" />
     <ClCompile Include="instructions\comparisons\lcmp.c" />
+    <ClCompile Include="instructions\constants\const.c" />
+    <ClCompile Include="instructions\constants\ipush.c" />
     <ClCompile Include="instructions\constants\nop.c" />
     <ClCompile Include="instructions\control\goto.c" />
     <ClCompile Include="instructions\conversions\d2x.c" />
