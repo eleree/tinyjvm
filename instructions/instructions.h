@@ -58,5 +58,22 @@ Instruction * IADD(Instruction * inst);
 Instruction * LADD(Instruction * inst);
 
 Instruction * IINC(Instruction * inst);
+Instruction * IAND(Instruction * inst);
+Instruction * LAND(Instruction * inst);
+
+Instruction * DDIV(Instruction * inst);
+Instruction * FDIV(Instruction * inst);
+Instruction * IDIV(Instruction * inst);
+Instruction * LDIV(Instruction * inst);
+
+Instruction * DMUL(Instruction * inst);
+Instruction * FMUL(Instruction * inst);
+Instruction * IMUL(Instruction * inst);
+Instruction * LMUL(Instruction * inst);
+
+Instruction * DSUB(Instruction * inst);
+Instruction * FSUB(Instruction * inst);
+Instruction * ISUB(Instruction * inst);
+Instruction * LSUB(Instruction * inst);
 
 #endif

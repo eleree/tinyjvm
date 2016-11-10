@@ -189,6 +189,18 @@
     <ClCompile Include="instructions\math\iinc.c">
       <Filter>源文件\instructions\math</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\math\and.c">
+      <Filter>源文件\instructions\math</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\math\div.c">
+      <Filter>源文件\instructions\math</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\math\mul.c">
+      <Filter>源文件\instructions\math</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\math\sub.c">
+      <Filter>源文件\instructions\math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

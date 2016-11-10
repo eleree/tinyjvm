@@ -273,31 +273,43 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0x63:
 			//return dadd
 			return DADD(&instruction);
-#if 0
 		case 0x64:
-			return isub
+			//return isub
+			return ISUB(&instruction);
 		case 0x65:
-			return lsub
+			//return lsub
+			return LSUB(&instruction);
 		case 0x66:
-			return fsub
+			//return fsub
+			return FSUB(&instruction);
 		case 0x67:
-			return dsub
+			//return dsub
+			return DSUB(&instruction);
 		case 0x68:
-			return imul
+			//return imul
+			return IMUL(&instruction);
 		case 0x69:
-			return lmul
+			//return lmul
+			return LMUL(&instruction);
 		case 0x6a:
-			return fmul
+			//return fmul
+			return FMUL(&instruction);
 		case 0x6b:
-			return dmul
+			//return dmul
+			return DMUL(&instruction);
 		case 0x6c:
-			return idiv
+			//return idiv
+			return IDIV(&instruction);
 		case 0x6d:
-			return ldiv
+			//return ldiv
+			return LDIV(&instruction);
 		case 0x6e:
-			return fdiv
+			//return fdiv
+			return FDIV(&instruction);
 		case 0x6f:
-			return ddiv
+			//return ddiv
+			return DDIV(&instruction);
+#if 0
 		case 0x70:
 			return irem
 		case 0x71:
@@ -326,10 +338,14 @@ Instruction * newInsturction(uint8_t opcode)
 			return iushr
 		case 0x7d:
 			return lushr
+#endif 
 		case 0x7e:
-			return iand
+			//return iand
+			return IAND(&instruction);
 		case 0x7f:
-			return land
+			//return land
+			return LAND(&instruction);
+#if 0
 		case 0x80:
 			return ior
 		case 0x81:

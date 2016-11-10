@@ -94,7 +94,11 @@
     <ClCompile Include="instructions\loads\aload.c" />
     <ClCompile Include="instructions\loads\iload.c" />
     <ClCompile Include="instructions\math\add.c" />
+    <ClCompile Include="instructions\math\and.c" />
+    <ClCompile Include="instructions\math\div.c" />
     <ClCompile Include="instructions\math\iinc.c" />
+    <ClCompile Include="instructions\math\mul.c" />
+    <ClCompile Include="instructions\math\sub.c" />
     <ClCompile Include="instructions\stack\dup.c" />
     <ClCompile Include="instructions\stores\astore.c" />
     <ClCompile Include="instructions\stores\istore.c" />
