@@ -174,6 +174,21 @@
     <ClCompile Include="instructions\constants\ipush.c">
       <Filter>源文件\instructions\constants</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\control\lookupswitch.c">
+      <Filter>源文件\instructions\control</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\control\tableswitch.c">
+      <Filter>源文件\instructions\control</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\stores\istore.c">
+      <Filter>源文件\instructions\stores</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\loads\iload.c">
+      <Filter>源文件\instructions\loads</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\math\iinc.c">
+      <Filter>源文件\instructions\math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

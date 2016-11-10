@@ -16,6 +16,8 @@ int8_t readBytecodeInt8(BytecodeReader * bytecodeReader);
 uint8_t readBytecodeUint8(BytecodeReader * bytecodeReader);
 uint16_t readBytecodeUint16(BytecodeReader * bytecodeReader);
 int16_t readBytecodeInt16(BytecodeReader * bytecodeReader);
+int32_t readBytecodeInt32(BytecodeReader * bytecodeReader);
 uint32_t readBytecodeUint32(BytecodeReader * bytecodeReader);
+int32_t * readBytecodeInt32s(BytecodeReader * bytecodeReader, int32_t * int32Data, int32_t int32Count);
 void skipBytecodePadding(BytecodeReader * bytecodeReader);
 #endif

@@ -108,14 +108,20 @@ Instruction * newInsturction(uint8_t opcode)
 			return &DLOAD{}
 		case 0x19:
 			return &ALOAD{}
+#endif 
 		case 0x1a:
-			return iload_0
+			//return iload_0
+			return ILOAD_0(&instruction);
 		case 0x1b:
-			return iload_1
+			//return iload_1
+			return ILOAD_1(&instruction);
 		case 0x1c:
-			return iload_2
+			//return iload_2
+			return ILOAD_2(&instruction);
 		case 0x1d:
-			return iload_3
+			//return iload_3
+			return ILOAD_3(&instruction);
+#if 0
 		case 0x1e:
 			return lload_0
 		case 0x1f:
@@ -174,14 +180,20 @@ Instruction * newInsturction(uint8_t opcode)
 			return &DSTORE{}
 		case 0x3a:
 			return &ASTORE{}
+#endif
 		case 0x3b:
-			return istore_0
+			//return istore_0
+			return ISTORE_0(&instruction);
 		case 0x3c:
-			return istore_1
+			//return istore_1
+			return ISTORE_1(&instruction);
 		case 0x3d:
-			return istore_2
+			//return istore_2
+			return ISTORE_2(&instruction);
 		case 0x3e:
-			return istore_3
+			//return istore_3
+			return ISTORE_3(&instruction);
+#if 0
 		case 0x3f:
 			return lstore_0
 		case 0x40:
@@ -248,14 +260,20 @@ Instruction * newInsturction(uint8_t opcode)
 			return dup2_x2
 		case 0x5f:
 			return swap
+#endif 
 		case 0x60:
-			return iadd
+			//return iadd
+			return IADD(&instruction);
 		case 0x61:
-			return ladd
+			//return ladd
+			return LADD(&instruction);
 		case 0x62:
-			return fadd
+			//return fadd
+			return FADD(&instruction);
 		case 0x63:
-			return dadd
+			//return dadd
+			return DADD(&instruction);
+#if 0
 		case 0x64:
 			return isub
 		case 0x65:
@@ -320,8 +338,11 @@ Instruction * newInsturction(uint8_t opcode)
 			return ixor
 		case 0x83:
 			return lxor
+#endif
 		case 0x84:
-			return &IINC{}
+			//return &IINC{}
+			return IINC(&instruction);
+#if 0
 		case 0x85:
 			return i2l
 		case 0x86:
@@ -374,24 +395,37 @@ Instruction * newInsturction(uint8_t opcode)
 			return &IFGT{}
 		case 0x9e:
 			return &IFLE{}
+#endif
+
 		case 0x9f:
-			return &IF_ICMPEQ{}
+			//return &IF_ICMPEQ{}
+			return IF_ICMPEQ(&instruction);
 		case 0xa0:
-			return &IF_ICMPNE{}
+			//return &IF_ICMPNE{}
+			return IF_ICMPNE(&instruction);
 		case 0xa1:
-			return &IF_ICMPLT{}
+			//return &IF_ICMPLT{}
+			return IF_ICMPLT(&instruction);
 		case 0xa2:
-			return &IF_ICMPGE{}
+			//return &IF_ICMPGE{}
+			return IF_ICMPGE(&instruction);
 		case 0xa3:
-			return &IF_ICMPGT{}
+			//return &IF_ICMPGT{}
+			return IF_ICMPGT(&instruction);
 		case 0xa4:
-			return &IF_ICMPLE{}
+			//return &IF_ICMPLE{}
+			return IF_ICMPLE(&instruction);
+#if 0
 		case 0xa5:
 			return &IF_ACMPEQ{}
 		case 0xa6:
 			return &IF_ACMPNE{}
+#endif
+
 		case 0xa7:
-			return &GOTO{}
+			//return &GOTO{}
+			return GOTO(&instruction);
+#if 0
 			// case 0xa8:
 			// 	return &JSR{}
 			// case 0xa9:
@@ -465,7 +499,7 @@ Instruction * newInsturction(uint8_t opcode)
 			// case 0xff: impdep2
 #endif 
 		default:
-			printf("Unsupport Instruction:%02x\n", opcode);
+			printf("Unsupport Instruction:0x%02x\n", opcode);
 			exit(1);
 			break;
 	}

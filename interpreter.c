@@ -1,9 +1,20 @@
 #include "interpreter.h"
 #include "rtda\thread.h"
 #include "rtda\frame.h"
+#include "rtda\local_vars.h"
 #include "instructions\factory.h"
 #include "instructions\base\bytecode_reader.h"
 
+void dumpLocalVars(Frame * frame)
+{
+	LocalVars * localVars = frame->localVars;
+	printf("Local Vars:");
+	for (uint32_t i = 0; i < localVars->size; i++)
+	{
+		printf("0x%d,", getLocalVarsInt(localVars,i));
+	}
+	printf("\n");
+}
 
 void loop(ClassFile * classFIle, Thread * thread, uint8_t * bytecode,uint32_t bytecodeLen)
 {
@@ -13,6 +24,7 @@ void loop(ClassFile * classFIle, Thread * thread, uint8_t * bytecode,uint32_t by
 	BytecodeReader bytecodeReader;
 	for (;;)
 	{
+		dumpLocalVars(frame);
 		pc = getFrameNextPC(frame);
 		setThreadPC(thread, pc);
 		resetBytecodeReader(&bytecodeReader, bytecode, bytecodeLen, pc);

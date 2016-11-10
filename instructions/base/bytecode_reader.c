@@ -52,6 +52,15 @@ int32_t readBytecodeInt32(BytecodeReader * bytecodeReader)
 	return readBytecodeUint32(bytecodeReader);
 }
 
+int32_t * readBytecodeInt32s(BytecodeReader * bytecodeReader, int32_t * int32Data, int32_t int32Count)
+{
+	for (int32_t i = 0; i < int32Count; i++)
+	{
+		int32Data[i] = readBytecodeInt32(bytecodeReader);
+	}
+	return int32Data;
+}
+
 void skipBytecodePadding(BytecodeReader * bytecodeReader)
 {
 	while (bytecodeReader->pc % 4 != 0)

@@ -6,6 +6,7 @@ LocalVars * newLocalVars(uint32_t maxLocals)
 	if (maxLocals == 0)
 		return NULL;
 	localVars = calloc(1, sizeof(LocalVars));
+	localVars->size = maxLocals;
 	localVars->slots = calloc(maxLocals, sizeof(Slot));
 	return localVars;
 }
