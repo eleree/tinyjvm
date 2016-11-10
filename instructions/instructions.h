@@ -61,6 +61,11 @@ Instruction * IINC(Instruction * inst);
 Instruction * IAND(Instruction * inst);
 Instruction * LAND(Instruction * inst);
 
+Instruction * IXOR(Instruction * inst);
+Instruction * LXOR(Instruction * inst);
+Instruction * IOR(Instruction * inst);
+Instruction * LOR(Instruction * inst);
+
 Instruction * DDIV(Instruction * inst);
 Instruction * FDIV(Instruction * inst);
 Instruction * IDIV(Instruction * inst);
@@ -75,5 +80,23 @@ Instruction * DSUB(Instruction * inst);
 Instruction * FSUB(Instruction * inst);
 Instruction * ISUB(Instruction * inst);
 Instruction * LSUB(Instruction * inst);
+
+Instruction * DNEG(Instruction * inst);
+Instruction * FNEG(Instruction * inst);
+Instruction * INEG(Instruction * inst);
+Instruction * LNEG(Instruction * inst);
+
+Instruction * DREM(Instruction * inst);
+Instruction * FREM(Instruction * inst);
+Instruction * IREM(Instruction * inst);
+Instruction * LREM(Instruction * inst);
+
+Instruction * ISHL(Instruction * inst);
+Instruction * ISHR(Instruction * inst);
+Instruction * IUSHR(Instruction * inst);
+Instruction * LSHL(Instruction * inst);
+Instruction * LSHR(Instruction * inst);
+Instruction * LUSHR(Instruction * inst);
+
 
 #endif

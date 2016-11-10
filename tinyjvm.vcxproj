@@ -89,6 +89,8 @@
     <ClCompile Include="instructions\control\tableswitch.c" />
     <ClCompile Include="instructions\conversions\d2x.c" />
     <ClCompile Include="instructions\conversions\f2x.c" />
+    <ClCompile Include="instructions\conversions\i2x.c" />
+    <ClCompile Include="instructions\conversions\l2x.c" />
     <ClCompile Include="instructions\extended\goto_w.c" />
     <ClCompile Include="instructions\factory.c" />
     <ClCompile Include="instructions\loads\aload.c" />
@@ -98,7 +100,12 @@
     <ClCompile Include="instructions\math\div.c" />
     <ClCompile Include="instructions\math\iinc.c" />
     <ClCompile Include="instructions\math\mul.c" />
+    <ClCompile Include="instructions\math\neg.c" />
+    <ClCompile Include="instructions\math\or.c" />
+    <ClCompile Include="instructions\math\rem.c" />
+    <ClCompile Include="instructions\math\sh.c" />
     <ClCompile Include="instructions\math\sub.c" />
+    <ClCompile Include="instructions\math\xor.c" />
     <ClCompile Include="instructions\stack\dup.c" />
     <ClCompile Include="instructions\stores\astore.c" />
     <ClCompile Include="instructions\stores\istore.c" />

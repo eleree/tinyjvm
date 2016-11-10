@@ -201,6 +201,27 @@
     <ClCompile Include="instructions\math\sub.c">
       <Filter>源文件\instructions\math</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\math\neg.c">
+      <Filter>源文件\instructions\math</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\math\or.c">
+      <Filter>源文件\instructions\math</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\math\rem.c">
+      <Filter>源文件\instructions\math</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\math\sh.c">
+      <Filter>源文件\instructions\math</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\math\xor.c">
+      <Filter>源文件\instructions\math</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\conversions\i2x.c">
+      <Filter>源文件\instructions\conversions</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\conversions\l2x.c">
+      <Filter>源文件\instructions\conversions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
