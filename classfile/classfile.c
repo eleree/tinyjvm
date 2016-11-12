@@ -353,6 +353,23 @@ CodeAttribute * getMethodCodeAttribute(ClassFile * classFile, MethodInfo * metho
 	return NULL;
 }
 
+const char * getClassName(ClassFile * classFile)
+{
+	return getClassUtf8(classFile, classFile->thisClass);
+}
+
+const char * getSuperClassName(ClassFile * classFile)
+{
+	return getClassUtf8(classFile, classFile->superClass);
+}
+
+const char * getInterfaceName(ClassFile * classFile, uint16_t index)
+{
+	if (index > classFile->interfaceCount)
+		return NULL;
+	return getClassUtf8(classFile, index);
+}
+
 int32_t printClassInfo(ClassFile * classFile)
 {
 	printf("Class Magic Number: 0x%x\n", classFile->header.magicNumber);

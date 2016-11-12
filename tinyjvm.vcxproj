@@ -123,6 +123,8 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="miniz\minizip.c" />
     <ClCompile Include="rtda\frame.c" />
+    <ClCompile Include="rtda\heap\class.c" />
+    <ClCompile Include="rtda\heap\class_attribute_info.c" />
     <ClCompile Include="rtda\jvm_stack.c" />
     <ClCompile Include="rtda\local_vars.c" />
     <ClCompile Include="rtda\object.c" />
@@ -143,6 +145,8 @@
     <ClInclude Include="miniz\miniz_wrapper.h" />
     <ClInclude Include="miniz\minizip.h" />
     <ClInclude Include="rtda\frame.h" />
+    <ClInclude Include="rtda\heap\class.h" />
+    <ClInclude Include="rtda\heap\class_attribute_info.h" />
     <ClInclude Include="rtda\local_vars.h" />
     <ClInclude Include="rtda\object.h" />
     <ClInclude Include="rtda\operand_stack.h" />

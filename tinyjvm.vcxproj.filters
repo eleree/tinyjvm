@@ -61,6 +61,9 @@
     <Filter Include="源文件\instructions\stores">
       <UniqueIdentifier>{2407a3d6-ecb6-4ab4-baab-f5a0391dd569}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\rtda\heap">
+      <UniqueIdentifier>{7de49430-025f-47aa-8d28-3f1809566d76}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -252,6 +255,12 @@
     <ClCompile Include="instructions\stores\lstore.c">
       <Filter>源文件\instructions\stores</Filter>
     </ClCompile>
+    <ClCompile Include="rtda\heap\class.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\class_attribute_info.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -307,6 +316,12 @@
     </ClInclude>
     <ClInclude Include="instructions\instructions.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\class.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\class_attribute_info.h">
+      <Filter>源文件\rtda\heap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

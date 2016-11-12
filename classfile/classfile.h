@@ -447,5 +447,9 @@ void readAttributeInfo(ClassFile * classFile, AttributeInfo * attribute, uint16_
 
 MethodInfo * getMainMethod(ClassFile * classFile);
 CodeAttribute * getMethodCodeAttribute(ClassFile * classFile, MethodInfo * methodInfo);
+const char * getClassName(ClassFile * classFile);
+const char * getSuperClassName(ClassFile * classFile);
+const char * getInterfaceName(ClassFile * classFile, uint16_t index);
+
 
 #endif

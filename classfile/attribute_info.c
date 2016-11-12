@@ -118,7 +118,7 @@ UnparsedAttribute * readUnparsedAttributeInfo(ClassFile * classFile, uint32_t at
 	return unparsedAttr;
 }
 
-void * newAttributeInfo(const char * attrName, uint32_t attrLen, ClassFile * classFile)
+static void * newAttributeInfo(const char * attrName, uint32_t attrLen, ClassFile * classFile)
 {
 	if (attrName == NULL)
 		return NULL;
