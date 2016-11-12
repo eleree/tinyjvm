@@ -21,4 +21,7 @@ double popOperandDouble(OperandStack* operandStack);
 void pushOperandRef(OperandStack * operandStack, Object * ref);
 Object * popOperandRef(OperandStack * operandStack);
 
+void pushOperandSlot(OperandStack * operandStack, Slot * slot);
+Slot * popOperandSlot(OperandStack * operandStack);
+
 #endif

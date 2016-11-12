@@ -222,6 +222,27 @@
     <ClCompile Include="instructions\conversions\l2x.c">
       <Filter>源文件\instructions\conversions</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\extended\ifnull.c">
+      <Filter>源文件\instructions\extended</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\extended\wide.c">
+      <Filter>源文件\instructions\extended</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\loads\dload.c">
+      <Filter>源文件\instructions\loads</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\loads\fload.c">
+      <Filter>源文件\instructions\loads</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\loads\lload.c">
+      <Filter>源文件\instructions\loads</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\stack\pop.c">
+      <Filter>源文件\instructions\stack</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\stack\swap.c">
+      <Filter>源文件\instructions\stack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

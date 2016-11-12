@@ -51,6 +51,42 @@ Instruction * ILOAD_1(Instruction * inst);
 Instruction * ILOAD_2(Instruction * inst);
 Instruction * ILOAD_3(Instruction * inst);
 
+/* extended */
+Instruction * GOTO_W(Instruction * inst);
+Instruction * IFNULL(Instruction * inst);
+Instruction * WIDE(Instruction * inst);
+
+/* loads */
+Instruction * ALOAD(Instruction * inst);
+Instruction * ALOAD_0(Instruction * inst);
+Instruction * ALOAD_1(Instruction * inst);
+Instruction * ALOAD_2(Instruction * inst);
+Instruction * ALOAD_3(Instruction * inst);
+
+Instruction * DLOAD(Instruction * inst);
+Instruction * DLOAD_0(Instruction * inst);
+Instruction * DLOAD_1(Instruction * inst);
+Instruction * DLOAD_2(Instruction * inst);
+Instruction * DLOAD_3(Instruction * inst);
+
+Instruction * FLOAD(Instruction * inst);
+Instruction * FLOAD_0(Instruction * inst);
+Instruction * FLOAD_1(Instruction * inst);
+Instruction * FLOAD_2(Instruction * inst);
+Instruction * FLOAD_3(Instruction * inst);
+
+Instruction * ILOAD(Instruction * inst);
+Instruction * ILOAD_0(Instruction * inst);
+Instruction * ILOAD_1(Instruction * inst);
+Instruction * ILOAD_2(Instruction * inst);
+Instruction * ILOAD_3(Instruction * inst);
+
+Instruction * LLOAD(Instruction * inst);
+Instruction * LLOAD_0(Instruction * inst);
+Instruction * LLOAD_1(Instruction * inst);
+Instruction * LLOAD_2(Instruction * inst);
+Instruction * LLOAD_3(Instruction * inst);
+
 /* math */
 Instruction * DADD(Instruction * inst);
 Instruction * FADD(Instruction * inst);
@@ -98,5 +134,15 @@ Instruction * LSHL(Instruction * inst);
 Instruction * LSHR(Instruction * inst);
 Instruction * LUSHR(Instruction * inst);
 
+/* stack */
+Instruction * DUP(Instruction * inst);
+Instruction * DUP_X1(Instruction * inst);
+Instruction * DUP_X2(Instruction * inst);
+Instruction * DUP2(Instruction * inst);
+Instruction * DUP2_X1(Instruction * inst);
+Instruction * DUP2_X2(Instruction * inst);
 
+Instruction * POP(Instruction * inst);
+Instruction * POP2(Instruction * inst);
+Instruction * SWAP(Instruction * inst);
 #endif

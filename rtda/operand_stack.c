@@ -1,5 +1,5 @@
 #include "rtda.h"
-
+#include <string.h>
 OperandStack * newOperandStack(uint32_t maxStack)
 {
 	OperandStack * operandStack = NULL;
@@ -96,4 +96,16 @@ Object * popOperandRef(OperandStack * operandStack)
 {
 	operandStack->size--;
 	return operandStack->slots[operandStack->size].ref;
+}
+
+void pushOperandSlot(OperandStack * operandStack, Slot * slot)
+{
+	memcpy(&operandStack->slots[operandStack->size], slot, sizeof(Slot));
+	operandStack->size++;
+}
+
+Slot * popOperandSlot(OperandStack * operandStack)
+{
+	operandStack->size--;
+	return &operandStack->slots[operandStack->size];
 }

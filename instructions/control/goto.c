@@ -1,6 +1,6 @@
 #include "../factory.h"
 
-static int32_t execute(Frame * frame, struct InsturctionData * instData)
+static int32_t execute_GOTO(Frame * frame, struct InsturctionData * instData)
 {
 	branch(frame, instData->offset);
 	return 0;
@@ -9,6 +9,6 @@ static int32_t execute(Frame * frame, struct InsturctionData * instData)
 Instruction * GOTO(Instruction * inst)
 {
 	inst->fetchOperands = branchInstructionFetchOperands;
-	inst->execute = execute;
+	inst->execute = execute_GOTO;
 	return inst;
 }
