@@ -243,6 +243,15 @@
     <ClCompile Include="instructions\stack\swap.c">
       <Filter>源文件\instructions\stack</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\stores\dstore.c">
+      <Filter>源文件\instructions\stores</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\stores\fstore.c">
+      <Filter>源文件\instructions\stores</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\stores\lstore.c">
+      <Filter>源文件\instructions\stores</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

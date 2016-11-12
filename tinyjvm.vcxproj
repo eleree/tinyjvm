@@ -115,7 +115,10 @@
     <ClCompile Include="instructions\stack\pop.c" />
     <ClCompile Include="instructions\stack\swap.c" />
     <ClCompile Include="instructions\stores\astore.c" />
+    <ClCompile Include="instructions\stores\dstore.c" />
+    <ClCompile Include="instructions\stores\fstore.c" />
     <ClCompile Include="instructions\stores\istore.c" />
+    <ClCompile Include="instructions\stores\lstore.c" />
     <ClCompile Include="interpreter.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="miniz\minizip.c" />
