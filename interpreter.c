@@ -11,7 +11,7 @@ void dumpLocalVars(Frame * frame)
 	printf("Local Vars:");
 	for (uint32_t i = 0; i < localVars->size; i++)
 	{
-		printf("0x%d,", getLocalVarsInt(localVars,i));
+		printf("%d,", getLocalVarsInt(localVars,i));
 	}
 	printf("\n");
 }
@@ -24,11 +24,12 @@ void loop(ClassFile * classFIle, Thread * thread, uint8_t * bytecode,uint32_t by
 	BytecodeReader bytecodeReader;
 	for (;;)
 	{
-		dumpLocalVars(frame);
 		pc = getFrameNextPC(frame);
 		setThreadPC(thread, pc);
 		resetBytecodeReader(&bytecodeReader, bytecode, bytecodeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
+		printf("pc:0x%02x, opcode:0x%02x\n", pc, opcode);
+		dumpLocalVars(frame);
 		Instruction * inst = newInsturction(opcode);
 		InstructionData instData = { 0 };
 		if (inst != NULL)
