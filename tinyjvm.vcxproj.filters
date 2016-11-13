@@ -261,6 +261,18 @@
     <ClCompile Include="rtda\heap\class_attribute_info.c">
       <Filter>源文件\rtda\heap</Filter>
     </ClCompile>
+    <ClCompile Include="rtda\heap\method.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\class_member.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\field.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\class_loader.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -320,8 +332,20 @@
     <ClInclude Include="rtda\heap\class.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="rtda\heap\method.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
     <ClInclude Include="rtda\heap\class_attribute_info.h">
-      <Filter>源文件\rtda\heap</Filter>
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\class_member.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\field.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\class_loader.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

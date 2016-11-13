@@ -120,7 +120,6 @@ typedef struct ConstantMethodTypeInfo{
 	uint16_t descriptor_index;
 }ConstantMethodTypeInfo;
 
-
 // 4.4.10.The CONSTANT_InvokeDynamic_info Structure
 typedef struct ConstantInvokeDynamicInfo{
 	uint8_t tag;
@@ -439,6 +438,7 @@ uint32_t readClassUint32(ClassFile * classFile);
 uint64_t readClassUint64(ClassFile * classFile);
 
 const char * getClassUtf8(ClassFile * classFile, uint16_t utf8Index);
+const char * getConstantPoolUtf8(ConstantPoolItem * constantPool, uint16_t utf8Index);
 
 ClassFile * parseClassData(uint8_t * classData, uint64_t classSize);
 void deleteClassFile(ClassFile * classFile);
@@ -450,6 +450,5 @@ CodeAttribute * getMethodCodeAttribute(ClassFile * classFile, MethodInfo * metho
 const char * getClassName(ClassFile * classFile);
 const char * getSuperClassName(ClassFile * classFile);
 const char * getInterfaceName(ClassFile * classFile, uint16_t index);
-
 
 #endif

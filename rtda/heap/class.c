@@ -1,5 +1,7 @@
 #include "class.h"
 #include "class_attribute_info.h"
+#include "method.h"
+#include "field.h"
 
 #pragma warning(disable:4996)
 
@@ -84,39 +86,6 @@ static void freeConstantPool(Class * c)
 }
 
 
-
-static void newFields(Class * c, ClassFile * classFile)
-{
-	c->fieldsCount = classFile->fieldsCount;
-	if (c->fieldsCount == 0)
-		return;
-	c->fields = calloc(c->fieldsCount, sizeof(FieldInfo));
-	for (uint16_t i = 0; i < c->fieldsCount; i++)
-	{
-		(c->fields + i)->access_flags = (classFile->fields + i)->access_flags;
-		(c->fields + i)->name_index = (classFile->fields + i)->name_index;
-		(c->fields + i)->attributes_count = (classFile->fields + i)->attributes_count;
-		copyAttributeInfo(classFile, (c->fields+i)->attributes, (classFile->fields + i)->attributes, (c->fields + i)->attributes_count);
-	}
-}
-
-static void freeFields(Class * c, ClassFile * classFile)
-{
-
-}
-
-
-static void newMethods(Class * c, ClassFile * classFile)
-{
-
-}
-
-static void freeMethods(Class * c, ClassFile * classFile)
-{
-
-}
-
-
 Class * newClass(ClassFile * classFile)
 {
 	Class * c = calloc(1, sizeof(Class));
@@ -137,4 +106,14 @@ void freeClass(Class * c)
 		return;
 	free(c->name);
 	free(c->superClassName);
+}
+
+Method * getClassStaticMethod(Class * c, const char * name, const char * descriptor)
+{
+	return NULL;
+}
+
+Method * getClassMainMethod(Class * c)
+{
+	return getClassStaticMethod(c, "main", "([Ljava/lang/String;)V");
 }

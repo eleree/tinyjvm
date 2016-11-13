@@ -449,3 +449,13 @@ void deleteClassFile(ClassFile * classFile)
 	if (classFile != NULL)
 		free(classFile);
 }
+
+const char * getConstantPoolUtf8(ConstantPoolItem * constantPool, uint16_t utf8Index)
+{
+	ConstantUtf8Info * itemInfo = (ConstantUtf8Info *)(constantPool + utf8Index)->itemInfo;
+
+	if (itemInfo->tag != CONSTATNT_UTF8)
+		return NULL;
+
+	return itemInfo->bytes;
+}

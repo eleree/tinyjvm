@@ -14,7 +14,8 @@
 #include "rtda\thread.h"
 
 #include "interpreter.h"
-
+#include "rtda\heap\class.h"
+#include "rtda\heap\class_loader.h"
 #define MAX_JVM_ARGS	16
 char classpath[128] = { 0 };
 char className[128] = { 0 };
@@ -26,6 +27,7 @@ void printUsage(void)
 	printf("Usage: tinyjvm [--option] class [args...]\n");
 }
 
+#if 0
 void startJVM(const char * jrepath, const char * classpath, const char * className)
 {
 	int32_t classSize = 0;
@@ -51,6 +53,21 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 	interpret(classFile, getMainMethod(classFile));
 	if (classContent != NULL)
 		free(classContent);
+}
+#endif
+
+void startJVM(const char * jrepath, const char * classpath, const char * className)
+{
+	int32_t classSize = 0;
+	char * classContent = NULL;
+	char * fullClassName = (char *)calloc(128, 1);
+	ClassFile * classFile = NULL;
+	ClassLoader * classLoader = NULL;
+	Class * class = NULL;
+	parseClasspath(jrepath, classpath);
+	stringReplace(className, fullClassName, 128);
+	stringCat(fullClassName, ".class", 128);
+	class = loadClass(classLoader,fullClassName);
 }
 
 void testMiniz(void)

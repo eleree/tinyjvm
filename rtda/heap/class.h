@@ -7,6 +7,11 @@
 #include <string.h>
 #include "../rtda.h"
 #include "../../classfile/classfile.h"
+#include "field.h"
+#include "method.h"
+
+struct Method;
+struct Field;
 
 typedef struct Class
 {
@@ -18,9 +23,9 @@ typedef struct Class
 	uint16_t constantPoolCount;
 	ConstantPoolItem *constantPoolItem; //constantPool array
 	uint16_t fieldsCount;
-	FieldInfo *fields;
+	struct Field *fields;
 	uint16_t methodsCount;
-	MethodInfo * methods;
+	struct Method * methods;
 	struct Class * superClass;
 	uint16_t interfacesCount;
 	struct Class * *interfaces;
@@ -29,4 +34,7 @@ typedef struct Class
 	uint32_t slotCount;
 	Slot * staticVars;
 }Class;
+
+Class * newClass(ClassFile * classFile);
+
 #endif
