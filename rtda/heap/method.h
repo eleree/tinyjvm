@@ -18,4 +18,11 @@ typedef struct Method
 
 Method * newMethods(struct Class * c, ClassFile * classFile);
 
+bool isMethodPublic(Method * method);
+bool isMethodPrivate(Method * method);
+bool isMethodProtected(Method * method);
+bool isMethodStatic(Method * method);
+bool isMethodFinal(Method * method);
+bool isMethodSynthetic(Method * method);
+
 #endif

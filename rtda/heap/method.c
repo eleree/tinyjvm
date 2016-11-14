@@ -59,3 +59,52 @@ void freeMethods(Method * method, uint16_t methodCount)
 
 	free(method);
 }
+
+
+bool isMethodPublic(Method * method)
+{
+	if (method == NULL)
+		return false;
+
+	return	0 != (method->classMember.accessFlags & ACC_PUBLIC);
+}
+
+bool isMethodPrivate(Method * method)
+{
+	if (method == NULL)
+		return false;
+
+	return	0 != (method->classMember.accessFlags & ACC_PRIVATE);
+}
+
+bool isMethodProtected(Method * method)
+{
+	if (method == NULL)
+		return false;
+
+	return	0 != (method->classMember.accessFlags & ACC_PROTECTED);
+}
+
+bool isMethodStatic(Method * method)
+{
+	if (method == NULL)
+		return false;
+
+	return	0 != (method->classMember.accessFlags & ACC_STATIC);
+}
+
+bool isMethodFinal(Method * method)
+{
+	if (method == NULL)
+		return false;
+
+	return	0 != (method->classMember.accessFlags & ACC_FINAL);
+}
+
+bool isMethodSynthetic(Method * method)
+{
+	if (method == NULL)
+		return false;
+
+	return	0 != (method->classMember.accessFlags & ACC_SYNTHETIC);
+}

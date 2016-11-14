@@ -14,7 +14,10 @@ static void newClassName(Class * c, ClassFile * classFile)
 
 static void newSuperClassName(Class * c, ClassFile * classFile)
 {
-	uint16_t superClassNameLen = strlen(getSuperClassName(classFile));
+	uint16_t superClassNameLen = 0;
+	if (classFile->superClass == 0)
+		return;
+	superClassNameLen = strlen(getSuperClassName(classFile));
 	c->superClassName = calloc(superClassNameLen + 1, sizeof(char));
 	strcpy(c->superClassName, getSuperClassName(classFile));
 }
@@ -110,8 +113,16 @@ void freeClass(Class * c)
 	free(c->superClassName);
 }
 
+
 Method * getClassStaticMethod(Class * c, const char * name, const char * descriptor)
 {
+	for (uint16_t i = 0; i < c->methodsCount; i++)
+	{
+		if (isMethodStatic(c->methods + i) &&
+			strcmp(c->methods[i].classMember.name, name) == 0 &&
+			strcmp(c->methods[i].classMember.descriptor, descriptor) == 0)
+				return (c->methods + i);		
+	}
 	return NULL;
 }
 

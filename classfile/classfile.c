@@ -206,8 +206,11 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 		((ConstantIntegerInfo*)itemInfo)->bytes = readClassUint32(classFile);
 		break;
 	case CONSTATNT_FLOAT:
+		break;
 	case CONSTATNT_LONG:
+		break;
 	case CONSTATNT_DOUBLE:
+		break;
 	case CONSTATNT_NAME_AND_TYPE:
 		((ConstantNameAndTypeInfo*)itemInfo)->tag = tag;
 		((ConstantNameAndTypeInfo*)itemInfo)->name_index = readClassUint16(classFile);
@@ -224,7 +227,9 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 		}
 		break;
 	case CONSTATNT_METHOD_HANDLE:
+		break;
 	case CONSTATNT_METHOD_TYPE:
+		break;
 	case CONSTATNT_INVOKE_DYNAMIC:
 		break;
 	}
@@ -314,6 +319,10 @@ ClassFile * parseClassData(uint8_t * classData, uint64_t classSize)
 const char * getClassUtf8(ClassFile * classFile, uint16_t utf8Index)
 {
 	ConstantUtf8Info * itemInfo = (ConstantUtf8Info *)(classFile->constantPoolItem + utf8Index)->itemInfo;
+
+	/* java.lang.Objec */
+	if (utf8Index == 0)
+		return NULL;
 
 	if (classFile == NULL)
 		return NULL;

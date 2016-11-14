@@ -1,4 +1,5 @@
 #include "entry.h"
+#include "../strings/strings.h"
 #include <stdio.h>
 #include <windows.h>
 #pragma comment(lib, "User32.lib")
@@ -15,6 +16,9 @@ int32_t readDirEntryClass(const char * path, const char * className, char ** cla
 	strcat(fullClassName, path);
 	strcat(fullClassName, "/");
 	strcat(fullClassName, className);
+	if (stringHasSuffix(className,".class") != 0)
+		strcat(fullClassName, ".class");
+
 	*classContent = NULL;
 
 	hFile = CreateFile(fullClassName,               // file to open

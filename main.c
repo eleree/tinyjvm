@@ -63,13 +63,20 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 	char * fullClassName = (char *)calloc(128, 1);
 	ClassFile * classFile = NULL;
 	ClassLoader * classLoader = NULL;
-	Class * class = NULL;
+	Class * mainClass = NULL;
 
 	classLoader = newClassLoader();
 	parseClasspath(jrepath, classpath);
 	stringReplace(className, fullClassName, 128);
 	stringCat(fullClassName, ".class", 128);
-	class = loadClass(classLoader,fullClassName);
+	mainClass = loadClass(classLoader,fullClassName);
+	if (mainClass != NULL)
+		interpret(mainClass, getClassMainMethod(mainClass));
+	else
+		printf("Main method not found in class\n");
+
+	if (classContent != NULL)
+		free(classContent);
 }
 
 void testMiniz(void)

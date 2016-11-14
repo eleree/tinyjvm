@@ -96,6 +96,18 @@ DeprecatedAttribute * readDeprecatedAttributeInfo(ClassFile * classFile)
 	return calloc(1, sizeof(DeprecatedAttribute));
 }
 
+ExceptionsAttribute * readExceptionsAttributeInfo(ClassFile * classFile)
+{
+	ExceptionsAttribute * exceptionAttr =  calloc(1, sizeof(ExceptionsAttribute));
+	exceptionAttr->number_of_exceptions = readClassUint16(classFile);
+	exceptionAttr->exception_index_table = calloc(exceptionAttr->number_of_exceptions, sizeof(uint16_t));
+	for (uint16_t i = 0; i < exceptionAttr->number_of_exceptions; i++)
+	{
+		exceptionAttr->exception_index_table[i] = readClassUint16(classFile);
+	}
+	return exceptionAttr;
+}
+
 ConstantValueAttribute * readConstantValueAttributeInfo(ClassFile * classFile)
 {
 	ConstantValueAttribute * constantValueAttr = calloc(1, sizeof(ConstantValueAttribute));
@@ -131,6 +143,7 @@ static void * newAttributeInfo(const char * attrName, uint32_t attrLen, ClassFil
 		return readDeprecatedAttributeInfo(classFile);
 	}
 	else if (strcmp("Exceptions", attrName) == 0){
+		return readExceptionsAttributeInfo(classFile);
 	}
 	else if (strcmp("LineNumberTable", attrName) == 0){
 		return readLineNumberTableAttributeInfo(classFile);
