@@ -14,9 +14,9 @@ static void newClassName(Class * c, ClassFile * classFile)
 
 static void newSuperClassName(Class * c, ClassFile * classFile)
 {
-	uint16_t superClassNameLen = strlen(getClassName(classFile));
+	uint16_t superClassNameLen = strlen(getSuperClassName(classFile));
 	c->superClassName = calloc(superClassNameLen + 1, sizeof(char));
-	strcpy(c->superClassName, getClassName(classFile));
+	strcpy(c->superClassName, getSuperClassName(classFile));
 }
 
 static void newInterfacesName(Class * c, ClassFile * classFile)
@@ -39,7 +39,7 @@ static void newConstantPool(Class * c, ClassFile * classFile)
 	if (constantPoolCount == 0)
 		return;
 	c->constantPoolItem = calloc(constantPoolCount, sizeof(ConstantPoolItem));
-	for (uint16_t i = 0; i < constantPoolCount; i++)
+	for (uint16_t i = 1; i < constantPoolCount; i++)
 	{
 		uint8_t tag = ((ConstantClassInfo *)((classFile->constantPoolItem + i)->itemInfo))->tag;
 		switch (tag)
@@ -61,8 +61,10 @@ static void newConstantPool(Class * c, ClassFile * classFile)
 		case CONSTATNT_FLOAT:
 			break;
 		case CONSTATNT_LONG:
+			i++;
 			break;
 		case CONSTATNT_DOUBLE:
+			i++;
 			break;
 		case CONSTATNT_NAME_AND_TYPE:
 			break;

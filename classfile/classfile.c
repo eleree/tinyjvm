@@ -319,7 +319,45 @@ const char * getClassUtf8(ClassFile * classFile, uint16_t utf8Index)
 		return NULL;
 
 	if (itemInfo->tag != CONSTATNT_UTF8)
-		return NULL;
+	{
+		switch (itemInfo->tag)
+		{
+		case CONSTATNT_CLASS:
+			return getClassUtf8(classFile, ((ConstantClassInfo*)itemInfo)->nameIndex);
+			break;
+		case CONSTATNT_FIELDREF:
+			return getClassUtf8(classFile, ((ConstantFieldrefInfo*)itemInfo)->name_and_type_index);
+			break;
+		case CONSTATNT_METHODREF:
+			return getClassUtf8(classFile, ((ConstantMethodrefInfo*)itemInfo)->name_and_type_index);
+			break;
+		case CONSTATNT_INTERFACE_METHODREF:
+			break;
+		case CONSTATNT_STRING:			
+			return getClassUtf8(classFile, ((ConstantStringInfo*)itemInfo)->string_index);
+			break;
+		case CONSTATNT_INTEGER:
+			break;
+		case CONSTATNT_FLOAT:
+		case CONSTATNT_LONG:
+			break;
+		case CONSTATNT_DOUBLE:
+			break;
+		case CONSTATNT_NAME_AND_TYPE:
+			return getClassUtf8(classFile, ((ConstantNameAndTypeInfo*)itemInfo)->name_index);			
+			break;
+		case CONSTATNT_UTF8:
+			break;
+		case CONSTATNT_METHOD_HANDLE:
+		case CONSTATNT_METHOD_TYPE:
+		case CONSTATNT_INVOKE_DYNAMIC:
+			break;
+		default:
+			return NULL;
+			break;
+		}		
+	}
+
 	return itemInfo->bytes;
 }
 
@@ -413,6 +451,7 @@ int32_t printClassInfo(ClassFile * classFile)
 				printf("  bytes:%d\n", ((ConstantIntegerInfo*)itemInfo)->bytes);
 				break;
 			case CONSTATNT_FLOAT:
+				break;
 			case CONSTATNT_LONG:
 				i++;
 				break;
