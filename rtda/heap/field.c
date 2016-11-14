@@ -21,8 +21,6 @@ static void copyAttributes(Field * field, FieldInfo * fieldInfo, ClassFile * cla
 	}
 }
 
-
-
 Field * newFields(struct Class * c, ClassFile * classFile)
 {
 	c->fieldsCount = classFile->fieldsCount;
@@ -40,3 +38,77 @@ Field * newFields(struct Class * c, ClassFile * classFile)
 
 	return NULL;
 }
+
+
+bool isFieldVolatile(Field * field)
+{
+	return 0 != (field->classMember.accessFlags & ACC_VOLATILE);
+}
+
+bool isFieldTransient(Field * field)
+{
+	return 0 != (field->classMember.accessFlags & ACC_TRANSIENT);
+}
+
+bool isFieldEnum(Field * field)
+{
+	return 0 != (field->classMember.accessFlags & ACC_ENUM);
+}
+
+bool isFieldLongOrDouble(Field * field)
+{
+	if (field->classMember.descriptor[0] == 'J' || field->classMember.descriptor[0] == 'D')
+		return true;
+
+	return false;
+}
+
+
+bool isFieldPublic(Field * field)
+{
+	if (field == NULL)
+		return false;
+
+	return	0 != (field->classMember.accessFlags & ACC_PUBLIC);
+}
+
+bool isFieldPrivate(Field * field)
+{
+	if (field == NULL)
+		return false;
+
+	return	0 != (field->classMember.accessFlags & ACC_PRIVATE);
+}
+
+bool isFieldProtected(Field * field)
+{
+	if (field == NULL)
+		return false;
+
+	return	0 != (field->classMember.accessFlags & ACC_PROTECTED);
+}
+
+bool isFieldStatic(Field * field)
+{
+	if (field == NULL)
+		return false;
+
+	return	0 != (field->classMember.accessFlags & ACC_STATIC);
+}
+
+bool isFieldFinal(Field * field)
+{
+	if (field == NULL)
+		return false;
+
+	return	0 != (field->classMember.accessFlags & ACC_FINAL);
+}
+
+bool isFieldSynthetic(Field * field)
+{
+	if (field == NULL)
+		return false;
+
+	return	0 != (field->classMember.accessFlags & ACC_SYNTHETIC);
+}
+

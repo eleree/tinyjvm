@@ -188,6 +188,7 @@ void readClassFields(ClassFile * classFile)
 	{
 		(classFile->fields + i)->access_flags = readClassUint16(classFile);
 		(classFile->fields + i)->name_index = readClassUint16(classFile);
+		(classFile->fields + i)->descriptor_index = readClassUint16(classFile);
 		(classFile->fields + i)->attributes_count = readClassUint16(classFile);
 		readAttributeInfo(classFile, (classFile->fields + i)->attributes, (classFile->fields + i)->attributes_count);
 	}

@@ -14,5 +14,17 @@ typedef struct Field
 }Field;
 
 Field * newFields(struct Class * c, ClassFile * classFile);
+bool isFieldVolatile(Field * field);
+bool isFieldTransient(Field * field);
+bool isFieldEnum(Field * field);
+bool isFieldLongOrDouble(Field * field);
+
+bool isFieldPublic(Field * field);
+bool isFieldPrivate(Field * field);
+bool isFieldProtected(Field * field);
+bool isFieldStatic(Field * field);
+bool isFieldFinal(Field * field);
+bool isFieldSynthetic(Field * field);
+
 
 #endif

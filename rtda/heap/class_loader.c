@@ -1,8 +1,10 @@
 #include "class_loader.h"
 #include "../../classfile/classfile.h"
 #include "../../classpath/classpath.h"
-#include "class.h"
+#include "../../rtda/rtda.h"
 
+#include "class.h"
+#include "slot.h"
 
 ClassLoader * newClassLoader(void)
 {
@@ -36,15 +38,92 @@ void resolveInterfaces(ClassLoader * classLoader, Class * subClass)
 
 void calcInstanceFieldSlotIds(Class * class)
 {
-
+	uint16_t slotId = 0;
+	if (class->superClass != NULL)
+	{
+		slotId = class->superClass->instanceSlotCount;
+	}
+	for (uint16_t i = 0; i < class->fieldsCount; i++)
+	{
+		if (!isFieldStatic(&class->fields[i]))
+		{
+			class->fields[i].slotId = slotId;
+			slotId++;
+			if (isFieldLongOrDouble(&class->fields[i]))
+				slotId++;
+		}
+	}
+	class->instanceSlotCount = slotId;
 }
 
 void calcStaticFieldSlotIds(Class * class)
 {
+	uint16_t slotId = 0;
+	for (uint16_t i = 0; i < class->fieldsCount; i++)
+	{
+		if (isFieldStatic(&class->fields[i]))
+		{
+			class->fields[i].slotId = slotId;
+			slotId++;
+			if (isFieldLongOrDouble(&class->fields[i]))
+				slotId++;
+		}
+	}
 
+	class->staticSlotCount = slotId;
+}
+
+void initStaticFinalVar(Class * class, Field * field) 
+{
+	Slot * staticVars = class->staticVars;
+	ConstantPoolItem * constantPool = class->constantPoolItem;
+	uint16_t cpIndex = field->constValueIndex;
+	uint16_t slotId = field->slotId;
+	int32_t int32Val = 0;
+	int64_t int64Val = 0;
+
+	if (cpIndex > 0)
+	{
+		switch (field->classMember.descriptor[0])
+		{
+		case 'Z':
+		case 'B':
+		case 'C':
+		case 'S':
+		case 'I':
+			// int32Val =  getConstantInt(cpIndex);
+			setSlotInt(staticVars, slotId, int32Val);
+			break;
+		case 'J':
+		case 'F':
+		case 'D':
+			break;
+		}
+		if (strcmp(field->classMember.descriptor, "Ljava/lang/String;") == 0)
+		{
+			printf("todo\n");
+			exit(1);
+		}
+	}
 }
 
 void allocAndInitStaticVars(Class * class)
+{
+	class->staticVars = NULL;
+	if (class->staticSlotCount == 0)
+		return;
+	class->staticVars = calloc(class->staticSlotCount, sizeof(Slot));
+	for (uint16_t i = 0; i < class->fieldsCount; i++)
+	{
+		if (isFieldStatic(class->fields + i) && isFieldFinal(class->fields + i))
+		{
+			initStaticFinalVar(class, class->fields + i);
+		}
+	}
+
+}
+
+void verify(Class * class) 
 {
 
 }
@@ -64,6 +143,19 @@ Class * parseClassFile(char * classContent, int32_t classSize)
 	return newClass(classFile);
 }
 
+void linkClass(ClassLoader * classLoader, Class * class)
+{
+	verify(class);
+	prepare(class);
+}
+
+void defineClass(ClassLoader * classLoader, Class * class)
+{
+	resolveSuperClass(classLoader, class);
+	resolveInterfaces(classLoader, class);
+	addClassList(classLoader, class);
+}
+
 Class * loadNonArrayClass(ClassLoader * classLoader, const char * className)
 {
 	int32_t classSize = 0;
@@ -80,9 +172,9 @@ Class * loadNonArrayClass(ClassLoader * classLoader, const char * className)
 	}
 	loadClass = parseClassFile(classContent, classSize);
 
-	resolveSuperClass(classLoader, loadClass);
-	resolveInterfaces(classLoader, loadClass);
-	addClassList(classLoader, loadClass);
+	defineClass(classLoader, loadClass);
+
+	linkClass(classLoader, loadClass);
 
 	return loadClass;
 }

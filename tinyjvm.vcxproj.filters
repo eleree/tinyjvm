@@ -273,6 +273,9 @@
     <ClCompile Include="rtda\heap\class_loader.c">
       <Filter>源文件\rtda\heap</Filter>
     </ClCompile>
+    <ClCompile Include="rtda\heap\slot.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -345,6 +348,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="rtda\heap\class_loader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\slot.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

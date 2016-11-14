@@ -129,6 +129,7 @@
     <ClCompile Include="rtda\heap\class_member.c" />
     <ClCompile Include="rtda\heap\field.c" />
     <ClCompile Include="rtda\heap\method.c" />
+    <ClCompile Include="rtda\heap\slot.c" />
     <ClCompile Include="rtda\jvm_stack.c" />
     <ClCompile Include="rtda\local_vars.c" />
     <ClCompile Include="rtda\object.c" />
@@ -155,6 +156,7 @@
     <ClInclude Include="rtda\heap\class_member.h" />
     <ClInclude Include="rtda\heap\field.h" />
     <ClInclude Include="rtda\heap\method.h" />
+    <ClInclude Include="rtda\heap\slot.h" />
     <ClInclude Include="rtda\local_vars.h" />
     <ClInclude Include="rtda\object.h" />
     <ClInclude Include="rtda\operand_stack.h" />

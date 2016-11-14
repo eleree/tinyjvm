@@ -60,6 +60,35 @@ void freeMethods(Method * method, uint16_t methodCount)
 	free(method);
 }
 
+bool isMethodSynchronized(Method * method)
+{
+	return	0 != (method->classMember.accessFlags & ACC_SYNCHRONIZED);
+}
+
+bool isMethodBridge(Method * method)
+{
+	return	0 != (method->classMember.accessFlags & ACC_BRIDGE);
+}
+
+bool isMethodVarargs(Method * method)
+{
+	return	0 != (method->classMember.accessFlags & ACC_VARARGS);
+}
+
+bool isMethodNative(Method * method)
+{
+	return	0 != (method->classMember.accessFlags & ACC_NATIVE);
+}
+
+bool isMethodAbstract(Method * method)
+{
+	return	0 != (method->classMember.accessFlags & ACC_ABSTRACT);
+}
+
+bool isMethodStrict(Method * method)
+{
+	return	0 != (method->classMember.accessFlags & ACC_STRICT);
+}
 
 bool isMethodPublic(Method * method)
 {
@@ -108,3 +137,5 @@ bool isMethodSynthetic(Method * method)
 
 	return	0 != (method->classMember.accessFlags & ACC_SYNTHETIC);
 }
+
+

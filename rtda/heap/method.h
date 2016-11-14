@@ -18,6 +18,13 @@ typedef struct Method
 
 Method * newMethods(struct Class * c, ClassFile * classFile);
 
+bool isMethodSynchronized(Method * method);
+bool isMethodBridge(Method * method);
+bool isMethodVarargs(Method * method);
+bool isMethodNative(Method * method);
+bool isMethodAbstract(Method * method);
+bool isMethodStrict(Method * method);
+
 bool isMethodPublic(Method * method);
 bool isMethodPrivate(Method * method);
 bool isMethodProtected(Method * method);
