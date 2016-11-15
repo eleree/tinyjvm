@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "rtda.h"
 
-Frame * newFrame(Thread * thread,uint32_t maxLocals, uint32_t maxStack);
+Frame * newFrame(Thread * thread, struct Method * method, uint32_t maxLocals, uint32_t maxStack);
 
 LocalVars * getFrameLocalVars(Frame * frame);
 

@@ -147,3 +147,13 @@ Method * getClassMainMethod(Class * c)
 {
 	return getClassStaticMethod(c, "main", "([Ljava/lang/String;)V");
 }
+
+bool isClassInterface(Class * c)
+{
+	return false;
+}
+
+bool isClassAbstract(Class * c)
+{
+	return false;
+}

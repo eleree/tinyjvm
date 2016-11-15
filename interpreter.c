@@ -94,7 +94,7 @@ void interpret(Class * c, Method * method)
 	uint8_t * bytecode = method->code;
 
 	Thread * thread = newThread();
-	Frame * frame = newFrame(thread, maxLocals, maxStack);
+	Frame * frame = newFrame(thread, method, maxLocals, maxStack);
 	pushThreadFrame(thread, frame);
 
 	//Print LocalVars & OperandStack

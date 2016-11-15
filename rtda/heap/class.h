@@ -68,5 +68,7 @@ enum {
 
 Class * newClass(ClassFile * classFile);
 struct Method * getClassMainMethod(Class * c);
+bool isClassInterface(Class * c);
+bool isClassAbstract(Class * c);
 
 #endif

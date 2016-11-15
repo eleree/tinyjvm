@@ -130,18 +130,15 @@ void testOperandStack(OperandStack * operandStack)
 	printf("%lld\n", popOperandLong(operandStack));
 	printf("%d\n", popOperandInt(operandStack));
 	printf("%d\n", popOperandInt(operandStack));
-
-
-
 }
 
 void testStack(void)
 {
-	Frame * f = newFrame(NULL,100, 100);
+	Frame * f = newFrame(NULL,NULL,100, 100);
 	freeFrame(f);
 	OperandStack * ostack = newOperandStack(100);
 	freeOperandStack(ostack);
-	f = newFrame(NULL, 100, 100);
+	f = newFrame(NULL, NULL, 100, 100);
 	printf("Test Local Vars:\n");
 	testLocalVars(f->localVars);
 	printf("Test Operand Stack:\n");

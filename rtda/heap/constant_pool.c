@@ -30,3 +30,10 @@ double getClassConstantPoolDouble(ConstantPoolItem * cp, uint16_t index)
 	return 0;
 }
 
+
+ClassRef * getClassConstantPoolClassRef(ConstantPoolItem * cp, uint16_t index)
+{
+	if ((cp + index)->itemInfo != NULL)
+		return ((ClassConstantClassRef *)((cp + index)->itemInfo))->classRef;
+	return 0;
+}

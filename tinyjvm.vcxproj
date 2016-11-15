@@ -111,6 +111,7 @@
     <ClCompile Include="instructions\math\sh.c" />
     <ClCompile Include="instructions\math\sub.c" />
     <ClCompile Include="instructions\math\xor.c" />
+    <ClCompile Include="instructions\references\new.c" />
     <ClCompile Include="instructions\stack\dup.c" />
     <ClCompile Include="instructions\stack\pop.c" />
     <ClCompile Include="instructions\stack\swap.c" />
@@ -135,10 +136,10 @@
     <ClCompile Include="rtda\heap\cp_symref.c" />
     <ClCompile Include="rtda\heap\field.c" />
     <ClCompile Include="rtda\heap\method.c" />
+    <ClCompile Include="rtda\heap\object.c" />
     <ClCompile Include="rtda\heap\slot.c" />
     <ClCompile Include="rtda\jvm_stack.c" />
     <ClCompile Include="rtda\local_vars.c" />
-    <ClCompile Include="rtda\object.c" />
     <ClCompile Include="rtda\operand_stack.c" />
     <ClCompile Include="rtda\thread.c" />
     <ClCompile Include="rtda\utils.c" />
@@ -170,9 +171,9 @@
     <ClInclude Include="rtda\heap\cp_symref.h" />
     <ClInclude Include="rtda\heap\field.h" />
     <ClInclude Include="rtda\heap\method.h" />
+    <ClInclude Include="rtda\heap\object.h" />
     <ClInclude Include="rtda\heap\slot.h" />
     <ClInclude Include="rtda\local_vars.h" />
-    <ClInclude Include="rtda\object.h" />
     <ClInclude Include="rtda\operand_stack.h" />
     <ClInclude Include="rtda\rtda.h" />
     <ClInclude Include="rtda\thread.h" />

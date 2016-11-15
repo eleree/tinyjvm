@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "object.h"
+#include "./heap/object.h"
 
 typedef struct Slot{
 	int32_t num;
@@ -24,12 +24,14 @@ typedef struct OperandStack{
 }OperandStack;
 
 // stack frame
+struct Method;
 typedef struct  Frame  {
 	struct Frame * lower; // stack is implemented as linked list
 	LocalVars * localVars;
 	OperandStack * operandStack;
 	struct Thread * thread;
 	int32_t nextPC;
+	struct Method * method;
 	// todo
 }Frame;
 

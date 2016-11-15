@@ -64,6 +64,9 @@
     <Filter Include="源文件\rtda\heap">
       <UniqueIdentifier>{7de49430-025f-47aa-8d28-3f1809566d76}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\instructions\references">
+      <UniqueIdentifier>{27cca1e9-cf31-46e0-ad9d-deaae4a4a3e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -100,9 +103,6 @@
       <Filter>源文件\classfile</Filter>
     </ClCompile>
     <ClCompile Include="rtda\frame.c">
-      <Filter>源文件\rtda</Filter>
-    </ClCompile>
-    <ClCompile Include="rtda\object.c">
       <Filter>源文件\rtda</Filter>
     </ClCompile>
     <ClCompile Include="rtda\thread.c">
@@ -297,6 +297,12 @@
     <ClCompile Include="rtda\utils.c">
       <Filter>源文件\rtda</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\references\new.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\object.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -324,9 +330,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="rtda\frame.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rtda\object.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="rtda\rtda.h">
@@ -397,6 +400,9 @@
     </ClInclude>
     <ClInclude Include="rtda\utils.h">
       <Filter>源文件\rtda</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\object.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

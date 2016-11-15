@@ -2,12 +2,13 @@
 #include "local_vars.h"
 #include "operand_stack.h"
 
-Frame * newFrame(Thread * thread, uint32_t maxLocals, uint32_t maxStack)
+Frame * newFrame(Thread * thread, struct Method * method, uint32_t maxLocals, uint32_t maxStack)
 {
 	Frame * frame = calloc(1, sizeof(Frame));
 	frame->localVars = newLocalVars(maxLocals);
 	frame->operandStack = newOperandStack(maxStack);
 	frame->thread = thread;
+	frame->method = method;
 	return frame;
 }
 
