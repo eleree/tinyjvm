@@ -276,6 +276,27 @@
     <ClCompile Include="rtda\heap\slot.c">
       <Filter>源文件\rtda\heap</Filter>
     </ClCompile>
+    <ClCompile Include="rtda\heap\cp_symref.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\cp_methodref.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\cp_classref.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\constant_pool.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\cp_fieldref.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\cp_interface_methodref.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\utils.c">
+      <Filter>源文件\rtda</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -352,6 +373,30 @@
     </ClInclude>
     <ClInclude Include="rtda\heap\slot.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\cp_symref.h">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\cp_methodref.h">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\cp_classref.h">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\constant_pool.h">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\cp_fieldref.h">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\cp_memberref.h">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\cp_interface_methodref.h">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\utils.h">
+      <Filter>源文件\rtda</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

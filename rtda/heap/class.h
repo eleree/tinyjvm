@@ -13,6 +13,15 @@
 
 struct Method;
 struct Field;
+struct Class;
+struct ClassLoader;
+
+typedef struct ConstantPool
+{
+	struct Class * class;
+	uint16_t constantPoolCount;
+	ConstantPoolItem *constantPoolItem; //constantPool array
+};
 
 typedef struct Class
 {
@@ -21,8 +30,7 @@ typedef struct Class
 	char * superClassName;
 	uint16_t interfaceNamesCount;
 	char * *interfaceNames; // interfaceName  array
-	uint16_t constantPoolCount;
-	ConstantPoolItem *constantPoolItem; //constantPool array
+	struct ConstantPool constantPool;
 	uint16_t fieldsCount;
 	struct Field *fields;
 	uint16_t methodsCount;
@@ -34,6 +42,7 @@ typedef struct Class
 	uint32_t staticSlotCount;
 	uint32_t slotCount;
 	Slot * staticVars;
+	struct ClassLoader * classLoader;
 }Class;
 
 enum {

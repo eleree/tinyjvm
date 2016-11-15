@@ -439,6 +439,8 @@ uint64_t readClassUint64(ClassFile * classFile);
 
 const char * getClassUtf8(ClassFile * classFile, uint16_t utf8Index);
 const char * getConstantPoolUtf8(ConstantPoolItem * constantPool, uint16_t utf8Index);
+const char * getConstalPoolNameAndTypeName(ConstantPoolItem * constantPool, uint16_t nameAndTypeIndex);
+const char * getConstalPoolNameAndTypeDescriptor(ConstantPoolItem * constantPool, uint16_t nameAndTypeIndex);
 
 ClassFile * parseClassData(uint8_t * classData, uint64_t classSize);
 void deleteClassFile(ClassFile * classFile);

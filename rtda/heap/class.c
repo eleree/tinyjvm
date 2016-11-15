@@ -2,6 +2,8 @@
 #include "class_attribute_info.h"
 #include "method.h"
 #include "field.h"
+#include "constant_pool.h"
+#include "../utils.h"
 
 #pragma warning(disable:4996)
 
@@ -39,17 +41,22 @@ static void newInterfacesName(Class * c, ClassFile * classFile)
 static void newConstantPool(Class * c, ClassFile * classFile)
 {
 	uint16_t constantPoolCount = classFile->constanPoolCount;
+	void * destItem = NULL;
+	void * srcItemInfo = NULL;
 	if (constantPoolCount == 0)
 		return;
-	c->constantPoolItem = calloc(constantPoolCount, sizeof(ConstantPoolItem));
+	c->constantPool.class = c;
+	c->constantPool.constantPoolItem = calloc(constantPoolCount, sizeof(ConstantPoolItem));
 	for (uint16_t i = 1; i < constantPoolCount; i++)
 	{
 		uint8_t tag = ((ConstantClassInfo *)((classFile->constantPoolItem + i)->itemInfo))->tag;
 		switch (tag)
 		{
 		case CONSTATNT_CLASS:
-			c->constantPoolItem[i].itemInfo = (void *) calloc(1, sizeof(ConstantClassInfo));
-			memcpy(c->constantPoolItem[i].itemInfo, (classFile->constantPoolItem + i)->itemInfo, sizeof(ConstantClassInfo));
+			//destItem = (void *)calloc(1, sizeof(ClassConstantClass));
+
+			//c->constantPool.constantPoolItem[i].itemInfo = (void *)calloc(1, sizeof(ConstantClassInfo));
+			//memcpy(c->constantPool.constantPoolItem[i].itemInfo, (classFile->constantPoolItem + i)->itemInfo, sizeof(ConstantClassInfo));
 			break;
 		case CONSTATNT_FIELDREF:
 			break;
@@ -59,9 +66,19 @@ static void newConstantPool(Class * c, ClassFile * classFile)
 			break;
 		case CONSTATNT_STRING:	
 			break;
-		case CONSTATNT_INTEGER:
+		case CONSTATNT_INTEGER:		
+			destItem = (void *)calloc(1, sizeof(ClassConstantInteger));
+			srcItemInfo = (classFile->constantPoolItem + i)->itemInfo;
+			c->constantPool.constantPoolItem[i].itemInfo = destItem;
+			((ClassConstantInteger*)destItem)->tag = tag;
+			((ClassConstantInteger*)destItem)->val = ((ConstantIntegerInfo*)srcItemInfo)->bytes;
 			break;
 		case CONSTATNT_FLOAT:
+			destItem = (void *)calloc(1, sizeof(ClassConstantFloat));
+			srcItemInfo = (classFile->constantPoolItem + i)->itemInfo;
+			c->constantPool.constantPoolItem[i].itemInfo = destItem;
+			((ClassConstantFloat*)destItem)->tag = tag;
+			((ClassConstantFloat*)destItem)->val = intToFloat(((ConstantFloatInfo*)srcItemInfo)->bytes);
 			break;
 		case CONSTATNT_LONG:
 			i++;

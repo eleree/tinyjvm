@@ -5,6 +5,7 @@
 
 #include "class.h"
 #include "slot.h"
+#include "constant_pool.h"
 
 ClassLoader * newClassLoader(void)
 {
@@ -76,11 +77,13 @@ void calcStaticFieldSlotIds(Class * class)
 void initStaticFinalVar(Class * class, Field * field) 
 {
 	Slot * staticVars = class->staticVars;
-	ConstantPoolItem * constantPool = class->constantPoolItem;
+	ConstantPoolItem * constantPool = class->constantPool.constantPoolItem;
 	uint16_t cpIndex = field->constValueIndex;
 	uint16_t slotId = field->slotId;
 	int32_t int32Val = 0;
 	int64_t int64Val = 0;
+	float floatVal = 0;
+	double doubleVal = 0;
 
 	if (cpIndex > 0)
 	{
@@ -91,12 +94,18 @@ void initStaticFinalVar(Class * class, Field * field)
 		case 'C':
 		case 'S':
 		case 'I':
-			// int32Val =  getConstantInt(cpIndex);
+			int32Val = getClassConstantPoolInt(constantPool, cpIndex);
 			setSlotInt(staticVars, slotId, int32Val);
 			break;
 		case 'J':
+			int64Val = getClassConstantPoolLong(constantPool, cpIndex);
+			setSlotLong(staticVars, slotId, int64Val);
 		case 'F':
+			floatVal = getClassConstantPoolFloat(constantPool, cpIndex);
+			setSlotFloat(staticVars, slotId, floatVal);
 		case 'D':
+			doubleVal = getClassConstantPoolDouble(constantPool, cpIndex);
+			setSlotDouble(staticVars, slotId, doubleVal);
 			break;
 		}
 		if (strcmp(field->classMember.descriptor, "Ljava/lang/String;") == 0)

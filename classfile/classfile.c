@@ -197,6 +197,7 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 		((ConstantMethodrefInfo*)itemInfo)->name_and_type_index = readClassUint16(classFile);
 		break;
 	case CONSTATNT_INTERFACE_METHODREF:
+		break;
 	case CONSTATNT_STRING:
 		((ConstantStringInfo*)itemInfo)->tag = tag;
 		((ConstantStringInfo*)itemInfo)->string_index = readClassUint16(classFile);
@@ -206,10 +207,18 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 		((ConstantIntegerInfo*)itemInfo)->bytes = readClassUint32(classFile);
 		break;
 	case CONSTATNT_FLOAT:
+		((ConstantFloatInfo*)itemInfo)->tag = tag;
+		((ConstantFloatInfo*)itemInfo)->bytes = readClassUint32(classFile);
 		break;
 	case CONSTATNT_LONG:
+		((ConstantLongInfo*)itemInfo)->tag = tag;
+		((ConstantLongInfo*)itemInfo)->high_bytes = readClassUint32(classFile);
+		((ConstantLongInfo*)itemInfo)->low_bytes = readClassUint32(classFile);
 		break;
 	case CONSTATNT_DOUBLE:
+		((ConstantDoubleInfo*)itemInfo)->tag = tag;
+		((ConstantDoubleInfo*)itemInfo)->high_bytes = readClassUint32(classFile);
+		((ConstantDoubleInfo*)itemInfo)->low_bytes = readClassUint32(classFile);
 		break;
 	case CONSTATNT_NAME_AND_TYPE:
 		((ConstantNameAndTypeInfo*)itemInfo)->tag = tag;
@@ -506,4 +515,24 @@ const char * getConstantPoolUtf8(ConstantPoolItem * constantPool, uint16_t utf8I
 		return NULL;
 
 	return itemInfo->bytes;
+}
+
+const char * getConstalPoolNameAndTypeName(ConstantPoolItem * constantPool, uint16_t nameAndTypeIndex)
+{
+	ConstantNameAndTypeInfo * itemInfo = (ConstantNameAndTypeInfo *)(constantPool + nameAndTypeIndex)->itemInfo;
+
+	if (itemInfo->tag != CONSTATNT_NAME_AND_TYPE)
+		return NULL;
+
+	return getConstantPoolUtf8(constantPool, itemInfo->name_index);
+}
+
+const char * getConstalPoolNameAndTypeDescriptor(ConstantPoolItem * constantPool, uint16_t nameAndTypeIndex)
+{
+	ConstantNameAndTypeInfo * itemInfo = (ConstantNameAndTypeInfo *)(constantPool + nameAndTypeIndex)->itemInfo;
+
+	if (itemInfo->tag != CONSTATNT_NAME_AND_TYPE)
+		return NULL;
+
+	return getConstantPoolUtf8(constantPool, itemInfo->descriptor_index);
 }

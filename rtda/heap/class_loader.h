@@ -10,7 +10,7 @@ typedef struct ClassList
 	struct ClassList * next;	
 }ClassList;
 
-typedef struct CLassLoader
+typedef struct ClassLoader
 {
 	ClassList * classList;
 }ClassLoader;

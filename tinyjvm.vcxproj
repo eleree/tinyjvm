@@ -127,6 +127,12 @@
     <ClCompile Include="rtda\heap\class_attribute_info.c" />
     <ClCompile Include="rtda\heap\class_loader.c" />
     <ClCompile Include="rtda\heap\class_member.c" />
+    <ClCompile Include="rtda\heap\constant_pool.c" />
+    <ClCompile Include="rtda\heap\cp_classref.c" />
+    <ClCompile Include="rtda\heap\cp_fieldref.c" />
+    <ClCompile Include="rtda\heap\cp_interface_methodref.c" />
+    <ClCompile Include="rtda\heap\cp_methodref.c" />
+    <ClCompile Include="rtda\heap\cp_symref.c" />
     <ClCompile Include="rtda\heap\field.c" />
     <ClCompile Include="rtda\heap\method.c" />
     <ClCompile Include="rtda\heap\slot.c" />
@@ -135,6 +141,7 @@
     <ClCompile Include="rtda\object.c" />
     <ClCompile Include="rtda\operand_stack.c" />
     <ClCompile Include="rtda\thread.c" />
+    <ClCompile Include="rtda\utils.c" />
     <ClCompile Include="strings\strings.c" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +161,13 @@
     <ClInclude Include="rtda\heap\class_attribute_info.h" />
     <ClInclude Include="rtda\heap\class_loader.h" />
     <ClInclude Include="rtda\heap\class_member.h" />
+    <ClInclude Include="rtda\heap\constant_pool.h" />
+    <ClInclude Include="rtda\heap\cp_classref.h" />
+    <ClInclude Include="rtda\heap\cp_fieldref.h" />
+    <ClInclude Include="rtda\heap\cp_interface_methodref.h" />
+    <ClInclude Include="rtda\heap\cp_memberref.h" />
+    <ClInclude Include="rtda\heap\cp_methodref.h" />
+    <ClInclude Include="rtda\heap\cp_symref.h" />
     <ClInclude Include="rtda\heap\field.h" />
     <ClInclude Include="rtda\heap\method.h" />
     <ClInclude Include="rtda\heap\slot.h" />
@@ -162,6 +176,7 @@
     <ClInclude Include="rtda\operand_stack.h" />
     <ClInclude Include="rtda\rtda.h" />
     <ClInclude Include="rtda\thread.h" />
+    <ClInclude Include="rtda\utils.h" />
     <ClInclude Include="strings\strings.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
