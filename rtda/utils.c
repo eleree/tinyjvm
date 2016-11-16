@@ -14,11 +14,24 @@ int32_t floatToInt(float f)
 	return (int32_t)transData.bitsData;
 }
 
-double longToDouble(int64_t l)
+int64_t intToLong(uint32_t high, uint32_t low)
+{
+	LongInt transData;
+	transData.high = high;
+	transData.low = low;
+	return transData.longData;
+}
+
+double longToDouble(uint64_t l)
 {
 	DoubleLong transData;
 	transData.bitsData = l;
 	return transData.doubleData;
+}
+
+double intToDouble(uint32_t high, uint32_t low)
+{
+	return longToDouble(intToLong(high, low));
 }
 
 int64_t doubleToLong(double d)

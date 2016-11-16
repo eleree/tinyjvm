@@ -6,8 +6,16 @@
 #include "cp_memberref.h"
 
 typedef struct  MethodRef{
-	MemberRef memberRef;
+	SymRef symRef;
+
+	/* MemberRef */
+	char * name;
+	char * descriptor;
+
+	/* Method */
 	Method* method;
 }MethodRef;
+
+MethodRef * newMethodRef(ClassFile *classFile, struct ConstantPool * cp, ConstantMethodrefInfo * methodrefInfo);
 
 #endif

@@ -8,8 +8,17 @@
 #include "../../classfile/classfile.h"
 
 typedef struct  FieldRef{
-	MemberRef memberRef;
+	/* SymRef*/
+	SymRef symRef;
+
+	/* MemberRef */
+	char * name;
+	char * descriptor;
+
+	/* Field */
 	Field * field;
 }FieldRef;
+
+FieldRef * newFieldRef(ClassFile *classFile, struct ConstantPool * cp, ConstantFieldrefInfo * fieldRefInfo);
 
 #endif

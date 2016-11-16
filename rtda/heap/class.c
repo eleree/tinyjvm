@@ -3,6 +3,9 @@
 #include "method.h"
 #include "field.h"
 #include "constant_pool.h"
+#include "cp_classref.h"
+#include "cp_methodref.h"
+#include "cp_fieldref.h"
 #include "../utils.h"
 
 #pragma warning(disable:4996)
@@ -46,6 +49,7 @@ static void newConstantPool(Class * c, ClassFile * classFile)
 	if (constantPoolCount == 0)
 		return;
 	c->constantPool.class = c;
+	c->constantPool.constantPoolCount = constantPoolCount;
 	c->constantPool.constantPoolItem = calloc(constantPoolCount, sizeof(ConstantPoolItem));
 	for (uint16_t i = 1; i < constantPoolCount; i++)
 	{
@@ -53,14 +57,25 @@ static void newConstantPool(Class * c, ClassFile * classFile)
 		switch (tag)
 		{
 		case CONSTATNT_CLASS:
-			//destItem = (void *)calloc(1, sizeof(ClassConstantClass));
-
-			//c->constantPool.constantPoolItem[i].itemInfo = (void *)calloc(1, sizeof(ConstantClassInfo));
-			//memcpy(c->constantPool.constantPoolItem[i].itemInfo, (classFile->constantPoolItem + i)->itemInfo, sizeof(ConstantClassInfo));
+			destItem = (void *)calloc(1, sizeof(ClassConstantClassRef));
+			srcItemInfo = (classFile->constantPoolItem + i)->itemInfo;
+			c->constantPool.constantPoolItem[i].itemInfo = destItem;
+			((ClassConstantClassRef*)destItem)->tag = tag;
+			((ClassConstantClassRef*)destItem)->classRef = newClassRef(classFile, &c->constantPool, srcItemInfo);
 			break;
 		case CONSTATNT_FIELDREF:
+			destItem = (void *)calloc(1, sizeof(ClassConstantFieldRef));
+			srcItemInfo = (classFile->constantPoolItem + i)->itemInfo;
+			c->constantPool.constantPoolItem[i].itemInfo = destItem;
+			((ClassConstantFieldRef*)destItem)->tag = tag;
+			((ClassConstantFieldRef*)destItem)->fieldRef = newFieldRef(classFile, &c->constantPool, srcItemInfo);
 			break;
 		case CONSTATNT_METHODREF:
+			destItem = (void *)calloc(1, sizeof(ClassConstantMethodRef));
+			srcItemInfo = (classFile->constantPoolItem + i)->itemInfo;
+			c->constantPool.constantPoolItem[i].itemInfo = destItem;
+			((ClassConstantMethodRef*)destItem)->tag = tag;
+			((ClassConstantMethodRef*)destItem)->methodRef = newMethodRef(classFile, &c->constantPool, srcItemInfo);
 			break;
 		case CONSTATNT_INTERFACE_METHODREF:
 			break;
@@ -81,9 +96,21 @@ static void newConstantPool(Class * c, ClassFile * classFile)
 			((ClassConstantFloat*)destItem)->val = intToFloat(((ConstantFloatInfo*)srcItemInfo)->bytes);
 			break;
 		case CONSTATNT_LONG:
+			destItem = (void *)calloc(1, sizeof(ClassConstantLong));
+			srcItemInfo = (classFile->constantPoolItem + i)->itemInfo;
+			c->constantPool.constantPoolItem[i].itemInfo = destItem;
+			((ClassConstantLong*)destItem)->tag = tag;
+			((ClassConstantLong*)destItem)->val = intToLong(((ConstantLongInfo*)srcItemInfo)->high_bytes, \
+															((ConstantLongInfo*)srcItemInfo)->low_bytes);
 			i++;
 			break;
 		case CONSTATNT_DOUBLE:
+			destItem = (void *)calloc(1, sizeof(ClassConstantDouble));
+			srcItemInfo = (classFile->constantPoolItem + i)->itemInfo;
+			c->constantPool.constantPoolItem[i].itemInfo = destItem;
+			((ClassConstantDouble*)destItem)->tag = tag;
+			((ClassConstantDouble*)destItem)->val = intToDouble(((ConstantDoubleInfo*)srcItemInfo)->high_bytes, \
+				((ConstantDoubleInfo*)srcItemInfo)->low_bytes);
 			i++;
 			break;
 		case CONSTATNT_NAME_AND_TYPE:
