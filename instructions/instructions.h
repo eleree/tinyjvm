@@ -148,5 +148,6 @@ Instruction * SWAP(Instruction * inst);
 
 /* Reference */
 Instruction * NEW(Instruction * inst);
+Instruction * LDC(Instruction * inst);
 
 #endif

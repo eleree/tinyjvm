@@ -8,15 +8,27 @@ static int32_t _ldc(Frame * frame, int32_t index)
 {
 	OperandStack * operandStack = frame->operandStack;
 	ConstantPoolItem * cp = frame->method->classMember.attachClass->constantPool.constantPoolItem;
-
-	pushOperandInt(operandStack, 0);
+	int16_t type = getClassContantPoolType(cp, index);
+	switch (type)
+	{
+	case CONSTATNT_INTEGER:
+		pushOperandInt(operandStack, getClassConstantPoolInt(cp, index));
+		break;
+	case CONSTATNT_FLOAT:
+		pushOperandFloat(operandStack, getClassConstantPoolFloat(cp,index));
+		break;
+	default:
+		break;
+	}
+	
 }
 
 static int32_t execute_LDC(Frame * frame, struct InsturctionData * instData)
 {
-
+	_ldc(frame, instData->index);
 	return 0;
 }
+
 Instruction * LDC(Instruction * inst)
 {
 	inst->fetchOperands = index8InstructionFetchOperands;

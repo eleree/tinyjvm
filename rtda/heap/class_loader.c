@@ -185,6 +185,8 @@ Class * loadNonArrayClass(ClassLoader * classLoader, const char * className)
 
 	linkClass(classLoader, loadClass);
 
+	loadClass->classLoader = classLoader;
+
 	return loadClass;
 }
 

@@ -92,8 +92,8 @@ Instruction * newInsturction(uint8_t opcode)
 			//return &SIPUSH{}
 			return SIPUSH(&instruction);
 
-			case 0x12:
-				return LDC(&instruction);
+		case 0x12:
+			return LDC(&instruction);
 			// case 0x13:
 			// 	return &LDC_W{}
 			// case 0x14:

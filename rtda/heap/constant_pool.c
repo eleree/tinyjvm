@@ -1,5 +1,13 @@
 #include "constant_pool.h"
 
+int16_t getClassContantPoolType(ConstantPoolItem * cp, uint16_t index)
+{
+	if ((cp + index)->itemInfo != NULL)
+		return ((ClassConstantInteger *)((cp + index)->itemInfo))->tag;
+	printf("getClassContantPoolType NULL pointer \n ");
+	exit(0);
+}
+
 int32_t getClassConstantPoolInt(ConstantPoolItem * cp, uint16_t index)
 {
 	if ((cp + index)->itemInfo != NULL)

@@ -55,4 +55,6 @@ int64_t getClassConstantPoolLong(ConstantPoolItem * cp, uint16_t index);
 double getClassConstantPoolDouble(ConstantPoolItem * cp, uint16_t index);
 ClassRef * getClassConstantPoolClassRef(ConstantPoolItem * cp, uint16_t index);
 
+int16_t getClassContantPoolType(ConstantPoolItem * cp, uint16_t index);
+
 #endif
