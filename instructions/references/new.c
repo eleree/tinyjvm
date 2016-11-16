@@ -21,7 +21,7 @@ static int32_t execute_NEW(Frame * frame, struct InsturctionData * instData)
 	frame.OperandStack().PushRef(ref)
 	*/
 	OperandStack * operandStack = frame->operandStack;
-	ConstantPoolItem * cp = frame->method->classMember.classPtr->constantPool.constantPoolItem;
+	ConstantPoolItem * cp = frame->method->classMember.attachClass->constantPool.constantPoolItem;
 	ClassRef * classRef = getClassConstantPoolClassRef(cp, instData->index);
 	Class * c = resolveClass(&classRef->symRef);
 

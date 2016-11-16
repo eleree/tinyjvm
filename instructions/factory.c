@@ -91,13 +91,14 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0x11:
 			//return &SIPUSH{}
 			return SIPUSH(&instruction);
-#if 0
-			// case 0x12:
-			// 	return &LDC{}
+
+			case 0x12:
+				return LDC(&instruction);
 			// case 0x13:
 			// 	return &LDC_W{}
 			// case 0x14:
 			// 	return &LDC2_W{}
+#if 0
 		case 0x15:
 			return &ILOAD{}
 		case 0x16:
@@ -431,13 +432,10 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0xa4:
 			//return &IF_ICMPLE{}
 			return IF_ICMPLE(&instruction);
-#if 0
 		case 0xa5:
-			return &IF_ACMPEQ{}
+			return IF_ACMPEQ(&instruction);
 		case 0xa6:
-			return &IF_ACMPNE{}
-#endif
-
+			return IF_ACMPNE(&instruction);
 		case 0xa7:
 			//return &GOTO{}
 			return GOTO(&instruction);
@@ -480,8 +478,10 @@ Instruction * newInsturction(uint8_t opcode)
 			// 	return &INVOKE_INTERFACE{}
 			// case 0xba:
 			// 	return &INVOKE_DYNAMIC{}
-			// case 0xbb:
-			// 	return &NEW{}
+#endif
+			 case 0xbb:
+				 return NEW(&instruction);
+#if 0
 			// case 0xbc:
 			// 	return &NEW_ARRAY{}
 			// case 0xbd:
@@ -498,8 +498,8 @@ Instruction * newInsturction(uint8_t opcode)
 			// 	return monitorenter
 			// case 0xc3:
 			// 	return monitorexit
-		case 0xc4:
-			return &WIDE{}
+			//case 0xc4:
+			//return &WIDE{}
 			// case 0xc5:
 			// 	return &MULTI_ANEW_ARRAY{}
 		case 0xc6:

@@ -36,7 +36,7 @@ Method * newMethods(struct Class * c, ClassFile * classFile)
 	c->methods = calloc(classFile->methodsCount, sizeof(Method));
 	for (uint16_t i = 0; i < c->methodsCount; i++)
 	{
-		c->methods[i].classMember.classPtr = c;
+		c->methods[i].classMember.attachClass = c;
 		copyMethodInfo(&c->methods[i], &classFile->methods[i], classFile);
 		copyAttributes(&c->methods[i], &classFile->methods[i], classFile);
 	}

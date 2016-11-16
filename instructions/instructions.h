@@ -145,4 +145,8 @@ Instruction * DUP2_X2(Instruction * inst);
 Instruction * POP(Instruction * inst);
 Instruction * POP2(Instruction * inst);
 Instruction * SWAP(Instruction * inst);
+
+/* Reference */
+Instruction * NEW(Instruction * inst);
+
 #endif

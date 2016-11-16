@@ -303,6 +303,9 @@
     <ClCompile Include="rtda\heap\object.c">
       <Filter>源文件\rtda\heap</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\constants\ldc.c">
+      <Filter>源文件\instructions\constants</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

@@ -31,7 +31,7 @@ Field * newFields(struct Class * c, ClassFile * classFile)
 	c->fields = calloc(classFile->fieldsCount, sizeof(Field));
 	for (uint16_t i = 0; i < c->fieldsCount; i++)
 	{
-		c->fields[i].classMember.classPtr = c;
+		c->fields[i].classMember.attachClass = c;
 		copyFieldInfo(&c->fields[i], &classFile->fields[i], classFile);
 		copyAttributes(&c->fields[i], &classFile->fields[i], classFile);
 	}
