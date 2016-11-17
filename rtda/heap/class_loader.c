@@ -14,7 +14,29 @@ ClassLoader * newClassLoader(void)
 
 void addClassList(ClassLoader * classLoader, Class * newClass)
 {
+	ClassList * classList = classLoader->classList;
+	ClassList * preClassList = NULL;
+	while (classList != NULL)
+	{
+		if (strcmp(classList->className, newClass->name) == 0)
+			return;
+		
+		preClassList = classList;
+		classList = classList->next;
+	}
 
+	classList = calloc(1, sizeof(ClassList));
+	classList->className = _strdup(newClass->name);
+	classList->classPtr = newClass;
+	classList->next = NULL;
+
+	if (preClassList == NULL)
+		classLoader->classList = classList;
+
+	if (preClassList != NULL)
+		preClassList->next = classList;
+
+	return;
 }
 
 void resolveSuperClass(ClassLoader * classLoader, Class * subClass)

@@ -20,7 +20,7 @@ static int32_t _ldc(Frame * frame, int32_t index)
 	default:
 		break;
 	}
-	
+	return 0;
 }
 
 static int32_t execute_LDC(Frame * frame, struct InsturctionData * instData)
