@@ -25,6 +25,6 @@ bool isFieldProtected(Field * field);
 bool isFieldStatic(Field * field);
 bool isFieldFinal(Field * field);
 bool isFieldSynthetic(Field * field);
-
+bool isFieldAccessibleTo(Field * field, struct Class * d);
 
 #endif

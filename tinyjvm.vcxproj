@@ -112,8 +112,10 @@
     <ClCompile Include="instructions\math\sh.c" />
     <ClCompile Include="instructions\math\sub.c" />
     <ClCompile Include="instructions\math\xor.c" />
+    <ClCompile Include="instructions\references\getfield.c" />
     <ClCompile Include="instructions\references\getstatic.c" />
     <ClCompile Include="instructions\references\new.c" />
+    <ClCompile Include="instructions\references\putfield.c" />
     <ClCompile Include="instructions\references\putstatic.c" />
     <ClCompile Include="instructions\stack\dup.c" />
     <ClCompile Include="instructions\stack\pop.c" />

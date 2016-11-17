@@ -43,10 +43,21 @@ void resolvedFieldRef(FieldRef * fieldRef)
 		printf("java.lang.NoSuchFieldError\n");
 		exit(-1);
 	}
-	//if !field.isAccessibleTo(d) {
-	//	panic("java.lang.IllegalAccessError")
-	//}
-	fieldRef->field = field;
 
+	if(!isFieldAccessibleTo(field,c)) {
+		printf("java.lang.IllegalAccessError\n");
+		exit(-1);
+	}
+
+	fieldRef->field = field;
 }
 
+Field * resolvedField(FieldRef * fieldRef)
+{
+	if (fieldRef->field == NULL)
+	{
+		resolvedFieldRef(fieldRef);
+	}
+
+	return fieldRef->field;
+}

@@ -21,5 +21,6 @@ typedef struct  FieldRef{
 }FieldRef;
 
 FieldRef * newFieldRef(ClassFile *classFile, struct ConstantPool * cp, ConstantFieldrefInfo * fieldRefInfo);
+Field * resolvedField(FieldRef * fieldRef);
 
 #endif
