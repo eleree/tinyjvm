@@ -112,7 +112,9 @@
     <ClCompile Include="instructions\math\sh.c" />
     <ClCompile Include="instructions\math\sub.c" />
     <ClCompile Include="instructions\math\xor.c" />
+    <ClCompile Include="instructions\references\getstatic.c" />
     <ClCompile Include="instructions\references\new.c" />
+    <ClCompile Include="instructions\references\putstatic.c" />
     <ClCompile Include="instructions\stack\dup.c" />
     <ClCompile Include="instructions\stack\pop.c" />
     <ClCompile Include="instructions\stack\swap.c" />
@@ -127,6 +129,7 @@
     <ClCompile Include="rtda\frame.c" />
     <ClCompile Include="rtda\heap\class.c" />
     <ClCompile Include="rtda\heap\class_attribute_info.c" />
+    <ClCompile Include="rtda\heap\class_hierarchy.c" />
     <ClCompile Include="rtda\heap\class_loader.c" />
     <ClCompile Include="rtda\heap\class_member.c" />
     <ClCompile Include="rtda\heap\constant_pool.c" />

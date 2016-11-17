@@ -112,3 +112,24 @@ bool isFieldSynthetic(Field * field)
 	return	0 != (field->classMember.accessFlags & ACC_SYNTHETIC);
 }
 
+bool isFieldAccessibleTo(Field * field, Class * d)
+{
+	Class * c = field->classMember.attachClass;
+
+	if (isFieldProtected(field))
+	{
+		return	c == d || 
+				strcmp(c->packageName,d->packageName) == 0 ||
+				isSubClassOf(d,c);
+	}
+
+	if (isFieldPublic(field))
+		return true;
+
+	if (!isFieldPrivate(field))
+	{
+		return strcmp(c->packageName, d->packageName) == 0;
+	}
+
+	return d == c;
+}

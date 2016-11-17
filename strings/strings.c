@@ -56,3 +56,20 @@ int32_t stringHasSuffix(const char * sourceStr, const char * suffixStr)
 
 	return 0;
 }
+
+int32_t stringLastIndex(const char * sourceStr, const char * lastStr)
+{
+	int32_t suffixLen = strlen(lastStr);
+	int32_t sourceLen = strlen(sourceStr);
+
+	if (suffixLen > sourceLen)
+		return -1;
+
+	for (int32_t i = sourceLen-suffixLen; i > 0; i--)
+	{
+		if (strncmp(sourceStr + i, lastStr,strlen(lastStr)) == 0)
+			return i;
+	}
+
+	return -1;
+}

@@ -14,6 +14,7 @@ typedef struct  FieldRef{
 	/* MemberRef */
 	char * name;
 	char * descriptor;
+	Class * attachClass;
 
 	/* Field */
 	Field * field;

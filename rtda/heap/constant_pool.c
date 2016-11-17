@@ -45,3 +45,17 @@ ClassRef * getClassConstantPoolClassRef(ConstantPoolItem * cp, uint16_t index)
 		return ((ClassConstantClassRef *)((cp + index)->itemInfo))->classRef;
 	return 0;
 }
+
+FieldRef * getClassConstantPoolFieldRef(ConstantPoolItem * cp, uint16_t index)
+{
+	if ((cp + index)->itemInfo != NULL)
+		return ((ClassConstantFieldRef *)((cp + index)->itemInfo))->fieldRef;
+	return 0;
+}
+
+MethodRef * getClassConstantPoolMethodRef(ConstantPoolItem * cp, uint16_t index)
+{
+	if ((cp + index)->itemInfo != NULL)
+		return ((ClassConstantMethodRef *)((cp + index)->itemInfo))->methodRef;
+	return 0;
+}

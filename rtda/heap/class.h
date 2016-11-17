@@ -27,6 +27,7 @@ typedef struct Class
 {
 	uint16_t accessFlags;
 	char * name;
+	char * packageName;
 	char * superClassName;
 	uint16_t interfaceNamesCount;
 	char * *interfaceNames; // interfaceName  array
@@ -70,5 +71,8 @@ Class * newClass(ClassFile * classFile);
 struct Method * getClassMainMethod(Class * c);
 bool isClassInterface(Class * c);
 bool isClassAbstract(Class * c);
+
+
+bool isSubClassOf(Class * thisClass, Class * otherClass);
 
 #endif

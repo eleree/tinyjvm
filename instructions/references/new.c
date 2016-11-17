@@ -4,7 +4,7 @@
 #include "../../rtda/heap/constant_pool.h"
 #include "../../rtda/heap/cp_symref.h"
 
-// Duplicate the top operand stack value
+// Create new object
 static int32_t execute_NEW(Frame * frame, struct InsturctionData * instData)
 {
 	/* 

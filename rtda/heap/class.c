@@ -7,14 +7,29 @@
 #include "cp_methodref.h"
 #include "cp_fieldref.h"
 #include "../utils.h"
+#include "../../strings/strings.h"
 
 #pragma warning(disable:4996)
 
 static void newClassName(Class * c, ClassFile * classFile)
 {
+	uint16_t packageNameLen = 0;
+	uint16_t classNameIndex = 0;
 	uint16_t classNameLen = strlen(getClassName(classFile));
+
 	c->name = calloc(classNameLen + 1, sizeof(char));
 	strcpy(c->name, getClassName(classFile));
+	
+	classNameIndex = stringLastIndex(c->name, "/");
+	if (classNameIndex == -1)
+	{
+		c->packageName = NULL;
+		return;
+	}
+	
+	packageNameLen = classNameIndex;
+	c->packageName = calloc(packageNameLen+1, sizeof(char));
+	strncpy(c->packageName, c->name, classNameIndex);
 }
 
 static void newSuperClassName(Class * c, ClassFile * classFile)

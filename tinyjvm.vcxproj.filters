@@ -306,6 +306,15 @@
     <ClCompile Include="instructions\constants\ldc.c">
       <Filter>源文件\instructions\constants</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\references\getstatic.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\references\putstatic.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\class_hierarchy.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
