@@ -201,6 +201,11 @@ Class * loadNonArrayClass(ClassLoader * classLoader, const char * className)
 		}
 		printf("]\n");
 	}
+	if (classSize <= 0)
+	{
+		printf("Could not found target class\n");
+		exit(127);
+	}
 	loadClass = parseClassFile(classContent, classSize);
 
 	defineClass(classLoader, loadClass);

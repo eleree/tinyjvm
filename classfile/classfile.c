@@ -197,6 +197,9 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 		((ConstantMethodrefInfo*)itemInfo)->name_and_type_index = readClassUint16(classFile);
 		break;
 	case CONSTATNT_INTERFACE_METHODREF:
+		((ConstantInterfaceMethodrefInfo*)itemInfo)->tag = tag;
+		((ConstantInterfaceMethodrefInfo*)itemInfo)->class_index = readClassUint16(classFile);
+		((ConstantInterfaceMethodrefInfo*)itemInfo)->name_and_type_index = readClassUint16(classFile);
 		break;
 	case CONSTATNT_STRING:
 		((ConstantStringInfo*)itemInfo)->tag = tag;
@@ -457,6 +460,9 @@ int32_t printClassInfo(ClassFile * classFile)
 				printf("  name_and_type_index:%d\n", ((ConstantMethodrefInfo*)itemInfo)->name_and_type_index);
 				break;
 			case CONSTATNT_INTERFACE_METHODREF:
+				printf("Method Ref:\n");
+				printf("  class_index:%d\n", ((ConstantInterfaceMethodrefInfo*)itemInfo)->class_index);
+				printf("  name_and_type_index:%d\n", ((ConstantInterfaceMethodrefInfo*)itemInfo)->name_and_type_index);
 				break;
 			case CONSTATNT_STRING:
 				refIndex = ((ConstantStringInfo*)itemInfo)->string_index;

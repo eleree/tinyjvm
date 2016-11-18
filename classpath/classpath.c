@@ -116,18 +116,23 @@ int32_t readClass(const char * className, char ** classContent)
 	int32_t classSize = 0;
 	if (className != NULL)
 		printf("class name: %s\n",className);
+	char fullClassName[256] = { 0 };
+	
+	strcat(fullClassName, className);
+	if (stringHasSuffix(fullClassName, ".class") != 0)
+		strcat(fullClassName, ".class");
 
-	if ((classSize = bootClasspathReadClass(className, classContent) )> 0)
+	if ((classSize = bootClasspathReadClass(fullClassName, classContent))> 0)
 	{
 		return classSize;
 	}
 
-	if ((classSize = extClasspathReadClass(className, classContent))> 0)
+	if ((classSize = extClasspathReadClass(fullClassName, classContent))> 0)
 	{
 		return classSize;
 	}
 
-	if ((classSize = userClasspathReadClass(className, classContent))> 0)
+	if ((classSize = userClasspathReadClass(fullClassName, classContent))> 0)
 	{
 		return classSize;
 	}

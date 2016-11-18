@@ -15,7 +15,7 @@ static int32_t execute_GET_FIELD(Frame * frame, struct InsturctionData * instDat
 	Field * field = resolvedField(fieldRef);
 	Class * class = field->classMember.attachClass;
 
-	if (!isFieldStatic(field))
+	if (isFieldStatic(field))
 	{
 		printf("java.lang.IncompatibleClassChangeError\n");
 		exit(-1);
