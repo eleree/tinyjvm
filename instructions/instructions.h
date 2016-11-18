@@ -18,6 +18,13 @@ Instruction * IF_ICMPLE(Instruction * inst);
 Instruction * IF_ICMPGT(Instruction * inst);
 Instruction * IF_ICMPGE(Instruction * inst);
 
+Instruction * IFEQ(Instruction * inst);
+Instruction * IFNE(Instruction * inst);
+Instruction * IFLT(Instruction * inst);
+Instruction * IFLE(Instruction * inst);
+Instruction * IFGT(Instruction * inst);
+Instruction * IFGE(Instruction * inst);
+
 Instruction * ACONST_NULL(Instruction * inst);
 Instruction * DCONST_0(Instruction * inst);
 Instruction * DCONST_1(Instruction * inst);

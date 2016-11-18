@@ -1,12 +1,15 @@
 #include "cp_fieldref.h"
 
+#pragma warning(disable:4996)
+
 FieldRef * newFieldRef(ClassFile *classFile, struct ConstantPool * cp, ConstantFieldrefInfo * fieldRefInfo)
 {
-	FieldRef * fieldRef = calloc(1, sizeof(fieldRef));
+	FieldRef * fieldRef = calloc(1, sizeof(FieldRef));
+	fieldRef->field = NULL;
 	fieldRef->symRef.constantPool = cp;
-	fieldRef->symRef.className = _strdup(getClassName(classFile));
-	fieldRef->name = _strdup(getConstalPoolNameAndTypeName(classFile->constantPoolItem, fieldRefInfo->name_and_type_index));;
-	fieldRef->descriptor = _strdup(getConstalPoolNameAndTypeDescriptor(classFile->constantPoolItem, fieldRefInfo->name_and_type_index));;
+	fieldRef->symRef.className = strdup(getClassUtf8(classFile, fieldRefInfo->classIndex));
+	fieldRef->name = strdup(getConstalPoolNameAndTypeName(classFile->constantPoolItem, fieldRefInfo->name_and_type_index));
+	fieldRef->descriptor = strdup(getConstalPoolNameAndTypeDescriptor(classFile->constantPoolItem, fieldRefInfo->name_and_type_index));;
 	return fieldRef;
 }
 

@@ -16,7 +16,7 @@ MethodRef * newMethodRef(ClassFile *classFile, struct ConstantPool * cp, Constan
 {
 	MethodRef * methodRef = calloc(1, sizeof(MethodRef));
 	methodRef->symRef.constantPool = cp;
-	methodRef->symRef.className = _strdup(getClassName(classFile));
+	methodRef->symRef.className = _strdup(getClassUtf8(classFile, methodrefInfo->classIndex));
 	methodRef->name= _strdup(getConstalPoolNameAndTypeName(classFile->constantPoolItem, methodrefInfo->name_and_type_index));;
 	methodRef->descriptor = _strdup(getConstalPoolNameAndTypeDescriptor(classFile->constantPoolItem, methodrefInfo->name_and_type_index));;
 	return methodRef;

@@ -463,20 +463,25 @@ Instruction * newInsturction(uint8_t opcode)
 			return dcmpl(&instruction);
 		case 0x98:
 			return dcmpg
-		case 0x99:
-			return &IFEQ{}
-		case 0x9a:
-			return &IFNE{}
-		case 0x9b:
-			return &IFLT{}
-		case 0x9c:
-			return &IFGE{}
-		case 0x9d:
-			return &IFGT{}
-		case 0x9e:
-			return &IFLE{}
 #endif
-
+		case 0x99:
+			//return &IFEQ{}
+			return IFEQ(&instruction);
+		case 0x9a:
+			//return &IFNE{}
+			return IFNE(&instruction);
+		case 0x9b:
+			//return &IFLT{}
+			return IFLT(&instruction);
+		case 0x9c:
+			//return &IFGE{}
+			return IFGE(&instruction);
+		case 0x9d:
+			//return &IFGT{}
+			return IFGT(&instruction);
+		case 0x9e:
+			//return &IFLE{}
+			return IFLE(&instruction);
 		case 0x9f:
 			//return &IF_ICMPEQ{}
 			return IF_ICMPEQ(&instruction);
