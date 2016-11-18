@@ -446,8 +446,8 @@ int32_t printClassInfo(ClassFile * classFile)
 			case CONSTATNT_CLASS:
 				refIndex = ((ConstantClassInfo*)itemInfo)->nameIndex;
 				refUtf8 = (ConstantUtf8Info*)(classFile->constantPoolItem + refIndex);
-				printf("Class:\n");
-				printf("  name_index:%d -> %s \n", refIndex, refUtf8->bytes);
+				//printf("Class:\n");
+				//printf("  name_index:%d -> %s \n", refIndex, refUtf8->bytes);
 				break;
 			case CONSTATNT_FIELDREF:
 				printf("Field Ref:\n");
