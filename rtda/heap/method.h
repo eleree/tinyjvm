@@ -14,7 +14,21 @@ typedef struct Method
 	uint16_t maxLocals;
 	uint32_t codeLen;
 	uint8_t * code;
+	uint16_t argSlotCount;
 }Method;
+
+typedef struct ParameterTypesList
+{
+	char * parameterTypes;
+	struct ParameterTypesList * next;
+}ParameterTypesList;
+
+typedef struct MethodDescriptor
+{
+	uint16_t parameterTypesCount;
+	ParameterTypesList* parameterTypesList;
+	char* returnType;
+}MethodDescriptor;
 
 Method * newMethods(struct Class * c, ClassFile * classFile);
 
@@ -31,5 +45,7 @@ bool isMethodProtected(Method * method);
 bool isMethodStatic(Method * method);
 bool isMethodFinal(Method * method);
 bool isMethodSynthetic(Method * method);
+
+void addParameterType(MethodDescriptor * methodDesc, const char * t);
 
 #endif

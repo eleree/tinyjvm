@@ -32,3 +32,8 @@ Frame * getCurrentFrame(Thread * thread)
 {
 	return topFrame(thread->stack);
 }
+
+bool isThreadStackEmpty(Thread * thread)
+{
+	return thread->stack->_top == NULL;
+}

@@ -148,6 +148,7 @@
     <ClCompile Include="rtda\heap\method.c" />
     <ClCompile Include="rtda\heap\object.c" />
     <ClCompile Include="rtda\heap\slot.c" />
+    <ClCompile Include="rtda\heap\method_descriptor.c" />
     <ClCompile Include="rtda\jvm_stack.c" />
     <ClCompile Include="rtda\local_vars.c" />
     <ClCompile Include="rtda\operand_stack.c" />

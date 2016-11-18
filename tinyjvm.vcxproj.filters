@@ -333,6 +333,9 @@
     <ClCompile Include="instructions\references\invokevirtual.c">
       <Filter>源文件\instructions\references</Filter>
     </ClCompile>
+    <ClCompile Include="rtda\heap\method_descriptor.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

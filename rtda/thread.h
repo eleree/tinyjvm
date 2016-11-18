@@ -11,4 +11,6 @@ void pushThreadFrame(Thread * thread, Frame * frame);
 Frame * popThreadFrame(Thread * thread);
 Frame * getCurrentFrame(Thread * thread);
 
+bool isThreadStackEmpty(Thread * thread);
+
 #endif
