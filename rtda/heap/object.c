@@ -9,3 +9,7 @@ Object * newObject(struct Class * c)
 	o->fields =(Slot *) calloc(o->slotCount, sizeof(Slot));
 	return o;
 }
+
+bool isObjectInstanceOf(Object * obj, Class * class){
+	return isClassAssignableFrom(obj->class, class);
+}

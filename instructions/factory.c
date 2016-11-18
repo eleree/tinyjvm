@@ -98,18 +98,21 @@ Instruction * newInsturction(uint8_t opcode)
 			// 	return &LDC_W{}
 			// case 0x14:
 			// 	return &LDC2_W{}
-#if 0
 		case 0x15:
-			return &ILOAD{}
+			//return &ILOAD{}
+			return ILOAD(&instruction);
 		case 0x16:
-			return &LLOAD{}
+			//return &LLOAD{}
+			return LLOAD(&instruction);
 		case 0x17:
-			return &FLOAD{}
+			//return &FLOAD{}
+			return FLOAD(&instruction);
 		case 0x18:
-			return &DLOAD{}
+			//return &DLOAD{}
+			return DLOAD(&instruction);
 		case 0x19:
-			return &ALOAD{}
-#endif 
+			//return &ALOAD{}
+			return ALOAD(&instruction);
 		case 0x1a:
 			//return iload_0
 			return ILOAD_0(&instruction);
@@ -122,39 +125,56 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0x1d:
 			//return iload_3
 			return ILOAD_3(&instruction);
-#if 0
 		case 0x1e:
-			return lload_0
+			//return lload_0
+			return LLOAD_0(&instruction);
 		case 0x1f:
-			return lload_1
+			//return lload_1
+			return LLOAD_1(&instruction);
 		case 0x20:
-			return lload_2
+			//return lload_2
+			return LLOAD_2(&instruction);
 		case 0x21:
-			return lload_3
+			//return lload_3
+			return LLOAD_3(&instruction);
 		case 0x22:
-			return fload_0
+			//return fload_0
+			return FLOAD_0(&instruction);
 		case 0x23:
-			return fload_1
+			//return fload_1
+			return FLOAD_1(&instruction);
 		case 0x24:
-			return fload_2
+			//return fload_2
+			return FLOAD_2(&instruction);
 		case 0x25:
-			return fload_3
+			//return fload_3
+			return FLOAD_3(&instruction);
 		case 0x26:
-			return dload_0
+			//return dload_0
+			return DLOAD_0(&instruction);
 		case 0x27:
-			return dload_1
+			//return dload_1
+			return DLOAD_1(&instruction);
 		case 0x28:
-			return dload_2
+			//return dload_2
+			return DLOAD_2(&instruction);
 		case 0x29:
-			return dload_3
+			//return dload_3
+			return DLOAD_3(&instruction);
 		case 0x2a:
-			return aload_0
+			//return aload_0
+			return ALOAD_0(&instruction);
 		case 0x2b:
-			return aload_1
+			//return aload_1
+			return ALOAD_1(&instruction);
 		case 0x2c:
-			return aload_2
+			//return aload_2
+			return ALOAD_2(&instruction);
 		case 0x2d:
-			return aload_3
+			//return aload_3
+			return ALOAD_3(&instruction);
+#if 0
+
 				// case 0x2e:
 				// 	return iaload
 				// case 0x2f:
@@ -171,17 +191,22 @@ Instruction * newInsturction(uint8_t opcode)
 				// 	return caload
 				// case 0x35:
 				// 	return saload
-		case 0x36:
-			return &ISTORE{}
-		case 0x37:
-			return &LSTORE{}
-		case 0x38:
-			return &FSTORE{}
-		case 0x39:
-			return &DSTORE{}
-		case 0x3a:
-			return &ASTORE{}
 #endif
+		case 0x36:
+			//return &ISTORE{}
+			return ISTORE(&instruction);
+		case 0x37:
+			//return &LSTORE{}
+			return LSTORE(&instruction);
+		case 0x38:
+			//return &FSTORE{}
+			return FSTORE(&instruction);
+		case 0x39:
+			//return &DSTORE{}
+			return DSTORE(&instruction);
+		case 0x3a:
+			//return &ASTORE{}
+			return ASTORE(&instruction);
 		case 0x3b:
 			//return istore_0
 			return ISTORE_0(&instruction);
@@ -194,39 +219,54 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0x3e:
 			//return istore_3
 			return ISTORE_3(&instruction);
-#if 0
 		case 0x3f:
-			return lstore_0
+			//return lstore_0
+			return LSTORE_0(&instruction);
 		case 0x40:
-			return lstore_1
+			//return lstore_1
+			return LSTORE_1(&instruction);
 		case 0x41:
-			return lstore_2
+			//return lstore_2
+			return LSTORE_2(&instruction);
 		case 0x42:
-			return lstore_3
+			//return lstore_3
+			return LSTORE_3(&instruction);
 		case 0x43:
-			return fstore_0
+			//return fstore_0
+			return FSTORE_0(&instruction);
 		case 0x44:
-			return fstore_1
+			//return fstore_1
+			return FSTORE_1(&instruction);
 		case 0x45:
-			return fstore_2
+			//return fstore_2
 		case 0x46:
-			return fstore_3
+			//return fstore_3
+			return FSTORE_3(&instruction);
 		case 0x47:
-			return dstore_0
+			//return dstore_0
+			return DSTORE_0(&instruction);
 		case 0x48:
-			return dstore_1
+			//return dstore_1
+			return DSTORE_1(&instruction);
 		case 0x49:
-			return dstore_2
+			//return dstore_2
+			return DSTORE_2(&instruction);
 		case 0x4a:
-			return dstore_3
+			//return dstore_3
+			return DSTORE_3(&instruction);
 		case 0x4b:
-			return astore_0
+			//return astore_0
+			return ASTORE_0(&instruction);
 		case 0x4c:
-			return astore_1
+			//return astore_1
+			return ASTORE_1(&instruction);
 		case 0x4d:
-			return astore_2
+			//return astore_2
+			return ASTORE_2(&instruction);
 		case 0x4e:
-			return astore_3
+			//return astore_3
+			return ASTORE_3(&instruction);
+#if 0
 				// case 0x4f:
 				// 	return iastore
 				// case 0x50:
@@ -243,25 +283,34 @@ Instruction * newInsturction(uint8_t opcode)
 				// 	return castore
 				// case 0x56:
 				// 	return sastore
+#endif
 		case 0x57:
-			return pop
+			//return pop
+			return POP(&instruction);
 		case 0x58:
-			return pop2
+			//return pop2
+			return POP2(&instruction);
 		case 0x59:
-			return dup
+			//return dup
+			return DUP(&instruction);
 		case 0x5a:
-			return dup_x1
+			//return dup_x1
+			return DUP_X1(&instruction);
 		case 0x5b:
-			return dup_x2
+			//return dup_x2
+			return DUP_X2(&instruction);
 		case 0x5c:
-			return dup2
+			//return dup2
+			return DUP2(&instruction);
 		case 0x5d:
-			return dup2_x1
+			//return dup2_x1
+			return DUP2_X1(&instruction);
 		case 0x5e:
-			return dup2_x2
+			//return dup2_x2
+			return DUP2_X2(&instruction);
 		case 0x5f:
-			return swap
-#endif 
+			//return swap
+			return SWAP(&instruction);
 		case 0x60:
 			//return iadd
 			return IADD(&instruction);
@@ -310,52 +359,66 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0x6f:
 			//return ddiv
 			return DDIV(&instruction);
-#if 0
 		case 0x70:
-			return irem
+			//return irem
+			return IREM(&instruction);
 		case 0x71:
-			return lrem
+			//return lrem
+			return LREM(&instruction);
 		case 0x72:
-			return frem
+			//return frem
+			return FREM(&instruction);
 		case 0x73:
-			return drem
+			//return drem
+			return DREM(&instruction);
 		case 0x74:
-			return ineg
+			//return ineg
+			return INEG(&instruction);
 		case 0x75:
-			return lneg
+			//return lneg
+			return LNEG(&instruction);
 		case 0x76:
-			return fneg
+			//return fneg
+			return FNEG(&instruction);
 		case 0x77:
-			return dneg
+			//return dneg
+			return DNEG(&instruction);
 		case 0x78:
-			return ishl
+			//return ishl
+			return ISHL(&instruction);
 		case 0x79:
-			return lshl
+			//return lshl
+			return LSHL(&instruction);
 		case 0x7a:
-			return ishr
+			//return ishr
+			return ISHR(&instruction);
 		case 0x7b:
-			return lshr
+			//return lshr
+			return LSHR(&instruction);
 		case 0x7c:
-			return iushr
+			//return iushr
+			return IUSHR(&instruction);
 		case 0x7d:
-			return lushr
-#endif 
+			//return lushr
+			return IUSHR(&instruction);
 		case 0x7e:
 			//return iand
 			return IAND(&instruction);
 		case 0x7f:
 			//return land
 			return LAND(&instruction);
-#if 0
 		case 0x80:
-			return ior
+			//return ior
+			return IOR(&instruction);
 		case 0x81:
-			return lor
+			//return lor
+			return LOR(&instruction);
 		case 0x82:
-			return ixor
+			//return ixor
+			return IXOR(&instruction);
 		case 0x83:
-			return lxor
-#endif
+			//return lxor
+			return LXOR(&instruction);
 		case 0x84:
 			//return &IINC{}
 			return IINC(&instruction);
@@ -460,28 +523,33 @@ Instruction * newInsturction(uint8_t opcode)
 			// 	return areturn
 			// case 0xb1:
 			// 	return _return
-			//	case 0xb2:
+#endif
+		case 0xb2:
 			//		return &GET_STATIC{}
-			// case 0xb3:
+			return GET_STATIC(&instruction);
+		case 0xb3:
 			// 	return &PUT_STATIC{}
-			// case 0xb4:
+			return PUT_STATIC(&instruction);
+		case 0xb4:
 			// 	return &GET_FIELD{}
-			// case 0xb5:
+			return GET_FIELD(&instruction);
+		case 0xb5:
 			// 	return &PUT_FIELD{}
-			//	case 0xb6:
+			return PUT_FIELD(&instruction);
+		case 0xb6:
 			//		return &INVOKE_VIRTUAL{}
-			// case 0xb7:
+			return INVOKE_VIRTUAL(&instruction);
+		case 0xb7:
 			// 	return &INVOKE_SPECIAL{}
+			return INVOKE_SPECIAL(&instruction);
 			// case 0xb8:
 			// 	return &INVOKE_STATIC{}
 			// case 0xb9:
 			// 	return &INVOKE_INTERFACE{}
 			// case 0xba:
 			// 	return &INVOKE_DYNAMIC{}
-#endif
-			 case 0xbb:
-				 return NEW(&instruction);
-#if 0
+		case 0xbb:
+			return NEW(&instruction);
 			// case 0xbc:
 			// 	return &NEW_ARRAY{}
 			// case 0xbd:
@@ -490,30 +558,35 @@ Instruction * newInsturction(uint8_t opcode)
 			// 	return arraylength
 			// case 0xbf:
 			// 	return athrow
-			// case 0xc0:
+			case 0xc0:
 			// 	return &CHECK_CAST{}
-			// case 0xc1:
-			// 	return &INSTANCE_OF{}
+				return CHECK_CAST(&instruction);
+		case 0xc1:
+		 	//return &INSTANCE_OF{}
+			return INSTANCE_OF(&instruction);
 			// case 0xc2:
 			// 	return monitorenter
 			// case 0xc3:
 			// 	return monitorexit
-			//case 0xc4:
+		case 0xc4:
 			//return &WIDE{}
+			return WIDE(&instruction);
 			// case 0xc5:
 			// 	return &MULTI_ANEW_ARRAY{}
 		case 0xc6:
-			return &IFNULL{}
+			//return &IFNULL{}
+			return IFNULL(&instruction);
 		case 0xc7:
-			return &IFNONNULL{}
+			//return &IFNONNULL{}
+			return IFNONNULL(&instruction);
 		case 0xc8:
-			return &GOTO_W{}
+			//return &GOTO_W{}
+			return GOTO_W(&instruction);
 			// case 0xc9:
 			// 	return &JSR_W{}
 			// case 0xca: breakpoint
 			// case 0xfe: impdep1
 			// case 0xff: impdep2
-#endif 
 		default:
 			printf("Unsupport Instruction:0x%02x\n", opcode);
 			exit(1);

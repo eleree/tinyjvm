@@ -321,6 +321,18 @@
     <ClCompile Include="instructions\references\putfield.c">
       <Filter>源文件\instructions\references</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\references\instanceof.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\references\checkcast.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\references\invokespecial.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\references\invokevirtual.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

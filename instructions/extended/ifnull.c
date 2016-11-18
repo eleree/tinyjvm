@@ -19,3 +19,19 @@ Instruction * IFNULL(Instruction * inst)
 	inst->execute = execute_IFNULL;
 	return inst;
 }
+
+static int32_t execute_IFNONNULL(Frame * frame, struct InsturctionData * instData)
+{
+	OperandStack * operandStack = frame->operandStack;
+	ref = popOperandRef(operandStack);
+	if (ref != NULL)
+		branch(frame, instData->offset);
+	return 0;
+}
+
+Instruction * IFNONNULL(Instruction * inst)
+{
+	inst->fetchOperands = branchInstructionFetchOperands;
+	inst->execute = execute_IFNONNULL;
+	return inst;
+}

@@ -112,8 +112,12 @@
     <ClCompile Include="instructions\math\sh.c" />
     <ClCompile Include="instructions\math\sub.c" />
     <ClCompile Include="instructions\math\xor.c" />
+    <ClCompile Include="instructions\references\checkcast.c" />
     <ClCompile Include="instructions\references\getfield.c" />
     <ClCompile Include="instructions\references\getstatic.c" />
+    <ClCompile Include="instructions\references\instanceof.c" />
+    <ClCompile Include="instructions\references\invokespecial.c" />
+    <ClCompile Include="instructions\references\invokevirtual.c" />
     <ClCompile Include="instructions\references\new.c" />
     <ClCompile Include="instructions\references\putfield.c" />
     <ClCompile Include="instructions\references\putstatic.c" />

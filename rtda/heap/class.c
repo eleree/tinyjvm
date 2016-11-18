@@ -199,3 +199,62 @@ bool isClassAbstract(Class * c)
 {
 	return false;
 }
+
+// self extends iface
+bool isClassSubInterfaceOf(Class * thisClass, Class * iface)
+{
+	for (uint16_t i = 0; i < thisClass->interfacesCount; i++)
+	{
+		Class * superInterface = thisClass->interfaces[i];
+		if (superInterface == iface || isClassSubInterfaceOf(superInterface, iface))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+// self implements iface
+bool isClassImplements(Class * thisClass, Class * iface)
+{
+	Class * c = thisClass;
+
+	while (c != NULL)
+	{
+		for (uint16_t i = 0; i < c->interfacesCount; i++)
+		{
+			Class * thisIface = c->interfaces[i];
+			if (iface == iface || isClassSubInterfaceOf(thisIface, iface))
+				return true;
+		}
+		c = c->superClass;
+	}
+
+	return false;
+}
+
+bool isClassSubClassOf(Class * thisClass, Class * otherClass)
+{
+	Class * c = thisClass->superClass;
+	while (c != NULL)
+	{
+		if (c == otherClass)
+			return true;;
+		
+		c = c->superClass;
+	}
+
+	return false;
+}
+
+bool isClassAssignableFrom(Class * thisClass, Class * otherClass)
+{
+	Class * s = otherClass;
+	Class * t = thisClass;
+	if (s == t)
+		return true;
+	if (!isClassInterface(t))
+		return isClassSubClassOf(s, t);
+	else
+		return isClassImplements(s, t);
+}

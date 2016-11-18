@@ -14,5 +14,6 @@ typedef struct Object {
 }Object;
 
 Object * newObject(struct Class * c);
+bool isObjectInstanceOf(Object * obj, struct Class * class);
 
 #endif

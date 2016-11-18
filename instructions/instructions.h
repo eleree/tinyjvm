@@ -51,9 +51,34 @@ Instruction * ILOAD_1(Instruction * inst);
 Instruction * ILOAD_2(Instruction * inst);
 Instruction * ILOAD_3(Instruction * inst);
 
+Instruction * LSTORE(Instruction * inst);
+Instruction * LSTORE_0(Instruction * inst);
+Instruction * LSTORE_1(Instruction * inst);
+Instruction * LSTORE_2(Instruction * inst);
+Instruction * LSTORE_3(Instruction * inst);
+
+Instruction * FSTORE(Instruction * inst);
+Instruction * FSTORE_0(Instruction * inst);
+Instruction * FSTORE_1(Instruction * inst);
+Instruction * FSTORE_2(Instruction * inst);
+Instruction * FSTORE_3(Instruction * inst);
+
+Instruction * DSTORE(Instruction * inst);
+Instruction * DSTORE_0(Instruction * inst);
+Instruction * DSTORE_1(Instruction * inst);
+Instruction * DSTORE_2(Instruction * inst);
+Instruction * DSTORE_3(Instruction * inst);
+
+Instruction * ASTORE(Instruction * inst);
+Instruction * ASTORE_0(Instruction * inst);
+Instruction * ASTORE_1(Instruction * inst);
+Instruction * ASTORE_2(Instruction * inst);
+Instruction * ASTORE_3(Instruction * inst);
+
 /* extended */
 Instruction * GOTO_W(Instruction * inst);
 Instruction * IFNULL(Instruction * inst);
+Instruction * IFNONNULL(Instruction * inst);
 Instruction * WIDE(Instruction * inst);
 
 /* loads */
@@ -149,5 +174,12 @@ Instruction * SWAP(Instruction * inst);
 /* Reference */
 Instruction * NEW(Instruction * inst);
 Instruction * LDC(Instruction * inst);
-
+Instruction * INSTANCE_OF(Instruction * inst);
+Instruction * GET_STATIC(Instruction * inst);
+Instruction * PUT_STATIC(Instruction * inst);
+Instruction * GET_FIELD(Instruction * inst);
+Instruction * PUT_FIELD(Instruction * inst);
+Instruction * CHECK_CAST(Instruction * inst);
+Instruction * INVOKE_VIRTUAL(Instruction * inst);
+Instruction * INVOKE_SPECIAL(Instruction * inst);
 #endif
