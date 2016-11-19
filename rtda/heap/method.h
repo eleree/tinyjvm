@@ -52,7 +52,15 @@ bool isMethodProtected(Method * method);
 bool isMethodStatic(Method * method);
 bool isMethodFinal(Method * method);
 bool isMethodSynthetic(Method * method);
+bool isMethodAccessibleTo(Method * method, struct Class * d);
 
 void addParameterType(MethodDescriptor * methodDesc, const char * t);
+
+MethodDescriptor * parseMethodDescriptor(const char * descriptor);
+
+Method * lookupMethodInClass(struct Class *class, char * name, char *  descriptor);
+Method * lookupMethodInInterfaces(struct Class ** ifaces, uint16_t ifacesCount, char * name, char * descriptor);
+
+void InvokeMethod(struct Frame * invokerFrame, struct Method * method);
 
 #endif

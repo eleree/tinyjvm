@@ -26,6 +26,26 @@ static void copyAttributes(Method * method, MethodInfo * methodInfo, ClassFile *
 	}
 }
 
+void calcArgSlotCount(Method * self) {
+	MethodDescriptor * parsedDescriptor = parseMethodDescriptor(self->classMember.descriptor);
+	ParameterTypesList * parameterTypesList = parsedDescriptor->parameterTypesList;
+	for (uint16_t i = 0; i < parsedDescriptor->parameterTypesCount; i++)
+	{		
+		char * paramType = parameterTypesList->parameterTypes;
+
+		if (strcmp(paramType, "J") == 0 ||
+			strcmp(paramType, "D") == 0)
+			self->argSlotCount++;
+
+		parameterTypesList = parameterTypesList->next;
+	}
+
+	if (!isMethodStatic(self))
+	{
+		self->argSlotCount++;
+	}
+}
+
 Method * newMethods(struct Class * c, ClassFile * classFile)
 {
 	c->methodsCount = classFile->methodsCount;
@@ -39,6 +59,7 @@ Method * newMethods(struct Class * c, ClassFile * classFile)
 		c->methods[i].classMember.attachClass = c;
 		copyMethodInfo(&c->methods[i], &classFile->methods[i], classFile);
 		copyAttributes(&c->methods[i], &classFile->methods[i], classFile);
+		calcArgSlotCount(&c->methods[i]);
 	}
  
 	return NULL;
@@ -139,3 +160,24 @@ bool isMethodSynthetic(Method * method)
 }
 
 
+bool isMethodAccessibleTo(Method * method, Class * d)
+{
+	Class * c = method->classMember.attachClass;
+
+	if (isMethodProtected(method))
+	{
+		return	c == d ||
+			strcmp(c->packageName, d->packageName) == 0 ||
+			isSubClassOf(d, c);
+	}
+
+	if (isMethodPublic(method))
+		return true;
+
+	if (!isMethodPrivate(method))
+	{
+		return strcmp(c->packageName, d->packageName) == 0;
+	}
+
+	return d == c;
+}

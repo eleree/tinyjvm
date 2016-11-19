@@ -71,7 +71,6 @@ int64_t popOperandLong(OperandStack* operandStack)
 	return transData.longData;
 }
 
-
 void pushOperandDouble(OperandStack* operandStack, double val)
 {
 	DoubleLong transData;
@@ -108,4 +107,10 @@ Slot * popOperandSlot(OperandStack * operandStack)
 {
 	operandStack->size--;
 	return &operandStack->slots[operandStack->size];
+}
+
+
+Object * getOperandRefFromTop(OperandStack * self, uint16_t n)
+{
+	return self->slots[self->size - 1 - n].ref;
 }

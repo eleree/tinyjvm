@@ -59,3 +59,11 @@ MethodRef * getClassConstantPoolMethodRef(ConstantPoolItem * cp, uint16_t index)
 		return ((ClassConstantMethodRef *)((cp + index)->itemInfo))->methodRef;
 	return 0;
 }
+
+InterfaceMethodRef * getClassConstantPoolInterfaceMethodRef(ConstantPoolItem * cp, uint16_t index)
+{
+	if ((cp + index)->itemInfo != NULL)
+		return ((ClassConstantInterfaceMethodRef *)((cp + index)->itemInfo))->interfaceMethodRef;
+	return 0;
+}
+

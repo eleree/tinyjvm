@@ -7,6 +7,7 @@
 #include "cp_classref.h"
 #include "cp_fieldref.h"
 #include "cp_methodref.h"
+#include "cp_interface_methodref.h"
 
 typedef struct ClassConstantInteger{
 	uint8_t tag;
@@ -48,6 +49,11 @@ typedef struct ClassConstantMethodRef{
 	MethodRef * methodRef;
 }ClassConstantMethodRef;
 
+typedef struct ClassConstantInterfaceMethodRef{
+	uint8_t tag;
+	InterfaceMethodRef * interfaceMethodRef;
+}ClassConstantInterfaceMethodRef;
+
 
 int32_t getClassConstantPoolInt(ConstantPoolItem * cp, uint16_t index);
 float getClassConstantPoolFloat(ConstantPoolItem * cp, uint16_t index);
@@ -56,6 +62,7 @@ double getClassConstantPoolDouble(ConstantPoolItem * cp, uint16_t index);
 ClassRef * getClassConstantPoolClassRef(ConstantPoolItem * cp, uint16_t index);
 FieldRef * getClassConstantPoolFieldRef(ConstantPoolItem * cp, uint16_t index);
 MethodRef * getClassConstantPoolMethodRef(ConstantPoolItem * cp, uint16_t index);
+InterfaceMethodRef * getClassConstantPoolInterfaceMethodRef(ConstantPoolItem * cp, uint16_t index);
 
 int16_t getClassContantPoolType(ConstantPoolItem * cp, uint16_t index);
 

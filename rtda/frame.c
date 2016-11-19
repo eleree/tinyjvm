@@ -32,6 +32,11 @@ void setFrameNextPC(Frame *frame, int32_t nextPC)
 	frame->nextPC = nextPC;
 }
 
+void revertFrameNextPC(Frame * frame)
+{
+	frame->nextPC = frame->thread->pc;
+}
+
 void freeFrame(Frame * frame)
 {
 	if (frame != NULL)

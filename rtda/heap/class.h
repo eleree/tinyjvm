@@ -44,6 +44,7 @@ typedef struct Class
 	uint32_t slotCount;
 	Slot * staticVars;
 	struct ClassLoader * classLoader;
+	bool initStarted;
 }Class;
 
 enum {
@@ -77,5 +78,6 @@ bool isClassSubInterfaceOf(Class * thisClass, Class * iface);
 bool isClassImplements(Class * thisClass, Class * iface);
 bool isClassSubClassOf(Class * thisClass, Class * otherClass);
 bool isClassAssignableFrom(Class * thisClass, Class * otherClass);
+void startClassInit(Class * c);
 
 #endif

@@ -17,5 +17,6 @@ typedef struct  MethodRef{
 }MethodRef;
 
 MethodRef * newMethodRef(ClassFile *classFile, struct ConstantPool * cp, ConstantMethodrefInfo * methodrefInfo);
+Method * resolvedMethod(MethodRef * methodRef);
 
 #endif

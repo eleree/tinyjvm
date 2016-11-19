@@ -258,3 +258,8 @@ bool isClassAssignableFrom(Class * thisClass, Class * otherClass)
 	else
 		return isClassImplements(s, t);
 }
+
+void startClassInit(Class * c)
+{
+	c->initStarted = true;
+}

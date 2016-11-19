@@ -512,23 +512,32 @@ Instruction * newInsturction(uint8_t opcode)
 			// 	return &JSR{}
 			// case 0xa9:
 			// 	return &RET{}
-		case 0xaa:
-			return &TABLE_SWITCH{}
-		case 0xab:
-			return &LOOKUP_SWITCH{}
-			// case 0xac:
-			// 	return ireturn
-			// case 0xad:
-			// 	return lreturn
-			// case 0xae:
-			// 	return freturn
-			// case 0xaf:
-			// 	return dreturn
-			// case 0xb0:
-			// 	return areturn
-			// case 0xb1:
-			// 	return _return
 #endif
+		case 0xaa:
+			//return &TABLE_SWITCH{}
+			return TABLE_SWITCH(&instruction);
+		case 0xab:
+			//return &LOOKUP_SWITCH{}
+			return LOOKUP_SWITCH(&instruction);
+		case 0xac:
+			// 	return ireturn
+			return IRETURN(&instruction);
+		case 0xad:
+			// 	return lreturn
+			return LRETURN(&instruction);
+		case 0xae:
+			// 	return freturn
+			return FRETURN(&instruction);
+		case 0xaf:
+			// 	return dreturn
+			return DRETURN(&instruction);
+		case 0xb0:
+			// 	return areturn
+			return ARETURN(&instruction);
+		case 0xb1:
+			// 	return _return
+			return RETURN(&instruction);
+
 		case 0xb2:
 			//		return &GET_STATIC{}
 			return GET_STATIC(&instruction);

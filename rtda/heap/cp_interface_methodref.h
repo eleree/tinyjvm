@@ -11,6 +11,6 @@ typedef struct  InterfaceMethodRef{
 	Method * method;
 }InterfaceMethodRef;
 
-
+Method * resolvedInterfaceMethod(InterfaceMethodRef * self);
 
 #endif

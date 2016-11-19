@@ -75,6 +75,8 @@
     <ClCompile Include="classpath\entry_wildcard.c" />
     <ClCompile Include="classpath\entry_zip.c" />
     <ClCompile Include="instructions\base\bytecode_reader.c" />
+    <ClCompile Include="instructions\base\class_init_logic.c" />
+    <ClCompile Include="instructions\base\method_invoke_logic.c" />
     <ClCompile Include="instructions\comparisons\dcmp.c" />
     <ClCompile Include="instructions\comparisons\fcmp.c" />
     <ClCompile Include="instructions\comparisons\ifcond.c" />
@@ -87,6 +89,7 @@
     <ClCompile Include="instructions\constants\nop.c" />
     <ClCompile Include="instructions\control\goto.c" />
     <ClCompile Include="instructions\control\lookupswitch.c" />
+    <ClCompile Include="instructions\control\return.c" />
     <ClCompile Include="instructions\control\tableswitch.c" />
     <ClCompile Include="instructions\conversions\d2x.c" />
     <ClCompile Include="instructions\conversions\f2x.c" />
@@ -116,7 +119,9 @@
     <ClCompile Include="instructions\references\getfield.c" />
     <ClCompile Include="instructions\references\getstatic.c" />
     <ClCompile Include="instructions\references\instanceof.c" />
+    <ClCompile Include="instructions\references\invokeinterface.c" />
     <ClCompile Include="instructions\references\invokespecial.c" />
+    <ClCompile Include="instructions\references\invokestatic.c" />
     <ClCompile Include="instructions\references\invokevirtual.c" />
     <ClCompile Include="instructions\references\new.c" />
     <ClCompile Include="instructions\references\putfield.c" />
@@ -147,6 +152,7 @@
     <ClCompile Include="rtda\heap\field.c" />
     <ClCompile Include="rtda\heap\method.c" />
     <ClCompile Include="rtda\heap\method_descriptor_parser.c" />
+    <ClCompile Include="rtda\heap\method_lookup.c" />
     <ClCompile Include="rtda\heap\object.c" />
     <ClCompile Include="rtda\heap\slot.c" />
     <ClCompile Include="rtda\heap\method_descriptor.c" />

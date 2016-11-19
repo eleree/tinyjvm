@@ -189,4 +189,12 @@ Instruction * PUT_FIELD(Instruction * inst);
 Instruction * CHECK_CAST(Instruction * inst);
 Instruction * INVOKE_VIRTUAL(Instruction * inst);
 Instruction * INVOKE_SPECIAL(Instruction * inst);
+
+/* control */
+Instruction * RETURN(Instruction * inst);
+Instruction * ARETURN(Instruction * inst);
+Instruction * DRETURN(Instruction * inst);
+Instruction * FRETURN(Instruction * inst);
+Instruction * IRETURN(Instruction * inst);
+Instruction * LRETURN(Instruction * inst);
 #endif

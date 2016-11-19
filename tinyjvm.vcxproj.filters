@@ -339,6 +339,24 @@
     <ClCompile Include="rtda\heap\method_descriptor_parser.c">
       <Filter>源文件\rtda\heap</Filter>
     </ClCompile>
+    <ClCompile Include="rtda\heap\method_lookup.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\base\method_invoke_logic.c">
+      <Filter>源文件\instructions\base</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\base\class_init_logic.c">
+      <Filter>源文件\instructions\base</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\control\return.c">
+      <Filter>源文件\instructions\control</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\references\invokeinterface.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\references\invokestatic.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

@@ -14,6 +14,8 @@ int32_t getFrameNextPC(Frame *frame);
 
 void setFrameNextPC(Frame *frame, int32_t nextPC);
 
+void revertFrameNextPC(Frame * frame);
+
 void freeFrame(Frame * frame);
 
 #endif
