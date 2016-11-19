@@ -30,6 +30,13 @@ typedef struct MethodDescriptor
 	char* returnType;
 }MethodDescriptor;
 
+
+typedef struct MethodDescriptorParser {
+	char * raw;
+	uint16_t offset;
+	struct MethodDescriptor * parsed;
+}MethodDescriptorParser;
+
 Method * newMethods(struct Class * c, ClassFile * classFile);
 
 bool isMethodSynchronized(Method * method);

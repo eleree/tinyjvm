@@ -146,6 +146,7 @@
     <ClCompile Include="rtda\heap\cp_symref.c" />
     <ClCompile Include="rtda\heap\field.c" />
     <ClCompile Include="rtda\heap\method.c" />
+    <ClCompile Include="rtda\heap\method_descriptor_parser.c" />
     <ClCompile Include="rtda\heap\object.c" />
     <ClCompile Include="rtda\heap\slot.c" />
     <ClCompile Include="rtda\heap\method_descriptor.c" />

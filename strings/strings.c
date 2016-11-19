@@ -73,3 +73,17 @@ int32_t stringLastIndex(const char * sourceStr, const char * lastStr)
 
 	return -1;
 }
+
+int32_t stringIndexRune(const char * sourceStr, char c)
+{
+	int32_t i = 0;
+	while (*(sourceStr+i) != c)
+	{
+		i++;
+	}
+
+	if (i == strlen(sourceStr))
+		return -1;
+
+	return i;
+}
