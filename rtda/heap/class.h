@@ -70,6 +70,7 @@ enum {
 
 Class * newClass(ClassFile * classFile);
 struct Method * getClassMainMethod(Class * c);
+struct Method * getClassClinitMethod(Class * c);
 bool isClassInterface(Class * c);
 bool isClassAbstract(Class * c);
 
@@ -80,4 +81,5 @@ bool isClassSubClassOf(Class * thisClass, Class * otherClass);
 bool isClassAssignableFrom(Class * thisClass, Class * otherClass);
 void startClassInit(Class * c);
 
+void InitClass(Thread * thread, Class * class);
 #endif

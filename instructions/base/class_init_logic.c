@@ -9,14 +9,28 @@
 #include "../../rtda/heap/field.h"
 #include "../../rtda/heap/cp_fieldref.h"
 
+void InitClass(Thread * thread, Class * class);
+
 void initSuperClass(Thread * thread, Class * class)
 {
-
+	if(!isClassInterface(class))
+	{
+		Class * superClass = class->superClass;
+		if (superClass != NULL && !superClass->initStarted)
+		{
+			InitClass(thread, superClass);
+		}
+	}
 }
 
 void scheduleClinit(Thread * thread, Class * class)
 {
-
+	Method * clinit = getClassClinitMethod(class);
+	if (clinit != NULL)
+	{
+		Frame * nFrame = newFrame(thread, clinit, clinit->maxLocals, clinit->maxStack);
+		pushThreadFrame(thread, nFrame);
+	}
 }
 
 void InitClass(Thread * thread, Class * class)

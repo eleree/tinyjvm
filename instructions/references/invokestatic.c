@@ -28,6 +28,7 @@ static int32_t execute_INVOKE_STATIC(Frame * frame, struct InsturctionData * ins
 	if (!class->initStarted)
 	{
 		revertFrameNextPC(frame);
+		InitClass(frame->thread, class);
 		return 0;
 	}
 

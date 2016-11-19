@@ -190,6 +190,11 @@ Method * getClassMainMethod(Class * c)
 	return getClassStaticMethod(c, "main", "([Ljava/lang/String;)V");
 }
 
+Method * getClassClinitMethod(Class * c)
+{
+	return getClassStaticMethod(c, "<clinit>", "()V");
+}
+
 bool isClassInterface(Class * c)
 {
 	return false;
