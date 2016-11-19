@@ -24,4 +24,7 @@ Object * popOperandRef(OperandStack * operandStack);
 void pushOperandSlot(OperandStack * operandStack, Slot * slot);
 Slot * popOperandSlot(OperandStack * operandStack);
 
+Object * getOperandRefFromTop(OperandStack * self, uint16_t n);
+
+
 #endif

@@ -56,7 +56,7 @@ static char * parseObjectType(MethodDescriptorParser * self)
 		uint16_t objStart = self->offset - 1;
 		uint16_t objEnd = self->offset + semicolonIndex + 1;
 		self->offset = objEnd;
-		char * descriptor = calloc(objStart - objEnd + 1, sizeof(char));
+		char * descriptor = calloc(objEnd - objStart + 1, sizeof(char));
 		strncpy(descriptor, self->raw + objStart, objEnd - objStart);
 		return descriptor;
 	}
@@ -98,10 +98,10 @@ static char * parseFieldType(MethodDescriptorParser * self)
 	case '[':
 		return parseArrayType(self);
 	default:
-		readUint8(self);
-		return _strdup("");
+		unreadUint8(self);
+		return "";
 	}
-	return _strdup("");
+	return "";
 }
 
 static void parseParamTypes(MethodDescriptorParser * self)
@@ -123,7 +123,7 @@ static void parseReturnType(MethodDescriptorParser * self)
 		self->parsed->returnType = _strdup("V");
 		return;
 	}
-
+	unreadUint8(self);
 	char * t = parseFieldType(self);
 	if (strcmp(t, "") != 0)
 	{
@@ -136,6 +136,8 @@ static void parseReturnType(MethodDescriptorParser * self)
 
 static MethodDescriptor * parse(MethodDescriptorParser * self, const char * descriptor)
 {
+	self->raw = _strdup(descriptor);
+	self->parsed = calloc(1, sizeof(MethodDescriptor));
 	startParams(self);
 	parseParamTypes(self);
 	endParams(self);

@@ -75,6 +75,7 @@ bool isClassInterface(Class * c);
 bool isClassAbstract(Class * c);
 
 bool isSubClassOf(Class * thisClass, Class * otherClass);
+bool isClassSuperClassOf(Class * thisClass, Class * otherClass);
 bool isClassSubInterfaceOf(Class * thisClass, Class * iface);
 bool isClassImplements(Class * thisClass, Class * iface);
 bool isClassSubClassOf(Class * thisClass, Class * otherClass);

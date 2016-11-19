@@ -252,6 +252,12 @@ bool isClassSubClassOf(Class * thisClass, Class * otherClass)
 	return false;
 }
 
+bool isClassSuperClassOf(Class * thisClass, Class * otherClass)
+{
+	return isClassSubClassOf(otherClass, thisClass);
+}
+
+
 bool isClassAssignableFrom(Class * thisClass, Class * otherClass)
 {
 	Class * s = otherClass;

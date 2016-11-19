@@ -62,15 +62,18 @@ void interpret(ClassFile * classFile, MethodInfo * methodInfo)
 #endif
 void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 {
-	Frame * frame = popThreadFrame(thread);
+	Frame * frame = NULL;
+	//Frame * frame = popThreadFrame(thread);
+	
 	int32_t pc = 0;
 	uint8_t opcode = 0;
 	BytecodeReader bytecodeReader;
 	for (;;)
 	{
+		frame = getCurrentFrame(thread);
 		pc = getFrameNextPC(frame);
 		setThreadPC(thread, pc);
-		resetBytecodeReader(&bytecodeReader, bytecode, bytecodeLen, pc);
+		resetBytecodeReader(&bytecodeReader, frame->method->code, frame->method->codeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
 		printf("pc:0x%02x, opcode:0x%02x\n", pc, opcode);
 		dumpLocalVars(frame);
