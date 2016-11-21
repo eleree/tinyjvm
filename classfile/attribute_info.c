@@ -190,6 +190,7 @@ void readClassFields(ClassFile * classFile)
 		(classFile->fields + i)->name_index = readClassUint16(classFile);
 		(classFile->fields + i)->descriptor_index = readClassUint16(classFile);
 		(classFile->fields + i)->attributes_count = readClassUint16(classFile);
+		(classFile->fields + i)->attributes = calloc((classFile->fields + i)->attributes_count, sizeof(AttributeInfo));
 		readAttributeInfo(classFile, (classFile->fields + i)->attributes, (classFile->fields + i)->attributes_count);
 	}
 }

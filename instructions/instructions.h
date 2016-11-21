@@ -18,12 +18,19 @@ Instruction * IF_ICMPLE(Instruction * inst);
 Instruction * IF_ICMPGT(Instruction * inst);
 Instruction * IF_ICMPGE(Instruction * inst);
 
+Instruction * LCMP(Instruction * inst);
+
 Instruction * IFEQ(Instruction * inst);
 Instruction * IFNE(Instruction * inst);
 Instruction * IFLT(Instruction * inst);
 Instruction * IFLE(Instruction * inst);
 Instruction * IFGT(Instruction * inst);
 Instruction * IFGE(Instruction * inst);
+
+Instruction * DCMPL(Instruction * inst);
+Instruction * DCMPG(Instruction * inst);
+Instruction * FCMPL(Instruction * inst);
+Instruction * FCMPG(Instruction * inst);
 
 Instruction * ACONST_NULL(Instruction * inst);
 Instruction * DCONST_0(Instruction * inst);
@@ -181,6 +188,8 @@ Instruction * SWAP(Instruction * inst);
 /* Reference */
 Instruction * NEW(Instruction * inst);
 Instruction * LDC(Instruction * inst);
+Instruction * LDC_W(Instruction * inst);
+Instruction * LDC2_W(Instruction * inst);
 Instruction * INSTANCE_OF(Instruction * inst);
 Instruction * GET_STATIC(Instruction * inst);
 Instruction * PUT_STATIC(Instruction * inst);
@@ -199,4 +208,24 @@ Instruction * DRETURN(Instruction * inst);
 Instruction * FRETURN(Instruction * inst);
 Instruction * IRETURN(Instruction * inst);
 Instruction * LRETURN(Instruction * inst);
+
+/* conversions */
+Instruction * I2B(Instruction * inst);
+Instruction * I2C(Instruction * inst);
+Instruction * I2S(Instruction * inst);
+Instruction * I2L(Instruction * inst);
+Instruction * I2F(Instruction * inst);
+Instruction * I2D(Instruction * inst);
+Instruction * L2F(Instruction * inst);
+Instruction * L2I(Instruction * inst);
+Instruction * L2D(Instruction * inst);
+
+
+Instruction * D2F(Instruction * inst);
+Instruction * D2I(Instruction * inst);
+Instruction * D2L(Instruction * inst);
+
+Instruction * F2L(Instruction * inst);
+Instruction * F2I(Instruction * inst);
+Instruction * F2D(Instruction * inst);
 #endif

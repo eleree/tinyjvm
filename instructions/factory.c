@@ -94,10 +94,12 @@ Instruction * newInsturction(uint8_t opcode)
 
 		case 0x12:
 			return LDC(&instruction);
-			// case 0x13:
-			// 	return &LDC_W{}
-			// case 0x14:
+		case 0x13:
+			//	return &LDC_W{}
+			return LDC_W(&instruction);
+		case 0x14:
 			// 	return &LDC2_W{}
+			return LDC2_W(&instruction);
 		case 0x15:
 			//return &ILOAD{}
 			return ILOAD(&instruction);
@@ -422,48 +424,66 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0x84:
 			//return &IINC{}
 			return IINC(&instruction);
-#if 0
 		case 0x85:
-			return i2l
+			//return i2l
+			return I2L(&instruction);
 		case 0x86:
-			return i2f
+			//return i2f
+			return I2F(&instruction);
 		case 0x87:
-			return i2d
+			//return i2d
+			return I2D(&instruction);
 		case 0x88:
-			return l2i
+			//return l2i
+			return L2I(&instruction);
 		case 0x89:
-			return l2f
+			//return l2f
+			return L2F(&instruction);
 		case 0x8a:
-			return l2d
+			//return l2d
+			return L2D(&instruction);
 		case 0x8b:
-			return f2i
+			//return f2i
+			return F2I(&instruction);
 		case 0x8c:
-			return f2l
+			//return f2l
+			return F2L(&instruction);
 		case 0x8d:
-			return f2d
+			//return f2d
+			return F2D(&instruction);
 		case 0x8e:
-			return d2i
+			//return d2i
+			return D2I(&instruction);
 		case 0x8f:
-			return d2l
+			//return d2l
+			return D2L(&instruction);
 		case 0x90:
-			return d2f
+			//return d2f
+			return D2F(&instruction);
 		case 0x91:
-			return i2b
+			//return i2b
+			return I2B(&instruction);
 		case 0x92:
-			return i2c
+			//return i2c
+			return I2C(&instruction);
 		case 0x93:
-			return i2s
+			//return i2s
+			return I2S(&instruction);
 		case 0x94:
-			return lcmp
+			//return lcmp
+			return LCMP(&instruction);
 		case 0x95:
-			return fcmpl
+			//return fcmpl
+			return FCMPL(&instruction);
 		case 0x96:
-			return fcmpg
+			//return fcmpg
+			return FCMPG(&instruction);
 		case 0x97:			
-			return dcmpl(&instruction);
+			//return dcmpl
+			return DCMPL(&instruction);
 		case 0x98:
-			return dcmpg
-#endif
+			//return dcmpg
+			return DCMPG(&instruction);
 		case 0x99:
 			//return &IFEQ{}
 			return IFEQ(&instruction);
