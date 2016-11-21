@@ -64,7 +64,7 @@ static int32_t execute_INVOKE_SPECIAL(Frame * frame, struct InsturctionData * in
 		exit(143);
 	}
 
-	printf("Invode classs:%s method:%s,desc:%s\n",methodRef->symRef.className, methodRef->name, methodRef->descriptor);
+	//printf("Invode classs:%s method:%s,desc:%s\n",methodRef->symRef.className, methodRef->name, methodRef->descriptor);
 	InvokeMethod(frame, methodToBeInvoked);
 	return 0;
 }

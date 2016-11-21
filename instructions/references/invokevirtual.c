@@ -30,15 +30,15 @@ void _println(OperandStack * operandStack, char * descriptor)
 	}
 	else if (strncmp(descriptor, "(F)V", 4) == 0)
 	{
-		printf("%f\n", popOperandInt(operandStack));
+		printf("%f\n", popOperandFloat(operandStack));
 	}
 	else if (strncmp(descriptor, "(J)V", 4) == 0)
 	{
-		printf("%lld\n", popOperandInt(operandStack));
+		printf("%lld\n", popOperandLong(operandStack));
 	}
 	else if (strncmp(descriptor, "(D)V", 4) == 0)
 	{
-		printf("%llf\n", popOperandInt(operandStack));
+		printf("%llf\n", popOperandDouble(operandStack));
 	}
 	else
 	{
@@ -94,7 +94,7 @@ static int32_t execute_INVOKE_VIRTUAL(Frame * frame, struct InsturctionData * in
 		exit(136);
 	}
 
-	printf("Invode classs:%s method:%s,desc:%s\n", methodRef->symRef.className, methodRef->name, methodRef->descriptor);
+	//printf("Invoke classs:%s method:%s,desc:%s\n", methodRef->symRef.className, methodRef->name, methodRef->descriptor);
 	InvokeMethod(frame, methodToBeInvoked);
 
 	return 0;

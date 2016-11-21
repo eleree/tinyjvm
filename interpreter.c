@@ -81,8 +81,8 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		setThreadPC(thread, pc);
 		resetBytecodeReader(&bytecodeReader, frame->method->code, frame->method->codeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
-		printf("pc:0x%02x, opcode:0x%02x\n", pc, opcode);
-		dumpLocalVars(frame);
+		//printf("pc:0x%02x, opcode:0x%02x\n", pc, opcode);
+		//dumpLocalVars(frame);
 		Instruction * inst = newInsturction(opcode);
 		InstructionData instData = { 0 };
 		if (inst != NULL)
