@@ -114,8 +114,8 @@ int32_t userClasspathReadClass(const char * className, char ** classContent)
 int32_t readClass(const char * className, char ** classContent)
 {
 	int32_t classSize = 0;
-	if (className != NULL)
-		printf("class name: %s\n",className);
+	//if (className != NULL)
+	//	printf("class name: %s\n",className);
 	char fullClassName[256] = { 0 };
 	
 	strcat(fullClassName, className);

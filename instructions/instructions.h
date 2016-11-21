@@ -189,6 +189,8 @@ Instruction * PUT_FIELD(Instruction * inst);
 Instruction * CHECK_CAST(Instruction * inst);
 Instruction * INVOKE_VIRTUAL(Instruction * inst);
 Instruction * INVOKE_SPECIAL(Instruction * inst);
+Instruction * INVOKE_STATIC(Instruction * inst);
+Instruction * INVOKE_INTERFACE(Instruction * inst);
 
 /* control */
 Instruction * RETURN(Instruction * inst);

@@ -33,6 +33,8 @@ void calcArgSlotCount(Method * self) {
 	{		
 		char * paramType = parameterTypesList->parameterTypes;
 
+		self->argSlotCount++;
+
 		if (strcmp(paramType, "J") == 0 ||
 			strcmp(paramType, "D") == 0)
 			self->argSlotCount++;

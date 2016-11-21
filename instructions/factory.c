@@ -556,10 +556,12 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0xb7:
 			// 	return &INVOKE_SPECIAL{}
 			return INVOKE_SPECIAL(&instruction);
-			// case 0xb8:
+		case 0xb8:
 			// 	return &INVOKE_STATIC{}
-			// case 0xb9:
+			return INVOKE_STATIC(&instruction);
+		case 0xb9:
 			// 	return &INVOKE_INTERFACE{}
+			return INVOKE_INTERFACE(&instruction);
 			// case 0xba:
 			// 	return &INVOKE_DYNAMIC{}
 		case 0xbb:

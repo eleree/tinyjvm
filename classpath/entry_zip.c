@@ -45,6 +45,7 @@ int32_t readZipEntryClass(const char * zippath, const char * className, char ** 
 		//mz_free(p);
 		*classContent = p;
 		mz_zip_reader_end(&zipArchive);
+		printf("Load class: %s from zip:%s successfully,size:%d\n", className, zippath, (int32_t)file_stat.m_uncomp_size);
 		return (int32_t)file_stat.m_uncomp_size;
 	}
 

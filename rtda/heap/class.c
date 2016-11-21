@@ -50,9 +50,9 @@ static void newInterfacesName(Class * c, ClassFile * classFile)
 	c->interfaceNames = calloc(c->interfaceNamesCount, sizeof(char *));
 	for (uint16_t i = 0; i < c->interfacesCount; i++)
 	{
-		uint16_t classNameLen = strlen(getInterfaceName(classFile,i));
+		uint16_t classNameLen = strlen(getInterfaceName(classFile,classFile->interfaces[i]));
 		c->interfaceNames[i] = calloc(classNameLen+1,sizeof(char));
-		strcpy(c->interfaceNames[i], getInterfaceName(classFile, i));
+		strcpy(c->interfaceNames[i], getInterfaceName(classFile, classFile->interfaces[i]));
 	}
 }
 
@@ -273,4 +273,9 @@ bool isClassAssignableFrom(Class * thisClass, Class * otherClass)
 void startClassInit(Class * c)
 {
 	c->initStarted = true;
+}
+
+bool isClassSuper(Class * c)
+{
+	return 0 != (c->accessFlags&ACC_SUPER);
 }

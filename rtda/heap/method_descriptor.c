@@ -16,6 +16,7 @@ void addParameterType(MethodDescriptor * methodDesc, const char * t)
 	ptList->next = NULL;
 	ptList->parameterTypes = _strdup(t);
 
+	methodDesc->parameterTypesCount++;
 	if (prePtList == NULL)
 	{
 		methodDesc->parameterTypesList = ptList;

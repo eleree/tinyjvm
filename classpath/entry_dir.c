@@ -39,7 +39,7 @@ int32_t readDirEntryClass(const char * path, const char * className, char ** cla
 	classBuffer = (char *)calloc((size_t)dwFileSize, 1);
 	if (classBuffer == NULL)
 		return -2;
-	printf("File size:%d\n", dwFileSize);
+	//printf("File size:%d\n", dwFileSize);
 
 	if (ReadFile(hFile, classBuffer, dwFileSize, &dwActualRead, NULL) == FALSE)
 	{
@@ -52,5 +52,6 @@ int32_t readDirEntryClass(const char * path, const char * className, char ** cla
 	*classContent = classBuffer;
 
 	CloseHandle(hFile);
+	printf("Load class: %s from path:%s successfully,size:%d\n", className, path, dwFileSize);
 	return (int32_t) dwFileSize;
 }

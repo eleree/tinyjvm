@@ -99,14 +99,19 @@ Object * popOperandRef(OperandStack * operandStack)
 
 void pushOperandSlot(OperandStack * operandStack, Slot * slot)
 {
-	memcpy(&operandStack->slots[operandStack->size], slot, sizeof(Slot));
+	//memcpy(&operandStack->slots[operandStack->size], slot, sizeof(Slot));
+	operandStack->slots[operandStack->size].num = slot->num;
+	operandStack->slots[operandStack->size].ref = slot->ref;
 	operandStack->size++;
 }
 
 Slot * popOperandSlot(OperandStack * operandStack)
 {
+	Slot * s = calloc(1, sizeof(Slot));;
 	operandStack->size--;
-	return &operandStack->slots[operandStack->size];
+	s->num = operandStack->slots[operandStack->size].num;
+	s->ref = operandStack->slots[operandStack->size].ref;
+	return s;
 }
 
 

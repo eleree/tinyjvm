@@ -73,6 +73,7 @@ struct Method * getClassMainMethod(Class * c);
 struct Method * getClassClinitMethod(Class * c);
 bool isClassInterface(Class * c);
 bool isClassAbstract(Class * c);
+bool isClassSuper(Class * c);
 
 bool isSubClassOf(Class * thisClass, Class * otherClass);
 bool isClassSuperClassOf(Class * thisClass, Class * otherClass);

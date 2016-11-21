@@ -94,6 +94,7 @@ static int32_t execute_INVOKE_VIRTUAL(Frame * frame, struct InsturctionData * in
 		exit(136);
 	}
 
+	printf("Invode classs:%s method:%s,desc:%s\n", methodRef->symRef.className, methodRef->name, methodRef->descriptor);
 	InvokeMethod(frame, methodToBeInvoked);
 
 	return 0;

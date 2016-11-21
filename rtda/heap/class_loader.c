@@ -194,12 +194,14 @@ Class * loadNonArrayClass(ClassLoader * classLoader, const char * className)
 	Class * loadClass = NULL;
 	classSize = readClass(className, &classContent);
 	if (classSize > 0 && classContent != NULL){
+#if 0
 		printf("class size:%d,class data:[", classSize);
 		for (int32_t i = 0; i < classSize; i++)
 		{
 			printf("0x%02x ", classContent[i]);
 		}
 		printf("]\n");
+#endif
 	}
 	if (classSize <= 0)
 	{

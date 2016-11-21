@@ -320,7 +320,7 @@ ClassFile * parseClassData(uint8_t * classData, uint64_t classSize)
 	classFile->accessFlags = readClassUint16(classFile);
 	classFile->thisClass = readClassUint16(classFile);
 	classFile->superClass = readClassUint16(classFile);
-	printClassInfo(classFile);
+	//printClassInfo(classFile);
 	readClassInterfaces(classFile);
 	readClassFields(classFile);
 	readClassMethods(classFile);
@@ -424,7 +424,7 @@ const char * getSuperClassName(ClassFile * classFile)
 
 const char * getInterfaceName(ClassFile * classFile, uint16_t index)
 {
-	if (index > classFile->interfaceCount)
+	if (index > classFile->constanPoolCount)
 		return NULL;
 	return getClassUtf8(classFile, index);
 }
