@@ -8,6 +8,7 @@
 #include "cp_fieldref.h"
 #include "../utils.h"
 #include "../../strings/strings.h"
+#include "array_class.h"
 
 #pragma warning(disable:4996)
 
@@ -278,4 +279,10 @@ void startClassInit(Class * c)
 bool isClassSuper(Class * c)
 {
 	return 0 != (c->accessFlags&ACC_SUPER);
+}
+
+Class * arrayClass(Class * self)
+{
+	char * arrayClassName = getArrayClassName(self->name);
+	return loadClass(self->classLoader, arrayClassName);
 }

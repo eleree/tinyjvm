@@ -88,5 +88,5 @@ bool isClassAssignableFrom(Class * thisClass, Class * otherClass);
 void startClassInit(Class * c);
 
 void InitClass(Thread * thread, Class * class);
-
+Class * arrayClass(Class * self);
 #endif

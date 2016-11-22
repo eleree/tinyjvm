@@ -11,7 +11,7 @@ typedef struct Object {
 	struct Class* class;
 	//uint16_t slotCount;
 	//struct Slot * fields;
-	uint16_t  dataCount;
+	int32_t  dataCount;
 	uint16_t dataType;
 	void * data;
 }Object;

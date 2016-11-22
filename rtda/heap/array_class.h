@@ -4,6 +4,8 @@
 #include "class.h"
 #include "class_loader.h"
 
+Object * newArray(Class * self, uint16_t count);
+
 bool isClassArray(Class * self);
 char * toDescriptor(const char * className);
 char * toClassName(const char * descriptor);

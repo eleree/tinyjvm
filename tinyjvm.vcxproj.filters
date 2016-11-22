@@ -363,6 +363,18 @@
     <ClCompile Include="rtda\heap\array_class.c">
       <Filter>源文件\rtda\heap</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\references\arraylength.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\references\anewarray.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\references\newarray.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\references\multianewarray.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

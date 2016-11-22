@@ -1,0 +1,6 @@
+#include "../factory.h"
+#include "../../rtda/operand_stack.h"
+#include "../../rtda/local_vars.h"
+#include "../../rtda/heap/constant_pool.h"
+#include "../../rtda/heap/cp_symref.h"
+#include "../../rtda/heap/array_class.h"
