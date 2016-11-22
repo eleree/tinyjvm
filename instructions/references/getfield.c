@@ -33,7 +33,8 @@ static int32_t execute_GET_FIELD(Frame * frame, struct InsturctionData * instDat
 
 	char * descriptor = field->classMember.descriptor;
 	uint16_t slotId = field->slotId;
-	Slot * slots = ref->fields;
+	//Slot * slots = ref->fields;
+	Slot * slots = getObjectSlots(ref);
 
 	switch (descriptor[0])
 	{

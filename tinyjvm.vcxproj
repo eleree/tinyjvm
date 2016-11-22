@@ -138,6 +138,8 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="miniz\minizip.c" />
     <ClCompile Include="rtda\frame.c" />
+    <ClCompile Include="rtda\heap\array_class.c" />
+    <ClCompile Include="rtda\heap\array_object.c" />
     <ClCompile Include="rtda\heap\class.c" />
     <ClCompile Include="rtda\heap\class_attribute_info.c" />
     <ClCompile Include="rtda\heap\class_hierarchy.c" />
@@ -176,6 +178,7 @@
     <ClInclude Include="miniz\miniz_wrapper.h" />
     <ClInclude Include="miniz\minizip.h" />
     <ClInclude Include="rtda\frame.h" />
+    <ClInclude Include="rtda\heap\array_class.h" />
     <ClInclude Include="rtda\heap\class.h" />
     <ClInclude Include="rtda\heap\class_attribute_info.h" />
     <ClInclude Include="rtda\heap\class_loader.h" />

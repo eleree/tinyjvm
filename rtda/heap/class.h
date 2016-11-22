@@ -69,6 +69,10 @@ enum {
 };
 
 Class * newClass(ClassFile * classFile);
+Class * loadClass(struct ClassLoader * classLoader, const char * className);
+Class * loadArrayClass(struct ClassLoader * classLoader, const char * className);
+Class * loadNonArrayClass(struct ClassLoader * classLoader, const char * className);
+
 struct Method * getClassMainMethod(Class * c);
 struct Method * getClassClinitMethod(Class * c);
 bool isClassInterface(Class * c);
@@ -84,4 +88,5 @@ bool isClassAssignableFrom(Class * thisClass, Class * otherClass);
 void startClassInit(Class * c);
 
 void InitClass(Thread * thread, Class * class);
+
 #endif

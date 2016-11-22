@@ -9,11 +9,21 @@
 
 typedef struct Object {
 	struct Class* class;
-	uint16_t slotCount;
-	struct Slot * fields;
+	//uint16_t slotCount;
+	//struct Slot * fields;
+	uint16_t  dataCount;
+	uint16_t dataType;
+	void * data;
 }Object;
 
 Object * newObject(struct Class * c);
 bool isObjectInstanceOf(Object * obj, struct Class * class);
+
+struct Slot * getObjectSlots(Object * self);
+
+#define panic(message,code) while(0){\
+	printf("%s,code:%d", message, code); \
+	exit(code); \
+};
 
 #endif

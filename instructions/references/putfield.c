@@ -59,7 +59,8 @@ static int32_t execute_PUT_FIELD(Frame * frame, struct InsturctionData * instDat
 			printf("java.lang.NullPointerException\n");
 			exit(-1);
 		}
-		slots = ref->fields;
+		//slots = ref->fields;
+		slots = getObjectSlots(ref);
 		setSlotInt(slots, slotId, int32Val);
 		break;
 	case 'F':
@@ -70,7 +71,8 @@ static int32_t execute_PUT_FIELD(Frame * frame, struct InsturctionData * instDat
 			printf("java.lang.NullPointerException\n");
 			exit(-1);
 		}
-		slots = ref->fields;
+		//slots = ref->fields;
+		slots = getObjectSlots(ref);
 		setSlotFloat(slots, slotId, floatVal);
 		break;
 	case 'J':
@@ -81,7 +83,8 @@ static int32_t execute_PUT_FIELD(Frame * frame, struct InsturctionData * instDat
 			printf("java.lang.NullPointerException\n");
 			exit(-1);
 		}
-		slots = ref->fields;
+		//slots = ref->fields;
+		slots = getObjectSlots(ref);
 		setSlotLong(slots, slotId, int64Val);
 		break;
 	case 'D':
@@ -92,7 +95,8 @@ static int32_t execute_PUT_FIELD(Frame * frame, struct InsturctionData * instDat
 			printf("java.lang.NullPointerException\n");
 			exit(-1);
 		}
-		slots = ref->fields;
+		//slots = ref->fields;
+		slots = getObjectSlots(ref);
 		setSlotDouble(slots, slotId, doubleVal);
 		break;
 	case 'L':
@@ -104,7 +108,8 @@ static int32_t execute_PUT_FIELD(Frame * frame, struct InsturctionData * instDat
 			printf("java.lang.NullPointerException\n");
 			exit(-1);
 		}
-		slots = ref->fields;
+		//slots = ref->fields;
+		slots = getObjectSlots(ref);
 		setSlotRef(slots, slotId, refVal);	
 		break;
 	default:

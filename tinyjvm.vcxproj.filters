@@ -357,6 +357,12 @@
     <ClCompile Include="instructions\references\invokestatic.c">
       <Filter>源文件\instructions\references</Filter>
     </ClCompile>
+    <ClCompile Include="rtda\heap\array_object.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\heap\array_class.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -457,6 +463,9 @@
     </ClInclude>
     <ClInclude Include="rtda\heap\object.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\array_class.h">
+      <Filter>源文件\rtda\heap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

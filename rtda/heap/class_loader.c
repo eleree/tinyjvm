@@ -7,6 +7,8 @@
 #include "slot.h"
 #include "constant_pool.h"
 
+#pragma warning(disable:4996)
+
 ClassLoader * newClassLoader(void)
 {
 	return calloc(1, sizeof(ClassLoader));
@@ -219,6 +221,25 @@ Class * loadNonArrayClass(ClassLoader * classLoader, const char * className)
 	return loadClass;
 }
 
+Class * loadArrayClass(ClassLoader * classLoader, const char * className)
+{
+	Class * c = calloc(1, sizeof(Class));
+
+	c->accessFlags = ACC_PUBLIC;
+	c->name = strdup(className);
+	c->classLoader = classLoader;
+	c->initStarted = true;
+	c->superClass = loadClass(classLoader, "java/lang/Object");
+	c->interfacesCount = 2;
+	c->interfaces = calloc(2, sizeof(Class *));
+	c->interfaces[0] = loadClass(classLoader, "java/lang/Cloneable");
+	c->interfaces[0] = loadClass(classLoader, "java/lang/Serializable");
+
+	addClassList(classLoader, c);
+
+	return c;
+}
+
 Class * loadClass(ClassLoader * classLoader, const char * className)
 {
 	ClassList * classList = classLoader->classList;
@@ -232,6 +253,9 @@ Class * loadClass(ClassLoader * classLoader, const char * className)
 
 		classList = classList->next;
 	}
+
+	if (className[0] == '[')
+		return loadArrayClass(classLoader, className);
 
 	return loadNonArrayClass(classLoader, className);
 	}
