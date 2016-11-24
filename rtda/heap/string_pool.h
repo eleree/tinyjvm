@@ -6,11 +6,12 @@ typedef struct String
 {
 	uint32_t len;
 	uint16_t type;
-	uint16_t * data;
+	uint8_t * data;
 }String;
 
 String * stringToUtf16(const char * s);
-String goString(struct Object * jStr);
+String * goString(struct Object * jStr);
 struct Object * jString(struct ClassLoader *loader, String * goStr);
+String * newString(ClassFile *classFile, struct ConstantPool * cp, ConstantStringInfo * stringInfo);
 
 #endif

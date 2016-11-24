@@ -1,4 +1,5 @@
 #include "constant_pool.h"
+#include "string_pool.h"
 
 int16_t getClassContantPoolType(ConstantPoolItem * cp, uint16_t index)
 {
@@ -64,6 +65,14 @@ InterfaceMethodRef * getClassConstantPoolInterfaceMethodRef(ConstantPoolItem * c
 {
 	if ((cp + index)->itemInfo != NULL)
 		return ((ClassConstantInterfaceMethodRef *)((cp + index)->itemInfo))->interfaceMethodRef;
+	return 0;
+}
+
+
+String * getClassConstantPoolStringRef(ConstantPoolItem * cp, uint16_t index)
+{
+	if ((cp + index)->itemInfo != NULL)
+		return ((ClassConstantString*)((cp + index)->itemInfo))->str;
 	return 0;
 }
 

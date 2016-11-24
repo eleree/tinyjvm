@@ -523,6 +523,27 @@ const char * getConstantPoolUtf8(ConstantPoolItem * constantPool, uint16_t utf8I
 	return itemInfo->bytes;
 }
 
+const char * getConstantPoolMutf8(ConstantPoolItem * constantPool, uint16_t utf8Index)
+{
+	ConstantUtf8Info * itemInfo = (ConstantUtf8Info *)(constantPool + utf8Index)->itemInfo;
+
+	if (itemInfo->tag != CONSTATNT_UTF8)
+		return NULL;
+
+	return itemInfo->bytes;
+}
+
+uint16_t getConstantPoolMutf8Len(ConstantPoolItem * constantPool, uint16_t utf8Index)
+{
+	ConstantUtf8Info * itemInfo = (ConstantUtf8Info *)(constantPool + utf8Index)->itemInfo;
+
+	if (itemInfo->tag != CONSTATNT_UTF8)
+		return 0;
+
+	return itemInfo->length;
+}
+
+
 const char * getConstalPoolNameAndTypeName(ConstantPoolItem * constantPool, uint16_t nameAndTypeIndex)
 {
 	ConstantNameAndTypeInfo * itemInfo = (ConstantNameAndTypeInfo *)(constantPool + nameAndTypeIndex)->itemInfo;

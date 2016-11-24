@@ -3,12 +3,14 @@
 #include "../../rtda/local_vars.h"
 #include "../../rtda/heap/constant_pool.h"
 #include "../../rtda/heap/cp_symref.h"
+#include "../../rtda/heap/string_pool.h"
 
 static int32_t _ldc(Frame * frame, int32_t index)
 {
 	OperandStack * operandStack = frame->operandStack;
 	ConstantPoolItem * cp = frame->method->classMember.attachClass->constantPool.constantPoolItem;
 	int16_t type = getClassContantPoolType(cp, index);
+	ClassLoader * classLoader = frame->method->classMember.attachClass->classLoader;
 	switch (type)
 	{
 	case CONSTATNT_INTEGER:
@@ -17,6 +19,9 @@ static int32_t _ldc(Frame * frame, int32_t index)
 	case CONSTATNT_FLOAT:
 		pushOperandFloat(operandStack, getClassConstantPoolFloat(cp,index));
 		break;
+	//case CONSTATNT_STRING:
+	//	pushOperandRef(operandStack, jString(classLoader, getClassConstantPoolStringRef(cp, index)));
+	//	break;
 	default:
 		printf("todo: ldc!\n");
 		exit(0);

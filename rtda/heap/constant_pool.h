@@ -8,6 +8,7 @@
 #include "cp_fieldref.h"
 #include "cp_methodref.h"
 #include "cp_interface_methodref.h"
+#include "string_pool.h"
 
 typedef struct ClassConstantInteger{
 	uint8_t tag;
@@ -31,7 +32,7 @@ typedef struct ClassConstantDouble{
 
 typedef struct ClassConstantString{
 	uint8_t tag;
-	char * str;
+	String * str;
 }ClassConstantString;
 
 typedef struct ClassConstantClassRef{

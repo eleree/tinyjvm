@@ -9,6 +9,7 @@
 #include "../utils.h"
 #include "../../strings/strings.h"
 #include "array_class.h"
+#include "string_pool.h"
 
 #pragma warning(disable:4996)
 
@@ -96,6 +97,11 @@ static void newConstantPool(Class * c, ClassFile * classFile)
 		case CONSTATNT_INTERFACE_METHODREF:
 			break;
 		case CONSTATNT_STRING:	
+			destItem = (void *)calloc(1, sizeof(ClassConstantString));
+			srcItemInfo = (classFile->constantPoolItem + i)->itemInfo;
+			c->constantPool.constantPoolItem[i].itemInfo = destItem;
+			((ClassConstantString*)destItem)->tag = tag;
+			((ClassConstantString*)destItem)->str = newString(classFile, &c->constantPool, srcItemInfo);
 			break;
 		case CONSTATNT_INTEGER:		
 			destItem = (void *)calloc(1, sizeof(ClassConstantInteger));

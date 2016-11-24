@@ -437,7 +437,11 @@ uint16_t readClassUint16(ClassFile * classFile);
 uint32_t readClassUint32(ClassFile * classFile);
 uint64_t readClassUint64(ClassFile * classFile);
 
+/* If not use NULL or supplementary characters, utf8 is the same as mutf8 */
 const char * getClassUtf8(ClassFile * classFile, uint16_t utf8Index);
+const char * getConstantPoolMutf8(ConstantPoolItem * constantPool, uint16_t utf8Index);
+uint16_t getConstantPoolMutf8Len(ConstantPoolItem * constantPool, uint16_t utf8Index);
+
 const char * getConstantPoolUtf8(ConstantPoolItem * constantPool, uint16_t utf8Index);
 const char * getConstalPoolNameAndTypeName(ConstantPoolItem * constantPool, uint16_t nameAndTypeIndex);
 const char * getConstalPoolNameAndTypeDescriptor(ConstantPoolItem * constantPool, uint16_t nameAndTypeIndex);
