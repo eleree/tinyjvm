@@ -38,19 +38,26 @@ Class * getPrimitiveArrayClass(ClassLoader * classLoader, uint8_t atype)
 	case AT_BOOLEAN:
 		return loadClass(classLoader, "[Z");
 		break;
+	case AT_BYTE:
+		return loadClass(classLoader, "[B");
+		break;
 	case AT_CHAR:
+		return loadClass(classLoader, "[C");
 		break;
 	case AT_FLOAT:
+		return loadClass(classLoader, "[F");
 		break;
 	case AT_DOUBLE:
-		break;
-	case AT_BYTE:
+		return loadClass(classLoader, "[D");
 		break;
 	case AT_SHORT:
+		return loadClass(classLoader, "[S");
 		break;
 	case AT_INT:
+		return loadClass(classLoader, "[I");
 		break;
 	case AT_LONG:
+		return loadClass(classLoader, "[J");
 		break;
 	}
 	return NULL;

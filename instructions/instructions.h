@@ -89,6 +89,14 @@ Instruction * ASTORE_1(Instruction * inst);
 Instruction * ASTORE_2(Instruction * inst);
 Instruction * ASTORE_3(Instruction * inst);
 
+Instruction * AASTORE(Instruction * inst);
+Instruction * BASTORE(Instruction * inst);
+Instruction * CASTORE(Instruction * inst);
+Instruction * DASTORE(Instruction * inst);
+Instruction * FASTORE(Instruction * inst);
+Instruction * IASTORE(Instruction * inst);
+Instruction * LASTORE(Instruction * inst);
+Instruction * SASTORE(Instruction * inst);
 /* extended */
 Instruction * GOTO_W(Instruction * inst);
 Instruction * IFNULL(Instruction * inst);
@@ -125,6 +133,15 @@ Instruction * LLOAD_0(Instruction * inst);
 Instruction * LLOAD_1(Instruction * inst);
 Instruction * LLOAD_2(Instruction * inst);
 Instruction * LLOAD_3(Instruction * inst);
+
+Instruction * AALOAD(Instruction * inst);
+Instruction * BALOAD(Instruction * inst);
+Instruction * CALOAD(Instruction * inst);
+Instruction * DALOAD(Instruction * inst);
+Instruction * FALOAD(Instruction * inst);
+Instruction * IALOAD(Instruction * inst);
+Instruction * LALOAD(Instruction * inst);
+Instruction * SALOAD(Instruction * inst);
 
 /* math */
 Instruction * DADD(Instruction * inst);
@@ -200,6 +217,11 @@ Instruction * INVOKE_VIRTUAL(Instruction * inst);
 Instruction * INVOKE_SPECIAL(Instruction * inst);
 Instruction * INVOKE_STATIC(Instruction * inst);
 Instruction * INVOKE_INTERFACE(Instruction * inst);
+
+Instruction * NEW_ARRAY(Instruction * inst);
+Instruction * ANEW_ARRAY(Instruction * inst);
+Instruction * MULTI_ANEW_ARRAY(Instruction * inst);
+Instruction * ARRAY_LENGTH(Instruction * inst);
 
 /* control */
 Instruction * RETURN(Instruction * inst);

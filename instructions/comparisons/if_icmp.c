@@ -109,7 +109,7 @@ static int32_t execute_IF_ICMPGE(Frame * frame, struct InsturctionData * instDat
 	int32_t v2 = popOperandInt(operandStack);
 	int32_t v1 = popOperandInt(operandStack);
 
-	if (v1 > v2)
+	if (v1 >= v2)
 	{
 		branch(frame, instData->offset);
 	}

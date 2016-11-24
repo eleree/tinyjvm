@@ -81,8 +81,15 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		setThreadPC(thread, pc);
 		resetBytecodeReader(&bytecodeReader, frame->method->code, frame->method->codeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
-		//printf("pc:0x%02x, opcode:0x%02x\n", pc, opcode);
-		//dumpLocalVars(frame);
+
+#if 0
+		if (opcode == 0xA2 || opcode == 0xA4)
+		{
+			printf("pc:0x%02x, opcode:0x%02x\n", pc, opcode);
+			dumpLocalVars(frame);
+		}
+#endif 
+			
 		Instruction * inst = newInsturction(opcode);
 		InstructionData instData = { 0 };
 		if (inst != NULL)
@@ -95,6 +102,7 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		if (isThreadStackEmpty(thread))
 			break;
 	}
+	printf("JVM Exit\n");
 }
 
 void interpret(Class * c, Method * method)

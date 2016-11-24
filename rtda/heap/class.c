@@ -258,19 +258,6 @@ bool isClassSuperClassOf(Class * thisClass, Class * otherClass)
 	return isClassSubClassOf(otherClass, thisClass);
 }
 
-
-bool isClassAssignableFrom(Class * thisClass, Class * otherClass)
-{
-	Class * s = otherClass;
-	Class * t = thisClass;
-	if (s == t)
-		return true;
-	if (!isClassInterface(t))
-		return isClassSubClassOf(s, t);
-	else
-		return isClassImplements(s, t);
-}
-
 void startClassInit(Class * c)
 {
 	c->initStarted = true;
@@ -285,4 +272,19 @@ Class * arrayClass(Class * self)
 {
 	char * arrayClassName = getArrayClassName(self->name);
 	return loadClass(self->classLoader, arrayClassName);
+}
+
+bool isClassJlObject(Class * self)
+{
+	return strcmp(self->name, "java/lang/Object") == 0;
+}
+
+bool isClassJlCloneable(Class * self)
+{
+	return strcmp(self->name, "java/lang/Cloneable") == 0;
+}
+
+bool isClassJioSerializable(Class * self)
+{
+	return strcmp(self->name, "java/io/Serializable") == 0;
 }

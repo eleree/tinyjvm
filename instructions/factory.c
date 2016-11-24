@@ -175,25 +175,30 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0x2d:
 			//return aload_3
 			return ALOAD_3(&instruction);
-#if 0
-
-				// case 0x2e:
-				// 	return iaload
-				// case 0x2f:
+		case 0x2e:
+			// 	return iaload
+			return IALOAD(&instruction);				
+		case 0x2f:
 				// 	return laload
-				// case 0x30:
+			return LALOAD(&instruction);
+		case 0x30:
 				// 	return faload
-				// case 0x31:
+			return FALOAD(&instruction);
+		case 0x31:
 				// 	return daload
-				// case 0x32:
+			return DALOAD(&instruction);
+		case 0x32:
 				// 	return aaload
-				// case 0x33:
-				// 	return baload
-				// case 0x34:
+			return AALOAD(&instruction);
+		case 0x33:
+				//return baload
+			return BALOAD(&instruction);
+		case 0x34:
 				// 	return caload
-				// case 0x35:
+			return CALOAD(&instruction);
+		case 0x35:
 				// 	return saload
-#endif
+			return SALOAD(&instruction);
 		case 0x36:
 			//return &ISTORE{}
 			return ISTORE(&instruction);
@@ -268,24 +273,30 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0x4e:
 			//return astore_3
 			return ASTORE_3(&instruction);
-#if 0
-				// case 0x4f:
+		case 0x4f:
 				// 	return iastore
-				// case 0x50:
+			return IASTORE(&instruction);
+		case 0x50:
 				// 	return lastore
-				// case 0x51:
+			return LASTORE(&instruction);
+		case 0x51:
 				// 	return fastore
-				// case 0x52:
+			return FASTORE(&instruction);
+		case 0x52:
 				// 	return dastore
-				// case 0x53:
+			return DASTORE(&instruction);
+		case 0x53:
 				// 	return aastore
-				// case 0x54:
+			return AASTORE(&instruction);
+		case 0x54:
 				// 	return bastore
-				// case 0x55:
+			return BASTORE(&instruction);
+		case 0x55:
 				// 	return castore
-				// case 0x56:
+			return CASTORE(&instruction);
+		case 0x56:
 				// 	return sastore
-#endif
+			return SASTORE(&instruction);
 		case 0x57:
 			//return pop
 			return POP(&instruction);
@@ -586,12 +597,14 @@ Instruction * newInsturction(uint8_t opcode)
 			// 	return &INVOKE_DYNAMIC{}
 		case 0xbb:
 			return NEW(&instruction);
-			// case 0xbc:
+		case 0xbc:
 			// 	return &NEW_ARRAY{}
+			return NEW_ARRAY(&instruction);
 			// case 0xbd:
 			// 	return &ANEW_ARRAY{}
-			// case 0xbe:
+		case 0xbe:
 			// 	return arraylength
+			return ARRAY_LENGTH(&instruction);
 			// case 0xbf:
 			// 	return athrow
 			case 0xc0:

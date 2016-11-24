@@ -38,9 +38,9 @@ double * getObjectDoubles(Object * self)
 	return (double*)self->data;
 }
 
-Object * getObjectObjects(Object * self)
+Object* * getObjectRefs(Object * self)
 {
-	return (Object*)self->data;
+	return (Object**)self->data;
 }
 
 Slot * getObjectSlots(Object * self)

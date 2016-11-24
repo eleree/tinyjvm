@@ -375,6 +375,12 @@
     <ClCompile Include="instructions\references\multianewarray.c">
       <Filter>源文件\instructions\references</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\loads\xaload.c">
+      <Filter>源文件\instructions\loads</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\stores\xastore.c">
+      <Filter>源文件\instructions\stores</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

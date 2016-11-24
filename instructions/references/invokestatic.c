@@ -32,7 +32,7 @@ static int32_t execute_INVOKE_STATIC(Frame * frame, struct InsturctionData * ins
 		return 0;
 	}
 
-	//printf("Invode classs:%s method:%s,desc:%s\n", methodRef->symRef.className, methodRef->name, methodRef->descriptor);
+	printf("Invode classs:%s method:%s,desc:%s\n", methodRef->symRef.className, methodRef->name, methodRef->descriptor);
 	InvokeMethod(frame, method);
 
 	return 0;

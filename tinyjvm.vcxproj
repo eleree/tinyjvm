@@ -104,6 +104,7 @@
     <ClCompile Include="instructions\loads\fload.c" />
     <ClCompile Include="instructions\loads\iload.c" />
     <ClCompile Include="instructions\loads\lload.c" />
+    <ClCompile Include="instructions\loads\xaload.c" />
     <ClCompile Include="instructions\math\add.c" />
     <ClCompile Include="instructions\math\and.c" />
     <ClCompile Include="instructions\math\div.c" />
@@ -138,6 +139,7 @@
     <ClCompile Include="instructions\stores\fstore.c" />
     <ClCompile Include="instructions\stores\istore.c" />
     <ClCompile Include="instructions\stores\lstore.c" />
+    <ClCompile Include="instructions\stores\xastore.c" />
     <ClCompile Include="interpreter.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="miniz\minizip.c" />

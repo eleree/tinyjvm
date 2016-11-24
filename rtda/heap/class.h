@@ -85,6 +85,9 @@ bool isClassSubInterfaceOf(Class * thisClass, Class * iface);
 bool isClassImplements(Class * thisClass, Class * iface);
 bool isClassSubClassOf(Class * thisClass, Class * otherClass);
 bool isClassAssignableFrom(Class * thisClass, Class * otherClass);
+bool isClassJlObject(Class * self);
+bool isClassJlCloneable(Class * self);
+bool isClassJioSerializable(Class * self);
 void startClassInit(Class * c);
 
 void InitClass(Thread * thread, Class * class);
