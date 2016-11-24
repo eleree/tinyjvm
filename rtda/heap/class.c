@@ -288,3 +288,24 @@ bool isClassJioSerializable(Class * self)
 {
 	return strcmp(self->name, "java/io/Serializable") == 0;
 }
+
+Field * getClassField(Class * self, const char * name, const char * descriptor, bool isStatic)
+{
+	Class * c = self;
+	while (c != NULL)
+	{
+		for (uint16_t i = 0; i < c->fieldsCount; i++)
+		{
+			Field * field = c->fields + i;
+			if (isFieldStatic(field) == isStatic &&
+				strcmp(field->classMember.name, name) == 0 &&
+				strcmp(field->classMember.descriptor, descriptor) == 0
+				)
+			{
+				return field;
+			}
+		}
+		c = c->superClass;
+	}
+	return NULL;
+}

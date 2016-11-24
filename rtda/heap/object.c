@@ -16,3 +16,17 @@ Object * newObject(struct Class * c)
 bool isObjectInstanceOf(Object * obj, Class * class){
 	return isClassAssignableFrom(obj->class, class);
 }
+
+Object * getObjectRefVar(Object * self, const char * name, const char * descriptor)
+{
+	Field * field = getClassField(self->class, name, descriptor, false);
+	Slot * slots = getObjectSlots(self);
+	return getSlotRef(slots, field->slotId);
+}
+
+void setObectRefVar(Object * self, const char * name, const char *descriptor, Object * ref)
+{
+	Field * field = getClassField(self->class, name, descriptor, false);
+	Slot * slots = getObjectSlots(self);
+	setSlotRef(slots, field->slotId, ref);
+}

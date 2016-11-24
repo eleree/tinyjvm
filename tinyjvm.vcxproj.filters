@@ -381,6 +381,9 @@
     <ClCompile Include="instructions\stores\xastore.c">
       <Filter>源文件\instructions\stores</Filter>
     </ClCompile>
+    <ClCompile Include="rtda\heap\string_pool.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -483,6 +486,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="rtda\heap\array_class.h">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\string_pool.h">
       <Filter>源文件\rtda\heap</Filter>
     </ClInclude>
   </ItemGroup>

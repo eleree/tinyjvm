@@ -92,4 +92,7 @@ void startClassInit(Class * c);
 
 void InitClass(Thread * thread, Class * class);
 Class * arrayClass(Class * self);
+
+struct Field * getClassField(Class * self, const char * name, const char * descriptor, bool isStatic);
+
 #endif
