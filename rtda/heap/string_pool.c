@@ -142,3 +142,10 @@ String * newString(ClassFile *classFile, struct ConstantPool * cp, ConstantStrin
 	s->len = mutf8StrLen;
 	return s;
 }
+
+Object * internString(Object * jStr)
+{
+	String * goStr = goString(jStr);
+	//todo
+	return jStr;
+}

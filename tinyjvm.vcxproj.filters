@@ -423,6 +423,9 @@
     <ClCompile Include="native\java\lang\nativeSystem.c">
       <Filter>源文件\native\java\lang</Filter>
     </ClCompile>
+    <ClCompile Include="rtda\heap\object_clone.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

@@ -21,4 +21,6 @@ String * goString(struct Object * jStr);
 struct Object * jString(struct ClassLoader *loader, String * goStr);
 String * newString(ClassFile *classFile, struct ConstantPool * cp, ConstantStringInfo * stringInfo);
 uint16_t *  decodeMutf8ToUtf16(const char * srcStr, uint32_t srcLen, uint32_t * resultLen);
+Object * internString(Object * jStr);
+
 #endif

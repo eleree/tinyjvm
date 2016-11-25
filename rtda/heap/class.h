@@ -80,6 +80,7 @@ bool isClassInterface(Class * c);
 bool isClassAbstract(Class * c);
 bool isClassSuper(Class * c);
 
+bool isClassPrimitive(Class *self);
 bool isSubClassOf(Class * thisClass, Class * otherClass);
 bool isClassSuperClassOf(Class * thisClass, Class * otherClass);
 bool isClassSubInterfaceOf(Class * thisClass, Class * iface);

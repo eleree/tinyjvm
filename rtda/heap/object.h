@@ -31,6 +31,8 @@ Object * getSlotRef(struct Slot * slot, uint16_t index);
 Object * getObjectRefVar(Object * self, const char * name, const char * descriptor);
 void setObjectRefVar(Object * self, const char * name, const char *descriptor, Object * ref);
 
+Object * cloneObject(Object * self);
+
 #define panic(message,code) while(0){\
 	printf("%s,code:%d", message, code); \
 	exit(code); \

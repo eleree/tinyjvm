@@ -8,6 +8,7 @@
 #include "../rtda/heap/method.h"
 #include "../rtda/heap/class_loader.h"
 #include "../rtda/local_vars.h"
+#include "../rtda/heap/array_class.h"
 typedef void (*NativeMethod)(Frame *frame);
 
 

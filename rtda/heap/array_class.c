@@ -157,3 +157,83 @@ char * getComponentClassName(char * className)
 	printf("Not array: %s", className);
 	exit(150);
 }
+
+
+void arrayCopy(Object * srcArray, Object * destArray, int32_t srcPos, int32_t dstPos, int32_t length)
+{
+	switch (srcArray->dataType)
+	{
+	case 'Z':
+		for (int32_t i = 0; i < length; i++)
+		{
+			int8_t * src = (int8_t*)srcArray->data;
+			int8_t * dst = (int8_t*)destArray->data;
+			dst[i+dstPos] = src[i+srcPos];
+		}
+		break;
+	case 'B':
+		for (int32_t i = 0; i < length; i++)
+		{
+			int8_t * src = (int8_t*)srcArray->data;
+			int8_t * dst = (int8_t*)destArray->data;
+			dst[i + dstPos] = src[i + srcPos];
+		}
+		break;
+	case 'C':
+		for (int32_t i = 0; i < length; i++)
+		{
+			int16_t * src = (int16_t*)srcArray->data;
+			int16_t * dst = (int16_t*)destArray->data;
+			dst[i + dstPos] = src[i + srcPos];
+		}
+		break;
+	case 'S':
+		for (int32_t i = 0; i < length; i++)
+		{
+			int16_t * src = (int16_t*)srcArray->data;
+			int16_t * dst = (int16_t*)destArray->data;
+			dst[i + dstPos] = src[i + srcPos];
+		}		
+		break;
+	case 'I':
+		for (int32_t i = 0; i < length; i++)
+		{
+			int32_t * src = (int32_t*)srcArray->data;
+			int32_t * dst = (int32_t*)destArray->data;
+			dst[i + dstPos] = src[i + srcPos];
+		}
+		break;
+	case 'J':
+		for (int32_t i = 0; i < length; i++)
+		{
+			int64_t * src = (int64_t*)srcArray->data;
+			int64_t * dst = (int64_t*)destArray->data;
+			dst[i + dstPos] = src[i + srcPos];
+		}
+		break;
+	case 'F':
+		for (int32_t i = 0; i < length; i++)
+		{
+			float * src = (float*)srcArray->data;
+			float * dst = (float*)destArray->data;
+			dst[i + dstPos] = src[i + srcPos];
+		}
+		break;
+	case 'D':
+		for (int32_t i = 0; i < length; i++)
+		{
+			double * src = (double*)srcArray->data;
+			double * dst = (double*)destArray->data;
+			dst[i + dstPos] = src[i + srcPos];
+		}
+		break;
+	default:
+		for (int32_t i = 0; i < length; i++)
+		{
+			Object* * src = (Object**)srcArray->data;
+			Object* * dst = (Object**)destArray->data;
+			dst[i + dstPos] = src[i + srcPos];
+		}
+		break;
+	}
+}

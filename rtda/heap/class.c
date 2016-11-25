@@ -352,3 +352,38 @@ char * classJavaName(Class * self)
 	stringReplace(self->name, str, strlen(self->name));
 	return str;
 }
+
+/*
+"void":    "V",
+"boolean": "Z",
+"byte":    "B",
+"short":   "S",
+"int":     "I",
+"long":    "J",
+"char":    "C",
+"float":   "F",
+"double":  "D",
+*/
+bool isClassPrimitive(Class *self)
+{
+	if (strcmp(self->name, "V") == 0)
+		return true;
+	if (strcmp(self->name, "Z") == 0)
+		return true;
+	if (strcmp(self->name, "B") == 0)
+		return true;
+	if (strcmp(self->name, "S") == 0)
+		return true;
+	if (strcmp(self->name, "I") == 0)
+		return true;
+	if (strcmp(self->name, "J") == 0)
+		return true;
+	if (strcmp(self->name, "C") == 0)
+		return true;
+	if (strcmp(self->name, "F") == 0)
+		return true;
+	if (strcmp(self->name, "D") == 0)
+		return true;
+
+	return false;
+}

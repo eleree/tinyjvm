@@ -170,6 +170,7 @@
     <ClCompile Include="rtda\heap\method_descriptor_parser.c" />
     <ClCompile Include="rtda\heap\method_lookup.c" />
     <ClCompile Include="rtda\heap\object.c" />
+    <ClCompile Include="rtda\heap\object_clone.c" />
     <ClCompile Include="rtda\heap\slot.c" />
     <ClCompile Include="rtda\heap\method_descriptor.c" />
     <ClCompile Include="rtda\heap\string_pool.c" />
