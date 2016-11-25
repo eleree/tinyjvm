@@ -67,6 +67,21 @@
     <Filter Include="源文件\instructions\references">
       <UniqueIdentifier>{27cca1e9-cf31-46e0-ad9d-deaae4a4a3e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\native">
+      <UniqueIdentifier>{95ff6d5d-5151-4566-b44f-0ccf9f23270b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\native\java">
+      <UniqueIdentifier>{9d5f4f81-8e86-4164-a20d-ac58aa7187d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\native\java\lang">
+      <UniqueIdentifier>{242aa281-9d49-4b2e-9623-0086ef2fcd96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\native\sun">
+      <UniqueIdentifier>{968d4dd0-2e9f-42b9-b5b8-bc8d1c1900dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\native\sun\misc">
+      <UniqueIdentifier>{4a8b6dfe-09da-4730-96bd-f2d3a971a8a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -384,6 +399,30 @@
     <ClCompile Include="rtda\heap\string_pool.c">
       <Filter>源文件\rtda\heap</Filter>
     </ClCompile>
+    <ClCompile Include="native\registry.c">
+      <Filter>源文件\native</Filter>
+    </ClCompile>
+    <ClCompile Include="native\sun\misc\VM.c">
+      <Filter>源文件\native\sun\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\lang\nativeObject.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\lang\nativeFloat.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\lang\nativeDouble.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\lang\nativeClass.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\lang\nativeString.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\lang\nativeSystem.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -490,6 +529,9 @@
     </ClInclude>
     <ClInclude Include="rtda\heap\string_pool.h">
       <Filter>源文件\rtda\heap</Filter>
+    </ClInclude>
+    <ClInclude Include="native\registry.h">
+      <Filter>源文件\native</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

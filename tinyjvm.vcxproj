@@ -143,6 +143,14 @@
     <ClCompile Include="interpreter.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="miniz\minizip.c" />
+    <ClCompile Include="native\java\lang\nativeClass.c" />
+    <ClCompile Include="native\java\lang\nativeDouble.c" />
+    <ClCompile Include="native\java\lang\nativeFloat.c" />
+    <ClCompile Include="native\java\lang\nativeObject.c" />
+    <ClCompile Include="native\java\lang\nativeString.c" />
+    <ClCompile Include="native\java\lang\nativeSystem.c" />
+    <ClCompile Include="native\registry.c" />
+    <ClCompile Include="native\sun\misc\VM.c" />
     <ClCompile Include="rtda\frame.c" />
     <ClCompile Include="rtda\heap\array_class.c" />
     <ClCompile Include="rtda\heap\array_object.c" />
@@ -184,6 +192,7 @@
     <ClInclude Include="interpreter.h" />
     <ClInclude Include="miniz\miniz_wrapper.h" />
     <ClInclude Include="miniz\minizip.h" />
+    <ClInclude Include="native\registry.h" />
     <ClInclude Include="rtda\frame.h" />
     <ClInclude Include="rtda\heap\array_class.h" />
     <ClInclude Include="rtda\heap\class.h" />

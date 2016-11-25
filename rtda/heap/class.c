@@ -180,6 +180,18 @@ void freeClass(Class * c)
 }
 
 
+Method * getClassMethod(Class * c, const char * name, const char * descriptor, bool isStatic)
+{
+	for (uint16_t i = 0; i < c->methodsCount; i++)
+	{
+		if (isMethodStatic(c->methods + i) == isStatic &&
+			strcmp(c->methods[i].classMember.name, name) == 0 &&
+			strcmp(c->methods[i].classMember.descriptor, descriptor) == 0)
+			return (c->methods + i);
+	}
+	return NULL;
+}
+
 Method * getClassStaticMethod(Class * c, const char * name, const char * descriptor)
 {
 	for (uint16_t i = 0; i < c->methodsCount; i++)
@@ -314,4 +326,22 @@ Field * getClassField(Class * self, const char * name, const char * descriptor, 
 		c = c->superClass;
 	}
 	return NULL;
+}
+
+
+Method * getClassInstanceMethod(Class * self, const char * name, const char *  descriptor)
+{
+	return getClassMethod(self, name, descriptor, false);
+}
+
+Object * getClassRefVar(Class * self, const char * fieldName, const char * fieldDescriptor)
+{
+	Field * field = getClassField(self, fieldName, fieldDescriptor, true);
+	return getSlotRef(self->staticVars, field->slotId);
+}
+
+void setClassRefVar(Class * self, const char * fieldName, const char * fieldDescriptor, Object * ref)
+{
+	Field * field = getClassField(self, fieldName, fieldDescriptor, true);
+	setSlotRef(self->staticVars, field->slotId, ref);
 }

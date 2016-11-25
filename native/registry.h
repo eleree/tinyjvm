@@ -1,0 +1,23 @@
+#ifndef __TINY_JVM_REGISTRY_H__
+#define __TINY_JVM_REGISTRY_H__
+
+#include "../rtda/heap/class.h"
+#include "../rtda/heap/object.h"
+#include "../rtda/heap/string_pool.h"
+#include "../rtda/operand_stack.h"
+#include "../rtda/heap/method.h"
+
+typedef void (*NativeMethod)(Frame *frame);
+
+
+typedef struct NativeMethodList
+{
+	char * name;
+	NativeMethod method;
+	struct NativeMethodList * next;
+}NativeMethodList;
+
+NativeMethod findNativeMethod(const char * className, const char * methodName, const char * methodDescriptor);
+void registerNativeMethod(const char * className, const char * methodName, const char * methodDescriptor, NativeMethod method);
+
+#endif

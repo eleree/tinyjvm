@@ -47,7 +47,7 @@ Object * jString(ClassLoader *loader, String * mutf8Str)
 	Class * strClass = loadClass(loader, "java/lang/String");
 	Object * jStr = newObject(strClass);
 
-	setObectRefVar(jStr, "value", "[C", jChars);
+	setObjectRefVar(jStr, "value", "[C", jChars);
 
 	return jStr;
 }

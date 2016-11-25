@@ -94,5 +94,8 @@ void InitClass(Thread * thread, Class * class);
 Class * arrayClass(Class * self);
 
 struct Field * getClassField(Class * self, const char * name, const char * descriptor, bool isStatic);
+void setClassRefVar(Class * self, const char * fieldName, const char * fieldDescriptor, Object * ref);
+Object * getClassRefVar(Class * self, const char * fieldName, const char * fieldDescriptor);
+struct Method * getClassInstanceMethod(Class * self, const char * name, const char *  descriptor);
 
 #endif

@@ -25,7 +25,7 @@ void setSlotRef(struct Slot * slot, uint16_t index, Object * ref);
 Object * getSlotRef(struct Slot * slot, uint16_t index);
 
 Object * getObjectRefVar(Object * self, const char * name, const char * descriptor);
-void setObectRefVar(Object * self, const char * name, const char *descriptor, Object * ref);
+void setObjectRefVar(Object * self, const char * name, const char *descriptor, Object * ref);
 
 #define panic(message,code) while(0){\
 	printf("%s,code:%d", message, code); \

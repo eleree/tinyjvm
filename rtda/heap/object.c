@@ -24,7 +24,7 @@ Object * getObjectRefVar(Object * self, const char * name, const char * descript
 	return getSlotRef(slots, field->slotId);
 }
 
-void setObectRefVar(Object * self, const char * name, const char *descriptor, Object * ref)
+void setObjectRefVar(Object * self, const char * name, const char *descriptor, Object * ref)
 {
 	Field * field = getClassField(self->class, name, descriptor, false);
 	Slot * slots = getObjectSlots(self);
