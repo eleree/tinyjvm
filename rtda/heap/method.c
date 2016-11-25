@@ -48,6 +48,46 @@ void calcArgSlotCount(Method * self) {
 	}
 }
 
+void injectCodeAttribute(Method * method, const char * returnType)
+{
+	method->maxStack = 4;//todo
+	method->maxLocals = method->argSlotCount;
+	switch (returnType[0])
+	{
+	case 'V':
+		method->codeLen = 2;
+		method->code = calloc(2, sizeof(uint8_t));
+		method->code[0] = 0xfe;
+		method->code[1] = 0xb1;
+	case 'L':
+	case '[':
+		method->codeLen = 2;
+		method->code = calloc(2, sizeof(uint8_t));
+		method->code[0] = 0xfe;
+		method->code[1] = 0xb0;
+	case 'D':
+		method->codeLen = 2;
+		method->code = calloc(2, sizeof(uint8_t));
+		method->code[0] = 0xfe;
+		method->code[1] = 0xaf;
+	case 'F':
+		method->codeLen = 2;
+		method->code = calloc(2, sizeof(uint8_t));
+		method->code[0] = 0xfe;
+		method->code[1] = 0xae;
+	case 'J':
+		method->codeLen = 2;
+		method->code = calloc(2, sizeof(uint8_t));
+		method->code[0] = 0xfe;
+		method->code[1] = 0xad;
+	default:
+		method->codeLen = 2;
+		method->code = calloc(2, sizeof(uint8_t));
+		method->code[0] = 0xfe;
+		method->code[1] = 0xac;
+	}
+}
+
 Method * newMethods(struct Class * c, ClassFile * classFile)
 {
 	c->methodsCount = classFile->methodsCount;
@@ -57,11 +97,16 @@ Method * newMethods(struct Class * c, ClassFile * classFile)
 
 	c->methods = calloc(classFile->methodsCount, sizeof(Method));
 	for (uint16_t i = 0; i < c->methodsCount; i++)
-	{
+	{		
 		c->methods[i].classMember.attachClass = c;
 		copyMethodInfo(&c->methods[i], &classFile->methods[i], classFile);
 		copyAttributes(&c->methods[i], &classFile->methods[i], classFile);
+		MethodDescriptor * md = parseMethodDescriptor(c->methods[i].classMember.descriptor);
 		calcArgSlotCount(&c->methods[i]);
+		if (isMethodNative(&c->methods[i]))
+		{
+			injectCodeAttribute(&c->methods[i], md->returnType);
+		}
 	}
  
 	return NULL;
