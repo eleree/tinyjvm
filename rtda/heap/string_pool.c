@@ -30,7 +30,7 @@ String * goString(Object * jStr)
 			((char *)s->data)[i] = (char)utf16Arr[i];
 	}
 	s->len = charArr->dataCount;
-	
+	s->type = STRING_TYPE_UTF8;
 	return s;
 }
 

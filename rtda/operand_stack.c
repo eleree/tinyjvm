@@ -37,6 +37,19 @@ int32_t popOperandInt(OperandStack* operandStack)
 	return operandStack->slots[operandStack->size].num;
 }
 
+void pushOperandBoolean(OperandStack* operandStack, bool val)
+{
+	if (val)
+		pushOperandInt(operandStack, 1);
+	else
+		pushOperandInt(operandStack, 0);
+}
+
+bool popOperandBoolean(OperandStack* operandStack)
+{
+	return popOperandInt(operandStack) == 1;
+}
+
 void pushOperandFloat(OperandStack* operandStack, float val)
 {
 	FloatInt transData;

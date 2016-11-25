@@ -14,6 +14,10 @@ typedef struct Object {
 	int32_t  dataCount;
 	uint16_t dataType;
 	void * data;
+
+	int32_t extraCount;
+	uint16_t extraType;
+	void * extra;
 }Object;
 
 Object * newObject(struct Class * c);

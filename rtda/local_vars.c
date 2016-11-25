@@ -91,3 +91,8 @@ void setLocalVarsSlot(LocalVars * localVars, int32_t index, Slot * slot)
 	localVars->slots[index].num = slot->num;
 	localVars->slots[index].ref = slot->ref;
 }
+
+Object * getLocalVarsThis(LocalVars * self) 
+{
+	return getLocalVarsRef(self, 0);
+}

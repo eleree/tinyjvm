@@ -77,6 +77,7 @@ void freeStack(Stack * stack);
 
 Object * getLocalVarsRef(LocalVars * localVars, int32_t index);
 void setLocalVarsSlot(LocalVars * localVars, int32_t index, Slot * slot);
+Object * getLocalVarsThis(LocalVars * self);
 
 /* Operand Stack */
 Object * getOperandRefFromTop(OperandStack * self, uint16_t n);

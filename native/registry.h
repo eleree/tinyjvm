@@ -6,7 +6,8 @@
 #include "../rtda/heap/string_pool.h"
 #include "../rtda/operand_stack.h"
 #include "../rtda/heap/method.h"
-
+#include "../rtda/heap/class_loader.h"
+#include "../rtda/local_vars.h"
 typedef void (*NativeMethod)(Frame *frame);
 
 

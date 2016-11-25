@@ -45,6 +45,7 @@ typedef struct Class
 	Slot * staticVars;
 	struct ClassLoader * classLoader;
 	bool initStarted;
+	Object * jClass;
 }Class;
 
 enum {
@@ -97,5 +98,7 @@ struct Field * getClassField(Class * self, const char * name, const char * descr
 void setClassRefVar(Class * self, const char * fieldName, const char * fieldDescriptor, Object * ref);
 Object * getClassRefVar(Class * self, const char * fieldName, const char * fieldDescriptor);
 struct Method * getClassInstanceMethod(Class * self, const char * name, const char *  descriptor);
+
+char * classJavaName(Class * self);
 
 #endif

@@ -345,3 +345,10 @@ void setClassRefVar(Class * self, const char * fieldName, const char * fieldDesc
 	Field * field = getClassField(self, fieldName, fieldDescriptor, true);
 	setSlotRef(self->staticVars, field->slotId, ref);
 }
+
+char * classJavaName(Class * self)
+{
+	char * str = calloc(strlen(self->name) + 1, sizeof(char));
+	stringReplace(self->name, str, strlen(self->name));
+	return str;
+}
