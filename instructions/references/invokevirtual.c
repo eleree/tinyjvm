@@ -43,8 +43,15 @@ void _println(OperandStack * operandStack, char * descriptor)
 	else
 	{
 		printf("println:%s\n", descriptor);
-		exit(-1);
 	}
+	if (strcmp(descriptor, "(Ljava/lang/String;)V") == 0)
+	{
+		Object * jStr = popOperandRef(operandStack);
+		String * x =  goString(jStr);
+
+		printf("println:%s\n", x->data);
+	}
+
 	popOperandRef(operandStack);
 }
 

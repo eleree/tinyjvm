@@ -56,7 +56,7 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 }
 #endif
 
-void startJVM(const char * jrepath, const char * classpath, const char * className)
+void startJVM(const char * jrepath, const char * classpath, const char * className, int argc, char ** argv)
 {
 	int32_t classSize = 0;
 	char * classContent = NULL;
@@ -71,7 +71,7 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 	stringCat(fullClassName, ".class", 128);
 	mainClass = loadClass(classLoader,fullClassName);
 	if (mainClass != NULL)
-		interpret(mainClass, getClassMainMethod(mainClass));
+		interpret(mainClass, getClassMainMethod(mainClass), argc, argv);
 	else
 		printf("Main method not found in class\n");
 
@@ -209,7 +209,7 @@ int main(int argc, char ** argv)
 
 	//testStack();
 
-	startJVM(jrepath, classpath, className);
+	startJVM(jrepath, classpath, className, argc, argv);
 
 	return 0;
 }

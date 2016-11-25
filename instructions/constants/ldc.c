@@ -19,9 +19,9 @@ static int32_t _ldc(Frame * frame, int32_t index)
 	case CONSTATNT_FLOAT:
 		pushOperandFloat(operandStack, getClassConstantPoolFloat(cp,index));
 		break;
-	//case CONSTATNT_STRING:
-	//	pushOperandRef(operandStack, jString(classLoader, getClassConstantPoolStringRef(cp, index)));
-	//	break;
+	case CONSTATNT_STRING:
+		pushOperandRef(operandStack, jString(classLoader, getClassConstantPoolStringRef(cp, index)));
+		break;
 	default:
 		printf("todo: ldc!\n");
 		exit(0);

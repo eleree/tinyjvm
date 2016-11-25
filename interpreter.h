@@ -5,6 +5,6 @@
 #include "rtda\heap\class.h"
 #include "rtda\heap\method.h"
 
-void interpret(Class * classFile, Method * method);
+void interpret(Class * classFile, Method * method, int argc, char ** argv);
 
 #endif

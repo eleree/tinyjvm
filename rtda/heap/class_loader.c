@@ -98,10 +98,10 @@ void calcStaticFieldSlotIds(Class * class)
 	class->staticSlotCount = slotId;
 }
 
-void initStaticFinalVar(Class * class, Field * field) 
+void initStaticFinalVar(Class * c, Field * field) 
 {
-	Slot * staticVars = class->staticVars;
-	ConstantPoolItem * constantPool = class->constantPool.constantPoolItem;
+	Slot * staticVars = c->staticVars;
+	ConstantPoolItem * constantPool = c->constantPool.constantPoolItem;
 	uint16_t cpIndex = field->constValueIndex;
 	uint16_t slotId = field->slotId;
 	int32_t int32Val = 0;
@@ -134,8 +134,9 @@ void initStaticFinalVar(Class * class, Field * field)
 		}
 		if (strcmp(field->classMember.descriptor, "Ljava/lang/String;") == 0)
 		{
-			printf("todo\n");
-			exit(1);
+			String * s = getClassConstantPoolStringRef(constantPool, cpIndex);
+			Object * jStr = jString(c->classLoader, s);
+			setSlotRef(staticVars, slotId, jStr);
 		}
 	}
 }
@@ -210,13 +211,14 @@ Class * loadNonArrayClass(ClassLoader * classLoader, const char * className)
 		printf("Could not found target class\n");
 		exit(127);
 	}
+
 	loadClass = parseClassFile(classContent, classSize);
+	loadClass->classLoader = classLoader;
 
 	defineClass(classLoader, loadClass);
 
 	linkClass(classLoader, loadClass);
 
-	loadClass->classLoader = classLoader;
 
 	return loadClass;
 }

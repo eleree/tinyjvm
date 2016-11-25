@@ -5,6 +5,7 @@
 #include "rtda\heap\method.h"
 #include "instructions\factory.h"
 #include "instructions\base\bytecode_reader.h"
+#include "rtda\heap\class_loader.h"
 
 void dumpLocalVars(Frame * frame)
 {
@@ -105,7 +106,13 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 	printf("JVM Exit\n");
 }
 
-void interpret(Class * c, Method * method)
+Object * createArgsArray(ClassLoader * classLoader, int argc, char ** argv)
+{
+	Class * stringClass = loadClass(classLoader, "java/lang/String");
+	return NULL;
+}
+
+void interpret(Class * c, Method * method, int argc, char ** argv)
 {
 	uint16_t maxLocals = method->maxLocals;
 	uint16_t maxStack = method->maxStack;

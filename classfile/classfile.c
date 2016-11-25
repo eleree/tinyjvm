@@ -239,10 +239,18 @@ int32_t readConstantInfo(ClassFile * classFile, uint8_t tag, void * itemInfo)
 		}
 		break;
 	case CONSTATNT_METHOD_HANDLE:
+		((ConstantMethodHandleInfo*)itemInfo)->tag = tag;
+		((ConstantMethodHandleInfo*)itemInfo)->reference_kind = readClassUint8(classFile);
+		((ConstantMethodHandleInfo*)itemInfo)->reference_index = readClassUint16(classFile);
 		break;
 	case CONSTATNT_METHOD_TYPE:
+		((ConstantMethodTypeInfo*)itemInfo)->tag = tag;
+		((ConstantMethodTypeInfo*)itemInfo)->descriptor_index = readClassUint16(classFile);;
 		break;
 	case CONSTATNT_INVOKE_DYNAMIC:
+		((ConstantInvokeDynamicInfo*)itemInfo)->tag = tag;
+		((ConstantInvokeDynamicInfo*)itemInfo)->bootstrap_method_attr_index = readClassUint16(classFile);;
+		((ConstantInvokeDynamicInfo*)itemInfo)->name_and_type_index = readClassUint16(classFile);;
 		break;
 	}
 
@@ -326,6 +334,60 @@ ClassFile * parseClassData(uint8_t * classData, uint64_t classSize)
 	readClassMethods(classFile);
 	readClassAttributes(classFile);
 	return classFile;
+}
+
+uint16_t getClassUtf8Len(ClassFile * classFile, uint16_t utf8Index)
+{
+	ConstantUtf8Info * itemInfo = (ConstantUtf8Info *)(classFile->constantPoolItem + utf8Index)->itemInfo;
+
+	/* java.lang.Objec */
+	if (utf8Index == 0)
+		return 0;
+
+	if (classFile == NULL)
+		return 0;
+
+	if (itemInfo->tag != CONSTATNT_UTF8)
+	{
+		switch (itemInfo->tag)
+		{
+		case CONSTATNT_CLASS:
+			return getClassUtf8Len(classFile, ((ConstantClassInfo*)itemInfo)->nameIndex);
+			break;
+		case CONSTATNT_FIELDREF:
+			return getClassUtf8Len(classFile, ((ConstantFieldrefInfo*)itemInfo)->name_and_type_index);
+			break;
+		case CONSTATNT_METHODREF:
+			return getClassUtf8Len(classFile, ((ConstantMethodrefInfo*)itemInfo)->name_and_type_index);
+			break;
+		case CONSTATNT_INTERFACE_METHODREF:
+			break;
+		case CONSTATNT_STRING:
+			return getClassUtf8Len(classFile, ((ConstantStringInfo*)itemInfo)->string_index);
+			break;
+		case CONSTATNT_INTEGER:
+			break;
+		case CONSTATNT_FLOAT:
+		case CONSTATNT_LONG:
+			break;
+		case CONSTATNT_DOUBLE:
+			break;
+		case CONSTATNT_NAME_AND_TYPE:
+			return getClassUtf8Len(classFile, ((ConstantNameAndTypeInfo*)itemInfo)->name_index);
+			break;
+		case CONSTATNT_UTF8:
+			break;
+		case CONSTATNT_METHOD_HANDLE:
+		case CONSTATNT_METHOD_TYPE:
+		case CONSTATNT_INVOKE_DYNAMIC:
+			break;
+		default:
+			return 0;
+			break;
+		}
+	}
+
+	return itemInfo->length;
 }
 
 const char * getClassUtf8(ClassFile * classFile, uint16_t utf8Index)
@@ -523,24 +585,14 @@ const char * getConstantPoolUtf8(ConstantPoolItem * constantPool, uint16_t utf8I
 	return itemInfo->bytes;
 }
 
-const char * getConstantPoolMutf8(ConstantPoolItem * constantPool, uint16_t utf8Index)
+const char * getConstantPoolMutf8(ClassFile * classFile, uint16_t utf8Index)
 {
-	ConstantUtf8Info * itemInfo = (ConstantUtf8Info *)(constantPool + utf8Index)->itemInfo;
-
-	if (itemInfo->tag != CONSTATNT_UTF8)
-		return NULL;
-
-	return itemInfo->bytes;
+	return getClassUtf8(classFile, utf8Index);
 }
 
-uint16_t getConstantPoolMutf8Len(ConstantPoolItem * constantPool, uint16_t utf8Index)
+uint16_t getConstantPoolMutf8Len(ClassFile * classFile, uint16_t utf8Index)
 {
-	ConstantUtf8Info * itemInfo = (ConstantUtf8Info *)(constantPool + utf8Index)->itemInfo;
-
-	if (itemInfo->tag != CONSTATNT_UTF8)
-		return 0;
-
-	return itemInfo->length;
+	return getClassUtf8Len(classFile, utf8Index);
 }
 
 

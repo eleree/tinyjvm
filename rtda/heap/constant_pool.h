@@ -64,6 +64,7 @@ ClassRef * getClassConstantPoolClassRef(ConstantPoolItem * cp, uint16_t index);
 FieldRef * getClassConstantPoolFieldRef(ConstantPoolItem * cp, uint16_t index);
 MethodRef * getClassConstantPoolMethodRef(ConstantPoolItem * cp, uint16_t index);
 InterfaceMethodRef * getClassConstantPoolInterfaceMethodRef(ConstantPoolItem * cp, uint16_t index);
+String * getClassConstantPoolStringRef(ConstantPoolItem * cp, uint16_t index);
 
 int16_t getClassContantPoolType(ConstantPoolItem * cp, uint16_t index);
 
