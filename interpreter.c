@@ -13,10 +13,10 @@ void dumpLocalVars(Frame * frame)
 	LocalVars * localVars = frame->localVars;
 	if (frame->localVars == NULL)
 	{
-		printf("frame->localVars is NULL,Not log\n");
+		printf("  frame->localVars is NULL,Not log\n");
 		return;
 	}
-	printf("Local Vars:");
+	printf("  Local Vars:");
 	for (uint32_t i = 0; i < localVars->size; i++)
 	{
 		printf("%d,", getLocalVarsInt(localVars,i));
@@ -96,8 +96,11 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		resetBytecodeReader(&bytecodeReader, frame->method->code, frame->method->codeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
 
-#if 0
-		printf("pc:0x%02x, opcode:0x%02x\n", pc, opcode);
+#if 1
+		printf("->%s\n", frame->method->classMember.attachClass->name);
+		printf("  %s\n", frame->method->classMember.name);
+		printf("  %s\n", frame->method->classMember.descriptor);
+		printf("  pc:0x%02x, opcode:0x%02x\n", pc, opcode);
 		dumpLocalVars(frame);
 #endif 
 			

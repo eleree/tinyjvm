@@ -4,7 +4,14 @@
 
 #pragma warning(disable:4996)
 
+typedef struct InternedStringsList
+{
+	String * goStr;
+	Object * jStr;
+	struct InternedStringsList * next;
+}InternedStringsList;
 
+static InternedStringsList * internedStrings;
 // utf8 -> utf16
 String * stringToUtf16(const char * s)
 {
@@ -34,12 +41,37 @@ String * goString(Object * jStr)
 	return s;
 }
 
+Object * findJString(ClassLoader *loader, String * mutf8Str)
+{
+	String * goStr = mutf8Str;
+	InternedStringsList * preStrList = NULL;
+	InternedStringsList * strList = internedStrings;
+	while (strList != NULL)
+	{
+		char * utf8Str = (char *)goStr->data;
+		char * listUtf8Str = (char *)strList->goStr->data;
+		if (strcmp(utf8Str, listUtf8Str) == 0)
+		{
+			return strList->jStr;
+		}
+		preStrList = strList;
+		strList = strList->next;
+	}
+
+	return NULL;
+}
+
 // mutf8 string -> java.lang.String
 Object * jString(ClassLoader *loader, String * mutf8Str)
 {
 	Object * jChars = (Object *)calloc(1, sizeof(Object));
 	uint32_t charsLen = 0;
-	uint16_t * chars = decodeMutf8ToUtf16(mutf8Str->data, mutf8Str->len, &charsLen);
+	Object * result = findJString(loader, mutf8Str);
+	uint16_t * chars = NULL;
+	if (result != NULL)
+		return result;
+
+	chars = decodeMutf8ToUtf16(mutf8Str->data, mutf8Str->len, &charsLen);
 	jChars->data = (void *)chars;
 	jChars->dataCount =(uint16_t) charsLen;
 	jChars->dataType = 'u';
@@ -48,6 +80,24 @@ Object * jString(ClassLoader *loader, String * mutf8Str)
 	Object * jStr = newObject(strClass);
 
 	setObjectRefVar(jStr, "value", "[C", jChars);
+
+	InternedStringsList * newList = calloc(1, sizeof(InternedStringsList));
+	newList->goStr = mutf8Str;
+	newList->jStr = jStr;
+
+	if (internedStrings == NULL)
+		internedStrings = newList;
+	else
+	{
+		InternedStringsList * preList = NULL;
+		InternedStringsList * list = internedStrings;
+		while (list != NULL)
+		{
+			preList = list;
+			list = list->next;
+		}
+		preList->next = newList;
+	}
 
 	return jStr;
 }
@@ -146,6 +196,28 @@ String * newString(ClassFile *classFile, struct ConstantPool * cp, ConstantStrin
 Object * internString(Object * jStr)
 {
 	String * goStr = goString(jStr);
-	//todo
+	InternedStringsList * preStrList = NULL;
+	InternedStringsList * strList = internedStrings;
+	while (strList != NULL)
+	{
+		char * utf8Str = (char *)goStr->data;
+		if (strcmp(utf8Str, (char *)goStr->data) == 0)
+		{
+			return strList->jStr;
+		}
+		preStrList = strList;
+		strList = strList->next;
+	}
+
+	InternedStringsList * newList = calloc(1, sizeof(InternedStringsList));
+	newList->goStr = goStr;
+	newList->jStr = jStr;
+	if (preStrList == NULL)
+	{
+		internedStrings = newList;
+	}else{
+		preStrList->next = newList;
+	}
+
 	return jStr;
 }
