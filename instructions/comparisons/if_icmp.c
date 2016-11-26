@@ -78,7 +78,7 @@ static int32_t execute_IF_ICMPLE(Frame * frame, struct InsturctionData * instDat
 Instruction * IF_ICMPLE(Instruction * inst)
 {
 	inst->fetchOperands = branchInstructionFetchOperands;
-	inst->execute = execute_IF_CMPLT;
+	inst->execute = execute_IF_ICMPLE;
 	return inst;
 }
 

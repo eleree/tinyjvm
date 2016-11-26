@@ -74,8 +74,8 @@ Object * jString(ClassLoader *loader, String * mutf8Str)
 	chars = decodeMutf8ToUtf16(mutf8Str->data, mutf8Str->len, &charsLen);
 	jChars->data = (void *)chars;
 	jChars->dataCount =(uint16_t) charsLen;
-	jChars->dataType = 'u';
-
+	jChars->dataType = 'C';
+	jChars->class = loadClass(loader, "[C");
 	Class * strClass = loadClass(loader, "java/lang/String");
 	Object * jStr = newObject(strClass);
 

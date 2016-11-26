@@ -8,6 +8,7 @@
 #include "rtda\heap\class_loader.h"
 #include "native/registry.h"
 
+static uint64_t instIndex = 0;
 void dumpLocalVars(Frame * frame)
 {
 	LocalVars * localVars = frame->localVars;
@@ -96,7 +97,8 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		resetBytecodeReader(&bytecodeReader, frame->method->code, frame->method->codeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
 
-#if 1
+#if 0
+		printf("%d\n", instIndex++);
 		printf("->%s\n", frame->method->classMember.attachClass->name);
 		printf("  %s\n", frame->method->classMember.name);
 		printf("  %s\n", frame->method->classMember.descriptor);
