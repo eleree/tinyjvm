@@ -47,6 +47,7 @@ static void newSuperClassName(Class * c, ClassFile * classFile)
 static void newInterfacesName(Class * c, ClassFile * classFile)
 {
 	c->interfacesCount = classFile->interfaceCount;
+	c->interfaceNamesCount = c->interfacesCount;
 	if (c->interfacesCount == 0)
 		return;
 	c->interfaceNames = calloc(c->interfaceNamesCount, sizeof(char *));

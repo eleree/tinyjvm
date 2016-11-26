@@ -22,6 +22,7 @@ NativeMethod findNativeMethod(const char * className, const char * methodName, c
 	{
 		if (strcmp(listNode->name, key) == 0)
 			return listNode->method;
+		listNode = listNode->next;
 	}
 	
 	if (strcmp(methodDescriptor, "()V") == 0 &&
@@ -57,7 +58,7 @@ void registerNativeMethod(const char * className, const char * methodName, const
 		nativeMethodList = listNewNode;
 		return;
 	}
-	NativeMethodList * listNode = nativeMethodList->next;
+	NativeMethodList * listNode = nativeMethodList;
 	while (listNode->next != NULL)
 	{
 		listNode = listNode->next;

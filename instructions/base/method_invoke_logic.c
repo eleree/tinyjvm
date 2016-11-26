@@ -24,7 +24,7 @@ void InvokeMethod(Frame * invokerFrame, Method * method) {
 			setLocalVarsSlot(frame->localVars, i, slot);
 		}
 	}
-	
+	/*
 	if (isMethodNative(method))
 	{
 		if (strcmp(method->classMember.name, "registerNatives") == 0)
@@ -35,4 +35,5 @@ void InvokeMethod(Frame * invokerFrame, Method * method) {
 				method->classMember.name, method->classMember.descriptor);
 		}
 	}
+	*/
 }

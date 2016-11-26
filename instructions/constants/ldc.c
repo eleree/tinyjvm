@@ -22,6 +22,14 @@ static int32_t _ldc(Frame * frame, int32_t index)
 	case CONSTATNT_STRING:
 		pushOperandRef(operandStack, jString(classLoader, getClassConstantPoolStringRef(cp, index)));
 		break;
+	case CONSTATNT_CLASS:
+		do
+		{
+			ClassRef * classRef = getClassConstantPoolClassRef(cp, index);
+			Object * classObj = resolveClass(&classRef->symRef)->jClass;
+			pushOperandRef(operandStack,classObj);
+		} while (0);
+		break;
 	default:
 		printf("todo: ldc!\n");
 		exit(0);

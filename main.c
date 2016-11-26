@@ -65,8 +65,8 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 	ClassLoader * classLoader = NULL;
 	Class * mainClass = NULL;
 
-	classLoader = newClassLoader();
 	parseClasspath(jrepath, classpath);
+	classLoader = newClassLoader();
 	stringReplace(className, fullClassName, 128);
 	stringCat(fullClassName, ".class", 128);
 	mainClass = loadClass(classLoader,fullClassName);

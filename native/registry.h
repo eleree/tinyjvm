@@ -11,7 +11,6 @@
 #include "../rtda/heap/array_class.h"
 typedef void (*NativeMethod)(Frame *frame);
 
-
 typedef struct NativeMethodList
 {
 	char * name;
@@ -21,5 +20,12 @@ typedef struct NativeMethodList
 
 NativeMethod findNativeMethod(const char * className, const char * methodName, const char * methodDescriptor);
 void registerNativeMethod(const char * className, const char * methodName, const char * methodDescriptor, NativeMethod method);
+
+void initNativeClass(void);
+void initNativeDouble(void);
+void initNativeFloat(void);
+void initNativeObject(void);
+void initNativeString(void);
+void initNativeSystem(void);
 
 #endif

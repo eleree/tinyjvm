@@ -6,6 +6,7 @@
 #include "instructions\factory.h"
 #include "instructions\base\bytecode_reader.h"
 #include "rtda\heap\class_loader.h"
+#include "native/registry.h"
 
 void dumpLocalVars(Frame * frame)
 {
@@ -66,6 +67,16 @@ void interpret(ClassFile * classFile, MethodInfo * methodInfo)
 	loop(classFile, thread, bytecode, bytecodeLen);
 }
 #endif
+void initNative(void)
+{
+	initNativeClass();
+	initNativeDouble();
+	initNativeFloat();
+	initNativeObject();
+	initNativeString();
+	initNativeSystem();
+}
+
 void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 {
 	Frame * frame = NULL;
@@ -74,6 +85,8 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 	int32_t pc = 0;
 	uint8_t opcode = 0;
 	BytecodeReader bytecodeReader;
+	initNative();
+
 	for (;;)
 	{
 		frame = getCurrentFrame(thread);
@@ -84,11 +97,8 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		opcode = readBytecodeUint8(&bytecodeReader);
 
 #if 0
-		if (opcode == 0xA2 || opcode == 0xA4)
-		{
-			printf("pc:0x%02x, opcode:0x%02x\n", pc, opcode);
-			dumpLocalVars(frame);
-		}
+		printf("pc:0x%02x, opcode:0x%02x\n", pc, opcode);
+		dumpLocalVars(frame);
 #endif 
 			
 		Instruction * inst = newInsturction(opcode);
@@ -104,6 +114,7 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 			break;
 	}
 	printf("JVM Exit\n");
+	system("pause");
 }
 
 Object * createArgsArray(ClassLoader * classLoader, int argc, char ** argv)

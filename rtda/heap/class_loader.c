@@ -9,9 +9,59 @@
 
 #pragma warning(disable:4996)
 
+void loadBasicClasses(ClassLoader * classLoader)
+{
+	Class * jlClassClass = loadClass(classLoader, "java/lang/Class");
+
+	ClassList * classList = classLoader->classList;
+	while (classList != NULL)
+	{
+		if (classList->classPtr->jClass == NULL)
+		{
+			classList->classPtr->jClass = newObject(jlClassClass);
+			classList->classPtr->jClass->extra = classList->classPtr;
+			classList->classPtr->jClass->extraType = 'c';
+			classList->classPtr->jClass->extraCount = 1;
+		}
+		classList = classList->next;
+	}
+}
+
+void addClassList(ClassLoader * classLoader, Class * newClass);
+
+void loadPrimitiveClass(ClassLoader * classLoader, const char * className)
+{
+	Class * c = calloc(1, sizeof(Class));
+	c->accessFlags = ACC_PUBLIC;
+	c->name = strdup(className);
+	c->classLoader = classLoader;
+	c->initStarted = true;
+	c->jClass = newObject(loadClass(classLoader,"java/lang/Class"));
+	c->jClass->extra = c;
+	c->jClass->extraType = 'c';
+	c->jClass->extraCount = 1;
+	addClassList(classLoader, c);
+}
+
+void loadPrimitiveClasses(ClassLoader * classLoader)
+{
+	loadPrimitiveClass(classLoader, "void");
+	loadPrimitiveClass(classLoader, "boolean");
+	loadPrimitiveClass(classLoader, "byte");
+	loadPrimitiveClass(classLoader, "short");
+	loadPrimitiveClass(classLoader, "int");
+	loadPrimitiveClass(classLoader, "long");
+	loadPrimitiveClass(classLoader, "char");
+	loadPrimitiveClass(classLoader, "float");
+	loadPrimitiveClass(classLoader, "double");
+}
+
 ClassLoader * newClassLoader(void)
 {
-	return calloc(1, sizeof(ClassLoader));
+	ClassLoader * newClassLoader = calloc(1, sizeof(ClassLoader));
+	loadBasicClasses(newClassLoader);
+	loadPrimitiveClasses(newClassLoader);
+	return newClassLoader;
 }
 
 void addClassList(ClassLoader * classLoader, Class * newClass)
@@ -177,17 +227,17 @@ Class * parseClassFile(char * classContent, int32_t classSize)
 	return newClass(classFile);
 }
 
-void linkClass(ClassLoader * classLoader, Class * class)
+void linkClass(ClassLoader * classLoader, Class * c)
 {
-	verify(class);
-	prepare(class);
+	verify(c);
+	prepare(c);
 }
 
-void defineClass(ClassLoader * classLoader, Class * class)
+void defineClass(ClassLoader * classLoader, Class * c)
 {
-	resolveSuperClass(classLoader, class);
-	resolveInterfaces(classLoader, class);
-	addClassList(classLoader, class);
+	resolveSuperClass(classLoader, c);
+	resolveInterfaces(classLoader, c);
+	addClassList(classLoader, c);
 }
 
 Class * loadNonArrayClass(ClassLoader * classLoader, const char * className)
@@ -244,9 +294,10 @@ Class * loadArrayClass(ClassLoader * classLoader, const char * className)
 
 Class * loadClass(ClassLoader * classLoader, const char * className)
 {
+	Class * c = NULL;
 	ClassList * classList = classLoader->classList;
-	if (classLoader->classList == NULL)
-		return loadNonArrayClass(classLoader, className);
+	//if (classLoader->classList == NULL)
+	//	return loadNonArrayClass(classLoader, className);
 
 	while (classList!=NULL)
 	{
@@ -257,8 +308,26 @@ Class * loadClass(ClassLoader * classLoader, const char * className)
 	}
 
 	if (className[0] == '[')
-		return loadArrayClass(classLoader, className);
+		c =  loadArrayClass(classLoader, className);
+	else
+		c = loadNonArrayClass(classLoader, className);
 
-	return loadNonArrayClass(classLoader, className);
+	classList = classLoader->classList;
+	while (classList != NULL)
+	{
+		if (strcmp("java/lang/Class", classList->className) == 0)
+		{
+			if (classList->classPtr != NULL)
+			{
+				c->jClass = newObject(classList->classPtr);
+				c->jClass->extra = c;
+				c->jClass->extraType = 'c';
+				c->jClass->dataCount = 1;
+			}
+		}
+		classList = classList->next;
+	}
+
+	return c;
 	}
 

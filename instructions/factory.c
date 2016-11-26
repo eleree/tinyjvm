@@ -600,8 +600,9 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0xbc:
 			// 	return &NEW_ARRAY{}
 			return NEW_ARRAY(&instruction);
-			// case 0xbd:
+		case 0xbd:
 			// 	return &ANEW_ARRAY{}
+			return ANEW_ARRAY(&instruction);
 		case 0xbe:
 			// 	return arraylength
 			return ARRAY_LENGTH(&instruction);
@@ -634,7 +635,8 @@ Instruction * newInsturction(uint8_t opcode)
 			// case 0xc9:
 			// 	return &JSR_W{}
 			// case 0xca: breakpoint
-			// case 0xfe: impdep1
+		case 0xfe:
+			return INVOKE_NATIVE(&instruction);
 			// case 0xff: impdep2
 		default:
 			printf("Unsupport Instruction:0x%02x\n", opcode);

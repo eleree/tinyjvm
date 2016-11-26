@@ -131,6 +131,7 @@
     <ClCompile Include="instructions\references\newarray.c" />
     <ClCompile Include="instructions\references\putfield.c" />
     <ClCompile Include="instructions\references\putstatic.c" />
+    <ClCompile Include="instructions\reserved\invokenative.c" />
     <ClCompile Include="instructions\stack\dup.c" />
     <ClCompile Include="instructions\stack\pop.c" />
     <ClCompile Include="instructions\stack\swap.c" />

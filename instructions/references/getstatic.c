@@ -1,6 +1,7 @@
 #include "../factory.h"
 #include "../../rtda/operand_stack.h"
 #include "../../rtda/local_vars.h"
+#include "../../rtda/frame.h"
 #include "../../rtda/heap/slot.h"
 #include "../../rtda/heap/constant_pool.h"
 #include "../../rtda/heap/cp_symref.h"
@@ -13,7 +14,14 @@ static int32_t execute_GET_STATIC(Frame * frame, struct InsturctionData * instDa
 	ConstantPoolItem * cp = frame->method->classMember.attachClass->constantPool.constantPoolItem;
 	FieldRef * fieldRef = getClassConstantPoolFieldRef(cp, instData->index);
 	Field * field = resolvedField(fieldRef);
-	Class * class = field->classMember.attachClass;
+	Class * c = field->classMember.attachClass;
+
+	if (!c->initStarted)
+	{
+		revertFrameNextPC(frame);
+		InitClass(frame->thread, c);
+		return 0;
+	}
 
 	if(!isFieldStatic(field))
 	{
@@ -23,7 +31,7 @@ static int32_t execute_GET_STATIC(Frame * frame, struct InsturctionData * instDa
 
 	char * descriptor = field->classMember.descriptor;
 	uint16_t slotId = field->slotId;
-	Slot * slots = class->staticVars;
+	Slot * slots = c->staticVars;
 	OperandStack * operandStack = frame->operandStack;
 
 	switch(descriptor[0])

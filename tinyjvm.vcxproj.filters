@@ -82,6 +82,9 @@
     <Filter Include="源文件\native\sun\misc">
       <UniqueIdentifier>{4a8b6dfe-09da-4730-96bd-f2d3a971a8a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\instructions\reserved">
+      <UniqueIdentifier>{86286de0-42e2-4778-bdb5-28b9550f3319}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -425,6 +428,9 @@
     </ClCompile>
     <ClCompile Include="rtda\heap\object_clone.c">
       <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\reserved\invokenative.c">
+      <Filter>源文件\instructions\reserved</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

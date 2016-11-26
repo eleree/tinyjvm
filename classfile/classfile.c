@@ -99,7 +99,7 @@ void readAndCheckVersion(ClassFile * classFile)
 
 void readClassInterfaces(ClassFile * classFile)
 {
-	classFile->interfaceCount = readClassUint16(classFile);
+	classFile->interfaceCount = readClassUint16(classFile);	
 	classFile->interfaces = calloc(classFile->interfaceCount, sizeof(uint16_t));
 	for (int i = 0; i < classFile->interfaceCount; i++)
 	{

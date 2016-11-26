@@ -16,7 +16,7 @@ static int32_t execute_PUT_FIELD(Frame * frame, struct InsturctionData * instDat
 	ConstantPoolItem * cp = frame->method->classMember.attachClass->constantPool.constantPoolItem;
 	FieldRef * fieldRef = getClassConstantPoolFieldRef(cp, instData->index);
 	Field * field = resolvedField(fieldRef);
-	Class * class = field->classMember.attachClass;
+	Class * c = field->classMember.attachClass;
 
 	if (isFieldStatic(field))
 	{
@@ -26,8 +26,8 @@ static int32_t execute_PUT_FIELD(Frame * frame, struct InsturctionData * instDat
 
 	if (isFieldFinal(field))
 	{
-		if (currentClass != class ||
-			strcmp(currentMethod->classMember.name, "<clinit>") != 0)
+		if (currentClass != c ||
+			strcmp(currentMethod->classMember.name, "<init>") != 0)
 		{
 			printf("java.lang.IllegalAccessError\n");
 			exit(-1);

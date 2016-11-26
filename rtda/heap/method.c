@@ -59,32 +59,38 @@ void injectCodeAttribute(Method * method, const char * returnType)
 		method->code = calloc(2, sizeof(uint8_t));
 		method->code[0] = 0xfe;
 		method->code[1] = 0xb1;
+		break;
 	case 'L':
 	case '[':
 		method->codeLen = 2;
 		method->code = calloc(2, sizeof(uint8_t));
 		method->code[0] = 0xfe;
 		method->code[1] = 0xb0;
+		break;
 	case 'D':
 		method->codeLen = 2;
 		method->code = calloc(2, sizeof(uint8_t));
 		method->code[0] = 0xfe;
 		method->code[1] = 0xaf;
+		break;
 	case 'F':
 		method->codeLen = 2;
 		method->code = calloc(2, sizeof(uint8_t));
 		method->code[0] = 0xfe;
 		method->code[1] = 0xae;
+		break;
 	case 'J':
 		method->codeLen = 2;
 		method->code = calloc(2, sizeof(uint8_t));
 		method->code[0] = 0xfe;
 		method->code[1] = 0xad;
+		break;
 	default:
 		method->codeLen = 2;
 		method->code = calloc(2, sizeof(uint8_t));
 		method->code[0] = 0xfe;
 		method->code[1] = 0xac;
+		break;
 	}
 }
 
