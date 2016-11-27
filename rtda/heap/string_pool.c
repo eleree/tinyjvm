@@ -82,7 +82,16 @@ Object * jString(ClassLoader *loader, String * mutf8Str)
 	setObjectRefVar(jStr, "value", "[C", jChars);
 
 	InternedStringsList * newList = calloc(1, sizeof(InternedStringsList));
-	newList->goStr = mutf8Str;
+	newList->goStr = calloc(1, sizeof(String));
+	newList->goStr->data = calloc(mutf8Str->len, sizeof(char));
+	for (uint16_t i = 0; i < mutf8Str->len; i++)
+	{
+		char * src = (char *)mutf8Str->data;
+		char * dest = (char *)newList->goStr->data;
+		dest[i] = src[i];
+	}
+	newList->goStr->type = mutf8Str->type;
+
 	newList->jStr = jStr;
 
 	if (internedStrings == NULL)
