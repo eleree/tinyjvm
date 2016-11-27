@@ -27,5 +27,5 @@ void initNativeFloat(void);
 void initNativeObject(void);
 void initNativeString(void);
 void initNativeSystem(void);
-
+void initVM(void);
 #endif

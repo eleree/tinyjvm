@@ -76,6 +76,7 @@ void initNative(void)
 	initNativeObject();
 	initNativeString();
 	initNativeSystem();
+	initVM();
 }
 
 void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
