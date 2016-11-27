@@ -6,9 +6,9 @@ bool isSubClassOf(Class * thisClass, Class * otherClass)
 
 	while (c != NULL)
 	{
-		c = c->superClass;
 		if (c == otherClass)
 			return true;
+		c = c->superClass;
 	}
 
 	return false;

@@ -5,6 +5,7 @@ Object * cloneObject(Object * self)
 {
 	Object * newObject = calloc(1, sizeof(Object));
 	int32_t count = self->dataCount;
+	newObject->class = self->class;
 	switch (self->dataType)
 	{
 	case 'Z':

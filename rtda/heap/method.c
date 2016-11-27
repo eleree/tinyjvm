@@ -217,6 +217,9 @@ bool isMethodAccessibleTo(Method * method, Class * d)
 {
 	Class * c = method->classMember.attachClass;
 
+	if (isMethodPublic(method))
+		return true;
+
 	if (isMethodProtected(method))
 	{
 		return	c == d ||

@@ -13,8 +13,8 @@ Object * newObject(struct Class * c)
 	return o;
 }
 
-bool isObjectInstanceOf(Object * obj, Class * class){
-	return isClassAssignableFrom(obj->class, class);
+bool isObjectInstanceOf(Object * obj, Class * c){
+	return isClassAssignableFrom(obj->class, c);
 }
 
 Object * getObjectRefVar(Object * self, const char * name, const char * descriptor)

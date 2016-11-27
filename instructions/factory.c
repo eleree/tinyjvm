@@ -608,9 +608,9 @@ Instruction * newInsturction(uint8_t opcode)
 			return ARRAY_LENGTH(&instruction);
 			// case 0xbf:
 			// 	return athrow
-			case 0xc0:
+		case 0xc0:
 			// 	return &CHECK_CAST{}
-				return CHECK_CAST(&instruction);
+			return CHECK_CAST(&instruction);
 		case 0xc1:
 		 	//return &INSTANCE_OF{}
 			return INSTANCE_OF(&instruction);
