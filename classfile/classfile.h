@@ -190,10 +190,19 @@ typedef struct ExceptionsAttribute{
 }ExceptionsAttribute;
 
 // 4.7.6. The InnerClasses Attribute
+typedef struct InnerClassesAttributeItem
+{
+	uint16_t inner_class_info_index;
+	uint16_t outer_class_info_index;
+	uint16_t inner_name_index;
+	uint16_t inner_class_access_flags;
+}InnerClassesAttributeItem;
+
 typedef struct InnerClassesAttribute{
 	uint16_t attribute_name_index;
 	uint32_t attribute_length;
 	uint16_t number_of_classes;
+	InnerClassesAttributeItem * innerClassItem;
 	/*
 	{   uint16_t inner_class_info_index;
 	uint16_t outer_class_info_index;
@@ -456,5 +465,8 @@ CodeAttribute * getMethodCodeAttribute(ClassFile * classFile, MethodInfo * metho
 const char * getClassName(ClassFile * classFile);
 const char * getSuperClassName(ClassFile * classFile);
 const char * getInterfaceName(ClassFile * classFile, uint16_t index);
+
+SourceFileAttribute * getClassFileSourceFile(ClassFile * classFile);
+char * getClassSourceFileName(ClassFile * classFile);
 
 #endif

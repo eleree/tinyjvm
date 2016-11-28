@@ -150,6 +150,7 @@
     <ClCompile Include="native\java\lang\nativeObject.c" />
     <ClCompile Include="native\java\lang\nativeString.c" />
     <ClCompile Include="native\java\lang\nativeSystem.c" />
+    <ClCompile Include="native\java\lang\nativeThrowable.c" />
     <ClCompile Include="native\registry.c" />
     <ClCompile Include="native\sun\misc\VM.c" />
     <ClCompile Include="rtda\frame.c" />

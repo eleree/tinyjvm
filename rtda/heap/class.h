@@ -46,6 +46,7 @@ typedef struct Class
 	struct ClassLoader * classLoader;
 	bool initStarted;
 	Object * jClass;
+	char * sourceFile;
 }Class;
 
 enum {
@@ -101,5 +102,5 @@ Object * getClassRefVar(Class * self, const char * fieldName, const char * field
 struct Method * getClassInstanceMethod(Class * self, const char * name, const char *  descriptor);
 
 char * classJavaName(Class * self);
-
+char * getClassSourceFileName(ClassFile * classFile);
 #endif

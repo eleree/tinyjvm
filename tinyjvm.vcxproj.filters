@@ -432,6 +432,9 @@
     <ClCompile Include="instructions\reserved\invokenative.c">
       <Filter>源文件\instructions\reserved</Filter>
     </ClCompile>
+    <ClCompile Include="native\java\lang\nativeThrowable.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

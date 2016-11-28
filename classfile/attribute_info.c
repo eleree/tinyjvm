@@ -91,6 +91,27 @@ SignatureAttribute *readSignatureAttributeInfo(ClassFile* classFile)
 	return signatureAttr;
 }
 
+InnerClassesAttribute  *readInnerClassAttributeInfo(ClassFile* classFile)
+{
+	InnerClassesAttribute * innerClassesAttr = calloc(1, sizeof(InnerClassesAttribute));
+	innerClassesAttr->number_of_classes = readClassUint16(classFile);
+	InnerClassesAttributeItem * classItem = calloc(innerClassesAttr->number_of_classes, sizeof(InnerClassesAttributeItem));
+	for (uint16_t i = 0; i < innerClassesAttr->number_of_classes; i++)
+	{
+		classItem[i].inner_class_info_index = readClassUint8(classFile);
+		classItem[i].outer_class_info_index = readClassUint16(classFile);
+		classItem[i].inner_name_index = readClassUint16(classFile);
+		classItem[i].inner_class_access_flags = readClassUint16(classFile);
+	}
+
+	return innerClassesAttr;
+}
+
+SyntheticAttribute * readSyntheticAttributeInfo(ClassFile * classFile)
+{
+	return NULL;
+}
+
 DeprecatedAttribute * readDeprecatedAttributeInfo(ClassFile * classFile)
 {
 	return calloc(1, sizeof(DeprecatedAttribute));
@@ -151,10 +172,13 @@ static void * newAttributeInfo(const char * attrName, uint32_t attrLen, ClassFil
 	else if (strcmp("LocalVariableTable", attrName) == 0){
 		return readLocalVariableTableAttributeInfo(classFile);
 	}
-	else if (strcmp("Source", attrName) == 0){
+	else if (strcmp("SourceFile", attrName) == 0){
 		return readSourceFileAttributeInfo(classFile);
-	}
-	else if (strcmp("Synthetic", attrName) == 0){
+	}else if (strcmp("Synthetic", attrName) == 0){
+
+	}else if (strcmp("InnerClasses", attrName) == 0){
+		return readInnerClassAttributeInfo(classFile);
+	}else if (strcmp("Signature", attrName) == 0){
 		return readSignatureAttributeInfo(classFile);
 	}else{
 		return readUnparsedAttributeInfo(classFile, attrLen);
@@ -222,6 +246,6 @@ void readClassAttributes(ClassFile * classFile)
 	{
 		classFile->attributes = calloc(classFile->attributes_count, sizeof(AttributeInfo));
 		for (uint16_t i = 0; i < classFile->attributes_count; i++)
-			readAttributeInfo(classFile, classFile->attributes, 1);
+			readAttributeInfo(classFile, classFile->attributes + i, 1);
 	}	
 }

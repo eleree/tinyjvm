@@ -168,6 +168,7 @@ Class * newClass(ClassFile * classFile)
 {
 	Class * c = calloc(1, sizeof(Class));
 	c->accessFlags = classFile->accessFlags;
+	c->sourceFile = getClassSourceFileName(classFile);
 	newClassName(c, classFile);
 	newSuperClassName(c, classFile);
 	newInterfacesName(c, classFile);
@@ -394,3 +395,4 @@ bool isClassPrimitive(Class *self)
 
 	return false;
 }
+

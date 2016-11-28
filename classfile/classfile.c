@@ -1,6 +1,8 @@
 #include "classfile.h"
 #include "attribute_info.h"
 
+#pragma warning(disable:4996)
+
 int32_t readClassBytes(ClassFile * classFile)
 {
 	return 0;
@@ -614,4 +616,30 @@ const char * getConstalPoolNameAndTypeDescriptor(ConstantPoolItem * constantPool
 		return NULL;
 
 	return getConstantPoolUtf8(constantPool, itemInfo->descriptor_index);
+}
+
+SourceFileAttribute * getClassFileSourceFile(ClassFile * classFile)
+{
+	for (uint16_t i = 0; i < classFile->attributes_count; i++)
+	{
+		AttributeInfo * attrInfo = (classFile->attributes) + i;
+		const char * attrName = getClassUtf8(classFile, attrInfo->attributeNameIndex);
+		if (strcmp(attrName, "SourceFile") == 0)
+		{
+			return (SourceFileAttribute *)attrInfo->info;
+		}
+	}
+	return NULL;	
+}
+
+char * getClassSourceFileName(ClassFile * classFile)
+{
+	SourceFileAttribute * sourceFileAttr = getClassFileSourceFile(classFile);
+	if (sourceFileAttr == NULL)
+	{
+		return strdup("Unknown");
+	}
+	const char * sourceName = getClassUtf8(classFile, sourceFileAttr->sourcefile_index);
+
+	return strdup(sourceName);
 }

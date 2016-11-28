@@ -98,7 +98,7 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		resetBytecodeReader(&bytecodeReader, frame->method->code, frame->method->codeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
 
-#if 0
+#if 1
 		printf("%d\n", instIndex++);
 		printf("->%s\n", frame->method->classMember.attachClass->name);
 		printf("  %s\n", frame->method->classMember.name);
