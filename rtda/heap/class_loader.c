@@ -285,7 +285,7 @@ Class * loadArrayClass(ClassLoader * classLoader, const char * className)
 	c->interfacesCount = 2;
 	c->interfaces = calloc(2, sizeof(Class *));
 	c->interfaces[0] = loadClass(classLoader, "java/lang/Cloneable");
-	c->interfaces[0] = loadClass(classLoader, "java/io/Serializable");
+	c->interfaces[1] = loadClass(classLoader, "java/io/Serializable");
 
 	addClassList(classLoader, c);
 

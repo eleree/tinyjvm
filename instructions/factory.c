@@ -622,8 +622,9 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0xc4:
 			//return &WIDE{}
 			return WIDE(&instruction);
-			// case 0xc5:
-			// 	return &MULTI_ANEW_ARRAY{}
+		case 0xc5:
+			//return &MULTI_ANEW_ARRAY{}
+			return MULTI_ANEW_ARRAY(&instruction);
 		case 0xc6:
 			//return &IFNULL{}
 			return IFNULL(&instruction);

@@ -71,7 +71,7 @@ int32_t execute_MULTI_ANEW_ARRAY(Frame * frame, struct InsturctionData * instDat
 
 Instruction * MULTI_ANEW_ARRAY(Instruction * inst)
 {
-	inst->fetchOperands = noOperandsInstructionFetchOperands;
+	inst->fetchOperands = fetchOperands_MULTI_ANEW_ARRAY;
 	inst->execute = execute_MULTI_ANEW_ARRAY;
 	return inst;
 }
