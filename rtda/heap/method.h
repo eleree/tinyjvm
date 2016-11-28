@@ -7,6 +7,7 @@
 #include "class_member.h"
 
 struct Class;
+struct ExceptionTable;
 typedef struct Method
 {
 	struct ClassMember classMember;
@@ -15,6 +16,8 @@ typedef struct Method
 	uint32_t codeLen;
 	uint8_t * code;
 	uint16_t argSlotCount;
+	struct ExceptionTable * exceptionTable;
+	LineNumberTableAttribute * lineNumberTable;
 }Method;
 
 typedef struct ParameterTypesList
@@ -62,5 +65,8 @@ Method * lookupMethodInClass(struct Class *class, char * name, char *  descripto
 Method * lookupMethodInInterfaces(struct Class ** ifaces, uint16_t ifacesCount, char * name, char * descriptor);
 
 void InvokeMethod(struct Frame * invokerFrame, struct Method * method);
+
+int32_t getMethodLineNumber(Method * self, int32_t pc);
+int32_t findMethodExceptionHander(Method * self, struct Class * exClass, int32_t pc);
 
 #endif

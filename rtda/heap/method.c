@@ -1,5 +1,5 @@
 #include "method.h"
-
+#include "exception_table.h"
 
 void copyMethodInfo(Method * method, MethodInfo * methodInfo, ClassFile * classFile)
 {
@@ -21,6 +21,8 @@ static void copyAttributes(Method * method, MethodInfo * methodInfo, ClassFile *
 			method->codeLen = codeAttr->code_length;
 			method->code = calloc(method->codeLen, sizeof(uint8_t));
 			memcpy(method->code, codeAttr->code, method->codeLen);
+			method->lineNumberTable = getCodeAttrLineNumberTableAttr(codeAttr, classFile);// can't be free directly
+			method->exceptionTable = newExceptionTable(codeAttr, method->classMember.attachClass->constantPool.constantPoolItem);
 			break;
 		}
 	}
@@ -236,4 +238,23 @@ bool isMethodAccessibleTo(Method * method, Class * d)
 	}
 
 	return d == c;
+}
+
+int32_t findMethodExceptionHander(Method * self, Class * exClass, int32_t pc)
+{
+	ExceptionHandler * handler = findExceptionHandler(self->exceptionTable, exClass, pc);
+	if (handler != NULL)
+		return handler->handlerPc;
+
+	return -1;
+}
+
+int32_t getMethodLineNumber(Method * self, int32_t pc)
+{
+	if (isMethodNative(self))
+		return -2;
+
+	if (self->lineNumberTable == NULL)
+		return -1;
+	return getLineAttrLineNumber(self->lineNumberTable, pc);
 }

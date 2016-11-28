@@ -167,6 +167,7 @@
     <ClCompile Include="rtda\heap\cp_interface_methodref.c" />
     <ClCompile Include="rtda\heap\cp_methodref.c" />
     <ClCompile Include="rtda\heap\cp_symref.c" />
+    <ClCompile Include="rtda\heap\exception_table.c" />
     <ClCompile Include="rtda\heap\field.c" />
     <ClCompile Include="rtda\heap\method.c" />
     <ClCompile Include="rtda\heap\method_descriptor_parser.c" />
@@ -209,6 +210,7 @@
     <ClInclude Include="rtda\heap\cp_memberref.h" />
     <ClInclude Include="rtda\heap\cp_methodref.h" />
     <ClInclude Include="rtda\heap\cp_symref.h" />
+    <ClInclude Include="rtda\heap\exception_table.h" />
     <ClInclude Include="rtda\heap\field.h" />
     <ClInclude Include="rtda\heap\method.h" />
     <ClInclude Include="rtda\heap\object.h" />

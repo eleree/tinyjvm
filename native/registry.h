@@ -9,6 +9,7 @@
 #include "../rtda/heap/class_loader.h"
 #include "../rtda/local_vars.h"
 #include "../rtda/heap/array_class.h"
+#include "../rtda/thread.h"
 typedef void (*NativeMethod)(Frame *frame);
 
 typedef struct NativeMethodList

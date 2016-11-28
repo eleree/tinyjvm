@@ -12,5 +12,6 @@ Frame * popThreadFrame(Thread * thread);
 Frame * getCurrentFrame(Thread * thread);
 
 bool isThreadStackEmpty(Thread * thread);
+Frame* * getThreadFrames(Thread * threak, int32_t skip, int32_t * remain);
 
 #endif

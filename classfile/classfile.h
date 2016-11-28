@@ -469,4 +469,7 @@ const char * getInterfaceName(ClassFile * classFile, uint16_t index);
 SourceFileAttribute * getClassFileSourceFile(ClassFile * classFile);
 char * getClassSourceFileName(ClassFile * classFile);
 
+LineNumberTableAttribute * getCodeAttrLineNumberTableAttr(CodeAttribute * codeAttr, ClassFile* classFile);
+int32_t getLineAttrLineNumber(LineNumberTableAttribute * self, int32_t pc);
+
 #endif

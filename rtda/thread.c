@@ -37,3 +37,8 @@ bool isThreadStackEmpty(Thread * thread)
 {
 	return thread->stack->_top == NULL;
 }
+
+Frame* * getThreadFrames(Thread * threak, int32_t skip, int32_t * remain)
+{
+	return NULL;
+}

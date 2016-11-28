@@ -33,6 +33,20 @@ CodeAttribute * readCodeAttributeInfo(ClassFile * classFile)
 	return codeAttr;
 }
 
+LineNumberTableAttribute * getCodeAttrLineNumberTableAttr(CodeAttribute * codeAttr, ClassFile* classFile)
+{
+	uint16_t attrCount = codeAttr->attributes_count;
+	for (uint16_t i = 0; i < attrCount; i++)
+	{
+		const char * attrName = getClassUtf8(classFile, codeAttr->attributes[i].attributeNameIndex);
+		if (strcmp(attrName, "LineNumberTable") == 0)
+		{
+			return codeAttr->attributes[i].info;
+		}
+	}
+	return NULL;
+}
+
 SourceFileAttribute * readSourceFileAttributeInfo(ClassFile * classFile)
 {
 	SourceFileAttribute * sourceFileAttr = calloc(1, sizeof(SourceFileAttribute));
@@ -57,6 +71,18 @@ LineNumberTableAttribute * readLineNumberTableAttributeInfo(ClassFile * classFil
 	}
 	
 	return lineNumberTableAttr;
+}
+
+int32_t getLineAttrLineNumber(LineNumberTableAttribute * self, int32_t pc)
+{
+	for (int32_t i = self->line_number_table_length - 1; i >= 0; i++)
+	{
+		LineNumberTableEntry * entry = self->line_number_table + i;
+		if (pc >= entry->startPc)
+			return entry->lineNumber;
+	}
+
+	return -1;
 }
 
 LocalVariableTableAttribute * readLocalVariableTableAttributeInfo(ClassFile * classFile)

@@ -435,6 +435,9 @@
     <ClCompile Include="native\java\lang\nativeThrowable.c">
       <Filter>源文件\native\java\lang</Filter>
     </ClCompile>
+    <ClCompile Include="rtda\heap\exception_table.c">
+      <Filter>源文件\rtda\heap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">
@@ -544,6 +547,9 @@
     </ClInclude>
     <ClInclude Include="native\registry.h">
       <Filter>源文件\native</Filter>
+    </ClInclude>
+    <ClInclude Include="rtda\heap\exception_table.h">
+      <Filter>源文件\rtda\heap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
