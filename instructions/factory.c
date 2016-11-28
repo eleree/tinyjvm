@@ -246,6 +246,7 @@ Instruction * newInsturction(uint8_t opcode)
 			return FSTORE_1(&instruction);
 		case 0x45:
 			//return fstore_2
+			return FSTORE_2(&instruction);
 		case 0x46:
 			//return fstore_3
 			return FSTORE_3(&instruction);
