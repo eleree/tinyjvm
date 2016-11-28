@@ -12,5 +12,6 @@ typedef struct  InterfaceMethodRef{
 }InterfaceMethodRef;
 
 Method * resolvedInterfaceMethod(InterfaceMethodRef * self);
+InterfaceMethodRef * newInterfaceMethodRef(ClassFile * classFile, struct ConstantPool * cp, ConstantInterfaceMethodrefInfo * insteraceMethodRefInfo);
 
 #endif

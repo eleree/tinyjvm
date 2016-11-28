@@ -10,6 +10,7 @@
 #include "../../strings/strings.h"
 #include "array_class.h"
 #include "string_pool.h"
+#include "cp_interface_methodref.h"
 
 #pragma warning(disable:4996)
 
@@ -96,6 +97,11 @@ static void newConstantPool(Class * c, ClassFile * classFile)
 			((ClassConstantMethodRef*)destItem)->methodRef = newMethodRef(classFile, &c->constantPool, srcItemInfo);
 			break;
 		case CONSTATNT_INTERFACE_METHODREF:
+			destItem = (void *)calloc(1, sizeof(ClassConstantInterfaceMethodRef));
+			srcItemInfo = (classFile->constantPoolItem + i)->itemInfo;
+			c->constantPool.constantPoolItem[i].itemInfo = destItem;
+			((ClassConstantInterfaceMethodRef*)destItem)->tag = tag;
+			((ClassConstantInterfaceMethodRef*)destItem)->interfaceMethodRef = newInterfaceMethodRef(classFile, &c->constantPool, srcItemInfo);
 			break;
 		case CONSTATNT_STRING:	
 			destItem = (void *)calloc(1, sizeof(ClassConstantString));
@@ -217,12 +223,12 @@ Method * getClassClinitMethod(Class * c)
 
 bool isClassInterface(Class * c)
 {
-	return false;
+	return 0 != (c->accessFlags&ACC_INTERFACE);
 }
 
 bool isClassAbstract(Class * c)
 {
-	return false;
+	return 0 != (c->accessFlags&ACC_ABSTRACT);
 }
 
 // self extends iface

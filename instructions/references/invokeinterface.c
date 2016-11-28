@@ -17,7 +17,7 @@ static InvokeInterface  invokeInterface;
 
 static int32_t fetchOperands_INVOKE_INTERFACE(BytecodeReader * bytecoderReader, InstructionData * instData)
 {
-	invokeInterface.index = readBytecodeInt16(bytecoderReader);
+	invokeInterface.index = readBytecodeUint16(bytecoderReader);
 	readBytecodeInt8(bytecoderReader);
 	readBytecodeInt8(bytecoderReader);
 	return 0;
