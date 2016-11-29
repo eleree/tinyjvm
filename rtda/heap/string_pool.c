@@ -132,9 +132,9 @@ uint16_t *  decodeMutf8ToUtf16(const char * srcStr, uint32_t srcLen, uint32_t * 
 
 	while (count < utflen)
 	{
-		printf("0x%02x\n", (uint16_t)srcStr[count] &0XFF);
-		printf("0x%02x\n", (uint16_t)srcStr[count + 1]);
-		c = (uint16_t)((uint16_t)((srcStr[count]&0xFF)*256)+(uint16_t)(srcStr[count+1]&0xFF));
+		//printf("0x%02x\n", (uint16_t)srcStr[count+1] &0XFF);
+		//printf("0x%02x\n", (uint16_t)srcStr[count] &0xFF);
+		c = (uint16_t)(srcStr[count] & 0xFF);
 		switch (c >> 4)
 		{
 		case 0:
