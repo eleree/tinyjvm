@@ -26,7 +26,7 @@ CodeAttribute * readCodeAttributeInfo(ClassFile * classFile)
 		codeAttr->attributes = calloc(codeAttr->attributes_count, sizeof(AttributeInfo));
 		for (uint16_t i = 0; i < codeAttr->attributes_count; i++)
 		{
-			readAttributeInfo(classFile, codeAttr->attributes, 1);
+			readAttributeInfo(classFile, codeAttr->attributes + i, 1);
 		}
 	}
 		

@@ -27,7 +27,7 @@ void * copyCodeAttributeInfo(ClassFile * classFile, void * sourceAttr)
 		for (uint16_t i = 0; i < codeAttr->attributes_count; i++)
 		{
 			//readAttributeInfo(classFile, codeAttr->attributes, 1);
-			copyAttributeInfo(classFile,codeAttr->attributes, srcAttr->attributes,1);
+			copyAttributeInfo(classFile,codeAttr->attributes+i, srcAttr->attributes,1);
 		}
 	}
 
@@ -36,6 +36,7 @@ void * copyCodeAttributeInfo(ClassFile * classFile, void * sourceAttr)
 
 void * copyConstantValueAttributeInfo(ClassFile * classFile, void * sourceAttr)
 {
+	//ConstantValueAttribute * constantValueAttr = 
 	return NULL;
 }
 
