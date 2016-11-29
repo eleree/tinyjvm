@@ -75,6 +75,8 @@ int32_t execute_CALOAD(Frame * frame, struct InsturctionData * instData)
 
 	uint16_t* chars = getObjectChars(arrRef);
 	checkIndex(arrRef->dataCount, index);
+	//if (arrRef->dataCount == 0x200 && index == 0x00)
+	//	printf("CALOAD %d\n", chars[index]);
 	pushOperandInt(operandStack, chars[index]);
 	return 0;
 }

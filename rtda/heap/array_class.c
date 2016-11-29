@@ -38,7 +38,7 @@ Object * newArray(Class * self, uint16_t count)
 		o->data = calloc(count, sizeof(int8_t));
 		break;
 	case 'C':
-		o->data = calloc(count, sizeof(int16_t));
+		o->data = calloc(count, sizeof(uint16_t));
 		break;
 	case 'S':
 		o->data = calloc(count, sizeof(int16_t));

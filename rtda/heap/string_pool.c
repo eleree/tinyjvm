@@ -122,7 +122,7 @@ uint16_t *  decodeMutf8ToUtf16(const char * srcStr, uint32_t srcLen, uint32_t * 
 
 	while (count < utflen)
 	{
-		c = (uint16_t)(srcStr[count]);
+		c = (uint16_t)(srcStr[count]&0xFF);
 		if (c>127)
 			break;
 		count++;
@@ -132,8 +132,6 @@ uint16_t *  decodeMutf8ToUtf16(const char * srcStr, uint32_t srcLen, uint32_t * 
 
 	while (count < utflen)
 	{
-		//printf("0x%02x\n", (uint16_t)srcStr[count+1] &0XFF);
-		//printf("0x%02x\n", (uint16_t)srcStr[count] &0xFF);
 		c = (uint16_t)(srcStr[count] & 0xFF);
 		switch (c >> 4)
 		{
@@ -156,11 +154,11 @@ uint16_t *  decodeMutf8ToUtf16(const char * srcStr, uint32_t srcLen, uint32_t * 
 			if( count > utflen){
 				panic("malformed input: partial character at end",-1);
 			}
-			char2 = (uint16_t)(srcStr[count - 1]);
+			char2 = (uint16_t)(srcStr[count - 1]&0xFF);
 			if ((char2 & 0xC0 )!= 0x80 ){
 				panic("malformed input around byte",-1);
 			}
-			chararr[chararr_count] = c & 0x1F << 6 | char2 & 0x3F;
+			chararr[chararr_count] = ((c & 0x1F) << 6) | (char2 & 0x3F);
 			chararr_count++;
 			break;
 		case 14:
@@ -169,12 +167,14 @@ uint16_t *  decodeMutf8ToUtf16(const char * srcStr, uint32_t srcLen, uint32_t * 
 			if (count > utflen){
 				panic("malformed input: partial character at end", -1);
 			}
-			char2 = (uint16_t)(srcStr[count - 2]);
-			char3 = (uint16_t)(srcStr[count - 1]);
+			char2 = (uint16_t)(srcStr[count - 2]&0xFF);
+			char3 = (uint16_t)(srcStr[count - 1]&0xFF);
 			if( (char2 & 0xC0) != 0x80 || (char3 & 0xC0) != 0x80 ){
 				panic("malformed input around byte %v", (count - 1));
 			}
-			chararr[chararr_count] = c & 0x0F << 12 | char2 & 0x3F << 6 | char3 & 0x3F << 0;
+			chararr[chararr_count] = (((uint16_t)c & 0x0F) << 12);
+			chararr[chararr_count] |= (((uint16_t)char2 & 0x3F) << 6);
+			chararr[chararr_count] |= (((uint16_t)char3 & 0x3F) << 0);
 			chararr_count++;
 			break;
 		}

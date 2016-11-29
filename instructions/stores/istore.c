@@ -5,11 +5,16 @@
 // Store int into local variable
 int32_t _istore(Frame * frame, int32_t index)
 {
-		OperandStack * operandStack = frame->operandStack;
-		LocalVars * localVars = frame->localVars;
-		int32_t val = popOperandInt(operandStack);
-		setLocalVarsInt(localVars, index, val);
-		return 0;
+	OperandStack * operandStack = frame->operandStack;
+	LocalVars * localVars = frame->localVars;
+	int32_t val = popOperandInt(operandStack);
+	//printf("_istore %d\n", val);
+	//if (val == 260046848)
+	//{
+	//	printf("aa");
+	//}
+	setLocalVarsInt(localVars, index, val);
+	return 0;
 }
 
 static int32_t execute_ISTORE(Frame * frame, struct InsturctionData * instData)

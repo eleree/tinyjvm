@@ -7,6 +7,7 @@ int32_t _iload(Frame * frame, int32_t index)
 	OperandStack * operandStack = frame->operandStack;
 	LocalVars * localVars = frame->localVars;
 	int32_t val = getLocalVarsInt(localVars, index);
+	//printf("_iload %d\n", val);
 	pushOperandInt(operandStack,val);
 	return 0;
 }
