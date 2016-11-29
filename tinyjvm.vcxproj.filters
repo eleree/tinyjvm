@@ -438,6 +438,9 @@
     <ClCompile Include="rtda\heap\exception_table.c">
       <Filter>源文件\rtda\heap</Filter>
     </ClCompile>
+    <ClCompile Include="instructions\references\athrow.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

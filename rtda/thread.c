@@ -38,7 +38,31 @@ bool isThreadStackEmpty(Thread * thread)
 	return thread->stack->_top == NULL;
 }
 
-Frame* * getThreadFrames(Thread * threak, int32_t skip, int32_t * remain)
+Frame* * getThreadFrames(Thread * thread, int32_t skip, int32_t * remain)
 {
-	return NULL;
+	/* count total frame */
+	Frame * top = thread->stack->_top;
+
+	*remain = thread->stack->size - skip;
+	if (skip >= (int32_t) thread->stack->size)
+	{
+		printf("getThreadFrames skip:%d > stackSize:%d\n", skip, thread->stack->size);
+		exit(200);
+	}
+
+	Frame * *frames = calloc(thread->stack->size, sizeof(Frame*));
+
+	for (int32_t i = 0; i < skip; i++)
+		top = top->lower;
+	for (int32_t i = 0; i < *remain; i++)
+	{
+		frames[i] = top;
+		top = top->lower;
+	}
+	return frames;
+}
+
+void clearThreadStack(Thread *thread)
+{
+	clearStack(thread->stack);
 }

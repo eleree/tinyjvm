@@ -118,6 +118,7 @@
     <ClCompile Include="instructions\math\xor.c" />
     <ClCompile Include="instructions\references\anewarray.c" />
     <ClCompile Include="instructions\references\arraylength.c" />
+    <ClCompile Include="instructions\references\athrow.c" />
     <ClCompile Include="instructions\references\checkcast.c" />
     <ClCompile Include="instructions\references\getfield.c" />
     <ClCompile Include="instructions\references\getstatic.c" />

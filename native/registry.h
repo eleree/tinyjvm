@@ -19,6 +19,13 @@ typedef struct NativeMethodList
 	struct NativeMethodList * next;
 }NativeMethodList;
 
+typedef struct StackTraceElement {
+	char * fileName;
+	char * className;
+	char * methodName;
+	int32_t lineNumber;
+}StackTraceElement;
+
 NativeMethod findNativeMethod(const char * className, const char * methodName, const char * methodDescriptor);
 void registerNativeMethod(const char * className, const char * methodName, const char * methodDescriptor, NativeMethod method);
 

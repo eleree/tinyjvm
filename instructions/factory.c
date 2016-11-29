@@ -607,8 +607,9 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0xbe:
 			// 	return arraylength
 			return ARRAY_LENGTH(&instruction);
-			// case 0xbf:
+		case 0xbf:
 			// 	return athrow
+			return ATHROW(&instruction);
 		case 0xc0:
 			// 	return &CHECK_CAST{}
 			return CHECK_CAST(&instruction);

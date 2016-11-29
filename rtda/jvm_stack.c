@@ -50,3 +50,14 @@ void freeStack(Stack * stack)
 	if (stack != NULL)
 		free(stack);
 }
+
+bool isStackEmpty(Stack * stack)
+{
+	return stack->_top == NULL;
+}
+
+void clearStack(Stack* stack)
+{
+	while (!isStackEmpty(stack))
+		popFrame(stack);
+}

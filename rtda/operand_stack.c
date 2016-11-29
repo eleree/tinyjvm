@@ -132,3 +132,12 @@ Object * getOperandRefFromTop(OperandStack * self, uint16_t n)
 {
 	return self->slots[self->size - 1 - n].ref;
 }
+
+void clearOperandStack(OperandStack * self)
+{
+	self->size = 0;
+	for (uint32_t i = 0; i < self->maxSize; i++)
+	{
+		self->slots[i].ref = NULL;
+	}
+}

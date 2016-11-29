@@ -4,12 +4,6 @@
 
 const char * jlThrowable = "java/lang/Throwable";
 
-typedef struct StackTraceElement {
-	char * fileName;
-	char * className;
-	char * methodName;
-	int32_t lineNumber;
-}StackTraceElement;
 
 StackTraceElement * createStackTraceElement(Frame * frame)
 {
@@ -51,7 +45,7 @@ StackTraceElement* * createStackTraceElements(Object * tObj, Thread * thread, in
 
 	*elementCount = remainFrame;
 
-	return NULL;
+	return stes;
 }
 
 // private native Throwable fillInStackTrace(int dummy);

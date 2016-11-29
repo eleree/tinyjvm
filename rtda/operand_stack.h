@@ -29,5 +29,6 @@ Object * getOperandRefFromTop(OperandStack * self, uint16_t n);
 void pushOperandBoolean(OperandStack* operandStack, bool val);
 bool popOperandBoolean(OperandStack* operandStack);
 
+void clearOperandStack(OperandStack * self);
 
 #endif

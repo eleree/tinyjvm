@@ -74,6 +74,7 @@ void pushFrame(Stack * stack, Frame * frame);
 Frame * popFrame(Stack * stack);
 Frame * topFrame(Stack * stack);
 void freeStack(Stack * stack);
+void clearStack(Stack* stack);
 
 Object * getLocalVarsRef(LocalVars * localVars, int32_t index);
 void setLocalVarsSlot(LocalVars * localVars, int32_t index, Slot * slot);

@@ -251,7 +251,8 @@ Instruction * F2L(Instruction * inst);
 Instruction * F2I(Instruction * inst);
 Instruction * F2D(Instruction * inst);
 
-
 Instruction * INVOKE_NATIVE(Instruction * inst);
+
+Instruction * ATHROW(Instruction * inst);
 
 #endif
