@@ -16,8 +16,8 @@ bool isSubClassOf(Class * thisClass, Class * otherClass)
 
 bool isClassAssignableFrom(Class * thisClass, Class * otherClass)
 {
-	Class * s = otherClass;
-	Class * t = thisClass;
+	Class * s = thisClass;
+	Class * t = otherClass;
 	if (s == t)
 		return true;
 	if (!isClassArray(s))
@@ -30,8 +30,7 @@ bool isClassAssignableFrom(Class * thisClass, Class * otherClass)
 			else
 				// t is interface
 				return isClassImplements(s, t);
-		}
-		else{
+		}else{
 			// s is interface
 			if (!isClassInterface(t))
 			{
