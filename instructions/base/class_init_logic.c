@@ -11,11 +11,11 @@
 
 void InitClass(Thread * thread, Class * class);
 
-void initSuperClass(Thread * thread, Class * class)
+void initSuperClass(Thread * thread, Class * c)
 {
-	if(!isClassInterface(class))
+	if(!isClassInterface(c))
 	{
-		Class * superClass = class->superClass;
+		Class * superClass = c->superClass;
 		if (superClass != NULL && !superClass->initStarted)
 		{
 			InitClass(thread, superClass);
@@ -23,9 +23,9 @@ void initSuperClass(Thread * thread, Class * class)
 	}
 }
 
-void scheduleClinit(Thread * thread, Class * class)
+void scheduleClinit(Thread * thread, Class * c)
 {
-	Method * clinit = getClassClinitMethod(class);
+	Method * clinit = getClassClinitMethod(c);
 	if (clinit != NULL)
 	{
 		Frame * nFrame = newFrame(thread, clinit, clinit->maxLocals, clinit->maxStack);
@@ -33,9 +33,9 @@ void scheduleClinit(Thread * thread, Class * class)
 	}
 }
 
-void InitClass(Thread * thread, Class * class)
+void InitClass(Thread * thread, Class * c)
 {
-	startClassInit(class);
-	scheduleClinit(thread, class);
-	initSuperClass(thread, class);
+	startClassInit(c);
+	scheduleClinit(thread, c);
+	initSuperClass(thread, c);
 }

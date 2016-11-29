@@ -23,12 +23,12 @@ static int32_t execute_INVOKE_STATIC(Frame * frame, struct InsturctionData * ins
 		exit(131);		
 	}
 
-	Class * class = method->classMember.attachClass;
+	Class * c = method->classMember.attachClass;
 	
-	if (!class->initStarted)
+	if (!c->initStarted)
 	{
 		revertFrameNextPC(frame);
-		InitClass(frame->thread, class);
+		InitClass(frame->thread, c);
 		return 0;
 	}
 

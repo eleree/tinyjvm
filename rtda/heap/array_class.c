@@ -110,8 +110,9 @@ char * toClassName(const char * descriptor)
 
 	if (descriptor[0] == 'L')
 	{
-		char * objectDesc = calloc(strlen(descriptor) - 1, sizeof(char));
-		strncpy(objectDesc, descriptor + 1, strlen(descriptor) - 1);
+		uint32_t objectDescLen = strlen(descriptor);
+		char * objectDesc = calloc(strlen(descriptor) + 1, sizeof(char));
+		strncpy(objectDesc, descriptor + 1, strlen(descriptor) - 2);
 		return objectDesc;
 	}
 
@@ -143,10 +144,15 @@ char * getArrayClassName(const char * className)
 {
 	char * name = calloc(strlen(className) + 2, sizeof(char));
 	strcat(name, "[");
-	strcat(name, className);
+	char * nameToDesc = toDescriptor(className);	
+	strcat(name, nameToDesc); 
+	//free(nameToDesc);
 	return name;
 }
 
+// [[XXX -> [XXX
+// [LXXX; -> XXX
+// [I -> int
 char * getComponentClassName(char * className)
 {
 	if (className[0] == '[')

@@ -19,9 +19,9 @@ static int32_t execute_CHECK_CAST(Frame * frame, struct InsturctionData * instDa
 
 	cp = frame->method->classMember.attachClass->constantPool.constantPoolItem;
 	ClassRef * classRef = getClassConstantPoolClassRef(cp, instData->index);
-	Class * class = resolveClass(&classRef->symRef);
+	Class * c = resolveClass(&classRef->symRef);
 
-	if (!isObjectInstanceOf(ref, class))
+	if (!isObjectInstanceOf(ref, c))
 	{
 		printf("java.lang.ClassCastException\n");
 		exit(-1);

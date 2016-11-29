@@ -4,7 +4,6 @@
 
 const char * jlThrowable = "java/lang/Throwable";
 
-
 StackTraceElement * createStackTraceElement(Frame * frame)
 {
 	Method * method = frame->method;

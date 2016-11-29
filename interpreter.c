@@ -8,6 +8,13 @@
 #include "rtda\heap\class_loader.h"
 #include "native/registry.h"
 
+char * opcodeName[256]=
+{
+	"", // 0x00
+	"", // 0x01 
+	"",
+};
+
 static uint64_t instIndex = 0;
 void dumpLocalVars(Frame * frame)
 {
@@ -77,6 +84,7 @@ void initNative(void)
 	initNativeString();
 	initNativeSystem();
 	initVM();
+	initNativeThrowable();
 }
 
 void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
@@ -99,12 +107,12 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		opcode = readBytecodeUint8(&bytecodeReader);
 
 #if 1
-		printf("%d\n", instIndex++);
-		printf("->%s\n", frame->method->classMember.attachClass->name);
-		printf("  %s\n", frame->method->classMember.name);
-		printf("  %s\n", frame->method->classMember.descriptor);
-		printf("  pc:0x%02x, opcode:0x%02x\n", pc, opcode);
-		dumpLocalVars(frame);
+		//printf("%d\n", instIndex++);
+		printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name, frame->method->classMember.name,pc,opcode,instIndex++);
+		//printf("  %s\n", frame->method->classMember.name);
+		//printf("  %s\n", frame->method->classMember.descriptor);
+		//printf("  pc:0x%02x, opcode:0x%02x\n", pc, opcode);
+		//dumpLocalVars(frame);
 #endif 
 			
 		Instruction * inst = newInsturction(opcode);

@@ -36,4 +36,6 @@ void initNativeObject(void);
 void initNativeString(void);
 void initNativeSystem(void);
 void initVM(void);
+void initNativeThrowable(void);
+
 #endif
