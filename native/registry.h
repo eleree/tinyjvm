@@ -38,4 +38,9 @@ void initNativeSystem(void);
 void initVM(void);
 void initNativeThrowable(void);
 
+
+void initNativeUnixFileSystem(void);
+void initNativeFileOutputStream(void);
+void initNativeFileDescriptor(void);
+
 #endif

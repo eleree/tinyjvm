@@ -96,3 +96,8 @@ Object * getLocalVarsThis(LocalVars * self)
 {
 	return getLocalVarsRef(self, 0);
 }
+
+bool getLocalVarsBoolean(LocalVars * self, int32_t index)
+{
+	return getLocalVarsInt(self, index) == 1;
+}

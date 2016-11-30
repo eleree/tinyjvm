@@ -145,6 +145,9 @@
     <ClCompile Include="interpreter.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="miniz\minizip.c" />
+    <ClCompile Include="native\java\io\nativeFileDescriptor.c" />
+    <ClCompile Include="native\java\io\nativeFileOutputStream.c" />
+    <ClCompile Include="native\java\io\nativeUnixFileSystem.c" />
     <ClCompile Include="native\java\lang\nativeClass.c" />
     <ClCompile Include="native\java\lang\nativeDouble.c" />
     <ClCompile Include="native\java\lang\nativeFloat.c" />

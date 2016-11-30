@@ -85,6 +85,9 @@
     <Filter Include="源文件\instructions\reserved">
       <UniqueIdentifier>{86286de0-42e2-4778-bdb5-28b9550f3319}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\native\java\io">
+      <UniqueIdentifier>{bbce1ef5-220a-4c3a-a08b-971d7c94980a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -440,6 +443,15 @@
     </ClCompile>
     <ClCompile Include="instructions\references\athrow.c">
       <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\io\nativeFileDescriptor.c">
+      <Filter>源文件\native\java\io</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\io\nativeFileOutputStream.c">
+      <Filter>源文件\native\java\io</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\io\nativeUnixFileSystem.c">
+      <Filter>源文件\native\java\io</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
