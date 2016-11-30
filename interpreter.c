@@ -87,6 +87,23 @@ void initNative(void)
 	initNativeThrowable();
 }
 
+Object * createArgsArray(ClassLoader * classLoader, char ** argv, int argc)
+{
+	Class * stringClass = loadClass(classLoader, "java/lang/String");
+	Class * arrClass = arrayClass(stringClass);
+	Object * argsArr = newArray(arrClass, argc);
+	Object* * jArgs = getObjectRefs(argsArr);
+	for (int32_t i = 0; i < argc; i++)
+	{
+		String utf8Str = { 0 };
+		utf8Str.data = argv[i];
+		utf8Str.len = strlen(argv[i]);
+		jArgs[i] = jString(classLoader, &utf8Str);
+	}
+
+	return argsArr;
+}
+
 void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 {
 	Frame * frame = NULL;
@@ -96,7 +113,7 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 	uint8_t opcode = 0;
 	BytecodeReader bytecodeReader;
 	initNative();
-
+	
 	for (;;)
 	{
 		frame = getCurrentFrame(thread);
@@ -135,12 +152,6 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 	system("pause");
 }
 
-Object * createArgsArray(ClassLoader * classLoader, int argc, char ** argv)
-{
-	Class * stringClass = loadClass(classLoader, "java/lang/String");
-	return NULL;
-}
-
 void interpret(Class * c, Method * method, int argc, char ** argv)
 {
 	uint16_t maxLocals = method->maxLocals;
@@ -152,6 +163,8 @@ void interpret(Class * c, Method * method, int argc, char ** argv)
 	Frame * frame = newFrame(thread, method, maxLocals, maxStack);
 	pushThreadFrame(thread, frame);
 
+	Object * jArgs = createArgsArray(c->classLoader, argv, argc);
+	setLocalVarsRef(frame->localVars, 0, jArgs);
 	//Print LocalVars & OperandStack
 	loop(c, thread, bytecode, bytecodeLen);
 }

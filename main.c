@@ -19,7 +19,7 @@
 #define MAX_JVM_ARGS	16
 char classpath[128] = { 0 };
 char className[128] = { 0 };
-char jvmArgs[MAX_JVM_ARGS][64] = { 0 };
+char* * jvmArgs = NULL;
 char jrepath[128] = { 0 };
 
 void printUsage(void)
@@ -190,6 +190,7 @@ int main(int argc, char ** argv)
 		printf("Please specify a class\n");
 		exit(0);
 	}
+	jvmArgs = calloc(argc, sizeof(char*));
 	for (int i = 0; i < argc; i++)
 	{
 		if (i >= MAX_JVM_ARGS)
@@ -203,13 +204,14 @@ int main(int argc, char ** argv)
 			continue;
 		}
 		
-		strncpy((char *)&jvmArgs[i], argv[i],64);
-		printf("Args:%d,%s\n", i, argv[i]);
+		jvmArgs[i-1] = calloc(strlen(argv[i]) + 1, sizeof(char));
+		strcpy((char *)jvmArgs[i-1], argv[i]);
+		printf("Args:%d,%s\n", i, jvmArgs[i-1]);
 	}
 
 	//testStack();
 
-	startJVM(jrepath, classpath, className, argc, argv);
+	startJVM(jrepath, classpath, className, argc - 1, jvmArgs);
 
 	return 0;
 }
