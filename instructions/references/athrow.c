@@ -9,6 +9,7 @@
 #include "../../rtda/thread.h"
 #include "../../rtda/frame.h"
 #include "../../native/registry.h"
+
 bool findAndGotoExceptionHandler(Thread * thread, Object * ex)
 {
 	for (;;)

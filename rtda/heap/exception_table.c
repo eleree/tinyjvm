@@ -10,6 +10,7 @@ ClassRef * getCatchType(uint32_t index, ConstantPoolItem * cp)
 ExceptionTable * newExceptionTable(CodeAttribute * codeAttr, ConstantPoolItem * cp)
 {
 	ExceptionTable * table = calloc(1, sizeof(ExceptionTable));
+	table->handlerCount = codeAttr->exception_table_length;
 	table->exceptionHandler = calloc(codeAttr->exception_table_length, sizeof(ExceptionHandler));
 	for (int32_t i = 0; i < codeAttr->exception_table_length; i++)
 	{
