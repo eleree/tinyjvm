@@ -248,7 +248,6 @@ typedef struct SourceDebugExtensionAttribute{
 	uint8_t * debug_extension;
 }SourceDebugExtensionAttribute;
 
-
 typedef struct LineNumberTableEntry
 {
 	uint16_t startPc;

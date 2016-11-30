@@ -75,9 +75,9 @@ LineNumberTableAttribute * readLineNumberTableAttributeInfo(ClassFile * classFil
 
 int32_t getLineAttrLineNumber(LineNumberTableAttribute * self, int32_t pc)
 {
-	for (int32_t i = self->line_number_table_length - 1; i >= 0; i++)
+	for (int32_t i = self->line_number_table_length - 1; i >= 0; i--)
 	{
-		LineNumberTableEntry * entry = self->line_number_table + i;
+		LineNumberTableEntry * entry = &self->line_number_table[i];
 		if (pc >= entry->startPc)
 			return entry->lineNumber;
 	}
