@@ -396,3 +396,50 @@ bool isClassPrimitive(Class *self)
 	return false;
 }
 
+Field* * getClassFields(Class * self, bool publicOnly, uint16_t * fieldsCount)
+{
+	*fieldsCount = 0;
+	if (publicOnly)
+	{
+		Field* * publicFields = calloc(self->fieldsCount, sizeof(Field*));
+		for (uint16_t i = 0; i < self->fieldsCount; i++)
+		{
+			Field * field = self->fields+i;
+			if (isFieldPublic(field))
+			{
+				publicFields[*fieldsCount] = field;
+				(*fieldsCount)++;
+			}
+		}		
+
+		return publicFields;
+	}else{
+		*fieldsCount = self->fieldsCount;
+		return &self->fields;
+	}
+	
+}
+
+Method * getClassConstructor(Class * self, const char * descriptor)
+{
+	return getClassInstanceMethod(self, "<init>", descriptor);
+}
+
+Method* * getClassConstructors(Class * self, bool publicOnly, uint16_t * constructorsCount)
+{
+	Method* * constructors = calloc(self->methodsCount, sizeof(Method));
+	*constructorsCount = 0;
+	for (uint16_t i = 0; i < self->methodsCount; i++)
+	{
+		Method * method = self->methods + i;
+		if (isMethodConstructor(method))
+		{
+			if (!publicOnly || isMethodPublic(method))
+			{
+				constructors[*constructorsCount] = method;
+				(*constructorsCount)++;
+			}
+		}
+	}
+	return constructors;
+}

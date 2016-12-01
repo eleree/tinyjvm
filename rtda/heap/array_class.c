@@ -243,3 +243,17 @@ void arrayCopy(Object * srcArray, Object * destArray, int32_t srcPos, int32_t ds
 		break;
 	}
 }
+
+Object * newByteArray(ClassLoader * classLoader, int8_t * bytes, uint32_t count)
+{
+	Object * o = (Object *)calloc(1, sizeof(Object));
+	o->class = loadClass(classLoader, "[B");;
+	o->dataCount = count;
+	o->dataType = 'B';
+	o->data = calloc(count, sizeof(int8_t));
+
+	for (uint32_t i = 0; i < count; i++)
+		((int8_t*)(o->data))[i] = bytes[i];
+
+	return o;
+}

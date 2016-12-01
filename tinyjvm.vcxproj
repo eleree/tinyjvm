@@ -148,6 +148,10 @@
     <ClCompile Include="native\java\io\nativeFileDescriptor.c" />
     <ClCompile Include="native\java\io\nativeFileOutputStream.c" />
     <ClCompile Include="native\java\io\nativeUnixFileSystem.c" />
+    <ClCompile Include="native\java\lang\Class_getDeclaredConstructors0.c" />
+    <ClCompile Include="native\java\lang\Class_getDeclaredFields0.c" />
+    <ClCompile Include="native\java\lang\Class_getDeclaredMethods0.c" />
+    <ClCompile Include="native\java\lang\Class_helper.c" />
     <ClCompile Include="native\java\lang\nativeClass.c" />
     <ClCompile Include="native\java\lang\nativeDouble.c" />
     <ClCompile Include="native\java\lang\nativeFloat.c" />
@@ -184,6 +188,7 @@
     <ClCompile Include="rtda\jvm_stack.c" />
     <ClCompile Include="rtda\local_vars.c" />
     <ClCompile Include="rtda\operand_stack.c" />
+    <ClCompile Include="rtda\shim_frames.c" />
     <ClCompile Include="rtda\thread.c" />
     <ClCompile Include="rtda\utils.c" />
     <ClCompile Include="strings\strings.c" />

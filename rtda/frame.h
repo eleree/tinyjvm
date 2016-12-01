@@ -18,4 +18,6 @@ void revertFrameNextPC(Frame * frame);
 
 void freeFrame(Frame * frame);
 
+Frame * newShimFrame(Thread * thread, OperandStack * operandStack);
+
 #endif

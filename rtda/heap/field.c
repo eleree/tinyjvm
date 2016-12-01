@@ -133,3 +133,10 @@ bool isFieldAccessibleTo(Field * field, Class * d)
 
 	return d == c;
 }
+
+//refelction
+Class * fieldType(Field * self)
+{
+	char * className = toClassName(self->classMember.descriptor);
+	return loadClass(self->classMember.attachClass->classLoader, className);
+}

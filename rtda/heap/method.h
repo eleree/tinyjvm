@@ -8,6 +8,7 @@
 
 struct Class;
 struct ExceptionTable;
+struct MethodDescriptor;
 typedef struct Method
 {
 	struct ClassMember classMember;
@@ -17,7 +18,13 @@ typedef struct Method
 	uint8_t * code;
 	uint16_t argSlotCount;
 	struct ExceptionTable * exceptionTable;
+	struct ExceptionsAttribute * exceptions;
 	LineNumberTableAttribute * lineNumberTable;
+	struct MethodDescriptor * parsedDescriptor;
+	uint8_t * parameterAnnotationData;
+	uint32_t parameterAnnotationDataLen;
+	uint8_t * annotationDefaultData;
+	uint32_t annotationDefaultDataLen;
 }Method;
 
 typedef struct ParameterTypesList
@@ -68,5 +75,8 @@ void InvokeMethod(struct Frame * invokerFrame, struct Method * method);
 
 int32_t getMethodLineNumber(Method * self, int32_t pc);
 int32_t findMethodExceptionHander(Method * self, struct Class * exClass, int32_t pc);
+bool isMethodConstructor(Method * self);
+struct Class* * methodParameterTypes(Method * self);
+struct Class* * methodExceptionTypes(Method * self);
 
 #endif

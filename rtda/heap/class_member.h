@@ -10,7 +10,10 @@ typedef struct ClassMember
 	uint16_t accessFlags;
 	char * name;
 	char * descriptor;
+	char * signature;
 	struct Class * attachClass;
+	uint8_t * annotationData;
+	uint32_t annotationDataLen;
 }ClassMember;
 
 #endif

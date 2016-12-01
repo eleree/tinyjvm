@@ -10,6 +10,8 @@
 #include "../rtda/local_vars.h"
 #include "../rtda/heap/array_class.h"
 #include "../rtda/thread.h"
+#include "../rtda/frame.h"
+
 typedef void (*NativeMethod)(Frame *frame);
 
 typedef struct NativeMethodList
@@ -42,5 +44,14 @@ void initNativeThrowable(void);
 void initNativeUnixFileSystem(void);
 void initNativeFileOutputStream(void);
 void initNativeFileDescriptor(void);
+
+
+Object * toClassArr(ClassLoader * classLoader, Class * *interfaces, uint16_t interfacesCount);
+Object * getSignatureStr(ClassLoader * classLoader, char * signature);
+Object * toByteArr(ClassLoader * classLoader, uint8_t * goBytes, uint32_t  bytesLen);
+
+void getDeclaredFields0(Frame * frame);
+void getDeclaredConstructors0(Frame * frame);
+
 
 #endif

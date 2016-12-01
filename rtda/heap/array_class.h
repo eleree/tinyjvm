@@ -25,4 +25,6 @@ Object* * getObjectRefs(Object * self);
 Slot * getObjectSlots(Object * self);
 void arrayCopy(Object * srcArray, Object * destArray, int32_t srcPos, int32_t dstPos, int32_t length);
 
+Object * newByteArray(ClassLoader * classLoader, int8_t * bytes, uint32_t count);
+
 #endif

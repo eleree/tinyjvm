@@ -99,6 +99,77 @@ void getModifiers(Frame * frame)
 	pushOperandInt(frame->operandStack, c->accessFlags);
 }
 
+
+// public native Class<? super T> getSuperclass();
+// ()Ljava/lang/Class;
+void getSuperclass(Frame * frame)
+{
+	LocalVars * vars = frame->localVars;
+	Object * thisObject = getLocalVarsThis(vars);
+	Class * c = (Class *)thisObject->extra;
+	Class * superClass = c->superClass;
+
+	if (superClass != NULL)
+		pushOperandRef(frame->operandStack, superClass->jClass);
+	else
+		pushOperandRef(frame->operandStack, NULL);
+}
+
+// private native Class<?>[] getInterfaces0();
+// ()[Ljava/lang/Class;
+void getInterfaces0(Frame * frame)
+{
+	LocalVars * vars = frame->localVars;
+	Object * thisObject = getLocalVarsThis(vars);
+	Class * c = (Class *)thisObject->extra;
+	Object * classArr = toClassArr(c->classLoader, c->interfaces, c->interfacesCount);
+
+	pushOperandRef(frame->operandStack, classArr);
+}
+
+
+// public native boolean isArray();
+// ()Z
+void isArray(Frame * frame)
+{
+	LocalVars * vars = frame->localVars;
+	Object * thisObject = getLocalVarsThis(vars);
+	Class * c = (Class *)thisObject->extra;
+
+	pushOperandBoolean(frame->operandStack, isClassArray(c));
+}
+
+// public native Class<?> getComponentType();
+// ()Ljava/lang/Class;
+void getComponentType(Frame * frame)
+{
+	LocalVars * vars = frame->localVars;
+	Object * thisObject = getLocalVarsThis(vars);
+	Class * c = (Class *)thisObject->extra;
+
+	Class * component = componentClass(c);
+	Object * componentClassObj = component->jClass;
+
+	pushOperandRef(frame->operandStack, componentClassObj);
+}
+
+
+// public native boolean isAssignableFrom(Class<?> cls);
+// (Ljava/lang/Class;)Z
+void isAssignableFrom(Frame * frame)
+{
+	LocalVars * vars = frame->localVars;
+	Object * thisObject = getLocalVarsThis(vars);
+	Object * cls = getLocalVarsRef(vars, 1);
+
+	Class * thisClass = thisObject->extra;
+	Class * clsClass = cls->extra;
+
+	bool ok = isClassAssignableFrom(clsClass, thisClass);
+
+	pushOperandBoolean(frame->operandStack, ok);
+}
+
 void initNativeClass(void)
 {	
 	registerNativeMethod(jlClass, "getPrimitiveClass", "(Ljava/lang/String;)Ljava/lang/Class;", getPrimitiveClass);
@@ -107,7 +178,6 @@ void initNativeClass(void)
 
 	registerNativeMethod(jlClass, "isInterface", "()Z", isInterface);
 	registerNativeMethod(jlClass, "isPrimitive", "()Z", isPrimitive);
-#if 0
 	registerNativeMethod(jlClass, "getDeclaredFields0", "(Z)[Ljava/lang/reflect/Field;", getDeclaredFields0);
 	registerNativeMethod(jlClass, "forName0", "(Ljava/lang/String;ZLjava/lang/ClassLoader;Ljava/lang/Class;)Ljava/lang/Class;", forName0);
 	registerNativeMethod(jlClass, "getDeclaredConstructors0", "(Z)[Ljava/lang/reflect/Constructor;", getDeclaredConstructors0);
@@ -115,8 +185,8 @@ void initNativeClass(void)
 	registerNativeMethod(jlClass, "getSuperclass", "()Ljava/lang/Class;", getSuperclass);
 	registerNativeMethod(jlClass, "getInterfaces0", "()[Ljava/lang/Class;", getInterfaces0);
 	registerNativeMethod(jlClass, "isArray", "()Z", isArray);
-	registerNativeMethod(jlClass, "getDeclaredMethods0", "(Z)[Ljava/lang/reflect/Method;", getDeclaredMethods0);
+	//registerNativeMethod(jlClass, "getDeclaredMethods0", "(Z)[Ljava/lang/reflect/Method;", getDeclaredMethods0);
 	registerNativeMethod(jlClass, "getComponentType", "()Ljava/lang/Class;", getComponentType);
 	registerNativeMethod(jlClass, "isAssignableFrom", "(Ljava/lang/Class;)Z", isAssignableFrom);
-#endif 
+ 
 }

@@ -258,3 +258,46 @@ int32_t getMethodLineNumber(Method * self, int32_t pc)
 		return -1;
 	return getLineAttrLineNumber(self->lineNumberTable, pc);
 }
+
+bool isMethodConstructor(Method * self)
+{
+	return !isMethodStatic(self) && strcmp(self->classMember.name, "<init>") == 0;	
+}
+
+Class* * methodParameterTypes(Method * self)
+{
+	ParameterTypesList * paramTypes = NULL;
+	if (self->argSlotCount == 0)
+		return NULL;
+	
+	paramTypes = self->parsedDescriptor->parameterTypesList;
+
+	Class* *  paramClasses = calloc(self->parsedDescriptor->parameterTypesCount, sizeof(Class*));
+	uint32_t i = 0;
+	while (paramTypes != NULL)
+	{
+		char * paramClassName = toClassName(paramTypes->parameterTypes);
+		paramClasses[i++] = loadClass(self->classMember.attachClass->classLoader, paramClassName);
+		paramTypes = paramTypes->next;
+	}
+	return paramClasses;
+}
+
+Class* * methodExceptionTypes(Method * self)
+{
+	uint16_t * exIndexTable = NULL;
+	if (self->exceptions == NULL)
+		return NULL;
+	exIndexTable = self->exceptions->exception_index_table;
+	Class* * exClasses = calloc(self->exceptions->number_of_exceptions, sizeof(Class *));
+	ConstantPoolItem * cp = self->classMember.attachClass->constantPool.constantPoolItem;
+
+	for (uint16_t i = 0; i < self->exceptions->number_of_exceptions; i++)
+	{
+		uint16_t exIndex = exIndexTable[i];
+		ClassRef * ref = getClassConstantPoolClassRef(cp, exIndex);
+		exClasses[i] = resolveClass(&ref->symRef);
+	}
+
+	return exClasses;
+}

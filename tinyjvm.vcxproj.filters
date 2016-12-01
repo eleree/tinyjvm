@@ -453,6 +453,21 @@
     <ClCompile Include="native\java\io\nativeUnixFileSystem.c">
       <Filter>源文件\native\java\io</Filter>
     </ClCompile>
+    <ClCompile Include="native\java\lang\Class_helper.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\lang\Class_getDeclaredConstructors0.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\lang\Class_getDeclaredMethods0.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\lang\Class_getDeclaredFields0.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="rtda\shim_frames.c">
+      <Filter>源文件\rtda</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

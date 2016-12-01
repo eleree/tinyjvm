@@ -27,4 +27,7 @@ bool isFieldFinal(Field * field);
 bool isFieldSynthetic(Field * field);
 bool isFieldAccessibleTo(Field * field, struct Class * d);
 
+
+struct Class * fieldType(Field * self);
+
 #endif

@@ -103,4 +103,10 @@ struct Method * getClassInstanceMethod(Class * self, const char * name, const ch
 
 char * classJavaName(Class * self);
 char * getClassSourceFileName(ClassFile * classFile);
+
+struct Field* * getClassFields(Class * self, bool publicOnly, uint16_t * fieldsCount);
+struct Method * getClassConstructor(Class * self, const char * descriptor);
+struct Method* * getClassConstructors(Class * self, bool publicOnly, uint16_t * constructorsCount);
+char * toClassName(const char * descriptor);
+
 #endif
