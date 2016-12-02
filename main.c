@@ -161,7 +161,7 @@ void testStack(void)
 //extern void testMinizWrapper(void);
 int main(int argc, char ** argv)
 {
-	testStack();
+	//testStack();
 	//testMinizWrapper();
 	//testMiniz();
 	//testSSHZlib(argc, argv);

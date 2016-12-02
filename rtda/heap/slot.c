@@ -58,6 +58,8 @@ double getSlotDouble(Slot * slot, uint16_t index)
 void setSlotRef(Slot * slot, uint16_t index, Object * ref)
 {
 	slot[index].ref = ref;
+	if (ref->dataCount == 10)
+		return;
 }
 
 Object * getSlotRef(Slot * slot, uint16_t index)

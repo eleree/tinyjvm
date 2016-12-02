@@ -91,8 +91,7 @@ char * _sysProps[] = {
 // private static native Properties initProperties(Properties props);
 // (Ljava/util/Properties;)Ljava/util/Properties;
 void  initProperties(Frame * frame)
-{
-	printf("Invoke Native Method %s\n", __FUNCTION__);
+{	
 	LocalVars * vars = frame->localVars;
 	Object * props = getLocalVarsRef(vars, 0);
 
@@ -101,6 +100,7 @@ void  initProperties(Frame * frame)
 	Method * setPropMethod = getClassInstanceMethod(props->class, "setProperty", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;");
 	ClassLoader * classLoader = setPropMethod->classMember.attachClass->classLoader;
 
+	printf("Size:%d\n", sizeof(_sysProps) / sizeof(char*));
 	Thread * thread = frame->thread;
 	for (uint16_t i = 0; i < sizeof(_sysProps) / sizeof(char*)/2; i+=2)
 	{

@@ -125,17 +125,18 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 
 #if 1
 		//printf("%d\n", instIndex++);
-		printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name, frame->method->classMember.name,pc,opcode,instIndex);
+		printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
+			frame->method->classMember.name, pc, opcode, instIndex);
 		//printf("  %s\n", frame->method->classMember.name);
 		//printf("  %s\n", frame->method->classMember.descriptor);
 		//printf("  pc:0x%02x, opcode:0x%02x\n", pc, opcode);
 		//dumpLocalVars(frame);
 #endif 
 		instIndex++;
-		//if (instIndex == 1250)
-		//{
-		//	printf("probe\n");
-		//}
+		if (instIndex == 379)
+		{
+			printf("probe\n");
+		}
 		Instruction * inst = newInsturction(opcode);
 		InstructionData instData = { 0 };
 		if (inst != NULL)

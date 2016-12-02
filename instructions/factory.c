@@ -569,7 +569,6 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0xb1:
 			// 	return _return
 			return RETURN(&instruction);
-
 		case 0xb2:
 			//		return &GET_STATIC{}
 			return GET_STATIC(&instruction);

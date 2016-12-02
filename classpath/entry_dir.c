@@ -52,6 +52,6 @@ int32_t readDirEntryClass(const char * path, const char * className, char ** cla
 	*classContent = classBuffer;
 
 	CloseHandle(hFile);
-	printf("Load class: %s from path:%s successfully,size:%d\n", className, path, dwFileSize);
+	//printf("Load class: %s from path:%s successfully,size:%d\n", className, path, dwFileSize);
 	return (int32_t) dwFileSize;
 }
