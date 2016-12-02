@@ -45,6 +45,10 @@ void initNativeUnixFileSystem(void);
 void initNativeFileOutputStream(void);
 void initNativeFileDescriptor(void);
 
+void initUnsafe(void);
+void initReflect(void);
+void initNativeFileDescriptor(void);
+void initAccessController(void);
 
 Object * toClassArr(ClassLoader * classLoader, Class * *interfaces, uint16_t interfacesCount);
 Object * getSignatureStr(ClassLoader * classLoader, char * signature);

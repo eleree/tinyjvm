@@ -85,6 +85,10 @@ void initNative(void)
 	initNativeSystem();
 	initVM();
 	initNativeThrowable();
+	initUnsafe();
+	initReflect();
+	initNativeFileDescriptor();
+	initAccessController();
 }
 
 Object * createArgsArray(ClassLoader * classLoader, char ** argv, int argc)

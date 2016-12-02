@@ -25,9 +25,13 @@ NativeMethod findNativeMethod(const char * className, const char * methodName, c
 		listNode = listNode->next;
 	}
 	
-	if (strcmp(methodDescriptor, "()V") == 0 &&
-		strcmp(methodName, "registerNatives") == 0)
-		return emptyNativeMethod;
+	if (strcmp(methodDescriptor, "()V") == 0)
+	{
+		if(strcmp(methodName, "registerNatives") == 0 ||
+			strcmp(methodName,"initIDs") == 0)
+			return emptyNativeMethod;
+	}
+	
 
 	return NULL;
 }

@@ -100,7 +100,6 @@ void  initProperties(Frame * frame)
 	Method * setPropMethod = getClassInstanceMethod(props->class, "setProperty", "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;");
 	ClassLoader * classLoader = setPropMethod->classMember.attachClass->classLoader;
 
-	printf("Size:%d\n", sizeof(_sysProps) / sizeof(char*));
 	Thread * thread = frame->thread;
 	for (uint16_t i = 0; i < sizeof(_sysProps) / sizeof(char*)/2; i+=2)
 	{

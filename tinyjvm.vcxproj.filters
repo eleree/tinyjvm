@@ -88,6 +88,15 @@
     <Filter Include="源文件\native\java\io">
       <UniqueIdentifier>{bbce1ef5-220a-4c3a-a08b-971d7c94980a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\native\sun\io">
+      <UniqueIdentifier>{6ab4c76b-30fa-4992-a1ac-ea3860406177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\native\sun\reflect">
+      <UniqueIdentifier>{07db8c8e-cd5d-4d4d-9ea8-bcda51739b02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\native\java\security">
+      <UniqueIdentifier>{cbf952e5-84ce-40eb-b7c2-bb6f81951d16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -467,6 +476,33 @@
     </ClCompile>
     <ClCompile Include="rtda\shim_frames.c">
       <Filter>源文件\rtda</Filter>
+    </ClCompile>
+    <ClCompile Include="native\sun\misc\nativeUnsafe.c">
+      <Filter>源文件\native\sun\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="native\sun\misc\Unsafe_mem.c">
+      <Filter>源文件\native\sun\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="native\sun\misc\URLClassPath.c">
+      <Filter>源文件\native\sun\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="native\sun\misc\nativeSignal.c">
+      <Filter>源文件\native\sun\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="native\sun\misc\nativeMalloc.c">
+      <Filter>源文件\native\sun\misc</Filter>
+    </ClCompile>
+    <ClCompile Include="native\sun\io\Win32ErrorMode.c">
+      <Filter>源文件\native\sun\io</Filter>
+    </ClCompile>
+    <ClCompile Include="native\sun\reflect\NativeConstructorAccessorImpl.c">
+      <Filter>源文件\native\sun\reflect</Filter>
+    </ClCompile>
+    <ClCompile Include="native\sun\reflect\Reflection.c">
+      <Filter>源文件\native\sun\reflect</Filter>
+    </ClCompile>
+    <ClCompile Include="native\java\security\AccessController.c">
+      <Filter>源文件\native\java\security</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

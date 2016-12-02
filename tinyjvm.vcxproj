@@ -159,8 +159,17 @@
     <ClCompile Include="native\java\lang\nativeString.c" />
     <ClCompile Include="native\java\lang\nativeSystem.c" />
     <ClCompile Include="native\java\lang\nativeThrowable.c" />
+    <ClCompile Include="native\java\security\AccessController.c" />
     <ClCompile Include="native\registry.c" />
+    <ClCompile Include="native\sun\io\Win32ErrorMode.c" />
+    <ClCompile Include="native\sun\misc\nativeMalloc.c" />
+    <ClCompile Include="native\sun\misc\nativeSignal.c" />
+    <ClCompile Include="native\sun\misc\nativeUnsafe.c" />
+    <ClCompile Include="native\sun\misc\Unsafe_mem.c" />
+    <ClCompile Include="native\sun\misc\URLClassPath.c" />
     <ClCompile Include="native\sun\misc\VM.c" />
+    <ClCompile Include="native\sun\reflect\NativeConstructorAccessorImpl.c" />
+    <ClCompile Include="native\sun\reflect\Reflection.c" />
     <ClCompile Include="rtda\frame.c" />
     <ClCompile Include="rtda\heap\array_class.c" />
     <ClCompile Include="rtda\heap\array_object.c" />
