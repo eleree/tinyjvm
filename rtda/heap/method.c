@@ -25,6 +25,9 @@ static void copyAttributes(Method * method, MethodInfo * methodInfo, ClassFile *
 			method->exceptionTable = newExceptionTable(codeAttr, method->classMember.attachClass->constantPool.constantPoolItem);
 			break;
 		}
+		method->classMember.annotationData = getClassFileUnparsedAttributeData(classFile, "RuntimeVisibleAnnotations", &method->classMember.annotationDataLen);
+		method->parameterAnnotationData = getClassFileUnparsedAttributeData(classFile, "RuntimeVisibleParameterAnnotationsAttribute", &method->parameterAnnotationDataLen);
+		method->annotationDefaultData = getClassFileUnparsedAttributeData(classFile, "AnnotationDefault", &method->annotationDefaultDataLen);
 	}
 }
 
@@ -110,6 +113,7 @@ Method * newMethods(struct Class * c, ClassFile * classFile)
 		copyMethodInfo(&c->methods[i], &classFile->methods[i], classFile);
 		copyAttributes(&c->methods[i], &classFile->methods[i], classFile);
 		MethodDescriptor * md = parseMethodDescriptor(c->methods[i].classMember.descriptor);
+		c->methods[i].parsedDescriptor = md;
 		calcArgSlotCount(&c->methods[i]);
 		if (isMethodNative(&c->methods[i]))
 		{

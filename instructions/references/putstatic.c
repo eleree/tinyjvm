@@ -6,6 +6,7 @@
 #include "../../rtda/heap/cp_symref.h"
 #include "../../rtda/heap/field.h"
 #include "../../rtda/heap/cp_fieldref.h"
+#include "../../rtda/frame.h"
 
 // Set static field in class
 static int32_t execute_PUT_STATIC(Frame * frame, struct InsturctionData * instData)
@@ -16,7 +17,14 @@ static int32_t execute_PUT_STATIC(Frame * frame, struct InsturctionData * instDa
 	ConstantPoolItem * cp = frame->method->classMember.attachClass->constantPool.constantPoolItem;
 	FieldRef * fieldRef = getClassConstantPoolFieldRef(cp, instData->index);
 	Field * field = resolvedField(fieldRef);
-	Class * class = field->classMember.attachClass;
+	Class * c = field->classMember.attachClass;
+
+	if (!c->initStarted)
+	{
+		revertFrameNextPC(frame);
+		InitClass(frame->thread, c);
+		return 0;
+	}
 
 	if (!isFieldStatic(field))
 	{
@@ -26,7 +34,7 @@ static int32_t execute_PUT_STATIC(Frame * frame, struct InsturctionData * instDa
 
 	if (isFieldFinal(field))
 	{
-		if (currentClass != class ||
+		if (currentClass != c ||
 			strcmp(currentMethod->classMember.name, "<clinit>") != 0)
 		{
 			printf("java.lang.IllegalAccessError\n");
@@ -36,7 +44,7 @@ static int32_t execute_PUT_STATIC(Frame * frame, struct InsturctionData * instDa
 
 	char * descriptor = field->classMember.descriptor;
 	uint16_t slotId = field->slotId;
-	Slot * slots = class->staticVars;
+	Slot * slots = c->staticVars;
 	OperandStack * operandStack = frame->operandStack;
 
 	switch (descriptor[0])

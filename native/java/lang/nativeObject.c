@@ -33,10 +33,16 @@ void  clone(Frame * frame)
 	pushOperandRef(frame->operandStack, cloneObject(thisObject));
 }
 
+void  notifyAll(Frame * frame)
+{
+	//todo
+}
+
 void initNativeObject(void)
 {
 	registerNativeMethod(jlObject, "getClass", "()Ljava/lang/Class;", getClass);
 	registerNativeMethod(jlObject, "hashCode", "()I", hashCode);
 	registerNativeMethod(jlObject, "clone", "()Ljava/lang/Object;", clone);
+	registerNativeMethod(jlObject, "notifyAll", "()V", notifyAll);
 }
 

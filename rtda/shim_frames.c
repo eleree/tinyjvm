@@ -20,7 +20,7 @@ Frame * newShimFrame(Thread * thread, OperandStack * operandStack)
 	method->code[0] = 0xb1;
 
 	frame->localVars = newLocalVars(0);
-	frame->operandStack = newOperandStack(0);
+	frame->operandStack = operandStack;
 	frame->thread = thread;
 	frame->method = method;
 	return frame;

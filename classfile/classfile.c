@@ -643,3 +643,18 @@ char * getClassSourceFileName(ClassFile * classFile)
 
 	return strdup(sourceName);
 }
+
+char * getClassFileUnparsedAttributeData(ClassFile * classFile, const char * name, uint32_t * len)
+{
+	for (uint16_t i = 0; i < classFile->attributes_count; i++)
+	{
+		AttributeInfo * attrInfo = (classFile->attributes) + i;
+		const char * attrName = getClassUtf8(classFile, attrInfo->attributeNameIndex);
+		if (strcmp(attrName, name) == 0)
+		{
+			*len = attrInfo->attributeLength;
+			return ((UnparsedAttribute *)attrInfo->info)->bytes; // Maybe a copy of classfile, but for simple.
+		}
+	}
+	return NULL;
+}

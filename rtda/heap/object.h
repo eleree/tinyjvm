@@ -33,9 +33,9 @@ void setObjectRefVar(Object * self, const char * name, const char *descriptor, O
 
 Object * cloneObject(Object * self);
 
-#define panic(message,code) while(0){\
+#define panic(message,code) do{\
 	printf("%s,code:%d", message, code); \
 	exit(code); \
-};
+}while(0);
 
 #endif

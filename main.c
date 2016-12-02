@@ -67,17 +67,29 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 
 	parseClasspath(jrepath, classpath);
 	classLoader = newClassLoader();
+
+	Thread * mainThread = newThread();
+
+	/* Init VM */
+	Class * vmClass = loadClass(classLoader, "sun/misc/VM");
+	InitClass(mainThread, vmClass);
+	interpretThread(mainThread);
+
+	/* Start Apps */
 	stringReplace(className, fullClassName, 128);
 	stringCat(fullClassName, ".class", 128);
 	mainClass = loadClass(classLoader,fullClassName);
 	if (mainClass != NULL)
-		interpret(mainClass, getClassMainMethod(mainClass), argc, argv);
+		interpret(mainClass, getClassMainMethod(mainClass), mainThread, argc, argv);
 	else
 		printf("Main method not found in class\n");
 
 	if (classContent != NULL)
 		free(classContent);
+
+	printf("JVM Exit\n");
 }
+
 
 void testMiniz(void)
 {

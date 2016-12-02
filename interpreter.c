@@ -123,7 +123,7 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		resetBytecodeReader(&bytecodeReader, frame->method->code, frame->method->codeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
 
-#if 0
+#if 1
 		//printf("%d\n", instIndex++);
 		printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name, frame->method->classMember.name,pc,opcode,instIndex);
 		//printf("  %s\n", frame->method->classMember.name);
@@ -148,18 +148,21 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		if (isThreadStackEmpty(thread))
 			break;
 	}
-	printf("JVM Exit\n");
 	system("pause");
 }
 
-void interpret(Class * c, Method * method, int argc, char ** argv)
+void interpretThread(Thread * thread)
+{
+	loop(NULL, thread, NULL, 0);
+}
+
+void interpret(Class * c, Method * method, Thread * thread, int argc, char ** argv)
 {
 	uint16_t maxLocals = method->maxLocals;
 	uint16_t maxStack = method->maxStack;
 	uint32_t bytecodeLen = method->codeLen;
 	uint8_t * bytecode = method->code;
 
-	Thread * thread = newThread();
 	Frame * frame = newFrame(thread, method, maxLocals, maxStack);
 	pushThreadFrame(thread, frame);
 

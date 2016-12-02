@@ -72,6 +72,7 @@ static int32_t execute_INVOKE_VIRTUAL(Frame * frame, struct InsturctionData * in
 	Object * ref = getOperandRefFromTop(frame->operandStack, method->argSlotCount - 1);
 	if (ref == NULL)
 	{
+		printf("invoke methodRef:%s\n", methodRef->name);
 		// hack!
 		if (strcmp(methodRef->name, "println") == 0)
 		{

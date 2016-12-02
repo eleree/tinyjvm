@@ -373,6 +373,7 @@ typedef struct AnnotationDefaultAttribute{
 typedef struct UnparsedAttribute{
 	uint16_t attribute_name_index;
 	uint32_t attribute_length;
+	uint32_t bytes_length;
 	uint8_t * bytes;
 }UnparsedAttribute;
 
@@ -470,5 +471,7 @@ char * getClassSourceFileName(ClassFile * classFile);
 
 LineNumberTableAttribute * getCodeAttrLineNumberTableAttr(CodeAttribute * codeAttr, ClassFile* classFile);
 int32_t getLineAttrLineNumber(LineNumberTableAttribute * self, int32_t pc);
+
+char * getClassFileUnparsedAttributeData(ClassFile * classFile, const char * name, uint32_t * len);
 
 #endif

@@ -168,6 +168,8 @@ UnparsedAttribute * readUnparsedAttributeInfo(ClassFile * classFile, uint32_t at
 {
 	UnparsedAttribute * unparsedAttr = calloc(1, sizeof(UnparsedAttribute));
 
+	unparsedAttr->bytes_length = attrLen;
+
 	if (attrLen == 0)
 		return NULL;
 	unparsedAttr->bytes = calloc(attrLen, sizeof(uint8_t));

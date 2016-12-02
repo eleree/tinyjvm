@@ -100,6 +100,7 @@ struct Field * getClassField(Class * self, const char * name, const char * descr
 void setClassRefVar(Class * self, const char * fieldName, const char * fieldDescriptor, Object * ref);
 Object * getClassRefVar(Class * self, const char * fieldName, const char * fieldDescriptor);
 struct Method * getClassInstanceMethod(Class * self, const char * name, const char *  descriptor);
+struct Method * getClassStaticMethod(Class * c, const char * name, const char * descriptor);
 
 char * classJavaName(Class * self);
 char * getClassSourceFileName(ClassFile * classFile);
