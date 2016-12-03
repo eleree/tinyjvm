@@ -415,7 +415,14 @@ Field* * getClassFields(Class * self, bool publicOnly, uint16_t * fieldsCount)
 		return publicFields;
 	}else{
 		*fieldsCount = self->fieldsCount;
-		return &self->fields;
+		Field* * publicFields = calloc(self->fieldsCount, sizeof(Field*));
+		for (uint16_t i = 0; i < self->fieldsCount; i++)
+		{
+			Field * field = self->fields + i;			
+			publicFields[i] = field;			
+		}
+
+		return publicFields;
 	}
 	
 }

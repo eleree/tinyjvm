@@ -127,6 +127,7 @@
     <ClCompile Include="instructions\references\invokespecial.c" />
     <ClCompile Include="instructions\references\invokestatic.c" />
     <ClCompile Include="instructions\references\invokevirtual.c" />
+    <ClCompile Include="instructions\references\monitor.c" />
     <ClCompile Include="instructions\references\multianewarray.c" />
     <ClCompile Include="instructions\references\new.c" />
     <ClCompile Include="instructions\references\newarray.c" />
@@ -158,6 +159,7 @@
     <ClCompile Include="native\java\lang\nativeObject.c" />
     <ClCompile Include="native\java\lang\nativeString.c" />
     <ClCompile Include="native\java\lang\nativeSystem.c" />
+    <ClCompile Include="native\java\lang\nativeThread.c" />
     <ClCompile Include="native\java\lang\nativeThrowable.c" />
     <ClCompile Include="native\java\security\AccessController.c" />
     <ClCompile Include="native\registry.c" />

@@ -223,6 +223,9 @@ Instruction * ANEW_ARRAY(Instruction * inst);
 Instruction * MULTI_ANEW_ARRAY(Instruction * inst);
 Instruction * ARRAY_LENGTH(Instruction * inst);
 
+Instruction * MONITOR_ENTER(Instruction * inst);
+Instruction * MONITOR_EXIT(Instruction * inst);
+
 /* control */
 Instruction * RETURN(Instruction * inst);
 Instruction * ARETURN(Instruction * inst);

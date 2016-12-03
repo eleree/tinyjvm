@@ -1,5 +1,6 @@
 #include "rtda.h"
 #include <string.h>
+#include "heap/class.h"
 OperandStack * newOperandStack(uint32_t maxStack)
 {
 	OperandStack * operandStack = NULL;
@@ -29,7 +30,6 @@ void pushOperandInt(OperandStack* operandStack,int32_t val)
 	uint32_t operandStackSize = operandStack->size;
 	operandStack->slots[operandStackSize].num = val;
 	operandStack->size++;
-	printf("%d\n", val);
 }
 
 int32_t popOperandInt(OperandStack* operandStack)
@@ -101,6 +101,8 @@ double popOperandDouble(OperandStack* operandStack)
 
 void pushOperandRef(OperandStack * operandStack, Object * ref)
 {
+	if (ref != NULL)
+		printf("---Ops Size:%d,Push Ref %s\n", operandStack->size, ref->class->name);
 	operandStack->slots[operandStack->size].ref = ref;
 	operandStack->size++;
 }

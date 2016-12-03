@@ -39,7 +39,7 @@ void initNativeString(void);
 void initNativeSystem(void);
 void initVM(void);
 void initNativeThrowable(void);
-
+void initNativeThread(void);
 
 void initNativeUnixFileSystem(void);
 void initNativeFileOutputStream(void);
@@ -49,6 +49,7 @@ void initUnsafe(void);
 void initReflect(void);
 void initNativeFileDescriptor(void);
 void initAccessController(void);
+void initConstructorAccessorImpl(void);
 
 Object * toClassArr(ClassLoader * classLoader, Class * *interfaces, uint16_t interfacesCount);
 Object * getSignatureStr(ClassLoader * classLoader, char * signature);

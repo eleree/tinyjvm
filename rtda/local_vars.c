@@ -1,5 +1,5 @@
 #include "rtda.h"
-
+#include "heap\class.h"
 LocalVars * newLocalVars(uint32_t maxLocals)
 {
 	LocalVars * localVars = NULL;
@@ -78,6 +78,8 @@ double getLocalVarsDouble(LocalVars * localVars, int32_t index)
 
 void setLocalVarsRef(LocalVars * localVars, int32_t index, Object * ref)
 {
+	if (ref != NULL)
+		printf("---Vars Size:%d,Push Ref %s\n", localVars->size, ref->class->name);
 	localVars->slots[index].ref = ref;
 }
 
@@ -90,6 +92,11 @@ void setLocalVarsSlot(LocalVars * localVars, int32_t index, Slot * slot)
 {
 	localVars->slots[index].num = slot->num;
 	localVars->slots[index].ref = slot->ref;
+	if (slot->ref != NULL)
+	{
+		printf("---Slot Vars Size:%d,Push Ref %s\n", localVars->size, slot->ref->class->name);
+	}
+	
 }
 
 Object * getLocalVarsThis(LocalVars * self) 

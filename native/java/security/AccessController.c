@@ -9,7 +9,7 @@
 // @CallerSensitive
 // public static native <T> T doPrivileged(PrivilegedAction<T> action);
 // (Ljava/security/PrivilegedAction;)Ljava/lang/Object;
-void  doPrivileged(Frame * frame)
+static void  doPrivileged(Frame * frame)
 {
 	LocalVars * vars = frame->localVars;
 	Object * action = getLocalVarsRef(vars, 0);
@@ -26,8 +26,8 @@ void  doPrivileged(Frame * frame)
 // ()Ljava/security/AccessControlContext;
 void  getStackAccessControlContext(Frame * frame)
 {
-	printf("Invoke Native Method %s\n", __FUNCTION__);
-	exit(1);
+	// todo
+	pushOperandRef(frame->operandStack, NULL);
 }
 
 void initAccessController(void)

@@ -89,6 +89,8 @@ void initNative(void)
 	initReflect();
 	initNativeFileDescriptor();
 	initAccessController();
+	initNativeThread();
+	initConstructorAccessorImpl();
 }
 
 Object * createArgsArray(ClassLoader * classLoader, char ** argv, int argc)
@@ -127,7 +129,7 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		resetBytecodeReader(&bytecodeReader, frame->method->code, frame->method->codeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
 
-#if 1
+#if 0
 		//printf("%d\n", instIndex++);
 		printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
 			frame->method->classMember.name, pc, opcode, instIndex);

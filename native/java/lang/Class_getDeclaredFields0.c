@@ -19,7 +19,6 @@ const char *  _fieldConstructorDescriptor =
 	"[B)V";
 
 
-
 // private native Field[] getDeclaredFields0(boolean publicOnly);
 // (Z)[Ljava/lang/reflect/Field;
 void getDeclaredFields0(Frame * frame)
@@ -61,11 +60,13 @@ void getDeclaredFields0(Frame * frame)
 			pushOperandRef(ops, fieldType(goField)->jClass);
 			pushOperandInt(ops, goField->classMember.accessFlags);
 			pushOperandInt(ops, goField->slotId);
+			pushOperandRef(ops, getSignatureStr(classLoader, goField->classMember.signature));
 			pushOperandRef(ops, toByteArr(classLoader, goField->classMember.annotationData, goField->classMember.annotationDataLen));
 
 			Frame * shimFrame = newShimFrame(thread, ops);
 			pushThreadFrame(thread, shimFrame);
 
+			printf("i:%d\n", i);
 			InvokeMethod(shimFrame, fieldConstructor);
 		}
 	}

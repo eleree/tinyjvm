@@ -504,6 +504,12 @@
     <ClCompile Include="native\java\security\AccessController.c">
       <Filter>源文件\native\java\security</Filter>
     </ClCompile>
+    <ClCompile Include="native\java\lang\nativeThread.c">
+      <Filter>源文件\native\java\lang</Filter>
+    </ClCompile>
+    <ClCompile Include="instructions\references\monitor.c">
+      <Filter>源文件\instructions\references</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getopt.h">

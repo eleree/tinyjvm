@@ -615,10 +615,12 @@ Instruction * newInsturction(uint8_t opcode)
 		case 0xc1:
 		 	//return &INSTANCE_OF{}
 			return INSTANCE_OF(&instruction);
-			// case 0xc2:
+		case 0xc2:
 			// 	return monitorenter
-			// case 0xc3:
+			return MONITOR_ENTER(&instruction);
+		case 0xc3:
 			// 	return monitorexit
+			return MONITOR_EXIT(&instruction);
 		case 0xc4:
 			//return &WIDE{}
 			return WIDE(&instruction);

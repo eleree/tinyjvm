@@ -30,6 +30,8 @@ Object * getSlotRef(struct Slot * slot, uint16_t index);
 
 Object * getObjectRefVar(Object * self, const char * name, const char * descriptor);
 void setObjectRefVar(Object * self, const char * name, const char *descriptor, Object * ref);
+int32_t getObjectIntVar(Object * self, const char * name, const char * descriptor);
+void setObjectIntVar(Object * self, const char * name, const char *descriptor, int32_t val);
 
 Object * cloneObject(Object * self);
 

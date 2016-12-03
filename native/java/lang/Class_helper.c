@@ -33,6 +33,9 @@ Object * toByteArr(ClassLoader * classLoader, uint8_t * goBytes, uint32_t  bytes
 
 Object * getSignatureStr(ClassLoader * classLoader, char * signature)
 {
+	if (signature == NULL)
+		return NULL;
+
 	if (strcmp(signature, "") != 0)
 	{
 		String tempStr = { 0 };
