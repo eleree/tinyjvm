@@ -10,7 +10,7 @@ void _println(OperandStack * operandStack, char * descriptor)
 {
 	if (strncmp(descriptor, "(Z)V", 4) == 0)
 	{
-		printf("%d\n", popOperandInt(operandStack));
+		printf("%s\n", popOperandInt(operandStack) ? "true" : "fasle");
 	}
 	else if (strncmp(descriptor, "(C)V", 4) == 0)
 	{

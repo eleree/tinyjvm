@@ -24,6 +24,8 @@ ExceptionTable * newExceptionTable(CodeAttribute * codeAttr, ConstantPoolItem * 
 
 ExceptionHandler * findExceptionHandler(ExceptionTable * self, Class * exClass, int32_t pc)
 {
+	if (self == NULL)
+		return NULL;
 	for (int32_t i = 0; i < self->handlerCount; i++)
 	{
 		// jvms: The start_pc is inclusive and end_pc is exclusive

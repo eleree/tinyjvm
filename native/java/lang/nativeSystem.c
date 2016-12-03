@@ -1,4 +1,5 @@
 #include "../../registry.h"
+#include <time.h>
 
 const char * jlSystem = "java/lang/System";
 
@@ -63,7 +64,7 @@ char * _sysProps[] = {
 	"os.name",
 	"windows",   // todo
 	"os.arch",
-	"x64_86", // todo
+	"", // todo
 	"os.version",
 	"",             // todo
 	"file.separator",
@@ -149,8 +150,8 @@ void  setErr0(Frame * frame)
 // ()J
 void  currentTimeMillis(Frame * frame)
 {
-	printf("Invoke Native Method %s\n", __FUNCTION__);
-	exit(1);
+	time_t nowtime = time(NULL);
+	pushOperandLong(frame->operandStack, (int64_t)nowtime);
 }
 
 void initNativeSystem(void)
