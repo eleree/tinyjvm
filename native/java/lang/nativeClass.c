@@ -83,6 +83,7 @@ void forName0(Frame * frame)
 	{
 		Thread * thread = frame->thread;
 		setFrameNextPC(frame, thread->pc);
+		InitClass(thread, goClass);
 	}else{
 		pushOperandRef(frame->operandStack, jClass);
 	}

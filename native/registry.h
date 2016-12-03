@@ -11,6 +11,7 @@
 #include "../rtda/heap/array_class.h"
 #include "../rtda/thread.h"
 #include "../rtda/frame.h"
+#include "../rtda/heap/string_pool.h"
 
 typedef void (*NativeMethod)(Frame *frame);
 

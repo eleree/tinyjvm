@@ -7,10 +7,11 @@ const char * jlString = "java/lang/String";
 void  intern(Frame * frame)
 {
 	Object * thisObject = getLocalVarsThis(frame->localVars);
-
+	Object * interned = internString(thisObject);
+	pushOperandRef(frame->operandStack, interned);
 }
 
 void initNativeString(void)
 {
-	registerNativeMethod(jlString, "getClass", "()Ljava/lang/Class;", intern);
+	registerNativeMethod(jlString, "intern", "()Ljava/lang/String;", intern);
 }

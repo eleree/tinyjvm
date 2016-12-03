@@ -101,8 +101,8 @@ double popOperandDouble(OperandStack* operandStack)
 
 void pushOperandRef(OperandStack * operandStack, Object * ref)
 {
-	if (ref != NULL)
-		printf("---Ops Size:%d,Push Ref %s\n", operandStack->size, ref->class->name);
+	//if (ref != NULL)
+	//	printf("---Ops Size:%d,Push Ref %s\n", operandStack->size, ref->class->name);
 	operandStack->slots[operandStack->size].ref = ref;
 	operandStack->size++;
 }
