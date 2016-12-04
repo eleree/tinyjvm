@@ -269,7 +269,7 @@ Class * loadNonArrayClass(ClassLoader * classLoader, const char * className)
 
 	linkClass(classLoader, loadClass);
 
-	printf("[Loaded %s\n", loadClass->name);
+	//printf("[Loaded %s\n", loadClass->name);
 	return loadClass;
 }
 

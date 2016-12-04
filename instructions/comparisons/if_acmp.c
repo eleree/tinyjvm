@@ -6,7 +6,7 @@ static bool _acmp(Frame *frame, InstructionData * instData)
 	OperandStack * operandStack = frame->operandStack;
 	Object * ref2 = popOperandRef(operandStack);
 	Object * ref1 = popOperandRef(operandStack);
-
+	printf("ref2:%x, ref1:%x\n", ref2, ref1);
 	return ref2 == ref1; // todo, need to be Object compare
 
 }

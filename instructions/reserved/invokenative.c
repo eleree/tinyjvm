@@ -24,6 +24,8 @@ static int32_t execute_INVOKE_NATIVE(Frame * frame, struct InsturctionData * ins
 		panic("java.lang.UnsatisfiedLinkError", 12);
 	}
 
+	printf("Native Method Info:%s.%s %s\n", className, methodName, methodDescriptor);
+
 	nativeMethod(frame);
 	return 0;
 }

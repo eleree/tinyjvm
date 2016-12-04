@@ -83,7 +83,7 @@ Object * jString(ClassLoader *loader, String * mutf8Str)
 
 	InternedStringsList * newList = calloc(1, sizeof(InternedStringsList));
 	newList->goStr = calloc(1, sizeof(String));
-	newList->goStr->data = calloc(mutf8Str->len, sizeof(char));
+	newList->goStr->data = calloc(mutf8Str->len + 1, sizeof(char));
 	for (uint16_t i = 0; i < mutf8Str->len; i++)
 	{
 		char * src = (char *)mutf8Str->data;
@@ -211,7 +211,7 @@ Object * internString(Object * jStr)
 	InternedStringsList * strList = internedStrings;
 	while (strList != NULL)
 	{
-		char * utf8Str = (char *)goStr->data;
+		char * utf8Str = (char *)strList->goStr->data;
 		if (strcmp(utf8Str, (char *)goStr->data) == 0)
 		{
 			return strList->jStr;

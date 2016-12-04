@@ -42,7 +42,7 @@ void _println(OperandStack * operandStack, char * descriptor)
 	}
 	else
 	{
-		printf("println:%s\n", descriptor);
+		//printf("println:%s\n", descriptor);
 	}
 	if (strcmp(descriptor, "(Ljava/lang/String;)V") == 0)
 	{
@@ -72,13 +72,13 @@ static int32_t execute_INVOKE_VIRTUAL(Frame * frame, struct InsturctionData * in
 	Object * ref = getOperandRefFromTop(frame->operandStack, method->argSlotCount - 1);
 	if (ref == NULL)
 	{
-		printf("invoke methodRef:%s\n", methodRef->name);
 		// hack!
 		if (strcmp(methodRef->name, "println") == 0)
 		{
 			_println(frame->operandStack, methodRef->descriptor);
 			return 0;
 		}
+		printf("invoke methodRef:%s\n", methodRef->name);
 		printf("java.lang.NullPointerException\n");
 		exit(135);
 	}

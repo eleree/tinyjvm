@@ -71,9 +71,9 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 	Thread * mainThread = newThread();
 
 	/* Init VM */
-	//Class * vmClass = loadClass(classLoader, "sun/misc/VM");
-	//InitClass(mainThread, vmClass);
-	//interpretThread(mainThread);
+	Class * vmClass = loadClass(classLoader, "sun/misc/VM");
+	InitClass(mainThread, vmClass);
+	interpretThread(mainThread);
 
 	/* Start Apps */
 	stringReplace(className, fullClassName, 128);
