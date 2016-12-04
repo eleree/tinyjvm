@@ -129,7 +129,7 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		resetBytecodeReader(&bytecodeReader, frame->method->code, frame->method->codeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
 
-#if 1
+#if 0
 		//printf("%d\n", instIndex++);
 		printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
 			frame->method->classMember.name, pc, opcode, instIndex);
@@ -138,8 +138,13 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		//printf("  pc:0x%02x, opcode:0x%02x\n", pc, opcode);
 		//dumpLocalVars(frame);
 #endif 
+		if (strcmp("java/util/Hashtable", frame->method->classMember.attachClass->name) == 0)
+			//strcmp("put", frame->method->classMember.name) == 0)
+			printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
+			frame->method->classMember.name, pc, opcode, instIndex);
+
 		instIndex++;
-		if (instIndex == 379)
+		if (instIndex == 16104)
 		{
 			printf("probe\n");
 		}

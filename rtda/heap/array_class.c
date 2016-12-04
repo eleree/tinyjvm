@@ -56,6 +56,7 @@ Object * newArray(Class * self, uint16_t count)
 		o->data = calloc(count, sizeof(double));
 		break;
 	default:
+		o->dataType = 'O';
 		o->data = calloc(count, sizeof(Object*));
 		break;
 	}

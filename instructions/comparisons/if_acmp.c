@@ -39,6 +39,6 @@ Instruction * IF_ACMPNE(Instruction * inst)
 Instruction * IF_ACMPEQ(Instruction * inst)
 {
 	inst->fetchOperands = branchInstructionFetchOperands;
-	inst->execute = execute_if_acmpne;
+	inst->execute = execute_if_acmpeq;
 	return inst;
 }

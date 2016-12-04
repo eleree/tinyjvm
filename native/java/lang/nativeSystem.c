@@ -64,9 +64,9 @@ char * _sysProps[] = {
 	"os.name",
 	"windows",   // todo
 	"os.arch",
-	"", // todo
+	"amd64", // todo
 	"os.version",
-	"",             // todo
+	"7.1",             // todo
 	"file.separator",
 	"/",            // todo os.PathSeparator
 	"path.separator",
@@ -126,24 +126,36 @@ void  initProperties(Frame * frame)
 // (Ljava/io/InputStream;)V
 void  setIn0(Frame * frame)
 {
-	printf("Invoke Native Method %s\n", __FUNCTION__);
-	exit(1);
+	//printf("Invoke Native Method %s\n", __FUNCTION__);
+	//exit(1);
+	LocalVars * vars = frame->localVars;
+	Object * in = getLocalVarsRef(vars, 0);
+	Class * sysClass = frame->method->classMember.attachClass;
+	setClassRefVar(sysClass, "in", "Ljava/io/InputStream;", in);
 }
 
 // private static native void setOut0(PrintStream out);
 // (Ljava/io/PrintStream;)V
 void  setOut0(Frame * frame)
 {
-	printf("Invoke Native Method %s\n", __FUNCTION__);
-	exit(1);
+	//printf("Invoke Native Method %s\n", __FUNCTION__);
+	//exit(1);
+	LocalVars * vars = frame->localVars;
+	Object * out = getLocalVarsRef(vars, 0);
+	Class * sysClass = frame->method->classMember.attachClass;
+	setClassRefVar(sysClass, "out", "Ljava/io/PrintStream;", out);
 }
 
 // private static native void setErr0(PrintStream err);
 // (Ljava/io/PrintStream;)V
 void  setErr0(Frame * frame)
 {
-	printf("Invoke Native Method %s\n", __FUNCTION__);
-	exit(1);
+	//printf("Invoke Native Method %s\n", __FUNCTION__);
+	//exit(1);
+	LocalVars * vars = frame->localVars;
+	Object * err = getLocalVarsRef(vars, 0);
+	Class * sysClass = frame->method->classMember.attachClass;
+	setClassRefVar(sysClass, "err", "Ljava/io/PrintStream;", err);
 }
 
 // public static native long currentTimeMillis();

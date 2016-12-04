@@ -8,6 +8,15 @@ int32_t _aload(Frame * frame, int32_t index)
 	LocalVars * localVars = frame->localVars;
 	Object * val = getLocalVarsRef(localVars, index);
 	pushOperandRef(operandStack, val);
+	if (val!=NULL && val->dataType == 'R')
+	{
+		Slot * slots = (Slot *)val->data;
+		for (uint16_t i = 0; i < val->dataCount; i++)
+		{
+			Slot * slot = slots + i;
+			//printf("a");
+		}
+	}
 	return 0;
 }
 
