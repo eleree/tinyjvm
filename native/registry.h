@@ -52,6 +52,7 @@ void initReflect(void);
 void initNativeFileDescriptor(void);
 void initAccessController(void);
 void initConstructorAccessorImpl(void);
+void initUnsafeMem(void);
 
 Object * toClassArr(ClassLoader * classLoader, Class * *interfaces, uint16_t interfacesCount);
 Object * getSignatureStr(ClassLoader * classLoader, char * signature);
@@ -60,5 +61,10 @@ Object * toByteArr(ClassLoader * classLoader, uint8_t * goBytes, uint32_t  bytes
 void getDeclaredFields0(Frame * frame);
 void getDeclaredConstructors0(Frame * frame);
 
+/* */
+int64_t allocateNativeMemory(int64_t size);
+int64_t reallocateNativeMemory(int64_t address, int64_t size);
+uint8_t * memoryAt(int64_t address, int64_t * bytesLen);
+void freeNativeMemory(int64_t address);
 
 #endif

@@ -233,8 +233,20 @@ void linkClass(ClassLoader * classLoader, Class * c)
 	prepare(c);
 }
 
+// todo
+void hackClass(Class * c)
+{
+	if (strcmp(c->name, "java/lang/ClassLoader") == 0)
+	{
+		Method * loadLibrary = getClassStaticMethod(c, "loadLibrary", "(Ljava/lang/Class;Ljava/lang/String;Z)V");
+		loadLibrary->code = calloc(1, sizeof(uint8_t));
+		loadLibrary->codeLen = 1;
+		loadLibrary->code[0] = 0xb1;// return void
+	}
+}
 void defineClass(ClassLoader * classLoader, Class * c)
 {
+	hackClass(c);
 	resolveSuperClass(classLoader, c);
 	resolveInterfaces(classLoader, c);
 	addClassList(classLoader, c);

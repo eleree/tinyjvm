@@ -2,12 +2,11 @@
 #include "../../rtda/operand_stack.h"
 #include "../../rtda/local_vars.h"
 
-static Object * ref = 0;
 // Branch if reference is null
 static int32_t execute_IFNULL(Frame * frame, struct InsturctionData * instData)
 {
 	OperandStack * operandStack = frame->operandStack;
-	ref = popOperandRef(operandStack);
+	Object * ref = popOperandRef(operandStack);
 	if (ref == NULL)
 		branch(frame, instData->offset);
 	return 0;
@@ -23,7 +22,7 @@ Instruction * IFNULL(Instruction * inst)
 static int32_t execute_IFNONNULL(Frame * frame, struct InsturctionData * instData)
 {
 	OperandStack * operandStack = frame->operandStack;
-	ref = popOperandRef(operandStack);
+	Object * ref = popOperandRef(operandStack);
 	if (ref != NULL)
 		branch(frame, instData->offset);
 	return 0;

@@ -91,6 +91,7 @@ void initNative(void)
 	initAccessController();
 	initNativeThread();
 	initConstructorAccessorImpl();
+	initUnsafeMem();
 }
 
 Object * createArgsArray(ClassLoader * classLoader, char ** argv, int argc)
@@ -131,11 +132,13 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 
 #if 1
 		//printf("%d\n", instIndex++);
-		if (instIndex >= 29000)
+		//if (instIndex >= 29000)
 		{
-			for (uint16_t i = 0; i < totalFrams(thread->stack); i++)
-				printf(" ");
-			printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
+			//for (uint16_t i = 0; i < totalFrams(thread->stack); i++)
+			//	printf(" ");
+			//printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
+			//	frame->method->classMember.name, pc, opcode, instIndex);
+			printf("%s.%s() #%2d\n", frame->method->classMember.attachClass->name,
 				frame->method->classMember.name, pc, opcode, instIndex);
 		}
 		//printf("  %s\n", frame->method->classMember.name);
