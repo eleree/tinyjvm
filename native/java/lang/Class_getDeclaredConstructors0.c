@@ -44,17 +44,26 @@ void getDeclaredConstructors0(Frame * frame)
 			constructorObj->extra = constructor;
 			constructorObjs[i] = constructorObj;
 
-			OperandStack * ops = newOperandStack(8);
+			OperandStack * ops = newOperandStack(9);
 			pushOperandRef(ops, constructorObj);
 			pushOperandRef(ops, classObj);
 			pushOperandRef(ops, toClassArr(classLoader, methodParameterTypes(constructor), constructor->parsedDescriptor->parameterTypesCount));
-			pushOperandRef(ops, toClassArr(classLoader, methodExceptionTypes(constructor), constructor->exceptions->number_of_exceptions));
+			if (constructor->exceptions != NULL)
+				pushOperandRef(ops, toClassArr(classLoader, methodExceptionTypes(constructor), constructor->exceptions->number_of_exceptions));
+			else
+				pushOperandRef(ops, toClassArr(classLoader, methodExceptionTypes(constructor), 0));
 			pushOperandInt(ops, constructor->classMember.accessFlags);
 			pushOperandInt(ops, 0);
 			pushOperandRef(ops, getSignatureStr(classLoader, constructor->classMember.signature));         // signature
 			pushOperandRef(ops, toByteArr(classLoader, constructor->classMember.annotationData, constructor->classMember.annotationDataLen));
 			pushOperandRef(ops, toByteArr(classLoader, constructor->parameterAnnotationData, constructor->parameterAnnotationDataLen));
 
+
+			Frame * shimFrame = newShimFrame(thread, ops);
+			pushThreadFrame(thread, shimFrame);
+
+			// init constructorObj
+			InvokeMethod(shimFrame, constructorInitMethod);
 		}
 
 

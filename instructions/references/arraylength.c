@@ -13,6 +13,7 @@ static int32_t execute_ARRAY_LENGTH(Frame * frame, struct InsturctionData * inst
 		panic("java.lang.NullPointerException", 151);
 
 	int32_t arrLen = arrRef->dataCount;
+	printf("array:%d\n", arrLen);
 	pushOperandInt(operandStack, arrLen);
 	return 0;
 }

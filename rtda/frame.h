@@ -20,4 +20,6 @@ void freeFrame(Frame * frame);
 
 Frame * newShimFrame(Thread * thread, OperandStack * operandStack);
 
+uint32_t totalFrams(Stack * stack);
+
 #endif

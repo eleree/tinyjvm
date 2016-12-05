@@ -4,6 +4,7 @@
 #include "../../rtda/heap/constant_pool.h"
 #include "../../rtda/heap/cp_symref.h"
 #include "../../rtda/heap/cp_methodref.h"
+#include "../../rtda/heap/array_class.h"
 
 // Invoke instance method; dispatch based on class
 void _println(OperandStack * operandStack, char * descriptor)
@@ -78,10 +79,11 @@ static int32_t execute_INVOKE_VIRTUAL(Frame * frame, struct InsturctionData * in
 			_println(frame->operandStack, methodRef->descriptor);
 			return 0;
 		}
-		printf("invoke methodRef:%s\n", methodRef->name);
+		printf("invoke methodRef:%s %s %s\n", methodRef->name,methodRef->descriptor,methodRef->symRef.className);
 		printf("java.lang.NullPointerException\n");
 		exit(135);
 	}
+
 	
 	if (isMethodProtected(method) &&
 		isClassSuperClassOf(method->classMember.attachClass, currentClass) &&
@@ -89,8 +91,12 @@ static int32_t execute_INVOKE_VIRTUAL(Frame * frame, struct InsturctionData * in
 		ref->class != currentClass &&
 		!isSubClassOf(ref->class, currentClass)){
 
-		printf("java.lang.IllegalAccessError\n");
-		exit(200);			
+		//if !(ref.Class().IsArray() && resolvedMethod.Name() == "clone") {
+		if (!isClassArray(ref->class) && strcmp(method->classMember.name, "clone") == 0)
+		{
+			printf("java.lang.IllegalAccessError\n");
+			exit(200);
+		}
 	}
 		
 	Method * methodToBeInvoked = lookupMethodInClass(ref->class, methodRef->name,

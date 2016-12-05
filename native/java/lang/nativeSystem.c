@@ -1,6 +1,8 @@
 #include "../../registry.h"
 #include <time.h>
 
+#pragma warning(disable:4996)
+
 const char * jlSystem = "java/lang/System";
 
 
@@ -102,16 +104,19 @@ void  initProperties(Frame * frame)
 	ClassLoader * classLoader = setPropMethod->classMember.attachClass->classLoader;
 
 	Thread * thread = frame->thread;
-	for (uint16_t i = 0; i < sizeof(_sysProps) / sizeof(char*)/2; i+=2)
+	printf("init Porps Size:%d\n", sizeof(_sysProps) / sizeof(char*));
+	for (uint16_t i = 0; i < sizeof(_sysProps) / sizeof(char*); i+=2)
 	{
-		String tempStr;
-		tempStr.data = _sysProps[i];
-		tempStr.len = strlen(_sysProps[i]);
-		Object * jKey = jString(classLoader, &tempStr);
+		String *  keyStr = calloc(1, sizeof(String));
+		String *  valStr = calloc(1, sizeof(String));
 
-		tempStr.data = _sysProps[i+1];
-		tempStr.len = strlen(_sysProps[i+1]);
-		Object * jVal = jString(classLoader, &tempStr);
+		keyStr->data = strdup(_sysProps[i]);
+		keyStr->len = strlen(_sysProps[i]);
+		Object * jKey = jString(classLoader, keyStr);
+
+		valStr->data = strdup(_sysProps[i + 1]);
+		valStr->len = strlen(_sysProps[i + 1]);
+		Object * jVal = jString(classLoader, valStr);
 
 		OperandStack * ops = newOperandStack(3);
 		pushOperandRef(ops, props);

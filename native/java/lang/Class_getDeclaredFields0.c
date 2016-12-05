@@ -66,7 +66,6 @@ void getDeclaredFields0(Frame * frame)
 			Frame * shimFrame = newShimFrame(thread, ops);
 			pushThreadFrame(thread, shimFrame);
 
-			printf("i:%d\n", i);
 			InvokeMethod(shimFrame, fieldConstructor);
 		}
 	}

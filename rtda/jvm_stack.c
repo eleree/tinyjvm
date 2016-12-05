@@ -39,6 +39,17 @@ Frame * popFrame(Stack * stack)
 	return frame;
 }
 
+uint32_t  totalFrams(Stack * stack)
+{
+	uint32_t i = 0;
+	Frame * frame = stack->_top;
+	while (frame!=NULL)
+	{
+		i++;
+		frame = frame->lower;
+	}
+	return i;
+}
 
 Frame * topFrame(Stack * stack)
 {

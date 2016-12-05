@@ -129,24 +129,30 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		resetBytecodeReader(&bytecodeReader, frame->method->code, frame->method->codeLen, pc);
 		opcode = readBytecodeUint8(&bytecodeReader);
 
-#if 0
+#if 1
 		//printf("%d\n", instIndex++);
-		printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
-			frame->method->classMember.name, pc, opcode, instIndex);
+		if (instIndex >= 29000)
+		{
+			for (uint16_t i = 0; i < totalFrams(thread->stack); i++)
+				printf(" ");
+			printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
+				frame->method->classMember.name, pc, opcode, instIndex);
+		}
 		//printf("  %s\n", frame->method->classMember.name);
 		//printf("  %s\n", frame->method->classMember.descriptor);
 		//printf("  pc:0x%02x, opcode:0x%02x\n", pc, opcode);
 		//dumpLocalVars(frame);
 #endif 
-		if (strcmp("java/util/Hashtable", frame->method->classMember.attachClass->name) == 0)
+		//if (strcmp("sun/security/action/GetPropertyAction", frame->method->classMember.attachClass->name) == 0)
 			//strcmp("put", frame->method->classMember.name) == 0)
-			printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
-			frame->method->classMember.name, pc, opcode, instIndex);
+		//	printf("probe\n");
+		//	printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
+		//	frame->method->classMember.name, pc, opcode, instIndex);
 
 		instIndex++;
 		if (instIndex == 16104)
 		{
-			printf("probe\n");
+		//	printf("probe\n");
 		}
 		Instruction * inst = newInsturction(opcode);
 		InstructionData instData = { 0 };

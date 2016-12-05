@@ -14,7 +14,7 @@ int32_t _aload(Frame * frame, int32_t index)
 		for (uint16_t i = 0; i < val->dataCount; i++)
 		{
 			Slot * slot = slots + i;
-			//printf("a");
+			slot = slot;
 		}
 	}
 	return 0;

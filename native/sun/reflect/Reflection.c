@@ -17,8 +17,16 @@ void  getCallerClass(Frame * frame)
 // (Ljava/lang/Class;)I
 void  getClassAccessFlags(Frame * frame)
 {
-	printf("Invoke Native Method %s\n", __FUNCTION__);
-	exit(1);
+	//printf("Invoke Native Method %s\n", __FUNCTION__);
+	//exit(1);
+	LocalVars * vars = frame->localVars;
+	Object * _type = getLocalVarsRef(vars, 0);
+	Class * goClass = _type->extra;
+	
+	uint16_t flags = goClass->accessFlags;
+
+	pushOperandInt(frame->operandStack, (int32_t)flags);
+
 }
 
 void initReflect(void)
