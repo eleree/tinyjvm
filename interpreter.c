@@ -92,6 +92,9 @@ void initNative(void)
 	initNativeThread();
 	initConstructorAccessorImpl();
 	initUnsafeMem();
+	initSignal();
+	initWin32ErrorMode();
+	initNativeFileOutputStream();
 }
 
 Object * createArgsArray(ClassLoader * classLoader, char ** argv, int argc)

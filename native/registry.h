@@ -53,6 +53,9 @@ void initNativeFileDescriptor(void);
 void initAccessController(void);
 void initConstructorAccessorImpl(void);
 void initUnsafeMem(void);
+void initSignal(void);
+void initWin32ErrorMode(void);
+void initNativeFileOutputStream(void);
 
 Object * toClassArr(ClassLoader * classLoader, Class * *interfaces, uint16_t interfacesCount);
 Object * getSignatureStr(ClassLoader * classLoader, char * signature);
