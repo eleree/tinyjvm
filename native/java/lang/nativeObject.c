@@ -1,7 +1,8 @@
 #include "../../registry.h"
+#include <time.h>
 
 const char * jlObject = "java/lang/Object";
-
+static int32_t random = 3;
 // public final native Class<?> getClass();
 // ()Ljava/lang/Class;
 void  getClass(Frame * frame)
@@ -15,8 +16,9 @@ void  getClass(Frame * frame)
 // ()I
 void  hashCode(Frame * frame)
 {
+	srand(time(NULL));
 	Object * thisObject = getLocalVarsThis(frame->localVars);
-	int32_t hash = (int32_t)thisObject;
+	int32_t hash = (int32_t)thisObject + rand() + random;
 	pushOperandInt(frame->operandStack, hash);
 }
 

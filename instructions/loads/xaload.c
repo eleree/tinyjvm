@@ -6,13 +6,13 @@
 static void checkNotNil(Object * o)
 {
 	if (o == NULL)
-		panic("java.lang.NullPointerException\n", 154);
+		panic("java.lang.NullPointerException", 154);
 }
 
 static void checkIndex(int32_t arrLen, int32_t index)
 {
 	if (index < 0 || index >= arrLen ){
-		panic("ArrayIndexOutOfBoundsException\n", 154);
+		panic("ArrayIndexOutOfBoundsException", 154);
 	}
 }
 

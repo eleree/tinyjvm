@@ -101,16 +101,16 @@ int32_t execute_DASTORE(Frame * frame, struct InsturctionData * instData)
 {
 	OperandStack * operandStack = frame->operandStack;
 	LocalVars * localVars = frame->localVars;
-	double val = popOperandInt(operandStack);
+	double val = popOperandDouble(operandStack);
 	int32_t index = popOperandInt(operandStack);
 
 	Object * arrRef = popOperandRef(operandStack);
 	checkNotNil(arrRef);
 
-	double * refs = getObjectDoubles(arrRef);
+	double * doubles = getObjectDoubles(arrRef);
 	checkIndex(arrRef->dataCount, index);
 
-	refs[index] = (double)val;
+	doubles[index] = (double)val;
 
 	return 0;
 }
@@ -134,10 +134,10 @@ int32_t execute_FASTORE(Frame * frame, struct InsturctionData * instData)
 	Object * arrRef = popOperandRef(operandStack);
 	checkNotNil(arrRef);
 
-	float * refs = getObjectFloats(arrRef);
+	float * floats = getObjectFloats(arrRef);
 	checkIndex(arrRef->dataCount, index);
 
-	refs[index] = (float)val;
+	floats[index] = (float)val;
 
 	return 0;
 }
@@ -182,7 +182,7 @@ int32_t execute_LASTORE(Frame * frame, struct InsturctionData * instData)
 {
 	OperandStack * operandStack = frame->operandStack;
 	LocalVars * localVars = frame->localVars;
-	int64_t val = popOperandInt(operandStack);
+	int64_t val = popOperandLong(operandStack);
 	int32_t index = popOperandInt(operandStack);
 
 	Object * arrRef = popOperandRef(operandStack);

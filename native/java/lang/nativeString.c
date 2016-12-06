@@ -8,7 +8,7 @@ void  intern(Frame * frame)
 {
 	Object * thisObject = getLocalVarsThis(frame->localVars);
 	Object * interned = internString(thisObject);
-	printf("intern: %s\n",(char * )(goString(thisObject)->data));
+	//printf("intern: %s\n",(char * )(goString(thisObject)->data));
 	pushOperandRef(frame->operandStack, interned);
 }
 

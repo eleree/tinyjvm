@@ -11,7 +11,7 @@ static IINCData iincData;
 
 static int32_t fetchOperands_IINC(BytecodeReader * bytecoderReader, InstructionData * instData)
 {
-	iincData.Index = readBytecodeInt8(bytecoderReader);
+	iincData.Index = readBytecodeUint8(bytecoderReader);
 	iincData.Const = readBytecodeInt8(bytecoderReader);
 	return 0;
 }

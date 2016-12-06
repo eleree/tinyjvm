@@ -44,7 +44,7 @@ void  arraycopy(Frame * frame)
 	{
 		panic("java.lang.IndexOutOfBoundsException\n", -1);
 	}
-
+	//printf("arraycopy:%c,%c,%d,%d,%d", src->dataType, dest->dataType, srcPos, destPos, length);
 	arrayCopy(src, dest, srcPos, destPos, length);
 }
 
@@ -104,7 +104,7 @@ void  initProperties(Frame * frame)
 	ClassLoader * classLoader = setPropMethod->classMember.attachClass->classLoader;
 
 	Thread * thread = frame->thread;
-	printf("init Porps Size:%d\n", sizeof(_sysProps) / sizeof(char*));
+	//printf("init Porps Size:%d\n", sizeof(_sysProps) / sizeof(char*));
 	for (uint16_t i = 0; i < sizeof(_sysProps) / sizeof(char*); i+=2)
 	{
 		String *  keyStr = calloc(1, sizeof(String));

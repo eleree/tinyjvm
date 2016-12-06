@@ -168,6 +168,10 @@ char * getComponentClassName(char * className)
 
 void arrayCopy(Object * srcArray, Object * destArray, int32_t srcPos, int32_t dstPos, int32_t length)
 {
+	if (strncmp(srcArray->data, "sun", 3) == 0)
+	{
+		printf("a");
+	}
 	switch (srcArray->dataType)
 	{
 	case 'Z':

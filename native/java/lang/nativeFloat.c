@@ -9,6 +9,7 @@ void floatToRawIntBits(Frame * frame)
 {
 	FloatInt transData;
 	transData.floatData = getLocalVarsFloat(frame->localVars, 0);
+	printf("---%f\n", transData.floatData);
 	pushOperandInt(frame->operandStack, transData.bitsData);
 }
 

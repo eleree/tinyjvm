@@ -2,6 +2,8 @@
 #include "../../../strings/strings.h"
 #include "../../../rtda/frame.h"
 
+#pragma warning(disable:4996)
+
 const char * jlClass = "java/lang/Class";
 
 
@@ -74,7 +76,11 @@ void forName0(Frame * frame)
 	Object * jName = getLocalVarsRef(vars, 0);
 	bool initialize = getLocalVarsBoolean(vars, 1);
 
-	String * goName = goString(jName);
+	String * goOriName = goString(jName);
+	String * goName = calloc(1, sizeof(String));
+	goName->data = calloc(sizeof(goOriName->len)+1, sizeof(uint8_t));
+	strcpy(goName->data, goOriName->data);
+	goName->len = goOriName->len;
 	stringReplace(goName->data, goName->data, goName->len);
 	Class * goClass = loadClass(frame->method->classMember.attachClass->classLoader, goName->data);
 

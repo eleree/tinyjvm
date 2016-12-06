@@ -135,10 +135,10 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 
 #if 1
 		//printf("%d\n", instIndex++);
-		//if (instIndex >= 29000)
+		//if (instIndex >= 18942)
 		{
-			//for (uint16_t i = 0; i < totalFrams(thread->stack); i++)
-			//	printf(" ");
+			for (uint16_t i = 0; i < totalFrams(thread->stack); i++)
+				printf(" ");
 			//printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
 			//	frame->method->classMember.name, pc, opcode, instIndex);
 			printf("%s.%s() #%2d\n", frame->method->classMember.attachClass->name,
@@ -149,15 +149,17 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		//printf("  pc:0x%02x, opcode:0x%02x\n", pc, opcode);
 		//dumpLocalVars(frame);
 #endif 
-		//if (strcmp("sun/security/action/GetPropertyAction", frame->method->classMember.attachClass->name) == 0)
+		//if (strcmp("sun/misc/FDBigInteger", frame->method->classMember.attachClass->name) == 0)
 			//strcmp("put", frame->method->classMember.name) == 0)
+		//	printf("probe");
 		//	printf("probe\n");
 		//	printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
 		//	frame->method->classMember.name, pc, opcode, instIndex);
 
 		instIndex++;
-		if (instIndex == 16104)
+		if (instIndex > 32000)
 		{
+		//	exit(0);
 		//	printf("probe\n");
 		}
 		Instruction * inst = newInsturction(opcode);
@@ -172,7 +174,6 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		if (isThreadStackEmpty(thread))
 			break;
 	}
-	system("pause");
 }
 
 void interpretThread(Thread * thread)
