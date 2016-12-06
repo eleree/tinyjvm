@@ -16,10 +16,10 @@ void  getClass(Frame * frame)
 // ()I
 void  hashCode(Frame * frame)
 {
-	srand(time(NULL));
 	Object * thisObject = getLocalVarsThis(frame->localVars);
-	int32_t hash = (int32_t)thisObject + rand() + random;
-	pushOperandInt(frame->operandStack, hash);
+	int32_t hash = (int32_t)thisObject;
+	printf("hash:%d\n",hash);
+	pushOperandInt(frame->operandStack, 0);
 }
 
 // protected native Object clone() throws CloneNotSupportedException;

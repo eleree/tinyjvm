@@ -2,7 +2,7 @@
 
 #pragma warning(disable:4996)
 
-/*
+
 void initialize(Frame * frame)
 {
 	Class * vmClass = frame->method->classMember.attachClass;
@@ -26,7 +26,7 @@ void initialize(Frame * frame)
 
 	InvokeMethod(frame, setPropMethod);
 }
-*/
+/*
 void initialize(Frame * frame)
 {
 	ClassLoader * classLoader = frame->method->classMember.attachClass->classLoader;
@@ -35,6 +35,7 @@ void initialize(Frame * frame)
 	Method * initSysClass = getClassStaticMethod(jlSysClass, "initializeSystemClass", "()V");
 	InvokeMethod(frame, initSysClass);
 }
+*/
 void initVM(void)
 {
 	registerNativeMethod("sun/misc/VM", "initialize", "()V", initialize);
