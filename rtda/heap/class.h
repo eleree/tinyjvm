@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../../config.h"
 #include "../rtda.h"
 #include "../../classfile/classfile.h"
 #include "field.h"

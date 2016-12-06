@@ -623,5 +623,8 @@
     <ClInclude Include="rtda\heap\exception_table.h">
       <Filter>源文件\rtda\heap</Filter>
     </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

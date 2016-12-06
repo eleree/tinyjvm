@@ -70,11 +70,12 @@ void startJVM(const char * jrepath, const char * classpath, const char * classNa
 
 	Thread * mainThread = newThread();
 
+#if ENABLE_VM_INIT
 	/* Init VM */
-	//Class * vmClass = loadClass(classLoader, "sun/misc/VM");
-	//InitClass(mainThread, vmClass);
-	//interpretThread(mainThread);
-
+	Class * vmClass = loadClass(classLoader, "sun/misc/VM");
+	InitClass(mainThread, vmClass);
+	interpretThread(mainThread);
+#endif 
 	/* Start Apps */
 	stringReplace(className, fullClassName, 128);
 	stringCat(fullClassName, ".class", 128);
