@@ -30,6 +30,14 @@ void pushOperandInt(OperandStack* operandStack,int32_t val)
 	uint32_t operandStackSize = operandStack->size;
 	operandStack->slots[operandStackSize].num = val;
 	operandStack->size++;
+	if (val == 1808548329)
+	{
+		printf("probe");
+	}
+	if (val == 6103515625)
+	{
+		printf("probe2");
+	}
 }
 
 int32_t popOperandInt(OperandStack* operandStack)

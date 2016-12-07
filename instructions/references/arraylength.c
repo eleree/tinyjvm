@@ -16,26 +16,18 @@ static int32_t execute_ARRAY_LENGTH(Frame * frame, struct InsturctionData * inst
 
 	printf("array:%d\n", arrLen);
 	
-	if (arrLen == 16)
+
+	if (arrRef->dataType == 'I')
 	{
-		if (arrRef->dataType == 'O')
+		printf("[");
+		for (uint16_t i = 0; i < arrRef->dataCount; i++)
 		{
-			printf("[");
-			for (uint16_t i = 0; i < arrRef->dataCount; i++)
-			{
-				Object* * o = (Object* *)arrRef->data;
-				Object * oo = o[i];
-				if (oo == NULL)
-					printf("<nil> ");
-				else
-				{
-					printf("object%c ", oo->dataType);
-				}
-				
-			}
-			printf("]\n");
+			int32_t * int32s = arrRef->data;
+			printf("%lld ", int32s[i]);
 		}
+		printf("]\n");
 	}
+	
 	pushOperandInt(operandStack, arrLen);
 	return 0;
 }

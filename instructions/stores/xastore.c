@@ -163,7 +163,6 @@ int32_t execute_IASTORE(Frame * frame, struct InsturctionData * instData)
 
 	int32_t * refs = getObjectInts(arrRef);
 	checkIndex(arrRef->dataCount, index);
-
 	refs[index] = (int32_t)val;
 
 	return 0;
