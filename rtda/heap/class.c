@@ -374,23 +374,23 @@ char * classJavaName(Class * self)
 */
 bool isClassPrimitive(Class *self)
 {
-	if (strcmp(self->name, "V") == 0)
+	if (strcmp(self->name, "void") == 0)
 		return true;
-	if (strcmp(self->name, "Z") == 0)
+	if (strcmp(self->name, "boolean") == 0)
 		return true;
-	if (strcmp(self->name, "B") == 0)
+	if (strcmp(self->name, "byte") == 0)
 		return true;
-	if (strcmp(self->name, "S") == 0)
+	if (strcmp(self->name, "short") == 0)
 		return true;
-	if (strcmp(self->name, "I") == 0)
+	if (strcmp(self->name, "int") == 0)
 		return true;
-	if (strcmp(self->name, "J") == 0)
+	if (strcmp(self->name, "long") == 0)
 		return true;
-	if (strcmp(self->name, "C") == 0)
+	if (strcmp(self->name, "char") == 0)
 		return true;
-	if (strcmp(self->name, "F") == 0)
+	if (strcmp(self->name, "float") == 0)
 		return true;
-	if (strcmp(self->name, "D") == 0)
+	if (strcmp(self->name, "double") == 0)
 		return true;
 
 	return false;

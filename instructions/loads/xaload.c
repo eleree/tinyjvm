@@ -123,7 +123,7 @@ int32_t execute_FALOAD(Frame * frame, struct InsturctionData * instData)
 
 	float* floats = getObjectFloats(arrRef);
 	checkIndex(arrRef->dataCount, index);
-	pushOperandDouble(operandStack, floats[index]);
+	pushOperandFloat(operandStack, floats[index]);
 	return 0;
 }
 
