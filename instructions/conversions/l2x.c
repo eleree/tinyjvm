@@ -42,6 +42,8 @@ static int32_t execute_L2I(Frame * frame, struct InsturctionData * instData)
 	OperandStack * operandStack = frame->operandStack;
 	int64_t l = popOperandLong(operandStack);
 	int32_t i = (int32_t)l;
+	//printf("L22I L:%x\n", l);
+	printf("L22I l:%d i:%d s:%d\n",i,operandStack->size);
 	pushOperandInt(operandStack, i);
 	return 0;
 }

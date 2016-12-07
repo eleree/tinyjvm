@@ -9,7 +9,6 @@ void doubleToRawLongBits(Frame * frame)
 	DoubleLong transData;
 
 	transData.doubleData = getLocalVarsDouble(frame->localVars, 0);
-	printf("%f\n", transData.doubleData);
 	pushOperandLong(frame->operandStack, transData.bitsData);
 }
 
@@ -19,6 +18,7 @@ void  longBitsToDouble(Frame * frame)
 {
 	DoubleLong transData;
 	transData.bitsData = getLocalVarsLong(frame->localVars, 0);
+	printf("+++%f\n", transData.doubleData);
 	pushOperandDouble(frame->operandStack, transData.doubleData);
 }
 

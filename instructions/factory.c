@@ -414,7 +414,7 @@ Instruction * newInsturction(uint8_t opcode)
 			return IUSHR(&instruction);
 		case 0x7d:
 			//return lushr
-			return IUSHR(&instruction);
+			return LUSHR(&instruction);
 		case 0x7e:
 			//return iand
 			return IAND(&instruction);

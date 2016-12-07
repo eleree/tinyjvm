@@ -23,7 +23,7 @@ static int32_t execute_ARRAY_LENGTH(Frame * frame, struct InsturctionData * inst
 		for (uint16_t i = 0; i < arrRef->dataCount; i++)
 		{
 			int32_t * int32s = arrRef->data;
-			printf("%lld ", int32s[i]);
+			printf("%ld ", int32s[i]);
 		}
 		printf("]\n");
 	}
