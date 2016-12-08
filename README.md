@@ -1,6 +1,6 @@
 # tinyjvm
 a copy jvm as jvm.go
-NOT FINISHED! And MAY WILL NOT FINISH FOREVER!(Finally  I finished it :D )
+NOT FINISHED! And MAY WILL NOT FINISH FOREVER!(Finally I finished it :D )
 
 2016-12-08
 
@@ -13,7 +13,7 @@ jre path:D:/jre
 JVM Exit
 
 I have tested most examples of JVM.GO except jvmgo.book.ch09.ArrayClassTest.
-I do not test it because it depends on a similiar NATIVE Methods, I don't wanto repeat too much.
+I do not test it because it depends on a similiar NATIVE Method, I don't wan to repeat too much.
 
 
 
