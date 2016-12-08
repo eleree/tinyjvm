@@ -45,7 +45,9 @@ static int32_t execute_WIDE_IINC(Frame * frame, struct InsturctionData * instDat
 	LocalVars * localVars = frame->localVars;
 	int32_t val = getLocalVarsInt(localVars, wIndex);
 	val += wConst;
+#if ENABLE_INST_LOCALVAR_DEBUG
 	printf("Wide: index:%d,const %d\n", wIndex, wConst);
+#endif
 	setLocalVarsInt(localVars, wIndex, val);
 	return 0;
 }

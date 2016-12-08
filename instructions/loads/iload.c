@@ -8,6 +8,7 @@ int32_t _iload(Frame * frame, int32_t index)
 	LocalVars * localVars = frame->localVars;
 	int32_t val = getLocalVarsInt(localVars, index);
 	//printf("_iload %d index:%d\n", val, index);
+#if ENABLE_ARRAY_DEBUG
 	printf("[");
 	uint16_t size = localVars->size;
 	for (uint16_t i = 0; i < size; i++)
@@ -16,7 +17,8 @@ int32_t _iload(Frame * frame, int32_t index)
 		printf("%d:%d ", i, slot->num);
 	}
 	printf("]\n");
-	
+#endif
+
 	pushOperandInt(operandStack,val);
 	return 0;
 }

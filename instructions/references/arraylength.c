@@ -14,6 +14,7 @@ static int32_t execute_ARRAY_LENGTH(Frame * frame, struct InsturctionData * inst
 
 	int32_t arrLen = arrRef->dataCount;
 
+#if ENABLE_ARRAY_DEBUG
 	printf("array:%d\n", arrLen);
 	
 
@@ -27,7 +28,8 @@ static int32_t execute_ARRAY_LENGTH(Frame * frame, struct InsturctionData * inst
 		}
 		printf("]\n");
 	}
-	
+#endif
+
 	pushOperandInt(operandStack, arrLen);
 	return 0;
 }

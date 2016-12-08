@@ -6,4 +6,10 @@
 */
 #define ENABLE_VM_INIT	1
 
+#define ENABLE_ARRAY_DEBUG	0
+
+#define ENABLE_INST_LOCALVAR_DEBUG 0
+
+#define ENABLE_NATIVE_METHOD_DEBUG 0
+
 #endif

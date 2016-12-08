@@ -18,7 +18,6 @@ void  hashCode(Frame * frame)
 {
 	Object * thisObject = getLocalVarsThis(frame->localVars);
 	int32_t hash = (int32_t)thisObject;
-	printf("hash:%d\n",hash);
 	pushOperandInt(frame->operandStack, 0);
 }
 

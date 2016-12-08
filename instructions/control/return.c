@@ -101,7 +101,9 @@ static int32_t execute_IRETURN(Frame * frame, struct InsturctionData * instData)
 	Frame * invokerFrame = getCurrentFrame(thread);
 
 	int32_t val = popOperandInt(currentFrame->operandStack);
+#if ENABLE_INST_LOCALVAR_DEBUG
 	printf("ireturn:%d\n", val);
+#endif
 	pushOperandInt(invokerFrame->operandStack, val);
 
 	return 0;

@@ -87,7 +87,9 @@ static int32_t execute_LSHR(Frame * frame, struct InsturctionData * instData)
 	int64_t v1 = popOperandLong(operandStack);
 	uint8_t s = v2 & 0x3F;
 	int64_t result = v1 >> s;
+#if ENABLE_INST_LOCALVAR_DEBUG
 	printf("LSHR v2:%d v1:%lld s:%d result:%lld", v2, v1, s, result);
+#endif
 	pushOperandLong(operandStack, result);
 	return 0;
 }

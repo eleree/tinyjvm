@@ -8,8 +8,10 @@ int32_t _istore(Frame * frame, int32_t index)
 	OperandStack * operandStack = frame->operandStack;
 	LocalVars * localVars = frame->localVars;
 	int32_t val = popOperandInt(operandStack);
-	printf("_istore %d index:%d\n", val, index);
 	setLocalVarsInt(localVars, index, val);
+
+#if ENABLE_INST_LOCALVAR_DEBUG
+	printf("_istore %d index:%d\n", val, index);
 	if (val == 1023 && index == 8)
 	{
 		uint16_t size = localVars->size;
@@ -20,6 +22,7 @@ int32_t _istore(Frame * frame, int32_t index)
 		}
 		printf("\n");
 	}
+#endif
 	return 0;
 }
 
