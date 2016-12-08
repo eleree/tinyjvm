@@ -7,8 +7,10 @@ const char * jlDouble = "java/lang/Double";
 void doubleToRawLongBits(Frame * frame)
 {
 	DoubleLong transData;
-
 	transData.doubleData = getLocalVarsDouble(frame->localVars, 0);
+	int64_t d = (int64_t)(transData.bitsData);
+	int64_t i = d / 2;
+	printf("---%f %lld %d\n", transData.doubleData, (int64_t)transData.bitsData,i);
 	pushOperandLong(frame->operandStack, transData.bitsData);
 }
 

@@ -4,6 +4,6 @@
 /*
 	
 */
-#define ENABLE_VM_INIT	0
+#define ENABLE_VM_INIT	1
 
 #endif

@@ -7,6 +7,7 @@ int32_t _lload(Frame * frame, int32_t index)
 	OperandStack * operandStack = frame->operandStack;
 	LocalVars * localVars = frame->localVars;
 	int64_t val = getLocalVarsLong(localVars, index);
+	printf("_lload %lld index:%d\n", val, index);
 	pushOperandLong(operandStack, val);
 	return 0;
 }

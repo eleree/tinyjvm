@@ -45,6 +45,7 @@ static int32_t execute_ISUB(Frame * frame, struct InsturctionData * instData)
 	int32_t v2 = popOperandInt(operandStack);
 	int32_t v1 = popOperandInt(operandStack);
 	int32_t result = v1 - v2;
+	printf("ISUB v1:%d v2:%d result:%d\n", v1, v2, result);
 	pushOperandInt(operandStack, result);
 	return 0;
 }

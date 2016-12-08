@@ -45,6 +45,7 @@ static int32_t execute_PUT_FIELD(Frame * frame, struct InsturctionData * instDat
 	float floatVal = 0;
 	double doubleVal = 0;
 	Slot * slots = NULL;
+
 	switch (descriptor[0])
 	{
 	case 'Z':

@@ -48,6 +48,7 @@ static int32_t execute_IF_CMPLT(Frame * frame, struct InsturctionData * instData
 	int32_t v2 = popOperandInt(operandStack);
 	int32_t v1 = popOperandInt(operandStack);
 
+	printf("v2:%d v1:%d\n", v2, v1);
 	if ( v1 < v2 )
 	{
 		branch(frame, instData->offset);

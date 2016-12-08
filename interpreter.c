@@ -137,12 +137,12 @@ void loop(Class * c, Thread * thread, uint8_t * bytecode, uint32_t bytecodeLen)
 		//printf("%d\n", instIndex++);
 		//if (instIndex >= 18942)
 		{
-			for (uint16_t i = 0; i < totalFrams(thread->stack); i++)
-				printf(" ");
-			//printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
-			//	frame->method->classMember.name, pc, opcode, instIndex);
-			printf("%s.%s() #%2d\n", frame->method->classMember.attachClass->name,
+			//for (uint16_t i = 0; i < totalFrams(thread->stack); i++)
+			//	printf(" ");
+			printf("%s.%s() #%2d *0x%02x index:%d\n", frame->method->classMember.attachClass->name,
 				frame->method->classMember.name, pc, opcode, instIndex);
+			//printf("%s.%s() #%2d\n", frame->method->classMember.attachClass->name,
+			//	frame->method->classMember.name, pc, opcode, instIndex);
 		}
 		//printf("  %s\n", frame->method->classMember.name);
 		//printf("  %s\n", frame->method->classMember.descriptor);

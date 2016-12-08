@@ -8,6 +8,7 @@ int32_t _lstore(Frame * frame, int32_t index)
 	OperandStack * operandStack = frame->operandStack;
 	LocalVars * localVars = frame->localVars;
 	int64_t val = popOperandLong(operandStack);
+	printf("_lstore:%lld\n", val);
 	setLocalVarsLong(localVars, index, val);
 	return 0;
 }
