@@ -6,10 +6,16 @@ NOT FINISHED! And MAY WILL NOT FINISH FOREVER!(Finally I finished it :D )
 
 Usage: 
 F:\tinyjvm\tinyjvm\Debug>tinyjvm.exe --Xjre="D:/jre"   jvmgo.book.ch09.HashMapTest
+
+
 jre path:D:/jre
+
 123
+
 987
+
 {abc=123, xyz=987}
+
 JVM Exit
 
 I have tested most examples of JVM.GO except jvmgo.book.ch09.ArrayClassTest.
