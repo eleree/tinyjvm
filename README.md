@@ -1,6 +1,5 @@
 # tinyjvm
-a copy jvm as jvm.go
-NOT FINISHED! And MAY WILL NOT FINISH FOREVER!(Finally I finished it :D )
+a copy jvm as jvm.go, just for learning, so I didn't think about malloc/free.
 
 2016-12-08
 
